@@ -1,4 +1,4 @@
-package com.lpoo_32.graphics;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 

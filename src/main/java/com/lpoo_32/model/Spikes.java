@@ -1,4 +1,4 @@
-package com.lpoo_32.logic;
+package com.lpoo_32.model;
 
 import com.lpoo_32.exceptions.StatusOverflow;
 
