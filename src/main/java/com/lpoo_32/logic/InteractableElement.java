@@ -1,5 +1,5 @@
 package com.lpoo_32.logic;
 
-public interface InteractableElement extends Element{
+public interface InteractableElement extends ElementModel{
     void interact();
 }
