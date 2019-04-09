@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 
 public class InteractableElementTest {
-    PlayerModel player;
+    private PlayerModel player;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();

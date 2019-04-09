@@ -8,13 +8,13 @@ public class Status {
         this.value = value;
     }
 
-    public void decreaseValue(int value) throws StatusOverflow {
+    void decreaseValue(int value) throws StatusOverflow {
         if(this.value -  value <= 0)
             throw new StatusOverflow();
         this.value -= value;
     }
 
-    public void increaseValue(int value) {
+    void increaseValue(int value) {
         if(this.value + value > 100){
             this.value = 100;
             return;

@@ -3,7 +3,7 @@ package com.lpoo_32.logic;
 import com.lpoo_32.exceptions.StatusOverflow;
 
 public class Spikes implements InteractableElement {
-    int value;
+    private int value;
 
     Spikes(int value){
         this.value = value;
