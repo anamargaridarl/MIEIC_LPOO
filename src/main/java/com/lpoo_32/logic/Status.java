@@ -21,4 +21,8 @@ public class Status {
         }
         this.value += value;
     }
+
+    public int getValue(){
+        return this.value;
+    }
 }
