@@ -1,4 +1,4 @@
-package com.lpoo_32.logic;
+package com.lpoo_32.model;
 
 public class PlayerModel {
     private Status health;
