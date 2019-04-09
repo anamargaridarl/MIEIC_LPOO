@@ -1,4 +1,4 @@
-# LPOO_TG Project Name
+# LPOO_32 Don't Die
 
 2D Survival Game, intended to be a recreation of Don't Starve.
 With the purpose of basic survival, the player should try its best
