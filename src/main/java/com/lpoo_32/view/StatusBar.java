@@ -20,7 +20,13 @@ public class StatusBar implements Drawable{
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.setForegroundColor(color);
-        graphics.fillRectangle(new TerminalPosition(ScreenSize.instance().getColumn(60), ScreenSize.instance().getRows(10)), new TerminalSize(this.status.getValue(), 1), Symbols.BLOCK_SOLID);
-        graphics.fillRectangle(new TerminalPosition(ScreenSize.instance().getColumn(60 + this.status.getValue()), ScreenSize.instance().getRows(10)), new TerminalSize(this.status.getValue(), 1), Symbols.BLOCK_SPARSE);
+        graphics.fillRectangle(new TerminalPosition(ScreenSize.instance().getColumn(60),
+                                ScreenSize.instance().getRows(10)),
+                                new TerminalSize(this.status.getValue(), 1),
+                                Symbols.BLOCK_SOLID);
+        graphics.fillRectangle(new TerminalPosition(ScreenSize.instance().getColumn(60 + this.status.getValue()),
+                                ScreenSize.instance().getRows(10)),
+                                new TerminalSize(this.status.getValue(), 1),
+                                Symbols.BLOCK_SPARSE);
     }
 }

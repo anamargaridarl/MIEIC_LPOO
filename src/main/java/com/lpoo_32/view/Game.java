@@ -21,9 +21,12 @@ public class Game extends Display{
         System.out.println(ScreenSize.instance().getColumn(60) + " - " + ScreenSize.instance().getRows(50));
         TextGraphics graphics = this.screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#48D1CC"));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(ScreenSize.instance().getColumn(60), ScreenSize.instance().getRows(50)), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 0),
+                                new TerminalSize(ScreenSize.instance().getColumn(60),
+                                ScreenSize.instance().getRows(50)), ' ');
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-        graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20), ScreenSize.instance().getRows(20)), "@");
+        graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
+                            ScreenSize.instance().getRows(20)), "@");
         for(Drawable drawable: this.props)
             drawable.draw(graphics);
         this.screen.refresh();
