@@ -50,4 +50,17 @@ public class InteractableElementTest {
         assertEquals(100, player.getFood().getValue());
         assertEquals(100, player.getHealth().getValue());
     }
+
+    @Test
+    public void water() throws StatusOverflow {
+        this.player.setWater(new Status(70));
+        InteractableElement water = new WaterModel(null);
+        assertEquals(70, this.player.getWater().getValue());
+        assertEquals(100, this.player.getFood().getValue());
+        assertEquals(100, this.player.getHealth().getValue());
+        water.interact(player);
+        assertEquals(90, this.player.getWater().getValue());
+        assertEquals(100, this.player.getFood().getValue());
+        assertEquals(100, this.player.getHealth().getValue());
+    }
 }

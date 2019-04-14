@@ -15,11 +15,23 @@ public class PlayerModel {
         return health;
     }
 
+    public void setHealth(Status health) {
+        this.health = health;
+    }
+
     public Status getFood() {
         return food;
     }
 
+    public void setFood(Status food) {
+        this.food = food;
+    }
+
     public Status getWater() {
         return water;
+    }
+
+    public void setWater(Status water) {
+        this.water = water;
     }
 }
