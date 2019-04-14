@@ -23,28 +23,28 @@ public class InteractableElementTest {
 
     @Test
     public void spikes() throws StatusOverflow {
-        InteractableElement spike = new Spikes(20);
+        InteractableElement spike = new SpikesModel(20, null);
         spike.interact(player);
-        assertEquals(80, player.getWater().getValue());
-        assertEquals(80, player.getFood().getValue());
+        assertEquals(100, player.getWater().getValue());
+        assertEquals(100, player.getFood().getValue());
         assertEquals(80, player.getHealth().getValue());
     }
 
 
     @Test
     public void statusOVF() throws StatusOverflow {
-        InteractableElement spike = new Spikes(200);
+        InteractableElement spike = new SpikesModel(200, null);
         thrown.expect(StatusOverflow.class);
         spike.interact(player);
     }
     @Test
     public void food() throws StatusOverflow {
-        InteractableElement spike = new Spikes(20);
+        InteractableElement spike = new SpikesModel(20, null);
         spike.interact(player);
-        assertEquals(80, player.getWater().getValue());
-        assertEquals(80, player.getFood().getValue());
+        assertEquals(100, player.getWater().getValue());
+        assertEquals(100, player.getFood().getValue());
         assertEquals(80, player.getHealth().getValue());
-        InteractableElement food = new Food(20);
+        InteractableElement food = new FoodModel(20, null);
         food.interact(player);
         assertEquals(100, player.getWater().getValue());
         assertEquals(100, player.getFood().getValue());

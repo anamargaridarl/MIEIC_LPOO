@@ -2,17 +2,16 @@ package com.lpoo_32.model;
 
 import com.lpoo_32.exceptions.StatusOverflow;
 
-public class Spikes implements InteractableElement {
+public class SpikesModel extends InteractableElement {
     private int value;
 
-    Spikes(int value){
+    SpikesModel(int value, Position position){
+        super(position);
         this.value = value;
     }
 
     @Override
     public void interact(PlayerModel player) throws StatusOverflow {
         player.getHealth().decreaseValue(this.value);
-        player.getWater().decreaseValue(this.value);
-        player.getFood().decreaseValue(this.value);
     }
 }

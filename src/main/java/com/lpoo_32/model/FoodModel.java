@@ -1,9 +1,10 @@
 package com.lpoo_32.model;
 
-public class Food implements InteractableElement {
+public class FoodModel extends InteractableElement {
     private int value;
 
-    public Food(int value){
+    public FoodModel(int value, Position pos){
+        super(pos);
         this.value = value;
     }
     @Override
