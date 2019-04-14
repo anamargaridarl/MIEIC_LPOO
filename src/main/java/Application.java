@@ -1,6 +1,5 @@
-import com.lpoo_32.graphics.Display;
-import com.lpoo_32.graphics.Game;
-import com.lpoo_32.graphics.Menu;
+import com.lpoo_32.view.Display;
+import com.lpoo_32.view.Game;
 
 import java.io.IOException;
 

@@ -1,7 +1,7 @@
-package com.lpoo_32.logic;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public interface Element {
+public interface ElementView {
     void draw(TextGraphics graphics);
 }
