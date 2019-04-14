@@ -7,7 +7,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.Status;
 
-public class StatusBar implements Drawable{
+public class StatusBar implements ElementView{
     private final Status status;
     private final TextColor color;
 

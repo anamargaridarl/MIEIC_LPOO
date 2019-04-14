@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class Display {
     protected Screen screen;
 //    protected WindowBasedTextGUI gui;
-    protected List<Drawable> props;
+    protected List<ElementView> props;
 
     Display() throws IOException {
         Terminal terminal = new DefaultTerminalFactory().createTerminal();

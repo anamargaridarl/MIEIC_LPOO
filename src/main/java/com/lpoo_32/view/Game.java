@@ -27,7 +27,7 @@ public class Game extends Display{
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
         graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
                             ScreenSize.instance().getRows(20)), "@");
-        for(Drawable drawable: this.props)
+        for(ElementView drawable: this.props)
             drawable.draw(graphics);
         this.screen.refresh();
     }
