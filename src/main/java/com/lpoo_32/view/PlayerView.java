@@ -28,4 +28,9 @@ public class PlayerView implements ElementView {
                 Symbols.DIAMOND
         );
     }
+
+    public PlayerModel getPlayer()
+    {
+        return player;
+    }
 }

@@ -4,7 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
+import com.lpoo_32.Controller.Keyboard;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 import com.lpoo_32.model.Status;
@@ -15,21 +15,30 @@ import java.io.IOException;
 public class Game extends Display{
 
     TextGraphics graphics;
+    Keyboard keyboard;
 
     public Game() throws IOException {
         super();
-        graphics =  this.screen.newTextGraphics();
         this.setInitialProps();
+        this.graphics =  this.screen.newTextGraphics();
+
+        //probably needs to clean up
+        PlayerView a = (PlayerView) props.get(1);
+        this.keyboard = new Keyboard(a.getPlayer());
     }
 
     public void run() throws IOException {
+
+        this.screen.clear();
         draw();
+        this.screen.refresh();
 
         do{
-            //screen clear estava a jabardar
+            this.screen.clear();
+            keyboard.processKey(screen);
             draw();
             this.screen.refresh();
-        }while(true);
+        } while(true);
     }
 
     @Override
