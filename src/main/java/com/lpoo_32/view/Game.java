@@ -5,6 +5,8 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.Controller.Keyboard;
+import com.lpoo_32.exceptions.ScreenClose;
+import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 import com.lpoo_32.model.Status;
@@ -24,7 +26,9 @@ public class Game extends Display{
 
         //probably needs to clean up
         PlayerView a = (PlayerView) props.get(1);
-        this.keyboard = new Keyboard(a.getPlayer());
+        this.keyboard = new Keyboard(a.getPlayer(),new Elements());
+
+
     }
 
     public void run() throws IOException {
@@ -33,12 +37,19 @@ public class Game extends Display{
         draw();
         this.screen.refresh();
 
-        do{
-            this.screen.clear();
-            keyboard.processKey(screen);
-            draw();
-            this.screen.refresh();
-        } while(true);
+        //isto parece shady; ter um ciclo infinito a para com uma exceçao
+        try {
+            while (true) {
+                this.screen.clear();
+                keyboard.processKey(screen);
+                draw();
+                this.screen.refresh();
+            }
+        }
+        catch(ScreenClose e)
+        {
+            System.exit(0);
+        }
     }
 
     @Override
