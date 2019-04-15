@@ -17,6 +17,7 @@ public abstract class Display {
     protected List<ElementView> props;
 
     Display() throws IOException {
+
         Terminal terminal = new DefaultTerminalFactory().createTerminal();
         this.screen = new TerminalScreen(terminal);
 
@@ -27,5 +28,7 @@ public abstract class Display {
         ScreenSize.createInstance(this.screen.getTerminalSize());
         terminal.addResizeListener((terminal1, newSize) -> ScreenSize.createInstance(newSize));
     }
+
+    abstract public void run() throws IOException;
     abstract public void draw() throws IOException;
 }

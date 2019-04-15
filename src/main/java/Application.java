@@ -7,7 +7,7 @@ public class Application {
     public static void main(String[] args) {
         try{
             Display menu = new Game();
-            menu.draw();
+            menu.run();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,11 +1,12 @@
 package com.lpoo_32.model;
 
-public class PlayerModel {
+public class PlayerModel extends MovableElement {
     private Status health;
     private Status food;
     private Status water;
 
-    PlayerModel(){
+    public PlayerModel(Position position){
+        super(position);
         this.health = new Status(100);
         this.food = new Status(100);
         this.water = new Status(100);
@@ -34,4 +35,5 @@ public class PlayerModel {
     public void setWater(Status water) {
         this.water = water;
     }
+
 }
