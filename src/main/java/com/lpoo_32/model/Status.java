@@ -4,7 +4,7 @@ import com.lpoo_32.exceptions.StatusOverflow;
 
 public class Status {
     private int value;
-    Status(int value){
+    public Status(int value){
         this.value = value;
     }
 
