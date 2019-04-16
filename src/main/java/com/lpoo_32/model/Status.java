@@ -9,17 +9,17 @@ public class Status {
     }
 
     void decreaseValue(int value) throws StatusOverflow {
-        if(this.value -  value <= 0)
-            throw new StatusOverflow();
         this.value -= value;
+        if(this.value <= 0) {
+            throw new StatusOverflow();
+        }
     }
 
     void increaseValue(int value) {
-        if(this.value + value > 100){
+        if(this.value + value > 100)
             this.value = 100;
-            return;
-        }
-        this.value += value;
+        else
+            this.value += value;
     }
 
     public int getValue(){

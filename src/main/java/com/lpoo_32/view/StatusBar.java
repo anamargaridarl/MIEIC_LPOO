@@ -17,21 +17,29 @@ public class StatusBar implements ElementView{
     }
 
     private int getScreenPercen(){
-        return (int)Math.ceil((double) this.status.getValue()/100 * 40);
+        return (int)Math.floor((double) this.status.getValue()/100 * 40);
     }
 
     @Override
     public void draw(TextGraphics graphics) {
-        System.out.print("Status Bar: ");
+        System.out.println("Status Bar: " + this.getScreenPercen());
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.setForegroundColor(color);
-        graphics.fillRectangle(new TerminalPosition(ScreenSize.instance().getColumn(60),
-                                ScreenSize.instance().getRows(10)),
-                                new TerminalSize(ScreenSize.instance().getColumn(this.getScreenPercen()), 1),
+        graphics.fillRectangle(new TerminalPosition(getColumn(60),
+                                getRows()),
+                                new TerminalSize(getColumn(this.getScreenPercen()), 1),
                                 Symbols.BLOCK_SOLID);
-        graphics.fillRectangle(new TerminalPosition(ScreenSize.instance().getColumn(60 + this.getScreenPercen()),
-                                ScreenSize.instance().getRows(10)),
-                                new TerminalSize(ScreenSize.instance().getColumn(100 - this.getScreenPercen()), 1),
+        graphics.fillRectangle(new TerminalPosition(getColumn(60 + this.getScreenPercen() - 1),
+                                getRows()),
+                                new TerminalSize(getColumn(100 - this.getScreenPercen()), 1),
                                 Symbols.BLOCK_SPARSE);
+    }
+
+    private int getRows() {
+        return ScreenSize.instance().getRows(10);
+    }
+
+    private int getColumn(int i) {
+        return ScreenSize.instance().getColumn(i);
     }
 }
