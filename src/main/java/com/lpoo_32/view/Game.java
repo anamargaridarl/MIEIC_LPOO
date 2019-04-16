@@ -45,12 +45,13 @@ public class Game extends Display{
                 keyboard.processKey(screen);
                 draw();
                 this.screen.refresh();
+                Thread.sleep(1000/60);
             }
         }
         catch(ScreenClose e)
         {
             System.exit(0);
-        } catch (StatusOverflow statusOverflow) {
+        } catch (StatusOverflow | InterruptedException statusOverflow) {
             statusOverflow.printStackTrace();
         }
     }
@@ -58,8 +59,7 @@ public class Game extends Display{
     @Override
     public void draw() throws IOException {
 
-//        System.out.println(this.screen.getTerminalSize().getColumns() + " - " + this.screen.getTerminalSize().getRows());
-//        System.out.println(ScreenSize.instance().getColumn(60) + " - " + ScreenSize.instance().getRows(50));
+        System.out.println("Board:" + ScreenSize.instance().getColumn(60) + " - " + ScreenSize.instance().getRows(50));
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#48D1CC"));
         graphics.fillRectangle(new TerminalPosition(0, 0),

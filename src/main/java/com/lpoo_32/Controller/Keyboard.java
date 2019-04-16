@@ -25,30 +25,31 @@ public class Keyboard
     public void processKey(Screen screen) throws IOException, ScreenClose, StatusOverflow {
 
         KeyStroke key;
-        key = screen.readInput();
+        key = screen.pollInput();
         SpikesModel spikes = new SpikesModel(10, null);
-
-        switch (key.getKeyType()) {
-            case ArrowUp:
-                player.moveUp();
-                break;
-            case ArrowDown:
-                player.moveDown();
-                break;
-            case ArrowLeft:
-                player.moveLeft();
-                break;
-            case ArrowRight:
-                player.moveRight();
-                break;
-            case Character:
-                if (key.getCharacter() == 'q') {
-                    screen.close();
-                    throw new ScreenClose();
-                }
-                else if(key.getCharacter() == 'p'){
-                    spikes.interact(player);
-                }
+        if(key != null){
+            switch (key.getKeyType()) {
+                case ArrowUp:
+                    player.moveUp();
+                    break;
+                case ArrowDown:
+                    player.moveDown();
+                    break;
+                case ArrowLeft:
+                    player.moveLeft();
+                    break;
+                case ArrowRight:
+                    player.moveRight();
+                    break;
+                case Character:
+                    if (key.getCharacter() == 'q') {
+                        screen.close();
+                        throw new ScreenClose();
+                    }
+                    else if(key.getCharacter() == 'p'){
+                        spikes.interact(player);
+                    }
+            }
         }
     }
 
