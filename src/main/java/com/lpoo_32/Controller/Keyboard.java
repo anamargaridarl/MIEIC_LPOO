@@ -5,9 +5,11 @@ import java.io.IOException;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.ScreenClose;
+import com.lpoo_32.exceptions.StatusOverflow;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
+import com.lpoo_32.model.SpikesModel;
 
 public class Keyboard
 {
@@ -20,10 +22,11 @@ public class Keyboard
         this.elements = elements;
     }
 
-    public void processKey(Screen screen) throws IOException, ScreenClose {
+    public void processKey(Screen screen) throws IOException, ScreenClose, StatusOverflow {
 
         KeyStroke key;
         key = screen.readInput();
+        SpikesModel spikes = new SpikesModel(10, null);
 
         switch (key.getKeyType()) {
             case ArrowUp:
@@ -40,8 +43,11 @@ public class Keyboard
                 break;
             case Character:
                 if (key.getCharacter() == 'q') {
-                screen.close();
-                throw new ScreenClose();
+                    screen.close();
+                    throw new ScreenClose();
+                }
+                else if(key.getCharacter() == 'p'){
+                    spikes.interact(player);
                 }
         }
     }

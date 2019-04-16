@@ -6,6 +6,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.Controller.Keyboard;
 import com.lpoo_32.exceptions.ScreenClose;
+import com.lpoo_32.exceptions.StatusOverflow;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
@@ -18,6 +19,7 @@ public class Game extends Display{
 
     TextGraphics graphics;
     Keyboard keyboard;
+    PlayerView player;
 
     public Game() throws IOException {
         super();
@@ -25,8 +27,7 @@ public class Game extends Display{
         this.graphics =  this.screen.newTextGraphics();
 
         //probably needs to clean up
-        PlayerView a = (PlayerView) props.get(1);
-        this.keyboard = new Keyboard(a.getPlayer(),new Elements());
+        this.keyboard = new Keyboard(player.getPlayer(),new Elements());
 
 
     }
@@ -49,14 +50,16 @@ public class Game extends Display{
         catch(ScreenClose e)
         {
             System.exit(0);
+        } catch (StatusOverflow statusOverflow) {
+            statusOverflow.printStackTrace();
         }
     }
 
     @Override
     public void draw() throws IOException {
 
-        System.out.println(this.screen.getTerminalSize().getColumns() + " - " + this.screen.getTerminalSize().getRows());
-        System.out.println(ScreenSize.instance().getColumn(60) + " - " + ScreenSize.instance().getRows(50));
+//        System.out.println(this.screen.getTerminalSize().getColumns() + " - " + this.screen.getTerminalSize().getRows());
+//        System.out.println(ScreenSize.instance().getColumn(60) + " - " + ScreenSize.instance().getRows(50));
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#48D1CC"));
         graphics.fillRectangle(new TerminalPosition(0, 0),
@@ -76,7 +79,8 @@ public class Game extends Display{
 
     private void setInitialProps(){
         //TODO Add Actual Player model values to the Bars
-        this.props.add(new StatusBar(new Status(35), "#990000"));
-        this.props.add(new PlayerView(new PlayerModel(new Position(2,2))));
+        this.player = new PlayerView(new PlayerModel(new Position(2,2)));
+        this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000"));
+        this.props.add(this.player);
     }
 }
