@@ -19,6 +19,11 @@ public class Menu extends Display {
 //        listBox.draw(this.gui.);
     }
 
+    @Override
+    public void run() {
+//        listBox.draw(this.gui.);
+    }
+
     private void addOptions(){
         this.listBox.addItem("Meias", () -> System.out.println("MEIAAAAS"));
     }
