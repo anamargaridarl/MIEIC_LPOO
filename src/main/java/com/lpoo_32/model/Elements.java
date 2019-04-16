@@ -25,7 +25,4 @@ public class Elements {
         return elements.get(position);
     }
 
-    public boolean belongs(Position position) {
-        return elements.containsValue(position);
-    }
 }

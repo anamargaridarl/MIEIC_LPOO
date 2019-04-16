@@ -53,7 +53,7 @@ public class Keyboard
     public void colisions(Position position)
     {
         try {
-            if (elements.belongs(position))
+            if(elements.getValue(position) != null)
                 elements.getValue(position).interact(player);
         }
         catch(StatusOverflow e)
