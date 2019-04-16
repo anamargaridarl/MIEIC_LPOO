@@ -8,7 +8,7 @@ public class PlayerModelTest {
     PlayerModel player;
     @Before
     public void initializeValues(){
-        this.player = new PlayerModel();
+        this.player = new PlayerModel(null);
     }
 
     @Test

@@ -16,7 +16,7 @@ public class StatusBar implements ElementView{
         this.color = TextColor.Factory.fromString(hexColor);
     }
 
-    private int getScreenPercen(){
+    int getScreenPercen(){
         return (int)Math.floor((double) this.status.getValue()/100 * 40);
     }
 
