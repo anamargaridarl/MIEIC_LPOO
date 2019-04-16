@@ -22,17 +22,16 @@ public class StatusBar implements ElementView{
 
     @Override
     public void draw(TextGraphics graphics) {
-        System.out.println("Status Bar: " + this.getScreenPercen());
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.setForegroundColor(color);
+        graphics.fillRectangle(new TerminalPosition(getColumn(60 + this.getScreenPercen() - 1),
+                        getRows()),
+                new TerminalSize(getColumn(100 - this.getScreenPercen()), 1),
+                Symbols.BLOCK_SPARSE);
         graphics.fillRectangle(new TerminalPosition(getColumn(60),
                                 getRows()),
                                 new TerminalSize(getColumn(this.getScreenPercen()), 1),
                                 Symbols.BLOCK_SOLID);
-        graphics.fillRectangle(new TerminalPosition(getColumn(60 + this.getScreenPercen() - 1),
-                                getRows()),
-                                new TerminalSize(getColumn(100 - this.getScreenPercen()), 1),
-                                Symbols.BLOCK_SPARSE);
     }
 
     private int getRows() {
