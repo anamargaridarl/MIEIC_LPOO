@@ -1,5 +1,7 @@
 package com.lpoo_32.model;
 
+import com.lpoo_32.view.Game;
+
 public class Position {
     private int x;
     private int y;
@@ -10,18 +12,30 @@ public class Position {
     }
 
     public void moveUp(){
-        this.y--;
+
+        if(this.y-- < 0)
+            this.y++;
     }
 
     public void moveLeft(){
-        this.x--;
+
+        if(this.x-- < 0)
+            this.x++;
+
+
     }
 
     public void moveDown(){
-        this.y++;
+
+        if(this.y++ > Game.height)
+            this.y--;
     }
 
-    public void moveRight() { this.x++; }
+    public void moveRight() {
+
+        if(this.x++ > Game.width)
+            this.x--;
+    }
 
     public int getX() {
         return x;

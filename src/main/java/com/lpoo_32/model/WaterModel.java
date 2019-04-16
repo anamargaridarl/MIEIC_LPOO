@@ -8,7 +8,7 @@ public class WaterModel extends InteractableElement {
     }
 
     @Override
-    void interact(PlayerModel player) {
+    public void interact(PlayerModel player) {
         player.getWater().increaseValue(20);
     }
 }

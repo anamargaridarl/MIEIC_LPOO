@@ -2,16 +2,25 @@ package com.lpoo_32.model;
 
 import com.lpoo_32.exceptions.StatusOverflow;
 
-abstract class InteractableElement implements ElementModel {
+import java.util.Objects;
+
+abstract public class InteractableElement implements ElementModel {
 
     private Position pos;
 
     InteractableElement(Position pos){
         this.pos = pos;
     }
-    abstract void interact(PlayerModel player) throws StatusOverflow;
+
+    public abstract void interact(PlayerModel player) throws StatusOverflow;
 
     public Position getPos() {
         return pos;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(pos.getX(), pos.getY());
     }
 }

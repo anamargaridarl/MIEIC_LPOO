@@ -1,26 +1,31 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.view.ElementView;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
 
 public class Elements {
 
-    private List<ElementView> elements;
+    private LinkedHashMap<Position,InteractableElement> elements;
 
     public Elements() {
-        this.elements = new ArrayList<>();
+        this.elements = new LinkedHashMap<>();
     }
 
-    public void addElement(ElementView a)
+    public void addElement(InteractableElement a)
     {
-        elements.add(a);
+        elements.put(a.getPos(),a);
     }
 
-    public List<ElementView> getElements()
+    public LinkedHashMap<Position,InteractableElement> getElements()
     {
         return elements;
     }
 
+    public InteractableElement getValue(Position position)
+    {
+        return elements.get(position);
+    }
+
+    public boolean belongs(Position position) {
+        return elements.containsValue(position);
+    }
 }

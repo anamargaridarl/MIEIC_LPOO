@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.ScreenClose;
+import com.lpoo_32.exceptions.StatusOverflow;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
@@ -20,7 +21,7 @@ public class Keyboard
         this.elements = elements;
     }
 
-    public void processKey(Screen screen) throws IOException, ScreenClose {
+    public void processKey(Screen screen) throws IOException, ScreenClose{
 
         KeyStroke key;
         key = screen.readInput();
@@ -44,12 +45,23 @@ public class Keyboard
                 throw new ScreenClose();
                 }
         }
+
+        this.colisions(player.getPosition());
     }
 
-    /*
-    public boolean canMove(Position position)
-    {
 
-    }*/
+    public void colisions(Position position)
+    {
+        try {
+            if (elements.belongs(position))
+                elements.getValue(position).interact(player);
+        }
+        catch(StatusOverflow e)
+        {
+            System.out.printf("Status Overflow");
+            System.exit(0);
+        }
+
+    }
 
 }
