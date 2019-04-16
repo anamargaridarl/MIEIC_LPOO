@@ -2,6 +2,8 @@ package com.lpoo_32.model;
 
 import com.lpoo_32.view.Game;
 
+import java.util.Objects;
+
 public class Position {
     private int x;
     private int y;
@@ -13,13 +15,13 @@ public class Position {
 
     public void moveUp(){
 
-        if(this.y-- < 0)
+        if(this.y-- <= 0)
             this.y++;
     }
 
     public void moveLeft(){
 
-        if(this.x-- < 0)
+        if(this.x-- <= 0)
             this.x++;
 
 
@@ -27,13 +29,13 @@ public class Position {
 
     public void moveDown(){
 
-        if(this.y++ > Game.height)
+        if(this.y++ >= 20)
             this.y--;
     }
 
     public void moveRight() {
 
-        if(this.x++ > Game.width)
+        if(this.x++ >= Game.width)
             this.x--;
     }
 
@@ -43,5 +45,11 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(x, y);
     }
 }

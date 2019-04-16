@@ -14,8 +14,8 @@ import java.io.IOException;
 
 public class Game extends Display{
 
-    public static final int width = 60;
-    public static final int height = 50;
+    public static final int width = 47;
+    public static final int height = 58;
 
     TextGraphics graphics;
     Keyboard keyboard;

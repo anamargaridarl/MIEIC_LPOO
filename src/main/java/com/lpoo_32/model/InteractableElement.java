@@ -18,9 +18,5 @@ abstract public class InteractableElement implements ElementModel {
         return pos;
     }
 
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(pos.getX(), pos.getY());
-    }
+
 }
