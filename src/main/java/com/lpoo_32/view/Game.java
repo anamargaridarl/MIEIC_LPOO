@@ -28,8 +28,6 @@ public class Game extends Display{
 
         //probably needs to clean up
         this.keyboard = new Keyboard(player.getPlayer(),new Elements());
-
-
     }
 
     public void run() throws IOException {
