@@ -31,5 +31,6 @@ public class Menu extends Display {
 
     private void addOptions(){
         this.listBox.addItem("Meias", () -> System.out.println("MEIAAAAS")).addTo(this.panel);
+        this.listBox.addItem("Lmao", () -> System.out.println("Lmaoooo")).addTo(this.panel);
     }
 }
