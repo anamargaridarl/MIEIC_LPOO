@@ -11,6 +11,7 @@ public class Menu extends Display {
     BasicWindow window;
     MultiWindowTextGUI gui;
     Panel panel;
+    ScreenHandler game;
 
     public Menu() throws IOException {
         super();
@@ -22,6 +23,7 @@ public class Menu extends Display {
         this.addOptions();
         this.window.setComponent(panel);
         this.gui.addWindowAndWait(window);
+        this.game = new ScreenHandler(null);
     }
 
     @Override
@@ -29,8 +31,20 @@ public class Menu extends Display {
         this.gui.updateScreen();
     }
 
+    @Override
+    public void run() {
+//        listBox.draw(this.gui.);
+    }
+
     private void addOptions(){
         this.listBox.addItem("Meias", () -> System.out.println("MEIAAAAS")).addTo(this.panel);
-        this.listBox.addItem("Lmao", () -> System.out.println("Lmaoooo")).addTo(this.panel);
+        this.listBox.addItem("Lmao", ()-> {
+            try {
+                Display  game = new Game(this.screen);
+                game.run();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).addTo(this.panel);
     }
 }

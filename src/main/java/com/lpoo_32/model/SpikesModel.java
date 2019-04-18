@@ -5,7 +5,7 @@ import com.lpoo_32.exceptions.StatusOverflow;
 public class SpikesModel extends InteractableElement {
     private int value;
 
-    SpikesModel(int value, Position position){
+    public SpikesModel(int value, Position position){
         super(position);
         this.value = value;
     }

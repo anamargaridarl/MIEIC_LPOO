@@ -17,7 +17,7 @@ public class InteractableElementTest {
 
     @Before
     public void initializeValues(){
-        this.player = new PlayerModel();
+        this.player = new PlayerModel(null  );
     }
 
 

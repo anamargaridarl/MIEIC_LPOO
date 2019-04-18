@@ -16,6 +16,7 @@ public class ScreenSize {
     }
 
     public static void createInstance(TerminalSize size){
+        System.out.println("New Instance" + size);
         instance = new ScreenSize(size);
     }
 
