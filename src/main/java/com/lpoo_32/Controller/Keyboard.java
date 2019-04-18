@@ -43,7 +43,6 @@ public class Keyboard
                     break;
                 case Character:
                     if (key.getCharacter() == 'q') {
-                        screen.close();
                         throw new ScreenClose();
                     }
                     else if(key.getCharacter() == 'p'){

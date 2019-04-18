@@ -5,25 +5,23 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
 import com.lpoo_32.Controller.Keyboard;
 import com.lpoo_32.exceptions.ScreenClose;
 import com.lpoo_32.exceptions.StatusOverflow;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
-import com.lpoo_32.model.Status;
 
 import java.io.IOException;
 
 
 public class Game extends Display{
 
-    TextGraphics graphics;
-    Keyboard keyboard;
-    PlayerView player;
+    private TextGraphics graphics;
+    private Keyboard keyboard;
+    private PlayerView player;
 
-    public Game(Screen screen) throws IOException {
+    Game(Screen screen) throws IOException {
         super(screen);
         this.setInitialProps();
         this.graphics =  this.screen.newTextGraphics();
@@ -52,9 +50,12 @@ public class Game extends Display{
         }
         catch(ScreenClose e)
         {
-            this.screen.close();
-        } catch (StatusOverflow | InterruptedException statusOverflow) {
+            System.out.println("Player pressed Q, back to Main Menu....");
+        } catch (InterruptedException statusOverflow) {
             statusOverflow.printStackTrace();
+        }
+        catch (StatusOverflow statusOverflow){
+            System.out.println("You lose! Back to Main Menu....");
         }
     }
 

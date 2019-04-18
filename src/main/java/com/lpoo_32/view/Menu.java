@@ -7,23 +7,20 @@ import com.googlecode.lanterna.gui2.*;
 import java.io.IOException;
 
 public class Menu extends Display {
-    ActionListBox listBox;
-    BasicWindow window;
-    MultiWindowTextGUI gui;
-    Panel panel;
-    ScreenHandler game;
+    private ActionListBox listBox;
+    private MultiWindowTextGUI gui;
+    private Panel panel;
 
     public Menu() throws IOException {
         super();
         TerminalSize size = new TerminalSize(10, 3);
         this.listBox = new ActionListBox(size);
         this.panel = new Panel();
-        this.window = new BasicWindow();
+        BasicWindow window = new BasicWindow();
         this.gui = new MultiWindowTextGUI(this.screen, new DefaultWindowManager(), new EmptySpace(TextColor.ANSI.MAGENTA));
         this.addOptions();
-        this.window.setComponent(panel);
+        window.setComponent(panel);
         this.gui.addWindowAndWait(window);
-        this.game = new ScreenHandler(null);
     }
 
     @Override
@@ -32,13 +29,13 @@ public class Menu extends Display {
     }
 
     @Override
-    public void run() {
-//        listBox.draw(this.gui.);
+    public void run() throws IOException {
+        this.draw();
     }
 
     private void addOptions(){
         this.listBox.addItem("Meias", () -> System.out.println("MEIAAAAS")).addTo(this.panel);
-        this.listBox.addItem("Lmao", ()-> {
+        this.listBox.addItem("Start", ()-> {
             try {
                 Display  game = new Game(this.screen);
                 game.run();
