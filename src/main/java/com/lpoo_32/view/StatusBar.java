@@ -17,12 +17,12 @@ public class StatusBar implements ElementView{
     }
 
     int getScreenPercen(){
-        return (int)Math.floor((double) this.status.getValue()/100 * 40);
+        System.out.println((int) ((double) this.status.getValue()/100 * 40));
+        return (int) ((double) this.status.getValue()/100 * 40);
     }
 
     @Override
     public void draw(TextGraphics graphics) {
-        System.out.println("Status:" + ScreenSize.instance().getColumn(60) + " - " + ScreenSize.instance().getRows(50));
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.setForegroundColor(color);
         graphics.fillRectangle(new TerminalPosition(getColumn(60),
@@ -31,7 +31,7 @@ public class StatusBar implements ElementView{
                 Symbols.BLOCK_SOLID);
         graphics.fillRectangle(new TerminalPosition(getColumn(60 + this.getScreenPercen() - 1),
                         getRows()),
-                new TerminalSize(getColumn(100 - this.getScreenPercen()), 1),
+                new TerminalSize(getColumn(40 - this.getScreenPercen()), 1),
                 Symbols.BLOCK_SPARSE);
     }
 

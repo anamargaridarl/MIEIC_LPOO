@@ -59,7 +59,6 @@ public class Game extends Display{
     @Override
     public void draw() throws IOException {
 
-        System.out.println("Board:" + ScreenSize.instance().getColumn(60) + " - " + ScreenSize.instance().getRows(50));
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#48D1CC"));
         graphics.fillRectangle(new TerminalPosition(0, 0),
