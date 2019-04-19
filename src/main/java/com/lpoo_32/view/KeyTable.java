@@ -5,6 +5,7 @@ import com.googlecode.lanterna.gui2.table.Table;
 
 public class KeyTable extends Table<String> {
     KeyTable(){
+        //TODO: How to style a Table?
         super("Key", "Command");
         DefaultTableCellRenderer<String> renderer = (DefaultTableCellRenderer<String>) this.getTableCellRenderer();
     }

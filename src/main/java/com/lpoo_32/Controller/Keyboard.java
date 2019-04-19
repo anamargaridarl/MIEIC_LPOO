@@ -42,11 +42,17 @@ public class Keyboard
                     player.moveRight();
                     break;
                 case Character:
-                    if (key.getCharacter() == 'q') {
-                        throw new ScreenClose();
-                    }
-                    else if(key.getCharacter() == 'p'){
-                        spikes.interact(player);
+                    switch (key.getCharacter()){
+                        case 'q':
+                            throw new ScreenClose();
+                        case 'p':
+                            spikes.interact(player);
+                            break;
+                        case 'h':
+                            //TODO: How to proceed with this?
+                            System.out.println("Open help Menu");
+                            break;
+
                     }
             }
         }
