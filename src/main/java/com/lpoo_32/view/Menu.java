@@ -3,6 +3,7 @@ package com.lpoo_32.view;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.gui2.*;
+import com.googlecode.lanterna.gui2.table.Table;
 import com.lpoo_32.Controller.SecondaryMenuKeyListener;
 import com.lpoo_32.Controller.MenuKeyListener;
 
@@ -41,8 +42,12 @@ public class Menu extends Display {
     private Panel createHintMenu(){
         TerminalSize size = new TerminalSize(20, 5);
         TextBox textBox = new TextBox(size, "You move around with your arrow keys");
+        KeyTable table = new KeyTable();
+        table.addComand("Arrows", "Movement");
+        table.addComand("Q", "Move Back");
+        table.addComand("P", "Take you own Health(why would you do that?!)");
         Panel hintPanel = new Panel();
-        hintPanel.addComponent(textBox);
+        hintPanel.addComponent(table);
         return getPanel(hintPanel);
     }
 
