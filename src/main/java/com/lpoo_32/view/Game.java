@@ -27,7 +27,7 @@ public class Game extends Display{
         this.graphics =  this.screen.newTextGraphics();
 
         //probably needs to clean up
-        this.keyboard = new Keyboard(player.getPlayer(),new Elements());
+        this.keyboard = new Keyboard(this.player.getPlayer(),this.elements);
 
 
     }
@@ -82,8 +82,6 @@ public class Game extends Display{
         InteractableElement spike2 = new SpikesModel(10,new Position(6,4));
 
         //TODO Add Actual Player model values to the Bars
-        this.props.add(new StatusBar(new Status(35), "#990000"));
-        this.props.add(new PlayerView(new PlayerModel(new Position(2,2))));
         this.props.add(new FoodView((FoodModel) food));
         this.props.add(new SpikesView((SpikesModel) spike));
         this.props.add(new SpikesView((SpikesModel) spike2));

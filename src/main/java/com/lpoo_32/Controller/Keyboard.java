@@ -50,9 +50,9 @@ public class Keyboard
                         spikes.interact(player);
                     }
             }
+            this.colisions(player.getPosition());
         }
 
-        this.colisions(player.getPosition());
     }
 
 

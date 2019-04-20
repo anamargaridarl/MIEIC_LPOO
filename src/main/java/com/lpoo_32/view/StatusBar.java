@@ -17,7 +17,6 @@ public class StatusBar implements ElementView{
     }
 
     int getScreenPercen(){
-        System.out.println((int) ((double) this.status.getValue()/100 * 40));
         return (int) ((double) this.status.getValue()/100 * 40);
     }
 
