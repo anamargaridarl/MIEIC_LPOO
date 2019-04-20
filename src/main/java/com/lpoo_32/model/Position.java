@@ -1,5 +1,6 @@
 package com.lpoo_32.model;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.lpoo_32.view.Game;
 
 import java.util.Objects;
@@ -45,6 +46,10 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    public TerminalPosition getTerminalPosition(){
+        return new TerminalPosition(this.x, this.y);
     }
 
     @Override
