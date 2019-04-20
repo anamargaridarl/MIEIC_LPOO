@@ -24,4 +24,10 @@ public class PositionTest {
         assertEquals(10, this.position.getX());
     }
 
+    @Test
+    public void terminalPosition(){
+        assertEquals(10, this.position.getTerminalPosition().getColumn());
+        assertEquals(10, this.position.getTerminalPosition().getRow());
+    }
+
 }
