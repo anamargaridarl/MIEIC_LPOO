@@ -52,4 +52,16 @@ public class Position {
     {
         return Objects.hash(x, y);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this)
+            return true;
+
+        if(!(obj instanceof Position))
+            return false;
+
+        Position pos = (Position) obj;
+        return this.getX() == pos.getX() && this.getY() == pos.getY();
+    }
 }
