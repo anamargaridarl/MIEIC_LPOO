@@ -1,6 +1,7 @@
-package com.lpoo_32.model;
+package com.lpoo_32.controller;
 
-import com.lpoo_32.controller.Keyboard;
+import com.lpoo_32.model.*;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
