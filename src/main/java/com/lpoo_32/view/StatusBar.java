@@ -10,10 +10,12 @@ import com.lpoo_32.model.Status;
 public class StatusBar implements ElementView{
     private final Status status;
     private final TextColor color;
+    private int height;
 
-    StatusBar(Status status, String hexColor){
+    StatusBar(Status status, String hexColor, int height){
         this.status = status;
         this.color = TextColor.Factory.fromString(hexColor);
+        this.height = height;
     }
 
     int getScreenPercen(){
@@ -35,7 +37,7 @@ public class StatusBar implements ElementView{
     }
 
     private int getRows() {
-        return ScreenSize.instance().getRows(10);
+        return ScreenSize.instance().getRows(height);
     }
 
     private int getColumn(int columns) {

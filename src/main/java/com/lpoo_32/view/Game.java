@@ -22,6 +22,7 @@ public class Game extends Display{
     private PlayerView player;
     public static final int width = 47;
     public static final int height = 58;
+    private static final int frameRate = 60;
 
     Game(Screen screen) throws IOException {
         super(screen);
@@ -41,13 +42,21 @@ public class Game extends Display{
         this.screen.refresh();
 
         //isto parece shady; ter um ciclo infinito a para com uma exceçao
+        int time = 0;
         try {
             while (true) {
                 this.screen.clear();
                 keyboard.processKey(screen);
                 draw();
                 this.screen.refresh();
-                Thread.sleep(1000/60);
+                Thread.sleep(1000/ frameRate);
+                time++;
+                if(time % 3600 == 0)
+                    this.player.getPlayer().getWater().decreaseValue(5);
+
+                if(time % (5400.0) == 0)
+                    this.player.getPlayer().getFood().decreaseValue(5);
+
             }
         }
         catch(ScreenClose e)
@@ -98,7 +107,9 @@ public class Game extends Display{
         this.elements.addElement(spike);
         this.elements.addElement(spike2);
         this.player = new PlayerView(new PlayerModel(new Position(2,2)));
-        this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000"));
+        this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
+        this.props.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
+        this.props.add(new StatusBar(player.getPlayer().getFood(), "#87CEFA", 18));
         this.props.add(this.player);
         System.out.println("The end");
 
