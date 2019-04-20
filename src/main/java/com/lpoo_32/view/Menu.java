@@ -3,9 +3,8 @@ package com.lpoo_32.view;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.gui2.*;
-import com.googlecode.lanterna.gui2.table.Table;
-import com.lpoo_32.Controller.SecondaryMenuKeyListener;
-import com.lpoo_32.Controller.MenuKeyListener;
+import com.lpoo_32.controller.SecondaryMenuKeyListener;
+import com.lpoo_32.controller.MenuKeyListener;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.lpoo_32.Controller;
+package com.lpoo_32.controller;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
