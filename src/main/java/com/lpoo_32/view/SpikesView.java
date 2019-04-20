@@ -5,6 +5,8 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.lpoo_32.model.FoodModel;
+import com.lpoo_32.model.InteractableElement;
 import com.lpoo_32.model.SpikesModel;
 
 public class SpikesView implements ElementView {
@@ -28,5 +30,12 @@ public class SpikesView implements ElementView {
                 Symbols.SPADES
         );
     }
+
+    public SpikesModel getSpikes()
+    {
+        return spikes;
+    }
+
+
 
 }

@@ -6,6 +6,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.FoodModel;
+import com.lpoo_32.model.InteractableElement;
 
 public class FoodView implements ElementView {
     private final FoodModel food;
@@ -27,6 +28,12 @@ public class FoodView implements ElementView {
                 Symbols.HEART
         );
     }
+
+    public FoodModel getFood()
+    {
+        return food;
+    }
+
 
 
 }

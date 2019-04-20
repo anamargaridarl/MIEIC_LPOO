@@ -11,6 +11,7 @@ public class StatusBar implements ElementView{
     private final Status status;
     private final TextColor color;
 
+
     StatusBar(Status status, String hexColor){
         this.status = status;
         this.color = TextColor.Factory.fromString(hexColor);

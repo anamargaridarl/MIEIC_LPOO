@@ -13,6 +13,8 @@ import com.lpoo_32.model.Position;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Game extends Display{
@@ -29,7 +31,7 @@ public class Game extends Display{
         this.graphics =  this.screen.newTextGraphics();
 
         //probably needs to clean up
-        this.keyboard = new Keyboard(this.player.getPlayer(),this.elements);
+        this.keyboard = new Keyboard(this.player.getPlayer(),this.elements, this.props);
 
 
     }
@@ -83,15 +85,15 @@ public class Game extends Display{
 
     private void setInitialProps(){
 
-        InteractableElement food = new FoodModel(10,new Position(2,3));
-        InteractableElement spike = new SpikesModel(30,new Position(4,4));
-        InteractableElement spike2 = new SpikesModel(10,new Position(6,4));
+        FoodModel food = new FoodModel(10,new Position(2,3));
+        SpikesModel spike = new SpikesModel(30,new Position(4,4));
+        SpikesModel spike2 = new SpikesModel(10,new Position(6,4));
 
         System.out.println("Meias");
         //TODO Add Actual Player model values to the Bars
-        this.props.add(new FoodView((FoodModel) food));
-        this.props.add(new SpikesView((SpikesModel) spike));
-        this.props.add(new SpikesView((SpikesModel) spike2));
+        this.props.add(new FoodView(food));
+        this.props.add(new SpikesView(spike));
+        this.props.add(new SpikesView(spike2));
 
         this.elements.addElement(food);
         System.out.println("Elements has finished");
