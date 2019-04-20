@@ -15,5 +15,6 @@ public class ElementsTest {
         elements.addElement(new SpikesModel(10,new Position(5,5)));
 
         assertNotEquals(null,elements.getValue(new Position(4,5)));
+
     }
 }
