@@ -23,7 +23,7 @@ public class SpikesView implements ElementView {
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
         graphics.fillRectangle(
-                new TerminalPosition(10, 10),
+                this.spikes.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
                 Symbols.SPADES
         );

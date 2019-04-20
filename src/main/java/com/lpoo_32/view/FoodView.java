@@ -22,7 +22,7 @@ public class FoodView implements ElementView {
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
         graphics.fillRectangle(
-                new TerminalPosition(10, 10),
+                this.food.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
                 Symbols.HEART
         );
