@@ -9,6 +9,7 @@ import com.lpoo_32.exceptions.StatusOverflow;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
+import com.lpoo_32.model.SpikesModel;
 
 public class Keyboard
 {
@@ -21,29 +22,34 @@ public class Keyboard
         this.elements = elements;
     }
 
-    public void processKey(Screen screen) throws IOException, ScreenClose{
+    public void processKey(Screen screen) throws IOException, ScreenClose, StatusOverflow {
 
         KeyStroke key;
-        key = screen.readInput();
-
-        switch (key.getKeyType()) {
-            case ArrowUp:
-                player.moveUp();
-                break;
-            case ArrowDown:
-                player.moveDown();
-                break;
-            case ArrowLeft:
-                player.moveLeft();
-                break;
-            case ArrowRight:
-                player.moveRight();
-                break;
-            case Character:
-                if (key.getCharacter() == 'q') {
-                screen.close();
-                throw new ScreenClose();
-                }
+        key = screen.pollInput();
+        SpikesModel spikes = new SpikesModel(10, null);
+        if(key != null){
+            switch (key.getKeyType()) {
+                case ArrowUp:
+                    player.moveUp();
+                    break;
+                case ArrowDown:
+                    player.moveDown();
+                    break;
+                case ArrowLeft:
+                    player.moveLeft();
+                    break;
+                case ArrowRight:
+                    player.moveRight();
+                    break;
+                case Character:
+                    if (key.getCharacter() == 'q') {
+                        screen.close();
+                        throw new ScreenClose();
+                    }
+                    else if(key.getCharacter() == 'p'){
+                        spikes.interact(player);
+                    }
+            }
         }
 
         this.colisions(player.getPosition());

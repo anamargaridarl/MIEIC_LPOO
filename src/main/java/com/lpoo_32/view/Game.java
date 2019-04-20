@@ -19,6 +19,7 @@ public class Game extends Display{
 
     TextGraphics graphics;
     Keyboard keyboard;
+    PlayerView player;
 
     public Game() throws IOException {
         super();
@@ -26,8 +27,7 @@ public class Game extends Display{
         this.graphics =  this.screen.newTextGraphics();
 
         //probably needs to clean up
-        PlayerView a = (PlayerView) props.get(1);
-        this.keyboard = new Keyboard(a.getPlayer(),elements);
+        this.keyboard = new Keyboard(player.getPlayer(),new Elements());
 
 
     }
@@ -45,19 +45,20 @@ public class Game extends Display{
                 keyboard.processKey(screen);
                 draw();
                 this.screen.refresh();
+                Thread.sleep(1000/60);
             }
         }
         catch(ScreenClose e)
         {
             System.exit(0);
+        } catch (StatusOverflow | InterruptedException statusOverflow) {
+            statusOverflow.printStackTrace();
         }
     }
 
     @Override
     public void draw() throws IOException {
 
-        System.out.println(this.screen.getTerminalSize().getColumns() + " - " + this.screen.getTerminalSize().getRows());
-        System.out.println(ScreenSize.instance().getColumn(60) + " - " + ScreenSize.instance().getRows(50));
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#48D1CC"));
         graphics.fillRectangle(new TerminalPosition(0, 0),
@@ -68,15 +69,11 @@ public class Game extends Display{
         /*graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
                             ScreenSize.instance().getRows(20)), "@");*/
 
-        for(ElementView drawable: this.props) {
-            System.out.println("oi");
+        for(ElementView drawable: this.props)
             drawable.draw(graphics);
-        }
-
-
-
 
     }
+
 
     private void setInitialProps(){
 
@@ -94,5 +91,8 @@ public class Game extends Display{
         this.elements.addElement(food);
         this.elements.addElement(spike);
         this.elements.addElement(spike2);
+        this.player = new PlayerView(new PlayerModel(new Position(2,2)));
+        this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000"));
+        this.props.add(this.player);
     }
 }
