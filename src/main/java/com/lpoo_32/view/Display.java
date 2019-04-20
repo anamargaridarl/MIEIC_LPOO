@@ -17,10 +17,11 @@ public abstract class Display {
 //    protected WindowBasedTextGUI gui;
     protected List<ElementView> props;
     protected Elements elements;
+    protected Terminal terminal;
 
     Display() throws IOException {
 
-        Terminal terminal = new DefaultTerminalFactory().createTerminal();
+        this.terminal = new DefaultTerminalFactory().createTerminal();
         this.screen = new TerminalScreen(terminal);
 
         this.screen.startScreen();
@@ -30,6 +31,12 @@ public abstract class Display {
 
         ScreenSize.createInstance(this.screen.getTerminalSize());
         terminal.addResizeListener((terminal1, newSize) -> ScreenSize.createInstance(newSize));
+    }
+
+    Display(Screen screen) throws IOException {
+        this.screen = screen;
+        this.props = new LinkedList<>();
+        this.elements = new Elements();
     }
 
     abstract public void run() throws IOException;

@@ -4,9 +4,13 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.Controller.Keyboard;
 import com.lpoo_32.exceptions.ScreenClose;
 import com.lpoo_32.exceptions.StatusOverflow;
+import com.lpoo_32.model.Elements;
+import com.lpoo_32.model.PlayerModel;
+import com.lpoo_32.model.Position;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
@@ -14,15 +18,14 @@ import java.io.IOException;
 
 public class Game extends Display{
 
+    private TextGraphics graphics;
+    private Keyboard keyboard;
+    private PlayerView player;
     public static final int width = 47;
     public static final int height = 58;
 
-    TextGraphics graphics;
-    Keyboard keyboard;
-    PlayerView player;
-
-    public Game() throws IOException {
-        super();
+    Game(Screen screen) throws IOException {
+        super(screen);
         this.setInitialProps();
         this.graphics =  this.screen.newTextGraphics();
 
@@ -50,9 +53,12 @@ public class Game extends Display{
         }
         catch(ScreenClose e)
         {
-            System.exit(0);
-        } catch (StatusOverflow | InterruptedException statusOverflow) {
+            System.out.println("Player pressed Q, back to Main Menu....");
+        } catch (InterruptedException statusOverflow) {
             statusOverflow.printStackTrace();
+        }
+        catch (StatusOverflow statusOverflow){
+            System.out.println("You lose! Back to Main Menu....");
         }
     }
 
@@ -72,8 +78,9 @@ public class Game extends Display{
         for(ElementView drawable: this.props)
             drawable.draw(graphics);
 
-    }
 
+
+    }
 
     private void setInitialProps(){
 
@@ -81,16 +88,20 @@ public class Game extends Display{
         InteractableElement spike = new SpikesModel(30,new Position(4,4));
         InteractableElement spike2 = new SpikesModel(10,new Position(6,4));
 
+        System.out.println("Meias");
         //TODO Add Actual Player model values to the Bars
         this.props.add(new FoodView((FoodModel) food));
         this.props.add(new SpikesView((SpikesModel) spike));
         this.props.add(new SpikesView((SpikesModel) spike2));
 
         this.elements.addElement(food);
+        System.out.println("Elements has finished");
         this.elements.addElement(spike);
         this.elements.addElement(spike2);
         this.player = new PlayerView(new PlayerModel(new Position(2,2)));
         this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000"));
         this.props.add(this.player);
+        System.out.println("The end");
+
     }
 }
