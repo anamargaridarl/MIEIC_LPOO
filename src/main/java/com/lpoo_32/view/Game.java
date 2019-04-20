@@ -23,6 +23,7 @@ public class Game extends Display{
     public static final int width = 47;
     public static final int height = 58;
     private static final int frameRate = 60;
+    private int time;
 
     Game(Screen screen) throws IOException {
         super(screen);
@@ -31,7 +32,6 @@ public class Game extends Display{
 
         //probably needs to clean up
         this.keyboard = new Keyboard(this.player.getPlayer(),this.elements);
-
 
     }
 
@@ -42,7 +42,7 @@ public class Game extends Display{
         this.screen.refresh();
 
         //isto parece shady; ter um ciclo infinito a para com uma exceçao
-        int time = 0;
+        this.time = 0;
         try {
             while (true) {
                 this.screen.clear();
@@ -50,13 +50,7 @@ public class Game extends Display{
                 draw();
                 this.screen.refresh();
                 Thread.sleep(1000/ frameRate);
-                time++;
-                if(time % 3600 == 0)
-                    this.player.getPlayer().getWater().decreaseValue(5);
-
-                if(time % (5400.0) == 0)
-                    this.player.getPlayer().getFood().decreaseValue(5);
-
+                updateNourishment();
             }
         }
         catch(ScreenClose e)
@@ -70,8 +64,17 @@ public class Game extends Display{
         }
     }
 
+    private void updateNourishment() throws StatusOverflow {
+        time++;
+        if(time % 3600 == 0)
+            this.player.getPlayer().getWater().decreaseValue(5);
+
+        if(time % (5400.0) == 0)
+            this.player.getPlayer().getFood().decreaseValue(5);
+    }
+
     @Override
-    public void draw() throws IOException {
+    public void draw(){
 
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#48D1CC"));
