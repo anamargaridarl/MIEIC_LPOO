@@ -68,8 +68,10 @@ public class Game extends Display{
         /*graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
                             ScreenSize.instance().getRows(20)), "@");*/
 
-        for(ElementView drawable: this.props)
+        for(ElementView drawable: this.props) {
+            System.out.println("oi");
             drawable.draw(graphics);
+        }
 
 
 
@@ -78,16 +80,19 @@ public class Game extends Display{
 
     private void setInitialProps(){
 
-        FoodModel food = new FoodModel(10,new Position(6,6));
-        SpikesModel spike = new SpikesModel(30,new Position(4,4));
+        InteractableElement food = new FoodModel(10,new Position(2,3));
+        InteractableElement spike = new SpikesModel(30,new Position(4,4));
+        InteractableElement spike2 = new SpikesModel(10,new Position(6,4));
 
         //TODO Add Actual Player model values to the Bars
         this.props.add(new StatusBar(new Status(35), "#990000"));
         this.props.add(new PlayerView(new PlayerModel(new Position(2,2))));
-        this.props.add(new FoodView(food));
-        this.props.add(new SpikesView(spike));
+        this.props.add(new FoodView((FoodModel) food));
+        this.props.add(new SpikesView((SpikesModel) spike));
+        this.props.add(new SpikesView((SpikesModel) spike2));
 
         this.elements.addElement(food);
         this.elements.addElement(spike);
+        this.elements.addElement(spike2);
     }
 }

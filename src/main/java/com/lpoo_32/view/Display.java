@@ -10,6 +10,7 @@ import com.lpoo_32.model.Elements;
 
 import javax.lang.model.element.Element;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public abstract class Display {
 
         this.screen.startScreen();
         screen.doResizeIfNecessary();
-        this.props = new LinkedList<>();
+        this.props = new ArrayList<>();
         this.elements = new Elements();
 
         ScreenSize.createInstance(this.screen.getTerminalSize());
