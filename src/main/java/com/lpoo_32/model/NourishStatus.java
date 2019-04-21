@@ -24,7 +24,7 @@ public class NourishStatus extends Status {
             this.value -= value;
             if(this.value <= 0) {
                 this.value = 0;
-                if(this.type == NourishType.HUNGER)
+                if(this.type.equals(NourishType.HUNGER))
                     throw new HungerOVF();
                 else
                     throw new ThirstOVF();
@@ -36,7 +36,7 @@ public class NourishStatus extends Status {
     public void increaseValue(int value) throws HungerRestored, ThirstRestored {
         if(this.value == 0){
             super.increaseValue(value);
-            if(this.type == NourishType.HUNGER)
+            if(this.type.equals(NourishType.HUNGER))
                 throw new HungerRestored();
             else
                 throw new ThirstRestored();

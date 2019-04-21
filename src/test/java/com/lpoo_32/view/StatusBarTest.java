@@ -1,7 +1,6 @@
 package com.lpoo_32.view;
 
 import com.lpoo_32.model.HealthStatus;
-import com.lpoo_32.model.Status;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

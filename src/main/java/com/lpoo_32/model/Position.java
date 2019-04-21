@@ -60,7 +60,7 @@ public class Position {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this)
+        if(obj.equals(this))
             return true;
 
         if(!(obj instanceof Position))

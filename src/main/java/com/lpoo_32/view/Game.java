@@ -7,8 +7,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.controller.Keyboard;
 import com.lpoo_32.exceptions.*;
-import com.lpoo_32.model.PlayerModel;
-import com.lpoo_32.model.Position;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
