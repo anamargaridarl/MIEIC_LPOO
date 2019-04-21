@@ -1,5 +1,7 @@
 package com.lpoo_32.controller;
 
+import com.lpoo_32.exceptions.NourishOVF;
+import com.lpoo_32.exceptions.NourishRestored;
 import com.lpoo_32.model.*;
 
 import org.junit.Test;
@@ -9,8 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class KeyboardTest {
 
     @Test
-    public void testCollision()
-    {
+    public void testCollision() throws NourishRestored, NourishOVF {
         PlayerModel player = new PlayerModel(new Position(3,2));
         SpikesModel spike = new SpikesModel(25, new Position(3,2));
         FoodModel food = new FoodModel(10, new Position(3,3));

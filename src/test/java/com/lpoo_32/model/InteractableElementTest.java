@@ -1,6 +1,8 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.StatusOverflow;
+import com.lpoo_32.exceptions.HealthOVF;
+import com.lpoo_32.exceptions.NourishOVF;
+import com.lpoo_32.exceptions.NourishRestored;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,7 +24,7 @@ public class InteractableElementTest {
 
 
     @Test
-    public void spikes() throws StatusOverflow {
+    public void spikes() throws HealthOVF, NourishRestored, NourishOVF {
         InteractableElement spike = new SpikesModel(20, null);
         spike.interact(player);
         assertEquals(100, player.getWater().getValue());
@@ -32,13 +34,13 @@ public class InteractableElementTest {
 
 
     @Test
-    public void statusOVF() throws StatusOverflow {
+    public void statusOVF() throws HealthOVF, NourishRestored, NourishOVF {
         InteractableElement spike = new SpikesModel(200, null);
-        thrown.expect(StatusOverflow.class);
+        thrown.expect(HealthOVF.class);
         spike.interact(player);
     }
     @Test
-    public void food() throws StatusOverflow {
+    public void food() throws HealthOVF, NourishRestored, NourishOVF {
         InteractableElement spike = new SpikesModel(20, null);
         spike.interact(player);
         assertEquals(100, player.getWater().getValue());
@@ -52,8 +54,8 @@ public class InteractableElementTest {
     }
 
     @Test
-    public void water() throws StatusOverflow {
-        this.player.setWater(new Status(70));
+    public void water() throws HealthOVF, NourishRestored, NourishOVF {
+        this.player.setWater(new NourishStatus(70));
         InteractableElement water = new WaterModel(null);
         assertEquals(70, this.player.getWater().getValue());
         assertEquals(100, this.player.getFood().getValue());

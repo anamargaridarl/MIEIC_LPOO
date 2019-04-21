@@ -1,6 +1,8 @@
 package com.lpoo_32.model;
 
 
+import com.lpoo_32.exceptions.NourishRestored;
+
 public class WaterModel extends InteractableElement {
 
     WaterModel(Position pos) {
@@ -8,7 +10,7 @@ public class WaterModel extends InteractableElement {
     }
 
     @Override
-    public void interact(PlayerModel player) {
+    public void interact(PlayerModel player) throws NourishRestored {
         player.getWater().increaseValue(20);
     }
 }

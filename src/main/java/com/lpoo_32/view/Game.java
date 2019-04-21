@@ -6,8 +6,10 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.controller.Keyboard;
+import com.lpoo_32.exceptions.NourishOVF;
+import com.lpoo_32.exceptions.NourishRestored;
 import com.lpoo_32.exceptions.ScreenClose;
-import com.lpoo_32.exceptions.StatusOverflow;
+import com.lpoo_32.exceptions.HealthOVF;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 import com.lpoo_32.model.*;
@@ -24,6 +26,7 @@ public class Game extends Display{
     public static final int height = 58;
     private static final int frameRate = 60;
     private int time;
+    private boolean famished;
 
     Game(Screen screen) throws IOException {
         super(screen);
@@ -32,7 +35,7 @@ public class Game extends Display{
 
         //probably needs to clean up
         this.keyboard = new Keyboard(this.player.getPlayer(),this.elements);
-
+        this.famished = false;
     }
 
     public void run() throws IOException {
@@ -59,18 +62,25 @@ public class Game extends Display{
         } catch (InterruptedException statusOverflow) {
             statusOverflow.printStackTrace();
         }
-        catch (StatusOverflow statusOverflow){
+        catch (HealthOVF healthOVF){
             System.out.println("You lose! Back to Main Menu....");
+        } catch (NourishOVF nourishOVF) {
+            this.famished = true;
+        } catch (NourishRestored nourishRestored) {
+            this.famished = false;
         }
     }
 
-    private void updateNourishment() throws StatusOverflow {
+    private void updateNourishment() throws HealthOVF, NourishOVF {
         time++;
         if(time % 3600 == 0)
             this.player.getPlayer().getWater().decreaseValue(5);
 
-        if(time % (5400.0) == 0)
+        if(time % (5400.0) == 0) {
             this.player.getPlayer().getFood().decreaseValue(5);
+        }
+        if(this.famished && ((time % 120) == 0))
+            this.player.getPlayer().getHealth().decreaseValue(5);
     }
 
     @Override

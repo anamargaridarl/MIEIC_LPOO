@@ -1,8 +1,8 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.StatusOverflow;
-
-import java.util.Objects;
+import com.lpoo_32.exceptions.HealthOVF;
+import com.lpoo_32.exceptions.NourishOVF;
+import com.lpoo_32.exceptions.NourishRestored;
 
 abstract public class InteractableElement implements ElementModel {
 
@@ -12,7 +12,7 @@ abstract public class InteractableElement implements ElementModel {
         this.pos = pos;
     }
 
-    public abstract void interact(PlayerModel player) throws StatusOverflow;
+    public abstract void interact(PlayerModel player) throws HealthOVF, NourishRestored, NourishOVF;
 
     public Position getPos() {
         return pos;
