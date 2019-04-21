@@ -1,8 +1,6 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.HealthOVF;
-import com.lpoo_32.exceptions.HungerOVF;
-import com.lpoo_32.exceptions.HungerRestored;
+import com.lpoo_32.exceptions.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -14,7 +12,7 @@ public class StatusTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void healthTest() throws HealthOVF, HungerOVF, HungerRestored {
+    public void healthTest() throws HealthOVF, HungerOVF, HungerRestored, ThirstOVF, ThirstRestored {
         Status health = new HealthStatus(100);
         health.decreaseValue(20);
         assertEquals(80, health.getValue());
@@ -25,8 +23,8 @@ public class StatusTest {
     }
 
     @Test
-    public void nourishTest() throws HealthOVF, HungerOVF, HungerRestored {
-        Status nourishment = new NourishStatus(100);
+    public void hungerTest() throws HealthOVF, HungerOVF, HungerRestored, ThirstOVF, ThirstRestored {
+        Status nourishment = new NourishStatus(100, NourishType.HUNGER);
         nourishment.decreaseValue(20);
         assertEquals(80, nourishment.getValue());
         nourishment.increaseValue(20);
@@ -34,6 +32,19 @@ public class StatusTest {
         thrown.expect(HungerOVF.class);
         nourishment.decreaseValue(200);
         thrown.expect(HungerRestored.class);
+        nourishment.increaseValue(20);
+    }
+
+    @Test
+    public void thirstTest() throws HealthOVF, HungerOVF, HungerRestored, ThirstOVF, ThirstRestored {
+        Status nourishment = new NourishStatus(100, NourishType.THIRST);
+        nourishment.decreaseValue(20);
+        assertEquals(80, nourishment.getValue());
+        nourishment.increaseValue(20);
+        assertEquals(100, nourishment.getValue());
+        thrown.expect(ThirstOVF.class);
+        nourishment.decreaseValue(200);
+        thrown.expect(ThirstRestored.class);
         nourishment.increaseValue(20);
     }
 

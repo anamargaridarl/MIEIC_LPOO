@@ -1,8 +1,6 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.HealthOVF;
-import com.lpoo_32.exceptions.HungerOVF;
-import com.lpoo_32.exceptions.HungerRestored;
+import com.lpoo_32.exceptions.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,7 +22,7 @@ public class InteractableElementTest {
 
 
     @Test
-    public void spikes() throws HealthOVF, HungerRestored, HungerOVF {
+    public void spikes() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
         InteractableElement spike = new SpikesModel(20, null);
         spike.interact(player);
         assertEquals(100, player.getWater().getValue());
@@ -34,13 +32,13 @@ public class InteractableElementTest {
 
 
     @Test
-    public void statusOVF() throws HealthOVF, HungerRestored, HungerOVF {
+    public void statusOVF() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
         InteractableElement spike = new SpikesModel(200, null);
         thrown.expect(HealthOVF.class);
         spike.interact(player);
     }
     @Test
-    public void food() throws HealthOVF, HungerRestored, HungerOVF {
+    public void food() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
         InteractableElement spike = new SpikesModel(20, null);
         spike.interact(player);
         assertEquals(100, player.getWater().getValue());
@@ -54,8 +52,8 @@ public class InteractableElementTest {
     }
 
     @Test
-    public void water() throws HealthOVF, HungerRestored, HungerOVF {
-        this.player.setWater(new NourishStatus(70));
+    public void water() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
+        this.player.setWater(new NourishStatus(70, NourishType.HUNGER));
         InteractableElement water = new WaterModel(null);
         assertEquals(70, this.player.getWater().getValue());
         assertEquals(100, this.player.getFood().getValue());
