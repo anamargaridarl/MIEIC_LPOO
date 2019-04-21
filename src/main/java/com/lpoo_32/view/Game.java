@@ -61,7 +61,7 @@ public class Game extends Display{
         }
     }
 
-    private void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException {
+    void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException {
         this.screen.clear();
         try {
             keyboard.processKey(screen);
