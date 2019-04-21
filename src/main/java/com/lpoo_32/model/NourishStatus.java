@@ -34,13 +34,14 @@ public class NourishStatus extends Status {
 
     @Override
     public void increaseValue(int value) throws HungerRestored, ThirstRestored {
-        super.increaseValue(value);
         if(this.value == 0){
+            super.increaseValue(value);
             if(this.type == NourishType.HUNGER)
                 throw new HungerRestored();
             else
                 throw new ThirstRestored();
         }
+        super.increaseValue(20);
     }
 
 }

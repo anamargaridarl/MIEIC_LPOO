@@ -31,8 +31,6 @@ public class StatusTest {
         assertEquals(100, nourishment.getValue());
         thrown.expect(HungerOVF.class);
         nourishment.decreaseValue(200);
-        thrown.expect(HungerRestored.class);
-        nourishment.increaseValue(20);
     }
 
     @Test
@@ -44,7 +42,21 @@ public class StatusTest {
         assertEquals(100, nourishment.getValue());
         thrown.expect(ThirstOVF.class);
         nourishment.decreaseValue(200);
+
+    }
+
+    @Test
+    public void thirstRestored() throws HungerRestored, ThirstRestored {
+        Status nourishment = new NourishStatus(0, NourishType.THIRST);
         thrown.expect(ThirstRestored.class);
+        nourishment.increaseValue(20);
+
+    }
+
+    @Test
+    public void hungerRestored() throws HungerRestored, ThirstRestored {
+        Status nourishment = new NourishStatus(0, NourishType.HUNGER);
+        thrown.expect(HungerRestored.class);
         nourishment.increaseValue(20);
     }
 
