@@ -4,10 +4,7 @@ import java.io.IOException;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
-import com.lpoo_32.exceptions.NourishOVF;
-import com.lpoo_32.exceptions.NourishRestored;
-import com.lpoo_32.exceptions.ScreenClose;
-import com.lpoo_32.exceptions.HealthOVF;
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
@@ -24,7 +21,7 @@ public class Keyboard
         this.elements = elements;
     }
 
-    public void processKey(Screen screen) throws IOException, ScreenClose, HealthOVF, NourishRestored, NourishOVF {
+    public void processKey(Screen screen) throws IOException, ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF {
 
         KeyStroke key;
         key = screen.pollInput();
@@ -63,7 +60,7 @@ public class Keyboard
     }
 
 
-    public void colisions(Position position) throws NourishRestored, NourishOVF {
+    public void colisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF { //TODO: Most exception should not be here afterwardss
         try {
             if(elements.getValue(position) != null)
                 elements.getValue(position).interact(player);

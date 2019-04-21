@@ -1,8 +1,6 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.HealthOVF;
-import com.lpoo_32.exceptions.NourishOVF;
-import com.lpoo_32.exceptions.NourishRestored;
+import com.lpoo_32.exceptions.*;
 
 public abstract class Status {
     int value;
@@ -10,9 +8,9 @@ public abstract class Status {
         this.value = value;
     }
 
-    public abstract void decreaseValue(int value) throws HealthOVF, NourishOVF;
+    public abstract void decreaseValue(int value) throws HealthOVF, HungerOVF, ThirstOVF;
 
-    public void increaseValue(int value) throws NourishRestored {
+    public void increaseValue(int value) throws HungerRestored, ThirstRestored {
         if(this.value + value > 100)
             this.value = 100;
         else

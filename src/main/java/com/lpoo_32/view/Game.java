@@ -6,10 +6,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.controller.Keyboard;
-import com.lpoo_32.exceptions.NourishOVF;
-import com.lpoo_32.exceptions.NourishRestored;
-import com.lpoo_32.exceptions.ScreenClose;
-import com.lpoo_32.exceptions.HealthOVF;
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 import com.lpoo_32.model.*;
@@ -26,7 +23,8 @@ public class Game extends Display{
     public static final int height = 58;
     private static final int frameRate = 60;
     private int time;
-    private boolean famished;
+    private boolean hunger;
+    private boolean thirst;
 
     Game(Screen screen) throws IOException {
         super(screen);
@@ -35,7 +33,8 @@ public class Game extends Display{
 
         //probably needs to clean up
         this.keyboard = new Keyboard(this.player.getPlayer(),this.elements);
-        this.famished = false;
+        this.hunger = false;
+        this.thirst = false;
     }
 
     public void run() throws IOException {
@@ -48,12 +47,7 @@ public class Game extends Display{
         this.time = 0;
         try {
             while (true) {
-                this.screen.clear();
-                keyboard.processKey(screen);
-                draw();
-                this.screen.refresh();
-                Thread.sleep(1000/ frameRate);
-                updateNourishment();
+                updateGame();
             }
         }
         catch(ScreenClose e)
@@ -64,22 +58,38 @@ public class Game extends Display{
         }
         catch (HealthOVF healthOVF){
             System.out.println("You lose! Back to Main Menu....");
-        } catch (NourishOVF nourishOVF) {
-            this.famished = true;
-        } catch (NourishRestored nourishRestored) {
-            this.famished = false;
         }
     }
 
-    private void updateNourishment() throws HealthOVF, NourishOVF {
+    private void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException {
+        this.screen.clear();
+        try {
+            keyboard.processKey(screen);
+            draw();
+            this.screen.refresh();
+            Thread.sleep(1000/ frameRate);
+            updateNourishment();
+        } catch (HungerRestored hungerRestored) {
+            this.hunger = false;
+        } catch (HungerOVF nourishOVF) {
+            this.hunger = true;
+        } catch (ThirstRestored thirstRestored) {
+            this.thirst = false;
+        } catch (ThirstOVF thirstOVF) {
+            this.thirst = true;
+        }
+    }
+
+    private void updateNourishment() throws HealthOVF, HungerOVF, ThirstOVF {
         time++;
-        if(time % 3600 == 0)
+        if(time % (3600) == 0) {
             this.player.getPlayer().getWater().decreaseValue(5);
+        }
 
         if(time % (5400.0) == 0) {
             this.player.getPlayer().getFood().decreaseValue(5);
         }
-        if(this.famished && ((time % 120) == 0))
+        if((this.hunger || this.thirst) && ((time % 120) == 0))
             this.player.getPlayer().getHealth().decreaseValue(5);
     }
 
@@ -109,22 +119,18 @@ public class Game extends Display{
         InteractableElement spike = new SpikesModel(30,new Position(4,4));
         InteractableElement spike2 = new SpikesModel(10,new Position(6,4));
 
-        System.out.println("Meias");
-        //TODO Add Actual Player model values to the Bars
         this.props.add(new FoodView((FoodModel) food));
         this.props.add(new SpikesView((SpikesModel) spike));
         this.props.add(new SpikesView((SpikesModel) spike2));
 
         this.elements.addElement(food);
-        System.out.println("Elements has finished");
         this.elements.addElement(spike);
         this.elements.addElement(spike2);
         this.player = new PlayerView(new PlayerModel(new Position(2,2)));
         this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
         this.props.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
-        this.props.add(new StatusBar(player.getPlayer().getFood(), "#87CEFA", 18));
+        this.props.add(new StatusBar(player.getPlayer().getWater(), "#87CEFA", 18));
         this.props.add(this.player);
-        System.out.println("The end");
 
     }
 }

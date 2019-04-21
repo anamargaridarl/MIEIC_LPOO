@@ -1,8 +1,6 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.HealthOVF;
-import com.lpoo_32.exceptions.NourishOVF;
-import com.lpoo_32.exceptions.NourishRestored;
+import com.lpoo_32.exceptions.*;
 
 abstract public class InteractableElement implements ElementModel {
 
@@ -12,7 +10,7 @@ abstract public class InteractableElement implements ElementModel {
         this.pos = pos;
     }
 
-    public abstract void interact(PlayerModel player) throws HealthOVF, NourishRestored, NourishOVF;
+    public abstract void interact(PlayerModel player) throws HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF;
 
     public Position getPos() {
         return pos;

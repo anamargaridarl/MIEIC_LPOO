@@ -28,9 +28,9 @@ public class StatusBar implements ElementView{
         graphics.setForegroundColor(color);
         graphics.fillRectangle(new TerminalPosition(getColumn(60),
                         getRows()),
-                new TerminalSize(getColumn(this.getScreenPercen()), 1),
+                new TerminalSize(getColumn(this.getScreenPercen() + 1), 1),
                 Symbols.BLOCK_SOLID);
-        graphics.fillRectangle(new TerminalPosition(getColumn(60 + this.getScreenPercen() - 1),
+        graphics.fillRectangle(new TerminalPosition(getColumn(60 + this.getScreenPercen()),
                         getRows()),
                 new TerminalSize(getColumn(40 - this.getScreenPercen()), 1),
                 Symbols.BLOCK_SPARSE);
