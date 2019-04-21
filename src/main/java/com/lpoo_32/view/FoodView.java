@@ -5,10 +5,11 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.InteractableElement;
 
-public class FoodView implements ElementView {
+public class FoodView extends CatchableView {
     private final FoodModel food;
 
     FoodView(FoodModel food){
@@ -35,5 +36,8 @@ public class FoodView implements ElementView {
     }
 
 
-
+    @Override
+    public CatchableElement getElement() {
+        return food;
+    }
 }

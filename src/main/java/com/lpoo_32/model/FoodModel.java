@@ -1,6 +1,6 @@
 package com.lpoo_32.model;
 
-public class FoodModel extends InteractableElement {
+public class FoodModel extends CatchableElement {
     private int value;
 
     public FoodModel(int value, Position pos){

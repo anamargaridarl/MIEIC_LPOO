@@ -1,7 +1,7 @@
 package com.lpoo_32.model;
 
 
-public class WaterModel extends InteractableElement {
+public class WaterModel extends CatchableElement {
 
     WaterModel(Position pos) {
         super(pos);

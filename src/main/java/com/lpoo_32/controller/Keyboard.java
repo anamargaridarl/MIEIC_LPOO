@@ -8,6 +8,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.ScreenClose;
 import com.lpoo_32.exceptions.StatusOverflow;
 import com.lpoo_32.model.*;
+import com.lpoo_32.view.CatchableView;
 import com.lpoo_32.view.ElementView;
 import com.lpoo_32.view.FoodView;
 
@@ -55,15 +56,15 @@ public class Keyboard
                             System.out.println("Open help Menu");
                             break;
                         case 'f': //add element to inventory
-                            if(isWaterFood(player.getPosition())) {
+                            if(isCatchable(player.getPosition())) {
                                 player.addElementInventory(elements.getValue(player.getPosition()));
-                                removeProps(elements.getValue(player.getPosition()));
+                                removeElementProps(elements.getValue(player.getPosition()));
                             }
                             break;
                         case 't': //use water/food in moment
-                            if(isWaterFood(player.getPosition())) {
+                            if(isCatchable(player.getPosition())) {
                                 elements.getValue(player.getPosition()).interact(player);
-                                removeProps(elements.getValue(player.getPosition()));
+                                removeElementProps(elements.getValue(player.getPosition()));
                             }
                             break;
                         case 'q': //move left in inventory
@@ -77,45 +78,50 @@ public class Keyboard
                                 player.getInventory().getElement().interact(player);
                             player.getInventory().removeElement();
                             break;
+                        default:
+                            break;
 
 
                     }
             }
 
-            this.collisions(player.getPosition(), screen);
+            this.collisions(player.getPosition());
         }
 
 
     }
 
 
-    public void removeProps(InteractableElement element)
-    {
-        for(ElementView e: this.props) //need to divide health related elements in a subclass
+    //remove element from view array
+    public void removeElementProps(InteractableElement element) {
+        for (ElementView e : this.props) //need to divide health related elements in a subclass
         {
-            if(e instanceof FoodView)
-            {
-                if(((FoodView) e).getFood().equals(element))
-                props.remove(e);
-                break;
+            if (e instanceof CatchableView) {
+                if (((CatchableView) e).getElement().equals(element)) {
+                    props.remove(e);
+                    break;
+                }
             }
-        }
 
+        }
     }
 
-    public boolean isWaterFood(Position position) {
+    //verify that model element in the position is catchable
+    public boolean isCatchable(Position position) {
 
         if (elements.getValue(position) != null)
-            return elements.getValue(position) instanceof FoodModel || elements.getValue(position) instanceof WaterModel;
+            return elements.getValue(position) instanceof CatchableElement;
         else
             return false;
 
     }
 
-    public void collisions(Position position, Screen screen) throws IOException {
+
+    //handles colisions for non catchable elements
+    public void collisions(Position position) {
 
         try {
-            if (elements.getValue(position) != null && elements.getValue(position) instanceof SpikesModel) {
+            if (elements.getValue(position) != null && !(elements.getValue(position) instanceof CatchableElement)) {
                     elements.getValue(position).interact(player);
 
             }
