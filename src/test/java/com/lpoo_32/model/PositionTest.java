@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
 public class PositionTest {
     private  Position position;
 
-    @Before
+    @Before //TODO: Fix Tests After Merge
     public void initalizePosition(){
-        this.position = new Position(10, 10);
+        this.position = new Position(10, 10, 200, 200);
     }
     @Test
     public void testMovements(){

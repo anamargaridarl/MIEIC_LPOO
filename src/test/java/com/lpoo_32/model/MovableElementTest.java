@@ -9,7 +9,7 @@ public class MovableElementTest {
     @Test
     public void movement()
     {
-        MovableElement player = new PlayerModel(new Position(4,4));
+        MovableElement player = new PlayerModel(new Position(4,4, 200, 200));
 
         player.moveDown();
         assertEquals(5, player.getPosition().getY());

@@ -8,7 +8,7 @@ public class PlayerModelTest {
     PlayerModel player;
     @Before
     public void initializeValues(){
-        this.player = new PlayerModel(new Position(4,4));
+        this.player = new PlayerModel(new Position(4,4, 200, 200));
     }
 
     @Test

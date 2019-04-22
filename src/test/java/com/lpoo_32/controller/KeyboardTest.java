@@ -11,9 +11,9 @@ public class KeyboardTest {
     @Test
     public void testCollision()
     {
-        PlayerModel player = new PlayerModel(new Position(3,2));
-        SpikesModel spike = new SpikesModel(25, new Position(3,2));
-        FoodModel food = new FoodModel(10, new Position(3,3));
+        PlayerModel player = new PlayerModel(new Position(3,2, 200, 200));
+        SpikesModel spike = new SpikesModel(25, new Position(3,2, 200, 200));
+        FoodModel food = new FoodModel(10, new Position(3,3, 200, 200));
         Elements elements = new Elements();
         elements.addElement(spike);
         elements.addElement(food);
