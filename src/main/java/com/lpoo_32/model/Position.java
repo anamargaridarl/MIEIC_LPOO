@@ -2,42 +2,45 @@ package com.lpoo_32.model;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.lpoo_32.view.Game;
+import com.lpoo_32.view.ScreenSize;
 
 import java.util.Objects;
 
 public class Position {
     private int x;
     private int y;
+    private final int width;
+    private final int height;
 
-    public Position(int x, int y){
+    public Position(int x, int y, int width, int height){
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
     public void moveUp(){
 
-        if(this.y-- <= 0)
-            this.y++;
+        if(this.y - 1 >= 0)
+            this.y --;
     }
 
     public void moveLeft(){
 
-        if(this.x-- <= 0)
-            this.x++;
-
-
+        if(this.x - 1 >= 0)
+            this.x--;
     }
 
     public void moveDown(){
 
-        if(this.y++ >= 20)
-            this.y--;
+        if(this.y + 1 <= this.height)
+            this.y++;
     }
 
     public void moveRight() {
 
-        if(this.x++ >= Game.width)
-            this.x--;
+        if(this.x + 1 <= this.width)
+            this.x++;
     }
 
     public int getX() {
@@ -49,7 +52,9 @@ public class Position {
     }
 
     public TerminalPosition getTerminalPosition(){
-        return new TerminalPosition(this.x, this.y);
+        return new TerminalPosition(ScreenSize.instance().getColumn(this.x * 2 - 1),
+                                    ScreenSize.instance().getRows(this.y * 2 - 1)
+                                    );
     }
 
     @Override

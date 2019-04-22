@@ -20,8 +20,8 @@ public class Game extends Display{
     private TextGraphics graphics;
     private Keyboard keyboard;
     private PlayerView player;
-    public static final int width = 47;
-    public static final int height = 58;
+    private static final int width = 60;
+    private static final int height = 50;
 
     Game(Screen screen) throws IOException {
         super(screen);
@@ -82,10 +82,12 @@ public class Game extends Display{
     }
 
     private void setInitialProps(){
+        int width = Game.width/2;
+        int height = Game.height/2;
 
-        InteractableElement food = new FoodModel(10,new Position(2,3));
-        InteractableElement spike = new SpikesModel(30,new Position(4,4));
-        InteractableElement spike2 = new SpikesModel(10,new Position(6,4));
+        InteractableElement food = new FoodModel(10,new Position(2,3, width, height));
+        InteractableElement spike = new SpikesModel(30,new Position(4,4, width, height));
+        InteractableElement spike2 = new SpikesModel(10,new Position(6,4, width, height));
 
         System.out.println("Meias");
         //TODO Add Actual Player model values to the Bars
@@ -97,7 +99,7 @@ public class Game extends Display{
         System.out.println("Elements has finished");
         this.elements.addElement(spike);
         this.elements.addElement(spike2);
-        this.player = new PlayerView(new PlayerModel(new Position(2,2)));
+        this.player = new PlayerView(new PlayerModel(new Position(2,2, width, height)));
         this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000"));
         this.props.add(this.player);
         System.out.println("The end");
