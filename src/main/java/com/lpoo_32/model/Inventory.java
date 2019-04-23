@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Inventory {
 
-    private List<InteractableElement> inventory;
+    private List<CatchableElement> inventory;
     private int index;
 
     public Inventory(){
@@ -13,30 +13,28 @@ public class Inventory {
         index = 0;
     }
 
-    public List<InteractableElement> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(List<InteractableElement> inventory) {
-        this.inventory = inventory;
-    }
-
-    public void addElement(InteractableElement element) {
+    public void addElement(CatchableElement element) {
         inventory.add(element);
     }
 
     public void moveRight()
     {
-        if(this.index + 1 < inventory.size() -1 )
+        if(this.index + 1 <= inventory.size() -1 )
             this.index++;
 
     }
 
     public void moveLeft()
     {
-        if(this.index - 1 > 0)
+        if(this.index - 1 >= 0)
             this.index--;
 
+    }
+
+    public void updateRemoveIndex()
+    {
+        if(index > 0)
+            index--;
     }
 
     public void removeElement() {
@@ -45,11 +43,11 @@ public class Inventory {
         }
 
         inventory.remove(index);
-        index--;
+        this.updateRemoveIndex();
     }
 
-    public InteractableElement getElement() {
-        if(index < 0) {
+    public CatchableElement getElement() {
+        if(index < 0 || inventory.size() == 0) {
             return null;
         }
         return inventory.get(index);

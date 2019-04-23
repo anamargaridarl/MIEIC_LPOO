@@ -6,8 +6,15 @@ import com.lpoo_32.exceptions.ThirstRestored;
 
 public class WaterModel extends CatchableElement {
 
-    WaterModel(Position pos) {
+    private int value;
+    WaterModel(int value,Position pos) {
         super(pos);
+        this.value = value;
+    }
+
+    @Override
+    public int getValue() {
+        return value;
     }
 
     @Override

@@ -16,8 +16,8 @@ public class ElementsTest {
         InteractableElement element = new FoodModel(20, new Position(10, 5));
         elements.addElement(element);
 
-        assertEquals(element, elements.getValue(element.getPos()));
-        assertNull(elements.getValue(new Position(5, 10)));
+        assertEquals(element, elements.getElement(element.getPos()));
+        assertNull(elements.getElement(new Position(5, 10)));
     }
 
     @Test
@@ -30,9 +30,9 @@ public class ElementsTest {
         elements.addElement(food);
         elements.addElement(spike);
 
-        assertEquals(food, elements.getValue(food.getPos()));
-        assertEquals(spike, elements.getValue(spike.getPos()));
-        assertNull(elements.getValue(new Position(5, 10)));
+        assertEquals(food, elements.getElement(food.getPos()));
+        assertEquals(spike, elements.getElement(spike.getPos()));
+        assertNull(elements.getElement(new Position(5, 10)));
     }
 
 

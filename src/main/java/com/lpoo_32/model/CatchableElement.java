@@ -6,4 +6,6 @@ abstract public class CatchableElement extends InteractableElement  {
         super(pos);
     }
 
+    abstract public int getValue();
+
 }

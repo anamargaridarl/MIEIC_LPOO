@@ -54,7 +54,7 @@ public class InteractableElementTest {
     @Test
     public void water() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
         this.player.setWater(new NourishStatus(70, NourishType.HUNGER));
-        InteractableElement water = new WaterModel(null);
+        InteractableElement water = new WaterModel(15,null);
         assertEquals(70, this.player.getWater().getValue());
         assertEquals(100, this.player.getFood().getValue());
         assertEquals(100, this.player.getHealth().getValue());

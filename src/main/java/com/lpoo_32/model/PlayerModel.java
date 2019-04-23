@@ -38,7 +38,7 @@ public class PlayerModel extends MovableElement {
         this.water = water;
     }
 
-    public void addElementInventory(InteractableElement element)
+    public void addElementInventory(CatchableElement element)
     {
         inventory.addElement(element);
     }

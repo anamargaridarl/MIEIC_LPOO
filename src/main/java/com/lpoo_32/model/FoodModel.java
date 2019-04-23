@@ -15,6 +15,7 @@ public class FoodModel extends CatchableElement {
     {
         return value;
     }
+
     @Override
     public void interact(PlayerModel player) throws HungerRestored, ThirstRestored {
         //TODO: Add some percentage value to it?

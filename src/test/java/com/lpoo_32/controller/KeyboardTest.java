@@ -59,7 +59,10 @@ public class KeyboardTest {
     public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored {
         Screen screen = Mockito.mock(Screen.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
+        CatchableElement e = Mockito.mock(CatchableElement.class);
+        Elements elements = Mockito.mock(Elements.class);
         Keyboard keyboard = new Keyboard(player, new Elements(), null);
+
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
         keyboard.processKey(screen);
         verify(player).moveUp();
@@ -72,10 +75,19 @@ public class KeyboardTest {
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowRight));
         keyboard.processKey(screen);
         verify(player).moveRight();
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('q', false, false));
+        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('z', false, false));
         thrown.expect(ScreenClose.class);
         keyboard.processKey(screen);
         verify(player).moveRight();
+
+        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('f',false,false));
+        keyboard.processKey(screen);
+        verify(player).addElementInventory(e);
+
+        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('t',false,false));
+        keyboard.processKey(screen);
+        verify(keyboard).removeElementProps(e);
+
     }
 
 

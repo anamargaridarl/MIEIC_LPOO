@@ -61,14 +61,14 @@ public class Keyboard
                             break;
                         case 'f': //add element to inventory
                             if(isCatchable(player.getPosition())) {
-                                player.addElementInventory(elements.getValue(player.getPosition()));
-                                removeElementProps(elements.getValue(player.getPosition()));
+                                player.addElementInventory((CatchableElement)elements.getElement(player.getPosition()));
+                                removeElementProps(elements.getElement(player.getPosition()));
                             }
                             break;
                         case 't': //use water/food in moment
                             if(isCatchable(player.getPosition())) {
-                                elements.getValue(player.getPosition()).interact(player);
-                                removeElementProps(elements.getValue(player.getPosition()));
+                                elements.getElement(player.getPosition()).interact(player);
+                                removeElementProps(elements.getElement(player.getPosition()));
                             }
                             break;
                         case 'q': //move left in inventory
@@ -113,8 +113,8 @@ public class Keyboard
     //verify that model element in the position is catchable
     public boolean isCatchable(Position position) {
 
-        if (elements.getValue(position) != null)
-            return elements.getValue(position) instanceof CatchableElement;
+        if (elements.getElement(position) != null)
+            return elements.getElement(position) instanceof CatchableElement;
         else
             return false;
 
@@ -125,8 +125,8 @@ public class Keyboard
     public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF { //TODO: Mo {
 
         try {
-            if (elements.getValue(position) != null && !(elements.getValue(position) instanceof CatchableElement)) {
-                    elements.getValue(position).interact(player);
+            if (elements.getElement(position) != null && !(elements.getElement(position) instanceof CatchableElement)) {
+                    elements.getElement(position).interact(player);
 
             }
         } catch (HealthOVF e) {

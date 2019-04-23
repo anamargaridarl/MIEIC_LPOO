@@ -118,22 +118,27 @@ public class Game extends Display{
     private void setInitialProps(){
 
         FoodModel food = new FoodModel(10,new Position(2,3));
+        FoodModel food2 = new FoodModel(25,new Position(7,3));
         SpikesModel spike = new SpikesModel(30,new Position(4,4));
         SpikesModel spike2 = new SpikesModel(10,new Position(6,4));
+        PlayerModel playerM = new PlayerModel(new Position(2,2));
 
         System.out.println("Meias");
         //TODO Add Actual Player model values to the Bars
+        this.props.add(new FoodView(food2));
         this.props.add(new FoodView(food));
         this.props.add(new SpikesView(spike));
         this.props.add(new SpikesView(spike2));
 
         this.elements.addElement(food);
+        this.elements.addElement(food2);
         this.elements.addElement(spike);
         this.elements.addElement(spike2);
-        this.player = new PlayerView(new PlayerModel(new Position(2,2)));
+        this.player = new PlayerView(playerM);
         this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
         this.props.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
         this.props.add(new StatusBar(player.getPlayer().getWater(), "#87CEFA", 18));
+        this.props.add(new InventoryView(playerM.getInventory(), "#99FFCC",graphics));
         this.props.add(this.player);
 
     }

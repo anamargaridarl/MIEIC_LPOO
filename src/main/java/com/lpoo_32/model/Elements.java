@@ -10,7 +10,7 @@ public class Elements {
         this.elements = new LinkedHashMap<>();
     }
 
-    public void addElement(InteractableElement a)
+    public void addElement(InteractableElement a) //TODO:verify if elements are added in same position
     {
         elements.put(a.getPos(),a);
     }
@@ -20,7 +20,7 @@ public class Elements {
         return elements;
     }
 
-    public InteractableElement getValue(Position position)
+    public InteractableElement getElement(Position position)
     {
         return elements.get(position);
     }
