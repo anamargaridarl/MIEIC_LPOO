@@ -11,9 +11,9 @@ import static org.junit.Assert.*;
 public class PositionTest {
     private  Position position;
 
-    @Before //TODO: Fix Tests After Merge
+    @Before
     public void initalizePosition(){
-        this.position = new Position(10, 10, 200, 200);
+        this.position = new Position(10, 10, 12, 12);
         TerminalSize size = Mockito.mock(TerminalSize.class);
         Mockito.when(size.getColumns()).thenReturn(100);
         Mockito.when(size.getRows()).thenReturn(100);
@@ -29,6 +29,16 @@ public class PositionTest {
         assertEquals(11, this.position.getX());
         this.position.moveLeft();
         assertEquals(10, this.position.getX());
+        this.position.moveRight();
+        this.position.moveRight();
+        assertEquals(12, this.position.getX());
+        this.position.moveRight();
+        assertEquals(12, this.position.getX());
+        this.position.moveDown();
+        this.position.moveDown();
+        assertEquals(12, this.position.getX());
+        this.position.moveDown();
+        assertEquals(12, this.position.getX());
     }
 
     @Test
