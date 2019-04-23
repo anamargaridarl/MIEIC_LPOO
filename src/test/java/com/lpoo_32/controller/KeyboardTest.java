@@ -22,10 +22,10 @@ public class KeyboardTest {
 
 
     @Test
-    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
-        PlayerModel player = new PlayerModel(new Position(3,2, 200, 200));
-        SpikesModel spike = new SpikesModel(25, new Position(3,2, 200, 200));
-        FoodModel food = new FoodModel(10, new Position(3,3, 200, 200));
+    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF {
+        PlayerModel player = new PlayerModel(new Position(3,2, 200, 200, 0));
+        SpikesModel spike = new SpikesModel(25, new Position(3,2, 200, 200, 0));
+        FoodModel food = new FoodModel(10, new Position(3,3, 200, 200, 0));
         Elements elements = new Elements();
         elements.addElement(spike);
         elements.addElement(food);
@@ -41,7 +41,7 @@ public class KeyboardTest {
     }
 
     @Test
-    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored {
+    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen {
         Screen screen = Mockito.mock(Screen.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         Keyboard keyboard = new Keyboard(player, new Elements());

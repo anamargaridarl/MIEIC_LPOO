@@ -1,6 +1,10 @@
 package com.lpoo_32.model;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.lpoo_32.exceptions.DownScreen;
+import com.lpoo_32.exceptions.LeftScreen;
+import com.lpoo_32.exceptions.RightScreen;
+import com.lpoo_32.exceptions.UpScreen;
 import com.lpoo_32.view.ScreenSize;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,14 +17,14 @@ public class PositionTest {
 
     @Before
     public void initalizePosition(){
-        this.position = new Position(10, 10, 12, 12);
+        this.position = new Position(10, 10, 12, 12, 0);
         TerminalSize size = Mockito.mock(TerminalSize.class);
         Mockito.when(size.getColumns()).thenReturn(100);
         Mockito.when(size.getRows()).thenReturn(100);
         ScreenSize.createInstance(size);
     }
-    @Test
-    public void testMovements(){
+    @Test //TODO: Change Tests According to exceptions
+    public void testMovements() throws DownScreen, RightScreen, LeftScreen, UpScreen {
         this.position.moveDown();
         assertEquals(11, this.position.getY());
         this.position.moveUp();

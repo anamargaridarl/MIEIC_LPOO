@@ -5,8 +5,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import com.lpoo_32.exceptions.HealthOVF;
-import com.lpoo_32.exceptions.ScreenClose;
+import com.lpoo_32.exceptions.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -32,7 +31,7 @@ public class GameTest {
         game = new Game(screen);
     }
     @Test
-    public void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException {
+    public void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, DownScreen, LeftScreen, UpScreen, RightScreen {
         game.updateGame();
         verify(screen, times(1)).refresh();
         verify(screen, times(1)).clear();
