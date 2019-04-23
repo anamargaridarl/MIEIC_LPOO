@@ -1,7 +1,10 @@
 package com.lpoo_32.model;
 
+import com.googlecode.lanterna.TerminalSize;
+import com.lpoo_32.view.ScreenSize;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +14,10 @@ public class PositionTest {
     @Before //TODO: Fix Tests After Merge
     public void initalizePosition(){
         this.position = new Position(10, 10, 200, 200);
+        TerminalSize size = Mockito.mock(TerminalSize.class);
+        Mockito.when(size.getColumns()).thenReturn(100);
+        Mockito.when(size.getRows()).thenReturn(100);
+        ScreenSize.createInstance(size);
     }
     @Test
     public void testMovements(){
@@ -26,8 +33,8 @@ public class PositionTest {
 
     @Test
     public void terminalPosition(){
-        assertEquals(10, this.position.getTerminalPosition().getColumn());
-        assertEquals(10, this.position.getTerminalPosition().getRow());
+        assertEquals(19, this.position.getTerminalPosition().getColumn());
+        assertEquals(19, this.position.getTerminalPosition().getRow());
     }
 
 }

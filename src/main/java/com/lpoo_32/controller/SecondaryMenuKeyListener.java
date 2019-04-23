@@ -32,7 +32,7 @@ public class SecondaryMenuKeyListener implements WindowListener {
     @Override
     public void onInput(Window basePane, KeyStroke keyStroke, AtomicBoolean deliverEvent) {
         if(keyStroke.getKeyType().equals(KeyType.Character)){
-            if(keyStroke.getCharacter() == 'q')
+            if(keyStroke.getCharacter().equals('q'))
                 this.gui.removeWindow(this.window);
         }
     }

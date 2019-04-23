@@ -1,21 +1,16 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.StatusOverflow;
+import com.lpoo_32.exceptions.*;
 
-public class Status {
-    private int value;
+public abstract class Status {
+    int value;
     public Status(int value){
         this.value = value;
     }
 
-    void decreaseValue(int value) throws StatusOverflow {
-        this.value -= value;
-        if(this.value <= 0) {
-            throw new StatusOverflow();
-        }
-    }
+    public abstract void decreaseValue(int value) throws HealthOVF, HungerOVF, ThirstOVF;
 
-    void increaseValue(int value) {
+    public void increaseValue(int value) throws HungerRestored, ThirstRestored {
         if(this.value + value > 100)
             this.value = 100;
         else

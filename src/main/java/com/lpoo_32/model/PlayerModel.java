@@ -7,9 +7,9 @@ public class PlayerModel extends MovableElement {
 
     public PlayerModel(Position position){
         super(position);
-        this.health = new Status(100);
-        this.food = new Status(100);
-        this.water = new Status(100);
+        this.health = new HealthStatus(100);
+        this.food = new NourishStatus(100, NourishType.HUNGER);
+        this.water = new NourishStatus(100, NourishType.THIRST);
     }
 
     public Status getHealth() {
