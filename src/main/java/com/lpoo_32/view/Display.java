@@ -13,8 +13,6 @@ import java.util.List;
 
 public abstract class Display {
     protected Screen screen;
-//    protected WindowBasedTextGUI gui;
-    protected List<ElementView> props;
     protected Elements elements;
     protected Terminal terminal;
 
@@ -25,7 +23,6 @@ public abstract class Display {
 
         this.screen.startScreen();
         screen.doResizeIfNecessary();
-        this.props = new ArrayList<>();
         this.elements = new Elements();
 
         ScreenSize.createInstance(this.screen.getTerminalSize());
@@ -34,7 +31,6 @@ public abstract class Display {
 
     Display(Screen screen) {
         this.screen = screen;
-        this.props = new LinkedList<>();
         this.elements = new Elements();
     }
 

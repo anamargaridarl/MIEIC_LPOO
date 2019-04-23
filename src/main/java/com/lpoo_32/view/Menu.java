@@ -8,8 +8,11 @@ import com.lpoo_32.controller.MenuKeyListener;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 public class Menu extends Display {
+    //    protected WindowBasedTextGUI gui;
+        protected List<ElementView> props;
     private ActionListBox listBox;
     private MultiWindowTextGUI gui;
     private Panel mainPanel;

@@ -31,12 +31,12 @@ public class KeyboardTest {
         elements.addElement(food);
         Keyboard k = new Keyboard(player,elements);
 
-        k.colisions(player.getPosition());
+        k.collisions(player.getPosition());
 
         assertEquals(75,player.getHealth().getValue());
 
         player.moveDown();
-        k.colisions(player.getPosition());
+        k.collisions(player.getPosition());
         assertEquals(85,player.getHealth().getValue());
     }
 

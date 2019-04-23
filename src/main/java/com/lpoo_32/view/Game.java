@@ -10,10 +10,17 @@ import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Game extends Display{
 
+    //    protected WindowBasedTextGUI gui;
+    private List<List<ElementView>> props;
+    private List<ElementView> generalView;
+    private int index;
     private TextGraphics graphics;
     private Keyboard keyboard;
     private PlayerView player;
@@ -24,8 +31,12 @@ public class Game extends Display{
     private static final int width = 60;
     private static final int height = 50;
 
-    Game(Screen screen) throws IOException {
+    Game(Screen screen) {
         super(screen);
+        this.props = new ArrayList<>();
+        this.generalView = new LinkedList<>();
+        this.index = 0;
+        this.initializePropsArray(9);
         this.setInitialProps();
         this.graphics =  this.screen.newTextGraphics();
 
@@ -51,7 +62,7 @@ public class Game extends Display{
         catch(ScreenClose e)
         {
             System.out.println("Player pressed Q, back to Main Menu....");
-        } catch (InterruptedException statusOverflow) {
+        } catch (InterruptedException | RightScreen | LeftScreen | UpScreen | DownScreen statusOverflow) {
             statusOverflow.printStackTrace();
         }
         catch (HealthOVF healthOVF){
@@ -59,7 +70,7 @@ public class Game extends Display{
         }
     }
 
-    void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException {
+    void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, RightScreen, LeftScreen, UpScreen, DownScreen {
         this.screen.clear();
         try {
             keyboard.processKey(screen);
@@ -75,6 +86,28 @@ public class Game extends Display{
             this.thirst = false;
         } catch (ThirstOVF thirstOVF) {
             this.thirst = true;
+        } catch (RightScreen rightScreen) {
+            if(index%3  != 2){
+                this.player.getPlayer().getPosition().setIndex(++index);
+                this.player.getPlayer().moveRight();
+            }
+        } catch (LeftScreen leftScreen) {
+            if(index%3  != 0){
+                this.player.getPlayer().getPosition().setIndex(--index);
+                this.player.getPlayer().moveLeft();
+            }
+        } catch (UpScreen upScreen) {
+            if(index - 3  >= 0){
+                this.index -= 3;
+                this.player.getPlayer().getPosition().setIndex(index);
+                this.player.getPlayer().moveUp();
+            }
+        } catch (DownScreen downScreen) {
+            if(index + 3  <= 9){
+                this.index += 3;
+                this.player.getPlayer().getPosition().setIndex(index);
+                this.player.getPlayer().moveDown();
+            }
         }
     }
 
@@ -104,33 +137,47 @@ public class Game extends Display{
         /*graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
                             ScreenSize.instance().getRows(20)), "@");*/
 
-        for(ElementView drawable: this.props)
+        for(ElementView drawable: this.props.get(index)){
             drawable.draw(graphics);
+        }
 
+        for(ElementView drawable: this.generalView)
+            drawable.draw(graphics);
+    }
 
-
+    private void initializePropsArray(int numScreens){
+        for(int i = 0; i < numScreens; i++){
+            props.add(new LinkedList<>());
+        }
     }
 
     private void setInitialProps(){
         int width = Game.width/2;
         int height = Game.height/2;
 
-        InteractableElement food = new FoodModel(10,new Position(2,3, width, height));
-        InteractableElement spike = new SpikesModel(30,new Position(4,4, width, height));
-        InteractableElement spike2 = new SpikesModel(10,new Position(6,4, width, height));
+        InteractableElement food = new FoodModel(10,new Position(2,3, width, height, 0));
+        InteractableElement spike = new SpikesModel(30,new Position(4,4, width, height, 0));
+        InteractableElement spike2 = new SpikesModel(10,new Position(6,4, width, height, 0));
+        InteractableElement spike3 = new SpikesModel(30,new Position(35,5, width, height, 1));
+        InteractableElement spike4 = new SpikesModel(10,new Position(38,3, width, height, 1));
 
-        this.props.add(new FoodView((FoodModel) food));
-        this.props.add(new SpikesView((SpikesModel) spike));
-        this.props.add(new SpikesView((SpikesModel) spike2));
+        this.props.get(0).add(new FoodView((FoodModel) food));
+        this.props.get(0).add(new SpikesView((SpikesModel) spike));
+        this.props.get(0).add(new SpikesView((SpikesModel) spike2));
+
+        this.props.get(1).add(new SpikesView((SpikesModel) spike3));
+        this.props.get(1).add(new SpikesView((SpikesModel) spike4));
 
         this.elements.addElement(food);
         this.elements.addElement(spike);
         this.elements.addElement(spike2);
-        this.player = new PlayerView(new PlayerModel(new Position(2,2, width, height)));
-        this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
-        this.props.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
-        this.props.add(new StatusBar(player.getPlayer().getWater(), "#87CEFA", 18));
-        this.props.add(this.player);
+        this.elements.addElement(spike3);
+        this.elements.addElement(spike4);
+        this.player = new PlayerView(new PlayerModel(new Position(2,2, width, height, 0)));
+        this.generalView.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
+        this.generalView.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
+        this.generalView.add(new StatusBar(player.getPlayer().getWater(), "#87CEFA", 18));
+        this.generalView.add(this.player);
 
     }
 }

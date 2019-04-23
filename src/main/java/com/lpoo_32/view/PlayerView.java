@@ -22,7 +22,6 @@ public class PlayerView implements ElementView {
 
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
-        System.out.println(this.player.getPosition().getX() + " - " + this.getPlayer().getPosition().getY());
         graphics.fillRectangle(
                 this.player.getPosition().getTerminalPosition(),
                 new TerminalSize(1, 1),

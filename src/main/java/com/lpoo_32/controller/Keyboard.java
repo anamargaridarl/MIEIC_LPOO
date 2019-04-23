@@ -21,7 +21,7 @@ public class Keyboard
         this.elements = elements;
     }
 
-    public void processKey(Screen screen) throws IOException, ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF {
+    public void processKey(Screen screen) throws IOException, ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
 
         KeyStroke key;
         key = screen.pollInput();
@@ -54,22 +54,16 @@ public class Keyboard
 
                     }
             }
-            this.colisions(player.getPosition());
+            this.collisions(player.getPosition());
         }
 
     }
 
 
-    public void colisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF { //TODO: Most exception should not be here afterwardss
-        try {
-            if(elements.getValue(position) != null)
-                elements.getValue(position).interact(player);
-        }
-        catch(HealthOVF e)
-        {
-            System.out.printf("Status Overflow");
-            System.exit(0);
-        }
+    public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF { //TODO: Most exception should not be here afterwardss
+        if(elements.getValue(position) != null)
+            elements.getValue(position).interact(player);
+
 
     }
 
