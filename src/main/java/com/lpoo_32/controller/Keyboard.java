@@ -5,8 +5,12 @@ import java.util.List;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
+import com.lpoo_32.exceptions.*;
+import com.lpoo_32.model.Elements;
+import com.lpoo_32.model.PlayerModel;
+import com.lpoo_32.model.Position;
+import com.lpoo_32.model.SpikesModel;
 import com.lpoo_32.exceptions.ScreenClose;
-import com.lpoo_32.exceptions.StatusOverflow;
 import com.lpoo_32.model.*;
 import com.lpoo_32.view.CatchableView;
 import com.lpoo_32.view.ElementView;
@@ -25,7 +29,7 @@ public class Keyboard
         this.props = props;
     }
 
-    public void processKey(Screen screen) throws IOException, ScreenClose, StatusOverflow {
+    public void processKey(Screen screen) throws IOException, ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF {
 
         KeyStroke key;
         key = screen.pollInput();
@@ -118,14 +122,14 @@ public class Keyboard
 
 
     //handles colisions for non catchable elements
-    public void collisions(Position position) {
+    public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF { //TODO: Mo {
 
         try {
             if (elements.getValue(position) != null && !(elements.getValue(position) instanceof CatchableElement)) {
                     elements.getValue(position).interact(player);
 
             }
-        } catch (StatusOverflow e) {
+        } catch (HealthOVF e) {
             System.out.printf("Status Overflow");
             System.exit(0);
         }

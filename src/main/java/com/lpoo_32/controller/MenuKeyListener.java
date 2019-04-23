@@ -23,7 +23,7 @@ public class MenuKeyListener implements WindowListener {
     @Override
     public void onInput(Window basePane, KeyStroke keyStroke, AtomicBoolean deliverEvent) {
         if(keyStroke.getKeyType().equals(KeyType.Character)){
-            if(keyStroke.getCharacter() == 'q')
+            if(keyStroke.getCharacter().equals('q'))
                 System.exit(0);
         }
     }

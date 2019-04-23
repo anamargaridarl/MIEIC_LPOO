@@ -1,5 +1,8 @@
 package com.lpoo_32.model;
 
+import com.lpoo_32.exceptions.HungerRestored;
+import com.lpoo_32.exceptions.ThirstRestored;
+
 public class FoodModel extends CatchableElement {
     private int value;
 
@@ -13,7 +16,7 @@ public class FoodModel extends CatchableElement {
         return value;
     }
     @Override
-    public void interact(PlayerModel player) {
+    public void interact(PlayerModel player) throws HungerRestored, ThirstRestored {
         //TODO: Add some percentage value to it?
         player.getHealth().increaseValue(this.value);
         player.getFood().increaseValue(this.value);

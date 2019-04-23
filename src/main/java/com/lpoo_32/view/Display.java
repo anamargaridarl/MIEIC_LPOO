@@ -4,7 +4,6 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.TerminalResizeListener;
 import com.lpoo_32.model.Elements;
 
 import java.io.IOException;
@@ -33,7 +32,7 @@ public abstract class Display {
         terminal.addResizeListener((terminal1, newSize) -> ScreenSize.createInstance(newSize));
     }
 
-    Display(Screen screen) throws IOException {
+    Display(Screen screen) {
         this.screen = screen;
         this.props = new LinkedList<>();
         this.elements = new Elements();

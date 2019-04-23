@@ -1,8 +1,8 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.StatusOverflow;
-
-import java.util.Objects;
+import com.lpoo_32.exceptions.HealthOVF;
+import com.lpoo_32.exceptions.HungerOVF;
+import com.lpoo_32.exceptions.ThirstOVF;
 
 public class SpikesModel extends InteractableElement {
     private int value;
@@ -13,7 +13,7 @@ public class SpikesModel extends InteractableElement {
     }
 
     @Override
-    public void interact(PlayerModel player) throws StatusOverflow {
+    public void interact(PlayerModel player) throws HealthOVF, HungerOVF, ThirstOVF {
         player.getHealth().decreaseValue(this.value);
     }
 

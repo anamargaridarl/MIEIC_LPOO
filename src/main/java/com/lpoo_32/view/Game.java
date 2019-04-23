@@ -6,10 +6,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.controller.Keyboard;
-import com.lpoo_32.exceptions.ScreenClose;
-import com.lpoo_32.exceptions.StatusOverflow;
-import com.lpoo_32.model.PlayerModel;
-import com.lpoo_32.model.Position;
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
@@ -24,6 +21,10 @@ public class Game extends Display{
     private PlayerView player;
     public static final int width = 47;
     public static final int height = 58;
+    private static final int frameRate = 60;
+    private int time;
+    private boolean hunger;
+    private boolean thirst;
 
     Game(Screen screen) throws IOException {
         super(screen);
@@ -34,6 +35,8 @@ public class Game extends Display{
         this.keyboard = new Keyboard(this.player.getPlayer(),this.elements, this.props);
 
 
+        this.hunger = false;
+        this.thirst = false;
     }
 
     public void run() throws IOException {
@@ -43,13 +46,10 @@ public class Game extends Display{
         this.screen.refresh();
 
         //isto parece shady; ter um ciclo infinito a para com uma exceçao
+        this.time = 0;
         try {
             while (true) {
-                this.screen.clear();
-                keyboard.processKey(screen);
-                draw();
-                this.screen.refresh();
-                Thread.sleep(1000/60);
+                updateGame();
             }
         }
         catch(ScreenClose e)
@@ -58,13 +58,45 @@ public class Game extends Display{
         } catch (InterruptedException statusOverflow) {
             statusOverflow.printStackTrace();
         }
-        catch (StatusOverflow statusOverflow){
+        catch (HealthOVF healthOVF){
             System.out.println("You lose! Back to Main Menu....");
         }
     }
 
+    void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException {
+        this.screen.clear();
+        try {
+            keyboard.processKey(screen);
+            draw();
+            this.screen.refresh();
+            Thread.sleep(1000/ frameRate);
+            updateNourishment();
+        } catch (HungerRestored hungerRestored) {
+            this.hunger = false;
+        } catch (HungerOVF nourishOVF) {
+            this.hunger = true;
+        } catch (ThirstRestored thirstRestored) {
+            this.thirst = false;
+        } catch (ThirstOVF thirstOVF) {
+            this.thirst = true;
+        }
+    }
+
+    private void updateNourishment() throws HealthOVF, HungerOVF, ThirstOVF {
+        time++;
+        if(time % (3600) == 0) {
+            this.player.getPlayer().getWater().decreaseValue(5);
+        }
+
+        if(time % (5400.0) == 0) {
+            this.player.getPlayer().getFood().decreaseValue(5);
+        }
+        if((this.hunger || this.thirst) && ((time % 120) == 0))
+            this.player.getPlayer().getHealth().decreaseValue(5);
+    }
+
     @Override
-    public void draw() throws IOException {
+    public void draw(){
 
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#48D1CC"));
@@ -96,13 +128,13 @@ public class Game extends Display{
         this.props.add(new SpikesView(spike2));
 
         this.elements.addElement(food);
-        System.out.println("Elements has finished");
         this.elements.addElement(spike);
         this.elements.addElement(spike2);
         this.player = new PlayerView(new PlayerModel(new Position(2,2)));
-        this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000"));
+        this.props.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
+        this.props.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
+        this.props.add(new StatusBar(player.getPlayer().getWater(), "#87CEFA", 18));
         this.props.add(this.player);
-        System.out.println("The end");
 
     }
 }

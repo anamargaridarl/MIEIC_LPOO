@@ -1,6 +1,9 @@
 package com.lpoo_32.model;
 
 
+import com.lpoo_32.exceptions.HungerRestored;
+import com.lpoo_32.exceptions.ThirstRestored;
+
 public class WaterModel extends CatchableElement {
 
     WaterModel(Position pos) {
@@ -8,7 +11,7 @@ public class WaterModel extends CatchableElement {
     }
 
     @Override
-    public void interact(PlayerModel player) {
+    public void interact(PlayerModel player) throws HungerRestored, ThirstRestored {
         player.getWater().increaseValue(20);
     }
 }
