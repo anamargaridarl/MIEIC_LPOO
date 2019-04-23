@@ -12,7 +12,7 @@ import com.lpoo_32.model.InteractableElement;
 public class FoodView extends CatchableView {
     private final FoodModel food;
 
-    FoodView(FoodModel food){
+    public FoodView(FoodModel food){
         this.food = food;
     }
 

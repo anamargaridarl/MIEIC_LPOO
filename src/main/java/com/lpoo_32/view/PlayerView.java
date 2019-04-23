@@ -12,7 +12,7 @@ public class PlayerView implements ElementView {
 
     private final PlayerModel player;
 
-    PlayerView(PlayerModel player){
+    public PlayerView(PlayerModel player){
         this.player = player;
     }
 

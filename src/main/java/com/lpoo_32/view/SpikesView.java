@@ -13,7 +13,7 @@ public class SpikesView implements ElementView {
 
     private SpikesModel spikes;
 
-    SpikesView(SpikesModel spikes){
+    public SpikesView(SpikesModel spikes){
         this.spikes = spikes;
     }
 
