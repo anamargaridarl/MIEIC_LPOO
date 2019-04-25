@@ -152,14 +152,14 @@ public class Game extends Display{
     }
 
     private void setInitialProps(){
-        int width = Game.width/2;
-        int height = Game.height/2;
+        int width = Game.width/4;
+        int height = Game.height/4;
 
         InteractableElement food = new FoodModel(10,new Position(2,3, width, height, 0));
         InteractableElement spike = new SpikesModel(30,new Position(4,4, width, height, 0));
         InteractableElement spike2 = new SpikesModel(10,new Position(6,4, width, height, 0));
-        InteractableElement spike3 = new SpikesModel(30,new Position(35,5, width, height, 1));
-        InteractableElement spike4 = new SpikesModel(10,new Position(38,3, width, height, 1));
+        InteractableElement spike3 = new SpikesModel(30,new Position(18,5, width, height, 1));
+        InteractableElement spike4 = new SpikesModel(10,new Position(29,3, width, height, 1));
 
         this.props.get(0).add(new FoodView((FoodModel) food));
         this.props.get(0).add(new SpikesView((SpikesModel) spike));

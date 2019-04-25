@@ -69,8 +69,8 @@ public class Position {
     public TerminalPosition getTerminalPosition(){
         int x = this.x - (this.width * this.widthIndex);
         int y = this.y - (this.height * this.heightIndex);
-        return new TerminalPosition(ScreenSize.instance().getColumn(x * 2 - 1),
-                                    ScreenSize.instance().getRows(y * 2 - 1)
+        return new TerminalPosition(ScreenSize.instance().getColumn(x * 4 - 1),
+                                    ScreenSize.instance().getRows(y * 4 - 1)
                                     );
     }
 
