@@ -100,7 +100,7 @@ public class Game extends Display{
                 this.player.getPlayer().moveUp();
             }
         } catch (DownScreen downScreen) {
-            if(index + 3  <= 9){
+            if(index + 3  < 9){
                 this.index += 3;
                 this.player.getPlayer().getPosition().setIndex(index);
                 this.player.getPlayer().moveDown();
