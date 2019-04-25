@@ -6,10 +6,11 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.FoodModel;
 
-public class FoodView implements ElementView {
+public class FoodView extends InteractableElementView {
     private final FoodModel food;
 
     FoodView(FoodModel food){
+        super(food);
         this.food = food;
     }
 

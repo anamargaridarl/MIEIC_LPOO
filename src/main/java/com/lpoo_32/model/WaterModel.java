@@ -6,7 +6,7 @@ import com.lpoo_32.exceptions.ThirstRestored;
 
 public class WaterModel extends InteractableElement {
 
-    WaterModel(Position pos) {
+    public WaterModel(Position pos) {
         super(pos);
     }
 

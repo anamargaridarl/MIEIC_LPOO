@@ -4,15 +4,14 @@ import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.model.SpikesModel;
+import com.lpoo_32.model.WaterModel;
 
-public class SpikesView extends InteractableElementView {
+public class WaterView extends InteractableElementView {
+    private final WaterModel water;
 
-    private SpikesModel spikes;
-
-    SpikesView(SpikesModel spikes){
-        super(spikes);
-        this.spikes = spikes;
+    WaterView(WaterModel water){
+        super(water);
+        this.water = water;
     }
 
     @Override
@@ -23,9 +22,9 @@ public class SpikesView extends InteractableElementView {
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
         graphics.fillRectangle(
-                this.spikes.getPos().getTerminalPosition(),
+                this.water.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
-                Symbols.SPADES
+                Symbols.DOUBLE_LINE_CROSS
         );
     }
 

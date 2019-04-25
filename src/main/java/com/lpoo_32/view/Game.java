@@ -10,14 +10,11 @@ import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class Game extends Display{
 
-    //    protected WindowBasedTextGUI gui;
     private List<List<ElementView>> props;
     private List<ElementView> generalView;
     private int index;
@@ -154,7 +151,7 @@ public class Game extends Display{
     private void setInitialProps(){
         int width = Game.width/4;
         int height = Game.height/4;
-
+/*
         InteractableElement food = new FoodModel(10,new Position(2,3, width, height, 0));
         InteractableElement spike = new SpikesModel(30,new Position(4,4, width, height, 0));
         InteractableElement spike2 = new SpikesModel(10,new Position(6,4, width, height, 0));
@@ -173,11 +170,28 @@ public class Game extends Display{
         this.elements.addElement(spike2);
         this.elements.addElement(spike3);
         this.elements.addElement(spike4);
+        */
         this.player = new PlayerView(new PlayerModel(new Position(2,2, width, height, 0)));
         this.generalView.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
         this.generalView.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
         this.generalView.add(new StatusBar(player.getPlayer().getWater(), "#87CEFA", 18));
         this.generalView.add(this.player);
 
+        populateGame(width, height);
+    }
+
+    private void populateGame(int width, int height) {
+        Random random = new Random();
+        TerminalElementFactory factory = new TerminalElementFactory();
+        ElementType[] types = ElementType.values();
+        for(int i = 0; i < 50; i++){
+            int x = random.nextInt(width * 3);
+            int y = random.nextInt(height * 3);
+            int index = (x/width) + (y/height) * 3;
+            Position pos = new Position(x, y, width, height, index);
+            InteractableElementView element = factory.getElement(types[random.nextInt(types.length)], pos);
+            this.props.get(index).add(element);
+            this.elements.addElement(element.getElement());
+        }
     }
 }
