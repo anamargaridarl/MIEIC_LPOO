@@ -5,7 +5,8 @@ import com.lpoo_32.model.Position;
 enum ElementType {
     SPIKES,
     WATER,
-    FOOD
+    FOOD,
+    NONE
 }
 
 public interface ElementFactory {
