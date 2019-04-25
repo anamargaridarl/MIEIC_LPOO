@@ -7,9 +7,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.lpoo_32.model.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public abstract class Display {
     protected Screen screen;

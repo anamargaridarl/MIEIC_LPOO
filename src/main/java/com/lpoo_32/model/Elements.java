@@ -15,11 +15,6 @@ public class Elements {
         elements.put(a.getPos(),a);
     }
 
-    public LinkedHashMap<Position,InteractableElement> getElements()
-    {
-        return elements;
-    }
-
     public InteractableElement getValue(Position position)
     {
         return elements.get(position);

@@ -7,7 +7,9 @@ import com.lpoo_32.exceptions.RightScreen;
 import com.lpoo_32.exceptions.UpScreen;
 import com.lpoo_32.view.ScreenSize;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
@@ -15,9 +17,12 @@ import static org.junit.Assert.*;
 public class PositionTest {
     private  Position position;
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @Before
-    public void initalizePosition(){
-        this.position = new Position(10, 10, 12, 12, 0);
+    public void initializePosition(){
+        this.position = new Position(1, 1, 2, 2, 0);
         TerminalSize size = Mockito.mock(TerminalSize.class);
         Mockito.when(size.getColumns()).thenReturn(100);
         Mockito.when(size.getRows()).thenReturn(100);
@@ -26,29 +31,41 @@ public class PositionTest {
     @Test //TODO: Change Tests According to exceptions
     public void testMovements() throws DownScreen, RightScreen, LeftScreen, UpScreen {
         this.position.moveDown();
-        assertEquals(11, this.position.getY());
+        assertEquals(2, this.position.getY());
         this.position.moveUp();
-        assertEquals(10, this.position.getY());
+        assertEquals(1, this.position.getY());
         this.position.moveRight();
-        assertEquals(11, this.position.getX());
+        assertEquals(2, this.position.getX());
         this.position.moveLeft();
-        assertEquals(10, this.position.getX());
-        this.position.moveRight();
-        this.position.moveRight();
-        assertEquals(12, this.position.getX());
-        this.position.moveRight();
-        assertEquals(12, this.position.getX());
-        this.position.moveDown();
-        this.position.moveDown();
-        assertEquals(12, this.position.getX());
-        this.position.moveDown();
-        assertEquals(12, this.position.getX());
+        assertEquals(1, this.position.getX());
     }
 
     @Test
-    public void terminalPosition(){
-        assertEquals(19, this.position.getTerminalPosition().getColumn());
-        assertEquals(19, this.position.getTerminalPosition().getRow());
+    public void rightScreenException() throws RightScreen {
+        thrown.expect(RightScreen.class);
+        this.position.moveRight();
+        this.position.moveRight();
+    }
+
+    @Test
+    public void leftScreenException() throws LeftScreen {
+        thrown.expect(LeftScreen.class);
+        this.position.moveLeft();
+        this.position.moveLeft();
+    }
+
+    @Test
+    public void downScreenException() throws DownScreen {
+        thrown.expect(DownScreen.class);
+        this.position.moveDown();
+        this.position.moveDown();
+    }
+
+    @Test
+    public void upScreenException() throws UpScreen {
+        thrown.expect(UpScreen.class);
+        this.position.moveUp();
+        this.position.moveUp();
     }
 
 }
