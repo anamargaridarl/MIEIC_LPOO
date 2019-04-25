@@ -3,6 +3,7 @@ package com.lpoo_32.view;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.gui2.*;
+import com.googlecode.lanterna.terminal.Terminal;
 import com.lpoo_32.controller.SecondaryMenuKeyListener;
 import com.lpoo_32.controller.MenuKeyListener;
 
@@ -17,8 +18,8 @@ public class Menu extends Display {
     private MultiWindowTextGUI gui;
     private Panel mainPanel;
 
-    public Menu() throws IOException {
-        super();
+    public Menu(Terminal terminal) throws IOException {
+        super(terminal);
         Panel mainPanel = createMainMenu();
         this.addOptions();
         this.gui = new MultiWindowTextGUI(this.screen, new DefaultWindowManager(), new EmptySpace(TextColor.ANSI.MAGENTA));

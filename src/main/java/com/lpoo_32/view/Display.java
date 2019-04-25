@@ -13,9 +13,9 @@ public abstract class Display {
     protected Elements elements;
     protected Terminal terminal;
 
-    Display() throws IOException {
+    Display(Terminal terminal) throws IOException {
 
-        this.terminal = new DefaultTerminalFactory().createTerminal();
+        this.terminal = terminal;
         this.screen = new TerminalScreen(terminal);
 
         this.screen.startScreen();

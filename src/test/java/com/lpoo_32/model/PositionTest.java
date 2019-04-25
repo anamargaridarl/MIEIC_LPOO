@@ -28,7 +28,7 @@ public class PositionTest {
         Mockito.when(size.getRows()).thenReturn(100);
         ScreenSize.createInstance(size);
     }
-    @Test //TODO: Change Tests According to exceptions
+    @Test
     public void testMovements() throws DownScreen, RightScreen, LeftScreen, UpScreen {
         this.position.moveDown();
         assertEquals(2, this.position.getY());
