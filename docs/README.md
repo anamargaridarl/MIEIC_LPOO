@@ -62,7 +62,7 @@ a method to interact with the player.
 
 
 <div style="text-align:center">
-    <img src="images/InteractableElement.png"/>
+    <img width="500z" height="100" src="images/InteractableElement.png"/>
 </div>
 
 
