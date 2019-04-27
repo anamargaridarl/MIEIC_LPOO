@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +18,8 @@ public class InteractableElementTest {
 
     @Before
     public void initializeValues(){
-        this.player = new PlayerModel(new Position(4,4, 200, 200, 0));
+        Position pos = Mockito.mock(Position.class);
+        this.player = new PlayerModel(pos);
     }
 
 
