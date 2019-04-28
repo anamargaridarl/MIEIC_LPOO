@@ -12,7 +12,8 @@ Developed by [André Rocha](https://github.com/andrefmrocha)
 and [Ana Margarida](https://github.com/anamargaridarl)
 
 ## Implemented Features
-//estou a assumir que isto é relativo apenas ao jogo em sim
+
+**Main Menu-** The program opens in a main menu where you can choose to start the game or go to a page with the rules of the game.
 
 **Move Character -** By pressing the arrow keys your character will move around in the game.
 
