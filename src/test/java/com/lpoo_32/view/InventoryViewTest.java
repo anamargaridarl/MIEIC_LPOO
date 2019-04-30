@@ -5,7 +5,9 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.Inventory;
+import com.lpoo_32.model.WaterModel;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -41,7 +43,13 @@ public class InventoryViewTest {
 
     @Test
     public void getterTests(){
-//        Mockito
+        Mockito.when(inventory.getElement()).thenReturn(Mockito.mock(FoodModel.class));
+        assertEquals("Food", this.inventoryView.getName());
+        Mockito.when(inventory.getElement()).thenReturn(Mockito.mock(WaterModel.class));
+        assertEquals("Water", this.inventoryView.getName());
+
+        Mockito.when(inventory.getElement()).thenReturn(Mockito.mock(FoodModel.class));
+        assertEquals(Symbols.HEART, inventoryView.getSymbol());
     }
 
 

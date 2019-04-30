@@ -34,7 +34,7 @@ public class InventoryView implements ElementView {
                 Symbols.BLOCK_SOLID);
 
         char a;
-        if((a = getSimbols())!= ' ') {
+        if((a = getSymbol())!= ' ') {
             graphics.fillRectangle(new TerminalPosition(getColumn(80),
                             getRows() + 1), new TerminalSize(getColumn(getColumn(3)), 1),
                     a);
@@ -57,7 +57,7 @@ public class InventoryView implements ElementView {
         return String.valueOf(inventory.getElement().getValue());
     }
 
-    private String getName() {
+    String getName() {
         if(inventory.getElement() == null)
             return "";
         if(inventory.getElement() instanceof FoodModel)
@@ -69,7 +69,7 @@ public class InventoryView implements ElementView {
     }
 
 
-    private char getSimbols() {
+    char getSymbol() {
         if(inventory.getElement() == null)
             return ' ';
         if(inventory.getElement() instanceof FoodModel)
