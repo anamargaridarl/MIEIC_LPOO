@@ -5,7 +5,7 @@ import com.lpoo_32.model.InteractableElement;
 public abstract class InteractableElementView implements ElementView{
     private InteractableElement element;
 
-    InteractableElementView(InteractableElement element){
+    public InteractableElementView(InteractableElement element){
         this.element = element;
     }
 

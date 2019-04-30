@@ -9,9 +9,9 @@ import com.lpoo_32.model.Elements;
 import java.io.IOException;
 
 public abstract class Display {
-    protected Screen screen;
-    protected Elements elements;
-    protected Terminal terminal;
+    Screen screen;
+    Elements elements;
+    private Terminal terminal;
 
     Display(Terminal terminal) throws IOException {
 

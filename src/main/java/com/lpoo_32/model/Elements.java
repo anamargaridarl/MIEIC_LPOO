@@ -1,23 +1,47 @@
 package com.lpoo_32.model;
 
-import java.util.LinkedHashMap;
+import com.lpoo_32.view.InteractableElementView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Elements {
 
-    private LinkedHashMap<Position,InteractableElement> elements;
+    private List<List<InteractableElementView>> elements;
 
     public Elements() {
-        this.elements = new LinkedHashMap<>();
+        this.elements = new ArrayList<>();
+        for(int i = 0; i < 45; i++){
+            elements.add(new ArrayList<>());
+            for(int j = 0; j < 36; j++){
+                elements.get(i).add(null);
+            }
+        }
     }
 
-    public void addElement(InteractableElement a) //TODO:verify if elements are added in same position
+    public void addElement(InteractableElementView a) //TODO:verify if elements are added in same position
     {
-        elements.put(a.getPos(),a);
+        elements.get(a.getElement().getPos().getX()).set(a.getElement().getPos().getY(), a);
     }
 
-    public InteractableElement getValue(Position position)
+    public InteractableElementView getView(Position position)
     {
-        return elements.get(position);
+        return getViewByCoord(position.getX(), position.getY());
     }
 
+    public InteractableElement getModel(Position position){
+        return getModelByCoord(position.getX(), position.getY());
+    }
+
+    public InteractableElementView getViewByCoord(int x, int y){
+        return elements.get(x).get(y);
+    }
+
+    public InteractableElement getModelByCoord(int x, int y){
+        return elements.get(x).get(y).getElement();
+    }
+
+    public void removeElement(InteractableElement element){
+        this.elements.get(element.getPos().getX()).set(element.getPos().getY(), null);
+    }
 }

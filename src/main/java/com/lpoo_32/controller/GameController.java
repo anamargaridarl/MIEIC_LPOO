@@ -6,20 +6,17 @@ import com.lpoo_32.view.CatchableView;
 import com.lpoo_32.view.ElementView;
 import com.lpoo_32.view.EventType;
 
-import java.io.IOException;
 import java.util.List;
 
 public class GameController
 {
     private PlayerModel player;
     private Elements elements;
-    private List<ElementView> props;
 
-    public GameController(PlayerModel player, Elements elements, List<ElementView> props)
+    public GameController(PlayerModel player, Elements elements)
     {
         this.player = player;
         this.elements = elements;
-        this.props = props;
     }
 
     public void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
@@ -50,14 +47,14 @@ public class GameController
                     break;
                 case STORE: //add element to inventory
                     if(isCatchable(player.getPosition())) {
-                        player.addElementInventory((CatchableElement)elements.getValue(player.getPosition()));
-                        removeElementProps(elements.getValue(player.getPosition()));
+                        player.addElementInventory((CatchableElement)elements.getModel(player.getPosition()));
+                        removeElementProps(elements.getModel(player.getPosition()));
                     }
                     break;
                 case USE: //use water/food in moment
                     if(isCatchable(player.getPosition())) {
-                        elements.getValue(player.getPosition()).interact(player);
-                        removeElementProps(elements.getValue(player.getPosition()));
+                        elements.getModel(player.getPosition()).interact(player);
+                        removeElementProps(elements.getModel(player.getPosition()));
                     }
                     break;
                 case LEFTINVENTORY: //move left in inventory
@@ -80,23 +77,14 @@ public class GameController
 
     //remove element from view array
     public void removeElementProps(InteractableElement element) {
-        for (ElementView e : this.props) //need to divide health related elements in a subclass
-        {
-            if (e instanceof CatchableView) {
-                if (((CatchableView) e).getElement().equals(element)) {
-                    props.remove(e);
-                    break;
-                }
-            }
-
-        }
+        this.elements.removeElement(element);
     }
 
     //verify that model element in the position is catchable
-    public boolean isCatchable(Position position) {
+    private boolean isCatchable(Position position) {
 
-        if (elements.getValue(position) != null)
-            return elements.getValue(position) instanceof CatchableElement;
+        if (elements.getView(position) != null)
+            return elements.getModel(position) instanceof CatchableElement;
         else
             return false;
 
@@ -106,8 +94,8 @@ public class GameController
     //handles colisions for non catchable elements
     public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF { //TODO: Mo {
 
-        if (elements.getValue(position) != null && !(isCatchable(position))) {
-            elements.getValue(position).interact(player);
+        if (elements.getView(position) != null && !(isCatchable(position))) {
+            elements.getModel(position).interact(player);
         }
     }
 }

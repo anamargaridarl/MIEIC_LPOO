@@ -15,7 +15,6 @@ import java.util.*;
 
 public class Game extends Display{
 
-    private List<List<ElementView>> props;
     private List<ElementView> generalView;
     private TerminalKeyboard keyboardProcessor;
     private int index;
@@ -31,15 +30,13 @@ public class Game extends Display{
 
     Game(Screen screen) {
         super(screen);
-        this.props = new ArrayList<>();
         this.generalView = new LinkedList<>();
         this.index = 0;
-        this.initializePropsArray(9);
         this.setInitialProps();
         this.graphics =  this.screen.newTextGraphics();
 
         //probably needs to clean up
-        this.gameController = new GameController(this.player.getPlayer(),this.elements, this.props.get(0));
+        this.gameController = new GameController(this.player.getPlayer(),this.elements);
         this.keyboardProcessor = new TerminalKeyboard();
 
         this.hunger = false;
@@ -136,19 +133,19 @@ public class Game extends Display{
 
         /*graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
                             ScreenSize.instance().getRows(20)), "@");*/
+        int initialX = index%3 * Game.width/4;
+        int initialY = index/3 * Game.height/4;
 
-        for(ElementView drawable: this.props.get(index)){
-            drawable.draw(graphics);
+        for(int i = initialX; i < initialX + Game.width; i++){
+            for(int j = initialY; j < initialY + Game.height; j++){
+                if(this.elements.getViewByCoord(i, j) != null){
+                    this.elements.getViewByCoord(i, j).draw(graphics);
+                }
+            }
         }
 
         for(ElementView drawable: this.generalView)
             drawable.draw(graphics);
-    }
-
-    private void initializePropsArray(int numScreens){
-        for(int i = 0; i < numScreens; i++){
-            props.add(new LinkedList<>());
-        }
     }
 
     private void setInitialProps(){
@@ -194,8 +191,7 @@ public class Game extends Display{
             int index = (x/width) + (y/height) * 3;
             Position pos = new Position(x, y, width, height, index);
             InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos);
-            this.props.get(index).add(element);
-            this.elements.addElement(element.getElement());
+            this.elements.addElement(element);
         }
     }
 }
