@@ -38,7 +38,7 @@ public class Game extends Display{
         this.graphics =  this.screen.newTextGraphics();
 
         //probably needs to clean up
-        this.keyboard = new Keyboard(this.player.getPlayer(),this.elements, this.props);
+        this.keyboard = new Keyboard(this.player.getPlayer(),this.elements, this.props.get(0));
 
 
         this.hunger = false;
@@ -60,7 +60,7 @@ public class Game extends Display{
         }
         catch(ScreenClose e)
         {
-            System.out.println("Player pressed Q, back to Main Menu....");
+            System.out.println("Player pressed Z, back to Main Menu....");
         } catch (InterruptedException | RightScreen | LeftScreen | UpScreen | DownScreen statusOverflow) {
             statusOverflow.printStackTrace();
         }
@@ -192,7 +192,7 @@ public class Game extends Display{
             int y = random.nextInt(height * 3);
             int index = (x/width) + (y/height) * 3;
             Position pos = new Position(x, y, width, height, index);
-            InteractableElementView element = factory.getElement(types[random.nextInt(types.length)], pos);
+            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos);
             this.props.get(index).add(element);
             this.elements.addElement(element.getElement());
         }

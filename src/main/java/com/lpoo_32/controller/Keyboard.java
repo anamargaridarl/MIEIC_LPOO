@@ -61,14 +61,14 @@ public class Keyboard
                             break;
                         case 'f': //add element to inventory
                             if(isCatchable(player.getPosition())) {
-                                player.addElementInventory((CatchableElement)elements.getElement(player.getPosition()));
-                                removeElementProps(elements.getElement(player.getPosition()));
+                                player.addElementInventory((CatchableElement)elements.getValue(player.getPosition()));
+                                removeElementProps(elements.getValue(player.getPosition()));
                             }
                             break;
                         case 't': //use water/food in moment
                             if(isCatchable(player.getPosition())) {
-                                elements.getElement(player.getPosition()).interact(player);
-                                removeElementProps(elements.getElement(player.getPosition()));
+                                elements.getValue(player.getPosition()).interact(player);
+                                removeElementProps(elements.getValue(player.getPosition()));
                             }
                             break;
                         case 'q': //move left in inventory
@@ -113,8 +113,8 @@ public class Keyboard
     //verify that model element in the position is catchable
     public boolean isCatchable(Position position) {
 
-        if (elements.getElement(position) != null)
-            return elements.getElement(position) instanceof CatchableElement;
+        if (elements.getValue(position) != null)
+            return elements.getValue(position) instanceof CatchableElement;
         else
             return false;
 
@@ -122,19 +122,10 @@ public class Keyboard
 
 
     //handles colisions for non catchable elements
-    public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF { //TODO: Mo {
+    public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF { //TODO: Mo {
 
-        try {
-            if (elements.getElement(position) != null && !(elements.getElement(position) instanceof CatchableElement)) {
-                    elements.getElement(position).interact(player);
-
-            }
-        } catch (HealthOVF e) {
-            System.out.printf("Status Overflow");
-            System.exit(0);
+        if (elements.getValue(position) != null && !(isCatchable(position))) {
+            elements.getValue(position).interact(player);
         }
-
-
     }
-
 }

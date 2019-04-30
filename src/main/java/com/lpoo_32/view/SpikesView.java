@@ -12,7 +12,7 @@ public class SpikesView extends InteractableElementView {
 
     private SpikesModel spikes;
 
-    SpikesView(SpikesModel spikes){
+    public SpikesView(SpikesModel spikes){
         super(spikes);
         this.spikes = spikes;
     }

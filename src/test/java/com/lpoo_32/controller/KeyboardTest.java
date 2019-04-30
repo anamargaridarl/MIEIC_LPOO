@@ -30,9 +30,9 @@ public class KeyboardTest {
 
     @Test
     public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen {
-        PlayerModel player = new PlayerModel(new Position(3,2));
-        SpikesModel spike = new SpikesModel(25, new Position(3,2));
-        FoodModel food = new FoodModel(10, new Position(3,3));
+        PlayerModel player = new PlayerModel(new Position(3,2, 0, 0, 0));
+        SpikesModel spike = new SpikesModel(25, new Position(3,2, 0, 0, 0));
+        FoodModel food = new FoodModel(10, new Position(3,3, 0, 0, 0));
 
         Elements elements = new Elements();
         elements.addElement(spike);

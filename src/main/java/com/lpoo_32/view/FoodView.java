@@ -11,7 +11,7 @@ import com.lpoo_32.model.InteractableElement;
 public class FoodView extends InteractableElementView {
     private final FoodModel food;
 
-    FoodView(FoodModel food){
+    public FoodView(FoodModel food){
         super(food);
         this.food = food;
     }

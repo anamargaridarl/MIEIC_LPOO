@@ -7,7 +7,7 @@ import com.lpoo_32.exceptions.ThirstRestored;
 public class WaterModel extends CatchableElement {
 
     private int value;
-    WaterModel(int value,Position pos) {
+    public WaterModel(int value, Position pos) {
         super(pos);
         this.value = value;
     }

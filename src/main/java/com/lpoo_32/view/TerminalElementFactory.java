@@ -14,7 +14,7 @@ public class TerminalElementFactory implements ElementFactory {
                 interactableElement = new SpikesView(new SpikesModel(30, pos));
                 break;
             case WATER:
-                interactableElement = new WaterView(new WaterModel(pos));
+                interactableElement = new WaterView(new WaterModel(30, pos));
                 break;
             case FOOD:
                 interactableElement = new FoodView(new FoodModel(30, pos));
