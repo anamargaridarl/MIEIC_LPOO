@@ -17,6 +17,7 @@ public class Game extends Display{
 
     private List<List<ElementView>> props;
     private List<ElementView> generalView;
+    private TerminalKeyboard keyboardProcessor;
     private int index;
     private TextGraphics graphics;
     private GameController gameController;
@@ -39,7 +40,7 @@ public class Game extends Display{
 
         //probably needs to clean up
         this.gameController = new GameController(this.player.getPlayer(),this.elements, this.props.get(0));
-
+        this.keyboardProcessor = new TerminalKeyboard();
 
         this.hunger = false;
         this.thirst = false;
@@ -72,7 +73,7 @@ public class Game extends Display{
     void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, RightScreen, LeftScreen, UpScreen, DownScreen {
         this.screen.clear();
         try {
-            gameController.processKey(screen);
+            gameController.processKey(this.keyboardProcessor.processKey(screen));
             draw();
             this.screen.refresh();
             Thread.sleep(1000/ frameRate);
