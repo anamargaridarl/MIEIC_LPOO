@@ -20,7 +20,7 @@ public class GameTest {
     private TextGraphics graphics;
 
     @Before
-    public void initalizeGame() throws IOException {
+    public void initalizeGame() {
         TerminalSize terminal = Mockito.mock(TerminalSize.class);
         Mockito.when(terminal.getColumns()).thenReturn(100);
         Mockito.when(terminal.getRows()).thenReturn(100);
@@ -30,6 +30,7 @@ public class GameTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
         game = new Game(screen);
     }
+
     @Test
     public void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, DownScreen, LeftScreen, UpScreen, RightScreen {
         game.updateGame();
