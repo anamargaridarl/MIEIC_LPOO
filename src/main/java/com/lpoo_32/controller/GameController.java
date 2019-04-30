@@ -28,9 +28,8 @@ public class GameController
 
     public void processKey(EventType event) throws IOException, ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
 
-        KeyStroke key;
         SpikesModel spikes = new SpikesModel(10, null);
-        if(event != EventType.NULL){
+        if(event != EventType.NULL && event != null){
             switch (event) {
                 case MOVEUP:
                     player.moveUp();
