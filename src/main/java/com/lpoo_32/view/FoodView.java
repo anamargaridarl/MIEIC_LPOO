@@ -4,7 +4,9 @@ import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.FoodModel;
+import com.lpoo_32.model.InteractableElement;
 
 public class FoodView extends InteractableElementView {
     private final FoodModel food;
@@ -28,5 +30,14 @@ public class FoodView extends InteractableElementView {
         );
     }
 
+    public FoodModel getFood()
+    {
+        return food;
+    }
 
+
+    @Override
+    public CatchableElement getElement() {
+        return food;
+    }
 }

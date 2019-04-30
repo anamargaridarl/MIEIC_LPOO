@@ -38,7 +38,9 @@ public class Game extends Display{
         this.graphics =  this.screen.newTextGraphics();
 
         //probably needs to clean up
-        this.keyboard = new Keyboard(this.player.getPlayer(),this.elements);
+        this.keyboard = new Keyboard(this.player.getPlayer(),this.elements, this.props);
+
+
         this.hunger = false;
         this.thirst = false;
     }
@@ -158,12 +160,13 @@ public class Game extends Display{
         InteractableElement spike3 = new SpikesModel(30,new Position(18,5, width, height, 1));
         InteractableElement spike4 = new SpikesModel(10,new Position(29,3, width, height, 1));
 
-        this.props.get(0).add(new FoodView((FoodModel) food));
-        this.props.get(0).add(new SpikesView((SpikesModel) spike));
-        this.props.get(0).add(new SpikesView((SpikesModel) spike2));
+        InteractableElement food = new FoodModel(10,new Position(2,3));
+        InteractableElement spike = new SpikesModel(30,new Position(4,4));
+        InteractableElement spike2 = new SpikesModel(10,new Position(6,4));
 
-        this.props.get(1).add(new SpikesView((SpikesModel) spike3));
-        this.props.get(1).add(new SpikesView((SpikesModel) spike4));
+        this.props.add(new FoodView((FoodModel) food));
+        this.props.add(new SpikesView((SpikesModel) spike));
+        this.props.add(new SpikesView((SpikesModel) spike2));
 
         this.elements.addElement(food);
         this.elements.addElement(spike);

@@ -11,6 +11,7 @@ is to defeat you.
 Developed by [André Rocha](https://github.com/andrefmrocha)
 and [Ana Margarida](https://github.com/anamargaridarl)
 
+>>>>>>> 86893dba4e64c8eaa3d2c7fabe8e3adc966f1507
 
 ## Screenshots
 

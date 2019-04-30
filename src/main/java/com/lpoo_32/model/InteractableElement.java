@@ -1,5 +1,6 @@
 package com.lpoo_32.model;
 
+
 import com.lpoo_32.exceptions.*;
 
 abstract public class InteractableElement implements ElementModel {
@@ -16,5 +17,16 @@ abstract public class InteractableElement implements ElementModel {
         return pos;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
 
+        if (o == null) return false;
+
+        if (getClass() != o.getClass()) return false;
+
+        InteractableElement p = (InteractableElement) o;
+        return getPos() == p.getPos();
+    }
 }

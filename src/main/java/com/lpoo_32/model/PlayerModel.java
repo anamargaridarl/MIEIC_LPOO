@@ -4,9 +4,11 @@ public class PlayerModel extends MovableElement {
     private Status health;
     private Status food;
     private Status water;
+    private Inventory inventory;
 
     public PlayerModel(Position position){
         super(position);
+        this.inventory =  new Inventory();
         this.health = new HealthStatus(100);
         this.food = new NourishStatus(100, NourishType.HUNGER);
         this.water = new NourishStatus(100, NourishType.THIRST);
@@ -36,4 +38,12 @@ public class PlayerModel extends MovableElement {
         this.water = water;
     }
 
+    public void addElementInventory(CatchableElement element)
+    {
+        inventory.addElement(element);
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
 }

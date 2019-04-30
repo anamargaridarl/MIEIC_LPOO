@@ -7,11 +7,18 @@ import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 
 import org.junit.Rule;
+import com.lpoo_32.view.ElementView;
+import com.lpoo_32.view.FoodView;
+import com.lpoo_32.view.PlayerView;
+import com.lpoo_32.view.SpikesView;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -22,14 +29,22 @@ public class KeyboardTest {
 
 
     @Test
-    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF {
-        PlayerModel player = new PlayerModel(new Position(3,2, 200, 200, 0));
-        SpikesModel spike = new SpikesModel(25, new Position(3,2, 200, 200, 0));
-        FoodModel food = new FoodModel(10, new Position(3,3, 200, 200, 0));
+    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen {
+        PlayerModel player = new PlayerModel(new Position(3,2));
+        SpikesModel spike = new SpikesModel(25, new Position(3,2));
+        FoodModel food = new FoodModel(10, new Position(3,3));
+
         Elements elements = new Elements();
         elements.addElement(spike);
         elements.addElement(food);
-        Keyboard k = new Keyboard(player,elements);
+
+        List<ElementView> props = new ArrayList<>();
+        props.add(new FoodView(food));
+        props.add(new SpikesView(spike));
+        props.add(new PlayerView(player));
+
+
+        Keyboard k = new Keyboard(player,elements,props);
 
         k.collisions(player.getPosition());
 
@@ -37,14 +52,17 @@ public class KeyboardTest {
 
         player.moveDown();
         k.collisions(player.getPosition());
-        assertEquals(85,player.getHealth().getValue());
+        assertEquals(75,player.getHealth().getValue());
     }
 
     @Test
     public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen {
         Screen screen = Mockito.mock(Screen.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
-        Keyboard keyboard = new Keyboard(player, new Elements());
+        CatchableElement e = Mockito.mock(CatchableElement.class);
+        Elements elements = Mockito.mock(Elements.class);
+        Keyboard keyboard = new Keyboard(player, new Elements(), null);
+
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
         keyboard.processKey(screen);
         verify(player).moveUp();
@@ -57,10 +75,19 @@ public class KeyboardTest {
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowRight));
         keyboard.processKey(screen);
         verify(player).moveRight();
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('q', false, false));
+        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('z', false, false));
         thrown.expect(ScreenClose.class);
         keyboard.processKey(screen);
         verify(player).moveRight();
+
+        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('f',false,false));
+        keyboard.processKey(screen);
+        verify(player).addElementInventory(e);
+
+        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('t',false,false));
+        keyboard.processKey(screen);
+        verify(keyboard).removeElementProps(e);
+
     }
 
 
