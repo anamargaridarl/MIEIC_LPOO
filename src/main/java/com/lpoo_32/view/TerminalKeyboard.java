@@ -12,9 +12,8 @@ import java.io.IOException;
 
 
 public class TerminalKeyboard {
-    public EventType processKey(Screen screen) throws IOException, ScreenClose, HealthOVF, HungerOVF, ThirstOVF {
-
-        EventType event;
+    public EventType processKey(Screen screen) throws IOException, HungerOVF, ThirstOVF {
+        EventType event = null;
         KeyStroke key;
         key = screen.pollInput();
         SpikesModel spikes = new SpikesModel(10, null);
@@ -36,6 +35,7 @@ public class TerminalKeyboard {
                     switch (key.getCharacter()) {
                         case 'z':
                             event = EventType.EXIT;
+                            break;
                         case 'p':
                             event = EventType.NULL;
                             break;
@@ -58,15 +58,19 @@ public class TerminalKeyboard {
                             break;
                         case 'e':
                             event = EventType.INVETORYUSE;
+                            break;
                         default:
                             event = EventType.NULL;
                             break;
                     }
+                    break;
                 default:
                     event = EventType.NULL;
+                    break;
             }
-            return event;
         }
-        return null;
+        return event;
+
     }
+
 }

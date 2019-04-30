@@ -6,11 +6,8 @@ import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 
+import com.lpoo_32.view.*;
 import org.junit.Rule;
-import com.lpoo_32.view.ElementView;
-import com.lpoo_32.view.FoodView;
-import com.lpoo_32.view.PlayerView;
-import com.lpoo_32.view.SpikesView;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
@@ -29,7 +26,7 @@ public class GameControllerTest {
 
 
     @Test
-    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen {
+    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF {
         PlayerModel player = new PlayerModel(new Position(3,2, 0, 0, 0));
         SpikesModel spike = new SpikesModel(25, new Position(3,2, 0, 0, 0));
         FoodModel food = new FoodModel(10, new Position(3,3, 0, 0, 0));
@@ -57,36 +54,34 @@ public class GameControllerTest {
 
     @Test
     public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen {
-        Screen screen = Mockito.mock(Screen.class);
+        TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
         Elements elements = Mockito.mock(Elements.class);
         GameController gameController = new GameController(player, new Elements(), null);
 
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
-        gameController.processKey(screen);
+        Mockito.when(keyboard.processKey(null)).thenReturn(EventType.MOVEUP);
+        gameController.processKey(keyboard.processKey(null));
         verify(player).moveUp();
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowDown));
-        gameController.processKey(screen);
+        Mockito.when(keyboard.processKey(null)).thenReturn(EventType.MOVEDOWN);
+        gameController.processKey(keyboard.processKey(null));
         verify(player).moveDown();
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowLeft));
-        gameController.processKey(screen);
+        Mockito.when(keyboard.processKey(null)).thenReturn(EventType.MOVELEFT);
+        gameController.processKey(keyboard.processKey(null));
         verify(player).moveLeft();
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowRight));
-        gameController.processKey(screen);
+        Mockito.when(keyboard.processKey(null)).thenReturn(EventType.MOVERIGHT);
+        gameController.processKey(keyboard.processKey(null));
         verify(player).moveRight();
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('z', false, false));
-        thrown.expect(ScreenClose.class);
-        gameController.processKey(screen);
-        verify(player).moveRight();
-
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('f',false,false));
-        gameController.processKey(screen);
+        Mockito.when(keyboard.processKey(null)).thenReturn(EventType.STORE);
+        gameController.processKey(keyboard.processKey(null));
         verify(player).addElementInventory(e);
-
-        Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('t',false,false));
-        gameController.processKey(screen);
+        Mockito.when(keyboard.processKey(null)).thenReturn(EventType.INVETORYUSE);
+        gameController.processKey(keyboard.processKey(null));
         verify(gameController).removeElementProps(e);
+        Mockito.when(keyboard.processKey(null)).thenReturn(EventType.EXIT);
+        gameController.processKey(keyboard.processKey(null));
+        thrown.expect(ScreenClose.class);
+
 
     }
 
