@@ -23,7 +23,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 
-public class KeyboardTest {
+public class GameControllerTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -44,7 +44,7 @@ public class KeyboardTest {
         props.add(new PlayerView(player));
 
 
-        Keyboard k = new Keyboard(player,elements,props);
+        GameController k = new GameController(player,elements,props);
 
         k.collisions(player.getPosition());
 
@@ -61,32 +61,32 @@ public class KeyboardTest {
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
         Elements elements = Mockito.mock(Elements.class);
-        Keyboard keyboard = new Keyboard(player, new Elements(), null);
+        GameController gameController = new GameController(player, new Elements(), null);
 
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
-        keyboard.processKey(screen);
+        gameController.processKey(screen);
         verify(player).moveUp();
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowDown));
-        keyboard.processKey(screen);
+        gameController.processKey(screen);
         verify(player).moveDown();
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowLeft));
-        keyboard.processKey(screen);
+        gameController.processKey(screen);
         verify(player).moveLeft();
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowRight));
-        keyboard.processKey(screen);
+        gameController.processKey(screen);
         verify(player).moveRight();
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('z', false, false));
         thrown.expect(ScreenClose.class);
-        keyboard.processKey(screen);
+        gameController.processKey(screen);
         verify(player).moveRight();
 
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('f',false,false));
-        keyboard.processKey(screen);
+        gameController.processKey(screen);
         verify(player).addElementInventory(e);
 
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke('t',false,false));
-        keyboard.processKey(screen);
-        verify(keyboard).removeElementProps(e);
+        gameController.processKey(screen);
+        verify(gameController).removeElementProps(e);
 
     }
 

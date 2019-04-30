@@ -5,7 +5,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import com.lpoo_32.controller.Keyboard;
+import com.lpoo_32.controller.GameController;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 
@@ -19,7 +19,7 @@ public class Game extends Display{
     private List<ElementView> generalView;
     private int index;
     private TextGraphics graphics;
-    private Keyboard keyboard;
+    private GameController gameController;
     private PlayerView player;
     private static final int frameRate = 60;
     private int time;
@@ -38,7 +38,7 @@ public class Game extends Display{
         this.graphics =  this.screen.newTextGraphics();
 
         //probably needs to clean up
-        this.keyboard = new Keyboard(this.player.getPlayer(),this.elements, this.props.get(0));
+        this.gameController = new GameController(this.player.getPlayer(),this.elements, this.props.get(0));
 
 
         this.hunger = false;
@@ -72,7 +72,7 @@ public class Game extends Display{
     void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, RightScreen, LeftScreen, UpScreen, DownScreen {
         this.screen.clear();
         try {
-            keyboard.processKey(screen);
+            gameController.processKey(screen);
             draw();
             this.screen.refresh();
             Thread.sleep(1000/ frameRate);
