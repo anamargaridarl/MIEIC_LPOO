@@ -6,9 +6,15 @@ import com.lpoo_32.exceptions.*;
 abstract public class InteractableElement implements ElementModel {
 
     private Position pos;
+    private int value;
 
-    InteractableElement(Position pos){
+    InteractableElement(Position pos, int value){
         this.pos = pos;
+        this.value = value;
+    }
+
+    public int getValue(){
+        return value;
     }
 
     public abstract void interact(PlayerModel player) throws HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF;

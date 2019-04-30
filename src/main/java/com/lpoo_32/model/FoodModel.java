@@ -4,24 +4,18 @@ import com.lpoo_32.exceptions.HungerRestored;
 import com.lpoo_32.exceptions.ThirstRestored;
 
 public class FoodModel extends CatchableElement {
-    private int value;
 
     public FoodModel(int value, Position pos){
-        super(pos);
-        this.value = value;
+        super(pos, value);
     }
 
-    public int getValue()
-    {
-        return value;
-    }
 
     @Override
     public void interact(PlayerModel player) throws HungerRestored, ThirstRestored {
         //TODO: Add some percentage value to it?
-        player.getHealth().increaseValue(this.value);
-        player.getFood().increaseValue(this.value);
-        player.getWater().increaseValue(this.value);
+        player.getHealth().increaseValue(this.getValue());
+        player.getFood().increaseValue(this.getValue());
+        player.getWater().increaseValue(this.getValue());
     }
 
     @Override
@@ -34,6 +28,6 @@ public class FoodModel extends CatchableElement {
         if (getClass() != o.getClass()) return false;
 
         FoodModel p = (FoodModel) o;
-        return value == p.getValue() && getPos() == p.getPos();
+        return getValue() == p.getValue() && getPos() == p.getPos();
     }
 }
