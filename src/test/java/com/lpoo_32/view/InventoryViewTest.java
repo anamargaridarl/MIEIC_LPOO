@@ -26,7 +26,7 @@ public class InventoryViewTest {
     public void initializeValues(){
         this.inventory = Mockito.mock(Inventory.class);
         this.textGraphics = Mockito.mock(TextGraphics.class);
-        this.inventoryView = new InventoryView(inventory, "#000000", textGraphics);
+        this.inventoryView = new InventoryView(inventory, "#000000");
         TerminalSize terminalSize = Mockito.mock(TerminalSize.class);
         ScreenSize.createInstance(terminalSize);
         Mockito.when(terminalSize.getRows()).thenReturn(100);

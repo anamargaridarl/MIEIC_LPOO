@@ -11,13 +11,11 @@ public class InventoryView implements ElementView {
 
     private Inventory inventory;
     private final TextColor color;
-    private TextGraphics graphics;
     //private int height;
 
-    public InventoryView(Inventory inventory, String hexColor, TextGraphics graphics) {
+    public InventoryView(Inventory inventory, String hexColor) {
         this.inventory = inventory;
         this.color = TextColor.Factory.fromString(hexColor);
-        this.graphics = graphics;
         //this.height = height;
 
     }
