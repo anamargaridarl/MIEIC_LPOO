@@ -44,12 +44,13 @@ public class InventoryViewTest {
 
     @Test
     public void getterTests(){
-        Mockito.when(inventory.getView()).thenReturn(Mockito.mock(FoodView.class));
+        Mockito.when(inventory.getView()).thenReturn(new FoodView(null));
         assertEquals("Food", this.inventory.getView().getName());
-        Mockito.when(inventory.getView()).thenReturn(Mockito.mock(WaterView.class));
+        Mockito.when(inventory.getView()).thenReturn(new WaterView(null));
         assertEquals("Water", this.inventory.getView().getName());
 
-        Mockito.when(inventory.getElement()).thenReturn(Mockito.mock(FoodModel.class));
+        Mockito.when(inventory.getView()).thenReturn(new FoodView(null));
+        Mockito.when(inventory.getElement()).thenReturn(new FoodModel(0, null));
         assertEquals(Symbols.HEART, inventoryView.getSymbol());
     }
 
