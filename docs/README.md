@@ -243,4 +243,7 @@ Furthermore with these design pattern the behavior can be changed without breaki
 
 ## Self-evaluation
 
+Ana Margarida: 
+André Rocha: 
+
 > In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
