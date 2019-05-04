@@ -200,4 +200,8 @@ public class GameController
             elements.getModel(position).interact(player);
         }
     }
+
+    void setTime(int time){
+        this.time = time;
+    }
 }

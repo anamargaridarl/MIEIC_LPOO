@@ -1,5 +1,7 @@
 package com.lpoo_32.controller;
 
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
@@ -7,6 +9,7 @@ import com.lpoo_32.view.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.io.IOException;
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class GameControllerTest {
     @Rule
@@ -55,8 +58,10 @@ public class GameControllerTest {
         TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
+        Inventory inventory = Mockito.mock(Inventory.class);
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);
         Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
+        Mockito.when(player.getInventory()).thenReturn(inventory);
         GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player);
 
         Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVEUP);
@@ -71,6 +76,20 @@ public class GameControllerTest {
         Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVERIGHT);
         gameController.processKey(keyboard.processKey());
         verify(player).moveRight();
+        Mockito.when(keyboard.processKey()).thenReturn(EventType.STORE);
+        gameController.processKey(keyboard.processKey());
+        Mockito.when(keyboard.processKey()).thenReturn(EventType.USE);
+        gameController.processKey(keyboard.processKey());
+        verify(player, atLeast(6)).getPosition();
+        Mockito.when(keyboard.processKey()).thenReturn(EventType.LEFTINVENTORY);
+        gameController.processKey(keyboard.processKey());
+        verify(inventory).moveLeft();
+        Mockito.when(keyboard.processKey()).thenReturn(EventType.RIGHTINVENTORY);
+        gameController.processKey(keyboard.processKey());
+        verify(inventory).moveRight();
+        Mockito.when(keyboard.processKey()).thenReturn(EventType.INVETORYUSE);
+        gameController.processKey(keyboard.processKey());
+        verify(inventory).getElement();
     }
 
     @Test
@@ -87,7 +106,27 @@ public class GameControllerTest {
 
 
     @Test
-    public void updateGame(){
-
+    public void updateGame() throws ScreenClose, InterruptedException, LeftScreen, DownScreen, IOException, RightScreen, HealthOVF, UpScreen, ThirstOVF, HungerOVF, OutOfBoundaries {
+        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
+        PlayerModel player = Mockito.mock(PlayerModel.class);
+        Status status = Mockito.mock(Status.class);
+        Screen screen = Mockito.mock(Screen.class);
+        Mockito.when(player.getFood()).thenReturn(status);
+        Mockito.when(player.getHealth()).thenReturn(status);
+        Mockito.when(player.getWater()).thenReturn(status);
+        Mockito.when(player.getPosition()).thenReturn(Mockito.mock(Position.class));
+        Mockito.when(player.getInventory()).thenReturn(Mockito.mock(Inventory.class));
+        Mockito.when(displayProps.getScreen()).thenReturn(screen);
+        Mockito.when(screen.newTextGraphics()).thenReturn(Mockito.mock(TextGraphics.class));
+        TerminalSize terminal = Mockito.mock(TerminalSize.class);
+        Mockito.when(terminal.getColumns()).thenReturn(100);
+        Mockito.when(terminal.getRows()).thenReturn(100);
+        ScreenSize.createInstance(terminal);
+        GameController controller = new GameController(displayProps, Mockito.mock(Elements.class), player);
+        controller.setTime(3599);
+        controller.updateGame();
+        controller.setTime(5399);
+        controller.updateGame();
+        verify(status, atLeast(2)).decreaseValue(5);
     }
 }
