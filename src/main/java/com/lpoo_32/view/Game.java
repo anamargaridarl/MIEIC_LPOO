@@ -37,7 +37,7 @@ public class Game extends Display{
         this.screen.clear();
 
 
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#48D1CC"));
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
         graphics.fillRectangle(new TerminalPosition(0, 0),
                                 new TerminalSize(ScreenSize.instance().getColumn(60),
                                 ScreenSize.instance().getRows(50)), ' ');

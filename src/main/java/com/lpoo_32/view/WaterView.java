@@ -33,7 +33,7 @@ public class WaterView extends CatchableView {
     @Override
     public void draw(TextGraphics graphics) {
 
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#7CFC00"));
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
 
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
