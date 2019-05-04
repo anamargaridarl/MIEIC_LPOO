@@ -1,17 +1,25 @@
 package com.lpoo_32.model;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class InventoryTest {
+    private FoodModel food;
+    private FoodModel food2;
+    private Inventory inventory;
+
+    @Before
+    public void initializeValues(){
+        this.food = new FoodModel(23, null);
+        this.food2 = new FoodModel(23, null);
+        this.inventory = new Inventory();
+    }
 
     @Test
     public void addElementTest() {
-        FoodModel food = new FoodModel(23,new Position(3,3));
-        Inventory inventory = new Inventory();
-
         inventory.addElement(food);
 
         assertNotEquals(null,inventory.getElement());
@@ -20,11 +28,6 @@ public class InventoryTest {
     @Test
     public void MoveTest()
     {
-        FoodModel food = new FoodModel(23,new Position(3,3));
-        FoodModel food2 = new FoodModel(20,new Position(4,3));
-
-        Inventory inventory = new Inventory();
-
         inventory.addElement(food);
         inventory.addElement(food2);
 
@@ -38,11 +41,6 @@ public class InventoryTest {
     @Test
     public void RemoveTest()
     {
-        FoodModel food = new FoodModel(23,new Position(3,3));
-        FoodModel food2 = new FoodModel(20,new Position(4,3));
-
-        Inventory inventory = new Inventory();
-
         inventory.addElement(food);
         inventory.addElement(food2);
 
@@ -59,11 +57,6 @@ public class InventoryTest {
     @Test
     public void getElementTest()
     {
-        FoodModel food = new FoodModel(23,new Position(3,3));
-        FoodModel food2 = new FoodModel(20,new Position(4,3));
-
-        Inventory inventory = new Inventory();
-
         inventory.addElement(food);
         inventory.addElement(food2);
 

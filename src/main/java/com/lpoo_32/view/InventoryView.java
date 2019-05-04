@@ -11,13 +11,11 @@ public class InventoryView implements ElementView {
 
     private Inventory inventory;
     private final TextColor color;
-    private TextGraphics graphics;
     //private int height;
 
-    public InventoryView(Inventory inventory, String hexColor, TextGraphics graphics) {
+    public InventoryView(Inventory inventory, String hexColor) {
         this.inventory = inventory;
         this.color = TextColor.Factory.fromString(hexColor);
-        this.graphics = graphics;
         //this.height = height;
 
     }
@@ -34,7 +32,7 @@ public class InventoryView implements ElementView {
                 Symbols.BLOCK_SOLID);
 
         char a;
-        if((a = getSimbols())!= ' ') {
+        if((a = getSymbol())!= ' ') {
             graphics.fillRectangle(new TerminalPosition(getColumn(80),
                             getRows() + 1), new TerminalSize(getColumn(getColumn(3)), 1),
                     a);
@@ -57,7 +55,7 @@ public class InventoryView implements ElementView {
         return String.valueOf(inventory.getElement().getValue());
     }
 
-    private String getName() {
+    String getName() {
         if(inventory.getElement() == null)
             return "";
         if(inventory.getElement() instanceof FoodModel)
@@ -69,7 +67,7 @@ public class InventoryView implements ElementView {
     }
 
 
-    private char getSimbols() {
+    char getSymbol() {
         if(inventory.getElement() == null)
             return ' ';
         if(inventory.getElement() instanceof FoodModel)

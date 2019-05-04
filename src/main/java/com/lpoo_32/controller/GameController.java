@@ -1,17 +1,13 @@
 package com.lpoo_32.controller;
 
+import com.lpoo_32.exceptions.*;
+import com.lpoo_32.model.*;
+import com.lpoo_32.view.CatchableView;
+import com.lpoo_32.view.ElementView;
+import com.lpoo_32.view.EventType;
+
 import java.io.IOException;
 import java.util.List;
-
-import com.googlecode.lanterna.input.KeyStroke;
-import com.lpoo_32.exceptions.*;
-import com.lpoo_32.model.Elements;
-import com.lpoo_32.model.PlayerModel;
-import com.lpoo_32.model.Position;
-import com.lpoo_32.model.SpikesModel;
-import com.lpoo_32.exceptions.ScreenClose;
-import com.lpoo_32.model.*;
-import com.lpoo_32.view.*;
 
 public class GameController
 {
@@ -26,7 +22,7 @@ public class GameController
         this.props = props;
     }
 
-    public void processKey(EventType event) throws IOException, ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
+    public void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
 
         SpikesModel spikes = new SpikesModel(10, null);
         if(event != EventType.NULL && event != null){
