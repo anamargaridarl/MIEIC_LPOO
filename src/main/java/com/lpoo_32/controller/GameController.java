@@ -19,8 +19,7 @@ public class GameController
     private int time;
 
 
-    public GameController(DisplayProps props, Elements elements, PlayerModel player)
-    {
+    public GameController(DisplayProps props, Elements elements, PlayerModel player) throws OutOfBoundaries {
         this.player = player;
         this.elements = elements;
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
@@ -86,7 +85,7 @@ public class GameController
         }
     }
 
-    private void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, RightScreen, LeftScreen, UpScreen, DownScreen {
+    void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, RightScreen, LeftScreen, UpScreen, DownScreen {
         try {
             this.processKey(this.keyboardProcessor.processKey());
             this.game.draw();
@@ -162,7 +161,7 @@ public class GameController
     }
 
 
-    private void populateGame(int width, int height) {
+    private void populateGame(int width, int height) throws OutOfBoundaries {
         Random random = new Random();
         TerminalElementFactory factory = new TerminalElementFactory();
         ElementType[] types = ElementType.values();

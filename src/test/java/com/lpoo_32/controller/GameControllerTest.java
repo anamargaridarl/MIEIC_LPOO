@@ -22,8 +22,8 @@ public class GameControllerTest {
 
 
     @Test
-    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF {
-        PlayerModel player = new PlayerModel(new Position(3,2, 100, 100, 0));
+    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF, OutOfBoundaries {
+        PlayerModel player = new PlayerModel(new Position(3,2, Game.width/4, Game.height/4, 0));
         SpikesModel spike = new SpikesModel(25, new Position(3,2, 0, 0, 0));
         FoodModel food = new FoodModel(10, new Position(3,3, 0, 0, 0));
 
@@ -51,7 +51,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen {
+    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries {
         TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
@@ -71,12 +71,23 @@ public class GameControllerTest {
         Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVERIGHT);
         gameController.processKey(keyboard.processKey());
         verify(player).moveRight();
+    }
+
+    @Test
+    public void screenClose() throws HungerOVF, ThirstOVF, IOException, DownScreen, LeftScreen, ScreenClose, RightScreen, UpScreen, HealthOVF, ThirstRestored, HungerRestored, OutOfBoundaries {
+        TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
+        PlayerModel player = Mockito.mock(PlayerModel.class);
+        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
+        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
+        GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player);
         Mockito.when(keyboard.processKey()).thenReturn(EventType.EXIT);
         thrown.expect(ScreenClose.class);
         gameController.processKey(keyboard.processKey());
-
-
     }
 
 
+    @Test
+    public void updateGame(){
+
+    }
 }

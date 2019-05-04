@@ -1,9 +1,7 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.exceptions.DownScreen;
-import com.lpoo_32.exceptions.LeftScreen;
-import com.lpoo_32.exceptions.RightScreen;
-import com.lpoo_32.exceptions.UpScreen;
+import com.lpoo_32.exceptions.*;
+import com.lpoo_32.view.Game;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -11,8 +9,8 @@ import static org.junit.Assert.assertEquals;
 public class MovableElementTest {
 
     @Test
-    public void movement() throws DownScreen, UpScreen, LeftScreen, RightScreen {
-        MovableElement player = new PlayerModel(new Position(4,4, 200, 200, 0));
+    public void movement() throws DownScreen, UpScreen, LeftScreen, RightScreen, OutOfBoundaries {
+        MovableElement player = new PlayerModel(new Position(4,4, Game.width/4, Game.height/4, 0));
 
         player.moveDown();
         assertEquals(5, player.getPosition().getY());

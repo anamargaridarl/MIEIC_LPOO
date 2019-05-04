@@ -22,3 +22,7 @@ dependencies {
     compile group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.0.1'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.25.0'
 }
+
+pitest {
+    targetClasses = ['com.lpoo_32.*']
+}

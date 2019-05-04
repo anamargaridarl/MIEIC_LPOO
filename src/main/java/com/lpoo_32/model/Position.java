@@ -1,10 +1,8 @@
 package com.lpoo_32.model;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.lpoo_32.exceptions.DownScreen;
-import com.lpoo_32.exceptions.LeftScreen;
-import com.lpoo_32.exceptions.RightScreen;
-import com.lpoo_32.exceptions.UpScreen;
+import com.lpoo_32.exceptions.*;
+import com.lpoo_32.view.Game;
 import com.lpoo_32.view.ScreenSize;
 
 import java.util.Objects;
@@ -17,11 +15,13 @@ public class Position {
     private final int width;
     private final int height;
 
-    public Position(int x, int y, int width, int height, int index){
+    public Position(int x, int y, int width, int height, int index) throws OutOfBoundaries {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        if(width * 4 > Game.width || height > Game.height || width < 0 || height < 0)
+            throw new OutOfBoundaries();
         this.heightIndex = index/3;
         this.widthIndex = index%3;
     }

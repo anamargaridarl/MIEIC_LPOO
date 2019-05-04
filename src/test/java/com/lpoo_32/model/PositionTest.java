@@ -1,10 +1,7 @@
 package com.lpoo_32.model;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.lpoo_32.exceptions.DownScreen;
-import com.lpoo_32.exceptions.LeftScreen;
-import com.lpoo_32.exceptions.RightScreen;
-import com.lpoo_32.exceptions.UpScreen;
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.view.ScreenSize;
 import org.junit.Before;
 import org.junit.Rule;
@@ -21,7 +18,7 @@ public class PositionTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
-    public void initializePosition(){
+    public void initializePosition() throws OutOfBoundaries {
         this.position = new Position(1, 1, 2, 2, 0);
         TerminalSize size = Mockito.mock(TerminalSize.class);
         Mockito.when(size.getColumns()).thenReturn(100);
