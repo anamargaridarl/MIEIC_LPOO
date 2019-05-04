@@ -6,6 +6,9 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.*;
+import com.lpoo_32.model.Elements;
+import com.lpoo_32.model.PlayerModel;
+import com.lpoo_32.model.Position;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -28,21 +31,16 @@ public class GameTest {
         screen = Mockito.mock(Screen.class);
         graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
-        game = new Game(screen);
+        game = new Game(new DisplayProps(screen),new PlayerModel(Mockito.mock(Position.class)), Mockito.mock(Elements.class));
     }
 
     @Test
-    public void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, DownScreen, LeftScreen, UpScreen, RightScreen {
-        game.updateGame();
-        verify(screen, times(1)).refresh();
-        verify(screen, times(1)).clear();
-    }
-
-    @Test
-    public void draw(){
+    public void draw() throws IOException {
         game.draw();
         verify(graphics, atLeastOnce()).setBackgroundColor(any(TextColor.class));
         verify(graphics, atLeastOnce()).setForegroundColor(any(TextColor.class));
         verify(graphics, atLeastOnce()).fillRectangle(any(TerminalPosition.class), any(TerminalSize.class), any(char.class));
+        verify(screen, atLeastOnce()).refresh();
+        verify(screen, atLeastOnce()).clear();
     }
 }
