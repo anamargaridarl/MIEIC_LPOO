@@ -1,5 +1,6 @@
 package com.lpoo_32.model;
 
+import com.lpoo_32.view.FoodView;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,14 +8,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class InventoryTest {
-    private FoodModel food;
-    private FoodModel food2;
+    private FoodView food;
+    private FoodModel foodM;
+    private FoodView food2;
+    private FoodModel foodM2;
     private Inventory inventory;
 
     @Before
     public void initializeValues(){
-        this.food = new FoodModel(23, null);
-        this.food2 = new FoodModel(23, null);
+        this.foodM = new FoodModel(23, null);
+        this.food = new FoodView(foodM);
+        this.foodM2 = new FoodModel(20, null);
+        this.food2 = new FoodView(foodM2);
         this.inventory = new Inventory();
     }
 
@@ -32,9 +37,9 @@ public class InventoryTest {
         inventory.addElement(food2);
 
         inventory.moveRight();
-        assertEquals(food2,inventory.getElement());
+        assertEquals(food2,inventory.getView());
         inventory.moveLeft();
-        assertEquals(food,inventory.getElement());
+        assertEquals(food,inventory.getView());
 
     }
 
@@ -45,13 +50,13 @@ public class InventoryTest {
         inventory.addElement(food2);
 
         inventory.removeElement();
-        assertEquals(food2,inventory.getElement());
+        assertEquals(food,inventory.getView());
 
-        inventory.addElement(food);
-        inventory.moveRight();
+        inventory.addElement(food2);
+        inventory.moveLeft();
         inventory.removeElement();
 
-        assertEquals(food2,inventory.getElement());
+        assertEquals(food2,inventory.getView());
     }
 
     @Test
@@ -60,10 +65,10 @@ public class InventoryTest {
         inventory.addElement(food);
         inventory.addElement(food2);
 
-        assertEquals(food,inventory.getElement());
+        assertEquals(foodM2,inventory.getElement());
 
-        inventory.moveRight();
-        assertEquals(food2,inventory.getElement());
+        inventory.moveLeft();
+        assertEquals(foodM,inventory.getElement());
     }
 
 
