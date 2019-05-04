@@ -239,14 +239,14 @@ Furthermore with these design pattern the behavior can be changed without breaki
 
 ## Testing Results
 
-<p float="left" style="width: 50%">
-  <img src="images/test-report.png" width="100" />
-  <img src="images/pitest-report.png" width="100" /> 
+<p float="left">
+  <img src="images/test-report.png" width="49%" />
+  <img src="images/pitest-report.png" width="49%" /> 
 </p>
 
 If you'd like to read more about our tests, [click here](./test/index.html)
 
-If you'd like to read more about our mutation tests, [click here](./pitest-report/index.html)
+If you'd like to read more about our mutation tests, [click here](./pitest-report/index.md)
 
 > This section should contain screenshots of the main results of both the test coverage and mutation testing reports. It should also contain links to those reports in HTML format (you can copy the reports to the docs folder).
 
