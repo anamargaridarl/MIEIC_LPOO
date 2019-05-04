@@ -16,8 +16,6 @@ public class InventoryView implements ElementView {
     public InventoryView(Inventory inventory, String hexColor) {
         this.inventory = inventory;
         this.color = TextColor.Factory.fromString(hexColor);
-        //this.height = height;
-
     }
 
 

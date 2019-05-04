@@ -136,8 +136,8 @@ public class Game extends Display{
         int initialX = index%3 * Game.width/4;
         int initialY = index/3 * Game.height/4;
 
-        for(int i = initialX; i < initialX + Game.width; i++){
-            for(int j = initialY; j < initialY + Game.height; j++){
+        for(int i = initialX; i < initialX + Game.width/4; i++){
+            for(int j = initialY; j < initialY + Game.height/4; j++){
                 if(this.elements.getViewByCoord(i, j) != null){
                     this.elements.getViewByCoord(i, j).draw(graphics);
                 }
@@ -177,6 +177,7 @@ public class Game extends Display{
         this.generalView.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
         this.generalView.add(new StatusBar(player.getPlayer().getWater(), "#87CEFA", 18));
         this.generalView.add(this.player);
+        this.generalView.add(new InventoryView(this.player.getPlayer().getInventory(), "#99FFCC"));
 
         populateGame(width, height);
     }
