@@ -10,5 +10,8 @@ abstract public class CatchableView extends InteractableElementView{
         super(element);
     }
 
+    abstract public char getSymbol();
+    abstract public String getName();
+
     abstract public CatchableElement getElement();
 }

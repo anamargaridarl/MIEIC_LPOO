@@ -16,6 +16,16 @@ public class FoodView extends CatchableView {
         this.food = food;
     }
 
+
+    @Override
+    public char getSymbol() {
+        return Symbols.HEART;
+    }
+
+    @Override
+    public String getName() {
+        return "Food";}
+
     @Override
     public void draw(TextGraphics graphics) {
 
@@ -26,7 +36,7 @@ public class FoodView extends CatchableView {
         graphics.fillRectangle(
                 this.food.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
-                food.getSymbol()
+                this.getSymbol()
         );
     }
 

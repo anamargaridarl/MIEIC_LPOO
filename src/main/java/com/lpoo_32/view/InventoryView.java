@@ -57,7 +57,7 @@ public class InventoryView implements ElementView {
         if(inventory.getElement() == null)
             return "";
 
-        return inventory.getElement().getName();
+        return inventory.getView().getName();
     }
 
 
@@ -65,7 +65,7 @@ public class InventoryView implements ElementView {
         if(inventory.getElement() == null)
             return ' ';
 
-        return inventory.getElement().getSymbol();
+        return inventory.getView().getSymbol();
     }
 
 

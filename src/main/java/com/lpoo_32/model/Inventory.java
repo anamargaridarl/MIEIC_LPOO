@@ -1,11 +1,13 @@
 package com.lpoo_32.model;
 
+import com.lpoo_32.view.CatchableView;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class Inventory {
 
-    private List<CatchableElement> inventory;
+    private List<CatchableView> inventory;
     private int index;
 
     public Inventory(){
@@ -13,8 +15,8 @@ public class Inventory {
         index = 0;
     }
 
-    public void addElement(CatchableElement element) {
-        inventory.add(element);
+    public void addElement(CatchableView view) {
+        inventory.add(view);
     }
 
     public void moveRight()
@@ -47,6 +49,13 @@ public class Inventory {
     }
 
     public CatchableElement getElement() {
+        if(index < 0 || inventory.size() == 0) {
+            return null;
+        }
+        return inventory.get(index).getElement();
+    }
+
+    public CatchableView getView() {
         if(index < 0 || inventory.size() == 0) {
             return null;
         }

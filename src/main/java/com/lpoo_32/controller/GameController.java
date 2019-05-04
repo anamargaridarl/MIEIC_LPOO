@@ -58,7 +58,7 @@ public class GameController
                     break;
                 case STORE: //add element to inventory
                     if(isCatchable(player.getPosition())) {
-                        player.addElementInventory((CatchableElement)elements.getModel(player.getPosition()));
+                        player.addElementInventory((CatchableView)elements.getView(player.getPosition()));
                         removeElementProps(elements.getModel(player.getPosition()));
                     }
                     break;

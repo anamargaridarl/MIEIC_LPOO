@@ -16,13 +16,4 @@ public class WaterModel extends CatchableElement {
         player.getWater().increaseValue(20);
     }
 
-    @Override
-    public char getSymbol() {
-        return Symbols.BULLET;
-    }
-
-    @Override
-    public String getName() {
-        return "Water";
-    }
 }

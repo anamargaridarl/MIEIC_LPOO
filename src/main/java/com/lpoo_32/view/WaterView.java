@@ -16,6 +16,21 @@ public class WaterView extends CatchableView {
     }
 
     @Override
+    public CatchableElement getElement() {
+        return water;
+    }
+
+    @Override
+    public char getSymbol() {
+        return Symbols.BULLET;
+    }
+
+    @Override
+    public String getName() {
+        return "Water";
+    }
+
+    @Override
     public void draw(TextGraphics graphics) {
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#7CFC00"));
@@ -25,13 +40,9 @@ public class WaterView extends CatchableView {
         graphics.fillRectangle(
                 this.water.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
-                water.getSymbol()
+                this.getSymbol()
         );
     }
 
-    @Override
-    public CatchableElement getElement() {
-        return water;
-    }
 
 }

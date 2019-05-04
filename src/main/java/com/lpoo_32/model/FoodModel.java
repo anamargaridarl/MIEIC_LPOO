@@ -32,13 +32,4 @@ public class FoodModel extends CatchableElement {
         return getValue() == p.getValue() && getPos() == p.getPos();
     }
 
-    @Override
-    public char getSymbol() {
-        return Symbols.HEART;
-    }
-
-    @Override
-    public String getName() {
-        return "Food";
-    }
 }

@@ -1,5 +1,7 @@
 package com.lpoo_32.model;
 
+import com.lpoo_32.view.CatchableView;
+
 public class PlayerModel extends MovableElement {
     private Status health;
     private Status food;
@@ -38,9 +40,9 @@ public class PlayerModel extends MovableElement {
         this.water = water;
     }
 
-    public void addElementInventory(CatchableElement element)
+    public void addElementInventory(CatchableView view)
     {
-        inventory.addElement(element);
+        inventory.addElement(view);
     }
 
     public Inventory getInventory() {

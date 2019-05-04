@@ -33,6 +33,7 @@ public class Elements {
         return getModelByCoord(position.getX(), position.getY());
     }
 
+
     public InteractableElementView getViewByCoord(int x, int y){
         return elements.get(x).get(y);
     }
