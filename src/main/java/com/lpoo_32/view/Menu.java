@@ -8,6 +8,8 @@ import com.lpoo_32.controller.GameController;
 import com.lpoo_32.controller.SecondaryMenuKeyListener;
 import com.lpoo_32.controller.MenuKeyListener;
 import com.lpoo_32.model.Elements;
+import com.lpoo_32.model.PlayerModel;
+import com.lpoo_32.model.Position;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -81,7 +83,8 @@ public class Menu extends Display {
         this.listBox.addItem("Meias", () -> System.out.println("MEIAAAAS")).addTo(this.mainPanel);
         this.listBox.addItem("Start", ()-> {
             try {
-                GameController gameController = new GameController(new DisplayProps(screen));
+                PlayerModel model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
+                GameController gameController = new GameController(new DisplayProps(screen), new Elements(), model);
                 gameController.run();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -19,10 +19,10 @@ public class GameController
     private int time;
 
 
-    public GameController(DisplayProps props)
+    public GameController(DisplayProps props, Elements elements, PlayerModel player)
     {
-        this.player = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
-        this.elements = new Elements();
+        this.player = player;
+        this.elements = elements;
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
         this.hunger = false;
         this.thirst = false;
@@ -30,7 +30,7 @@ public class GameController
         this.game = new Game(props, this.player, elements);
     }
 
-    private void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
+    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
 
         SpikesModel spikes = new SpikesModel(10, null);
         if(event != EventType.NULL && event != null){
