@@ -1,5 +1,6 @@
 package com.lpoo_32.model;
 
+import com.googlecode.lanterna.Symbols;
 import com.lpoo_32.exceptions.HungerRestored;
 import com.lpoo_32.exceptions.ThirstRestored;
 
@@ -29,5 +30,15 @@ public class FoodModel extends CatchableElement {
 
         FoodModel p = (FoodModel) o;
         return getValue() == p.getValue() && getPos() == p.getPos();
+    }
+
+    @Override
+    public char getSymbol() {
+        return Symbols.HEART;
+    }
+
+    @Override
+    public String getName() {
+        return "Food";
     }
 }

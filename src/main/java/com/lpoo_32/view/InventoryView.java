@@ -56,24 +56,16 @@ public class InventoryView implements ElementView {
     String getName() {
         if(inventory.getElement() == null)
             return "";
-        if(inventory.getElement() instanceof FoodModel)
-            return "Food";
-        if(inventory.getElement() instanceof WaterModel)
-            return  "Water";
 
-        return "";
+        return inventory.getElement().getName();
     }
 
 
     char getSymbol() {
         if(inventory.getElement() == null)
             return ' ';
-        if(inventory.getElement() instanceof FoodModel)
-            return  Symbols.HEART;
-        if(inventory.getElement() instanceof WaterModel)
-            return  Symbols.HEART; //TO DO: what symbol to use for water
 
-        return ' ';
+        return inventory.getElement().getSymbol();
     }
 
 

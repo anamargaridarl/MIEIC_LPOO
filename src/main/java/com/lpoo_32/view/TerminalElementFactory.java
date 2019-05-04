@@ -1,5 +1,6 @@
 package com.lpoo_32.view;
 
+import com.googlecode.lanterna.Symbols;
 import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.Position;
 import com.lpoo_32.model.SpikesModel;

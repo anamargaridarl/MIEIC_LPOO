@@ -8,7 +8,7 @@ import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.InteractableElement;
 
-public class FoodView extends InteractableElementView {
+public class FoodView extends CatchableView {
     private final FoodModel food;
 
     public FoodView(FoodModel food){
@@ -26,9 +26,11 @@ public class FoodView extends InteractableElementView {
         graphics.fillRectangle(
                 this.food.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
-                Symbols.HEART
+                food.getSymbol()
         );
     }
+
+
 
     public FoodModel getFood()
     {

@@ -4,9 +4,10 @@ import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.WaterModel;
 
-public class WaterView extends InteractableElementView {
+public class WaterView extends CatchableView {
     private final WaterModel water;
 
     WaterView(WaterModel water){
@@ -24,8 +25,13 @@ public class WaterView extends InteractableElementView {
         graphics.fillRectangle(
                 this.water.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
-                Symbols.DOUBLE_LINE_CROSS
+                water.getSymbol()
         );
+    }
+
+    @Override
+    public CatchableElement getElement() {
+        return water;
     }
 
 }
