@@ -31,8 +31,43 @@ The person has a backpack to store food and water for later use. There are sever
 
 > This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
 
-## Planned Features
-To further improve this game we intend to
+
+
+## Planned Features  
+
+To further improve this game we intend to add several improvements to the project until the next delivery.
+
+### **Monsters**
+
+We intend to add monsters that move around and take the player's life every time they come into contact with it. 
+For that we intend to implement threads on our game. Each monster will be associated to a thread that updates the monster's movement based on a time gap.
+The monster will be divided in two class similarly to other elements in the game: 
+- one class holds the information of the monsters like their position and the amount of health they can take to the player - **MonsterModel** -  and implements the ElementModel interface;
+-  another class draws the monster on the screen -  **MonsterView** -  and implements the Element View interface as well as following the command pattern implemented for the draw function.
+
+### **Game Over**
+
+We'll add a "Game Over" screen whenever the player looses the game. The screen will be built into a class in the graphic part of the game - **GameOver** .
+
+
+### **Help Screen**
+
+We want to add a screen that shows all the game instructions and options so the player can consult it in the middle of the game. That way the game will pause and the screen will be shown. Furthermore by pressing the same key that opened this help menu the player can return to the game.
+Just like the "game over" screen we'll built into a class in the graphic part of the game - **HelpView**.
+
+### **Buildings**
+
+### **Graphic ambient**
+
+We'll intend to do the necessary modifications to include the new graphical ambient **Swing** since will have much more tools to develop a much better graphic design.
+
+### **Other improvements**
+
+We also aim to add some changes to the already existing elements of the game. 
+For start the each of the Interactable Elements will be divided in smaller categories and each will have different values associated with.
+ - the food will be divided in different elements like **meat**, **vegetables** and **fruit**;
+ - the water will be divided into **water** and **milk**;
+ - the spikes will be divided into **rocks** and **lava**;
 
 > This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 
@@ -160,44 +195,42 @@ Additionally we can point several advantages to the use of the command pattern:
 -   we are able to decouple the object that invoke the draw function (abstract class) from the one that knows how to perform it (subclasses).
 -   It's easy to make changes or add new commands.
 
-### Status  
-#### Problem in Context  
-The status is a class used to save the value of health, food and water of the character in the game.  
-Therefore we need to increase and decrease said values. 
-However in the food and water status bars we also need to take into account that it only takes one of these status to reach zero to decrease systematically the value of health of the character based on a time lapse until the values are restored. 
-
-Moreover, whenever the health bar reached zero, it would mean that the player had lost the game.   
+### Status 
+#### Problem in Context 
+The status is a class used to save the value of health, food and water of the character in the game.    
+Therefore we need to increase and decrease said values.   
+However in the food and water status bars we also need to take into account that it only takes one of these status to reach zero to decrease systematically the value of health of the character based on a time lapse until the values are restored.   
   
-To do that we need to be able to change in run time the behavior of those functions, as well as have different sorts of behaviors
-depending on the client.
-   
-  
-#### The Pattern   
-To solve this problem we applied the **Strategy** pattern.  
-The use of this pattern allows us to:  
-  
- - have multiple implementations (algorithms) for a given feature;   
- - change the algorithm at runtime depending on parameter type.   
+Moreover, whenever the health bar reached zero, it would mean that the player had lost the game.     
     
-Those were exactly the features we were looking for to solve this issue.  
-   
-   
-### Implementation  
-To implement this pattern we ended up creating a class NourishStatus that extends Status class to implement the functions for the food and water status bars, as well as another for the
-health status. 
-
-That way, we can associate different behaviours for each type of
-bar (client). 
+To do that we need to be able to change in run time the behavior of those functions, as well as have different sorts of behaviors  
+depending on the client.  
+     
+    
+#### The Pattern
+ To solve this problem we applied the **Strategy** pattern.    
+The use of this pattern allows us to:    
+    
+ - have multiple implementations (algorithms) for a given feature;     
+ - change the algorithm at runtime depending on parameter type.     
+      
+Those were exactly the features we were looking for to solve this issue.    
+     
+     
+### Implementation 
+To implement this pattern we ended up creating a class NourishStatus that extends Status class to implement the functions for the food and water status bars, as well as another for the health status.   
   
- <div style="text-align:center">  
-     <img src="images/Status.png"/>  
- </div>  
-   
-### Consequences  
-Now we are able to provide different implementation of behavior to the functions decrease and increase the value in the water/food status bar so as to when it value reaches zero the health will be decremented to the character until it succeeds in using more food or water. 
-
+That way, we can associate different behaviours for each type of  
+bar (client).   
+    
+ <div style="text-align:center">    
+     <img src="images/Status.png"/>    
+ </div>    
+     
+### Consequences 
+Now we are able to provide different implementation of behavior to the functions decrease and increase. This way in the water/food status bar when the value reaches zero the health will be decremented to the character until it succeeds in using more food or water and in the health bar the game will be lost.
+  
 Furthermore with these design pattern the behavior can be changed without breaking the classes that use it, and the classes can switch between behaviors by changing the specific implementation used without requiring any significant code changes.
-
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
 ## Known Code Smells and Refactoring Suggestions
