@@ -17,6 +17,9 @@ public class Inventory {
 
     public void addElement(CatchableView view) {
         inventory.add(view);
+
+        if(inventory.size() != 1)
+        this.index++;
     }
 
     public void moveRight()
