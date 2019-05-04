@@ -13,7 +13,6 @@ and [Ana Margarida](https://github.com/anamargaridarl)
 
 
 ## Implemented Features
-//estou a assumir que isto é relativo apenas ao jogo em sim
 
 **Move Character -** By pressing the arrow keys your character will move around in the game.
 
@@ -125,7 +124,76 @@ Moreover, whenever a graphical interface is needed,
 it is only needed to create a new implementation
 of ElementFactory.
 
+  
+### View Element  
+#### Problem in Context  
+All the elements in the game had a graphic class that draw the information of the object into the screen. Since all shared this feature even though the implementations were different there was a need to unify them all.   
+  
+#### The Pattern 
 
+To solve said issue, we used the **Command** pattern.     
+    
+This pattern has the ability to:    
+ - Define separate (command) objects that encapsulate a request.    
+ - A class delegates a request to a command object  instead of     
+implementing a particular request directly.    
+    
+This enables one to configure a class with a command object that is used to perform a request (drawing into the screen).    
+The class is no longer coupled to a particular request and has no knowledge (is independent) of how the request is carried out.  
+   
+   
+### Implementation  
+With this, we ended up creating and ElementView abstract class that forced all its children classes to implement  a method to draw their element into the screen .
+  
+  
+<div style="text-align:center">  
+    <img src="images/ElementView.png"/>  
+</div>  
+  
+### Consequences  
+
+Now all elements further created that are going to draw themselves into the screen will be an extension of this abstract class, making it so that  
+they can be grouped together, something that we take   
+use of in our program.
+
+Additionally we can point several advantages to the use of the command pattern:
+-   we are able to decouple the object that invoke the draw function (abstract class) from the one that knows how to perform it (subclasses).
+-   It's easy to make changes or add new commands.
+
+### Status  
+#### Problem in Context  
+The status is a class used to save the value of health, food and water of the character in the game.  
+Therefore we need to increase and decrease said values. 
+However in the food and water status bars we also need to take into account that it only takes one of these status to reach zero to decrease systematically the value of health of the character based on a time lapse until the values are restored .   
+  
+To do that we need to be able to change in run time the behavior of those functions.
+   
+  
+#### The Pattern   
+To solve this problem we applied the **Strategy** pattern.  
+The use of this pattern allows us to:  
+  
+ - have multiple implementations (algorithms) for a given feature;   
+ - change the algorithm at runtime depending on parameter type.   
+    
+Those were exactly the features we were looking for to solve this issue.  
+   
+   
+### Implementation  
+To implement this pattern we ended up creating a class NourishStatus that extends Status class to implement the functions for the food and water status bars. We also added a enum to this new class that contains two type parameters : 
+ - HUNGER: when true the food status value is zero;
+ - THIRST:  when true the water status value is zero;
+ 
+Based on the values of the types in the enum (true or false) we'll choose which implementation of the functions we want to run and will provide information to decrement health status on other sections of the game.
+  
+ <div style="text-align:center">  
+     <img src="images/Status.png"/>  
+ </div>  
+   
+### Consequences  
+Now we are able to provide different implementation of behavior to the functions decrease and increase the value in the water/food status bar so as to when it value reaches zero the health will be decremented to the character until it succeeds in using more food or water. 
+
+Furthermore with these design pattern the behavior can be changed without breaking the classes that use it, and the classes can switch between behaviors by changing the specific implementation used without requiring any significant code changes.
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
