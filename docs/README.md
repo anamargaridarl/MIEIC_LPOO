@@ -127,7 +127,7 @@ of ElementFactory.
   
 ### View Element  
 #### Problem in Context  
-All the elements in the game had a graphic class that draw the information of the object into the screen. Since all shared this feature even though the implementations were different there was a need to unify them all.   
+All the elements in the game had a graphic class to draw the information of the object into the screen. Since all shared this feature even though the implementations were different there was a need to unify them all.   
   
 #### The Pattern 
 
@@ -164,9 +164,12 @@ Additionally we can point several advantages to the use of the command pattern:
 #### Problem in Context  
 The status is a class used to save the value of health, food and water of the character in the game.  
 Therefore we need to increase and decrease said values. 
-However in the food and water status bars we also need to take into account that it only takes one of these status to reach zero to decrease systematically the value of health of the character based on a time lapse until the values are restored .   
+However in the food and water status bars we also need to take into account that it only takes one of these status to reach zero to decrease systematically the value of health of the character based on a time lapse until the values are restored. 
+
+Moreover, whenever the health bar reached zero, it would mean that the player had lost the game.   
   
-To do that we need to be able to change in run time the behavior of those functions.
+To do that we need to be able to change in run time the behavior of those functions, as well as have different sorts of behaviors
+depending on the client.
    
   
 #### The Pattern   
@@ -180,11 +183,11 @@ Those were exactly the features we were looking for to solve this issue.
    
    
 ### Implementation  
-To implement this pattern we ended up creating a class NourishStatus that extends Status class to implement the functions for the food and water status bars. We also added a enum to this new class that contains two type parameters : 
- - HUNGER: when true the food status value is zero;
- - THIRST:  when true the water status value is zero;
- 
-Based on the values of the types in the enum (true or false) we'll choose which implementation of the functions we want to run and will provide information to decrement health status on other sections of the game.
+To implement this pattern we ended up creating a class NourishStatus that extends Status class to implement the functions for the food and water status bars, as well as another for the
+health status. 
+
+That way, we can associate different behaviours for each type of
+bar (client). 
   
  <div style="text-align:center">  
      <img src="images/Status.png"/>  
