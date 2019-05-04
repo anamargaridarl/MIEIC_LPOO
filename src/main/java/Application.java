@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Application {
     public static void main(String[] args) {
         try{
-            Display menu = new Menu(new DefaultTerminalFactory().createTerminal());
+            Menu menu = new Menu(new DefaultTerminalFactory().createTerminal());
             menu.run();
         } catch (IOException e) {
             e.printStackTrace();

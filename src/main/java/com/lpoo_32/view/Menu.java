@@ -4,8 +4,10 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.gui2.*;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.lpoo_32.controller.GameController;
 import com.lpoo_32.controller.SecondaryMenuKeyListener;
 import com.lpoo_32.controller.MenuKeyListener;
+import com.lpoo_32.model.Elements;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -13,7 +15,8 @@ import java.util.List;
 
 public class Menu extends Display {
     //    protected WindowBasedTextGUI gui;
-        protected List<ElementView> props;
+    protected List<ElementView> props;
+    Elements elements;
     private ActionListBox listBox;
     private MultiWindowTextGUI gui;
     private Panel mainPanel;
@@ -70,7 +73,6 @@ public class Menu extends Display {
         this.gui.updateScreen();
     }
 
-    @Override
     public void run() throws IOException {
         this.draw();
     }
@@ -79,8 +81,8 @@ public class Menu extends Display {
         this.listBox.addItem("Meias", () -> System.out.println("MEIAAAAS")).addTo(this.mainPanel);
         this.listBox.addItem("Start", ()-> {
             try {
-                Display  game = new Game(this.screen);
-                game.run();
+                GameController gameController = new GameController(new DisplayProps(screen));
+                gameController.run();
             } catch (IOException e) {
                 e.printStackTrace();
             }

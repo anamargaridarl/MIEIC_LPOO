@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public abstract class Display {
     Screen screen;
-    Elements elements;
     private Terminal terminal;
 
     Display(Terminal terminal) throws IOException {
@@ -20,7 +19,6 @@ public abstract class Display {
 
         this.screen.startScreen();
         screen.doResizeIfNecessary();
-        this.elements = new Elements();
 
         ScreenSize.createInstance(this.screen.getTerminalSize());
         terminal.addResizeListener((terminal1, newSize) -> ScreenSize.createInstance(newSize));
@@ -28,9 +26,7 @@ public abstract class Display {
 
     Display(Screen screen) {
         this.screen = screen;
-        this.elements = new Elements();
     }
 
-    abstract public void run() throws IOException;
     abstract public void draw() throws IOException;
 }

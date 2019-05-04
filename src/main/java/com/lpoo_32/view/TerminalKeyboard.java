@@ -2,9 +2,7 @@ package com.lpoo_32.view;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
-import com.lpoo_32.exceptions.HealthOVF;
 import com.lpoo_32.exceptions.HungerOVF;
-import com.lpoo_32.exceptions.ScreenClose;
 import com.lpoo_32.exceptions.ThirstOVF;
 import com.lpoo_32.model.SpikesModel;
 
@@ -12,7 +10,14 @@ import java.io.IOException;
 
 
 public class TerminalKeyboard {
-    public EventType processKey(Screen screen) throws IOException, HungerOVF, ThirstOVF {
+
+    private Screen screen;
+
+    public TerminalKeyboard(Screen screen){
+        this.screen = screen;
+    }
+
+    public EventType processKey() throws IOException, HungerOVF, ThirstOVF {
         EventType event = null;
         KeyStroke key;
         key = screen.pollInput();
