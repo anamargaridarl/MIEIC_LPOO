@@ -75,9 +75,10 @@ public class GameController
                     player.getInventory().moveRight();
                     break;
                 case INVETORYUSE:
-                    if(player.getInventory().getElement() != null)
+                    if(player.getInventory().getElement() != null) {
                         player.getInventory().getElement().interact(player);
-                    player.getInventory().removeElement();
+                        player.getInventory().removeElement();
+                    }
                     break;
             }
 
