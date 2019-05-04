@@ -14,24 +14,47 @@ and [Ana Margarida](https://github.com/anamargaridarl)
 
 ## Implemented Features
 
-**Move Character -** By pressing the arrow keys your character will move around in the game.
+### Menu
+The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.
 
-**Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.
+To exit the program or to go back to the main menu from the help option the user should press the Q key.
 
+### Game
 
-The person has a backpack to store food and water for later use. There are several option to interact with it: 
+In the game there are many features implemented to interact with the game.
  
- -  **Collect food and water-** By pressing the F key the character will collect those elements to its own backpack for later use
- -   **Use current element** - By pressing the E key the current element int the backpack will be used and the respective value in will be restored to the character health
- -  **Choose diferent elements**- The current element to use in the backpack will be display on the screen. Use the keys Q and W to switch the current element to use by searching left or right of the backpack.
+**Move Character -** By pressing the arrow keys your character will move around in the game.  
+  
+**Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.  
 
-**Quit game** - By pressing Z the game will return to the main menu.
+**Spikes -** When the player passes on top of spikes the character will loose health.
+  
+The character has a backpack to store food and water for later use. There are several option to interact with it:   
+   
+ -  **Collect food and water-** By pressing the F key the character will collect those elements to its own backpack for later use  
+ -   **Use current element** - By pressing the E key the current element int the backpack will be used and the respective value in will be restored to the character health  
+ -  **Choose diferent elements**- The current element to use in the backpack will be display on the screen. Use the keys Q and W to switch the current element to use by searching left or right of the backpack.  
+ 
+**Quit game** - By pressing Z the game will return to the main menu.  
 
-**Help menu** - By pressing the ? key the game will be redirected to a small menu with all the rules of the game. 
+Furthermore when the water or food values of the character reach 0 the health will start to the decrease continually until those levels are restored to a higher value.
+~~Additionally the health value will decrease after a long period of time without~~ 
+
+The game is lost when the character health value reaches 0.
 
 > This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
 
 
+## Architectural Patterns
+
+To structure this project we decided to implement the **MCV (Model-Controller-View)** architectural pattern. 
+As the name implies this pattern divides the structure of the program in three interconnected parts:
+
+ - **Model:** It holds the internal game information, logic and rules and is independent of the user interface
+ - **View:** Represents the visualization of the data that model contains.
+- **Controller:** Exists between the view and the model. It listens to events triggered by the view and executes the appropriate reaction to these events. In most cases, the reaction is to call a method on the model.
+
+The biggest advantage to the MVC design pattern is that it decouples these major components allowing for efficient code reuse and parallel development.
 
 ## Planned Features  
 
