@@ -244,7 +244,7 @@ Furthermore with these design pattern the behavior can be changed without breaki
   <img src="images/pitest-report.png" width="49%" /> 
 </p>
 
-If you'd like to read more about our tests, [click here](./test/index.html)
+If you'd like to read more about our tests, [click here](./test/index.md)
 
 If you'd like to read more about our mutation tests, [click here](./pitest-report/index.md)
 
