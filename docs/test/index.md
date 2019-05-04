@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Test Summary</title>
+<link href="css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<script src="js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Test Summary</h1>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">35</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">2.803s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Packages</a>
+</li>
+<li>
+<a href="#tab1">Classes</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Packages</h2>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Tests</th>
+<th>Failures</th>
+<th>Ignored</th>
+<th>Duration</th>
+<th>Success rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="success">
+<a href="packages/com.lpoo_32.controller.html">com.lpoo_32.controller</a>
+</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>2.504s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="packages/com.lpoo_32.model.html">com.lpoo_32.model</a>
+</td>
+<td>23</td>
+<td>0</td>
+<td>0</td>
+<td>0.099s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="packages/com.lpoo_32.view.html">com.lpoo_32.view</a>
+</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>0.200s</td>
+<td class="success">100%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Tests</th>
+<th>Failures</th>
+<th>Ignored</th>
+<th>Duration</th>
+<th>Success rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.controller.GameControllerTest.html">com.lpoo_32.controller.GameControllerTest</a>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>2.504s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.model.CatchableElementTest.html">com.lpoo_32.model.CatchableElementTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.043s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.model.ElementsTest.html">com.lpoo_32.model.ElementsTest</a>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0.003s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.model.InteractableElementTest.html">com.lpoo_32.model.InteractableElementTest</a>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0.011s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.model.InventoryTest.html">com.lpoo_32.model.InventoryTest</a>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0.011s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.model.MovableElementTest.html">com.lpoo_32.model.MovableElementTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.model.PlayerModelTest.html">com.lpoo_32.model.PlayerModelTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.001s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.model.PositionTest.html">com.lpoo_32.model.PositionTest</a>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0.022s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.model.StatusTest.html">com.lpoo_32.model.StatusTest</a>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0.008s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.view.GameTest.html">com.lpoo_32.view.GameTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.067s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.view.InventoryViewTest.html">com.lpoo_32.view.InventoryViewTest</a>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0.044s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.view.KeyTableTest.html">com.lpoo_32.view.KeyTableTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.059s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.view.ScreenSizeTest.html">com.lpoo_32.view.ScreenSizeTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.010s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.view.StatusBarTest.html">com.lpoo_32.view.StatusBarTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.002s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.view.TerminalElementFactoryTest.html">com.lpoo_32.view.TerminalElementFactoryTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.002s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success"/>
+<a href="classes/com.lpoo_32.view.TerminalKeyboardTest.html">com.lpoo_32.view.TerminalKeyboardTest</a>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.016s</td>
+<td class="success">100%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 4.10.3</a> at May 4, 2019, 10:03:33 PM</p>
+</div>
+</div>
+</body>
+</html>

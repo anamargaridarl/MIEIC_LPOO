@@ -240,7 +240,7 @@ The use of this pattern allows us to:
 Those were exactly the features we were looking for to solve this issue.    
      
      
-### Implementation 
+#### Implementation 
 To implement this pattern we ended up creating a class NourishStatus that extends Status class to implement the functions for the food and water status bars, as well as another for the health status.   
   
 That way, we can associate different behaviours for each type of  
@@ -250,7 +250,7 @@ bar (client).
      <img src="images/Status.png"/>    
  </div>    
      
-### Consequences 
+#### Consequences 
 Now we are able to provide different implementation of behavior to the functions decrease and increase. This way in the water/food status bar when the value reaches zero the health will be decremented to the character until it succeeds in using more food or water and in the health bar the game will be lost.
   
 Furthermore with these design pattern the behavior can be changed without breaking the classes that use it, and the classes can switch between behaviors by changing the specific implementation used without requiring any significant code changes.
@@ -258,15 +258,80 @@ Furthermore with these design pattern the behavior can be changed without breaki
 
 ## Known Code Smells and Refactoring Suggestions
 
+### Long Method
+#### Problem
+The class TerminalKeyboard processing of a specific key is indeed 
+what is considered a very long method. Even if the 
+switch statement could be also be seen as an **OOP  Abuser**, it 
+would be impossible to interpret the keyboard without using such
+a design.
+
+#### Solution
+Due to its necessity to parse which key has been pressed,
+it is unfortunately necessary to maintain some of its length.
+ 
+Notwithstanding, it is still possible to use the **Extract Inline Method**, to take off 
+some of its length, more specifically, extracting the zone where a character
+is parsed, which is a nested switch inside another switch.
+
+
+### Data Class
+
+#### Problem
+Our current Elements class is a class which only purpose is to provide a better interface
+in order to access its data. It applies absolutely no internal logic as of right now.
+
+#### Solution
+Due to its nature of storing elements in their positions, in due time, this class
+shall implement some logic, more specifically with elements in duplicate positions,
+which will be one of our short-term concerns.
+
+### Shotgun Surgery
+#### Problem
+The current Game has a method of displaying that is dependent on
+a current value assigned to movement. At the time of writing of this report,
+each player movement is equivalent to a movement of 4% of the screen. 
+
+If, for some reason, there was the need to change this value, it would result in changes
+to **several** classes: Game, Position, GameController, etc.
+
+#### Solution
+The **Extract Variable** method should be used in order to make this more efficient,
+being that the one who controls this information, should pass it down to all the other
+classes, being that a change is only needed to be done in one place for it ripple onto 
+all other classes.
+
+
+### Middle Man
+#### Problem
+The class KeyTable only serves as an access point to help us 
+insert more easily information onto our Table from the **lanterna**
+framework. It does no sort of logic at all.
+
+#### Solution
+To remove such a class, whose needs is not that big, and substitute
+it with a method inside the Menu class. Since its purpose its only
+to provide more readability into the code, there's no need for
+it to be decoupled into a different class.
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
 
 ## Testing Results
+
+<p float="left">
+  <img src="images/test-report.png" width="49%" />
+  <img src="images/pitest-report.png" width="49%" /> 
+</p>
+
+If you'd like to read more about our tests, [click here](./test/index.md)
+
+If you'd like to read more about our mutation tests, [click here](./pitest-report/index.md)
 
 > This section should contain screenshots of the main results of both the test coverage and mutation testing reports. It should also contain links to those reports in HTML format (you can copy the reports to the docs folder).
 
 ## Self-evaluation
 
 Ana Margarida: 
+
 André Rocha: 
 
 > In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
