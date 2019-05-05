@@ -28,7 +28,7 @@ public class Position {
 
     public void moveUp() throws UpScreen {
 
-        if(this.y - 1 > this.heightIndex * height)
+        if(this.y - 1 >= this.heightIndex * height)
             this.y --;
         else
             throw new UpScreen();
@@ -36,7 +36,7 @@ public class Position {
 
     public void moveLeft() throws LeftScreen {
 
-        if(this.x - 1 > this.widthIndex * width)
+        if(this.x - 1 >= this.widthIndex * width)
             this.x--;
         else
             throw new LeftScreen();

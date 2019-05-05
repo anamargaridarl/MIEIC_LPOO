@@ -103,25 +103,21 @@ public class GameController
             if(this.game.getIndex()%3  != 2){
                 this.game.setIndex(this.game.getIndex() + 1);
                 this.player.getPosition().setIndex(this.game.getIndex());
-                this.player.moveRight();
             }
         } catch (LeftScreen leftScreen) {
             if(this.game.getIndex()%3  != 0){
                 this.game.setIndex(this.game.getIndex() - 1);
                 this.player.getPosition().setIndex(this.game.getIndex());
-                this.player.moveLeft();
             }
         } catch (UpScreen upScreen) {
             if(this.game.getIndex() - 3  >= 0){
                 this.game.setIndex(this.game.getIndex() - 3);
                 this.player.getPosition().setIndex(this.game.getIndex());
-                this.player.moveUp();
             }
         } catch (DownScreen downScreen) {
             if(this.game.getIndex() + 3  < 9){
                 this.game.setIndex(this.game.getIndex() + 3);
                 this.player.getPosition().setIndex(this.game.getIndex());
-                this.player.moveDown();
             }
         }
     }

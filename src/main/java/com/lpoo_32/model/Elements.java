@@ -11,9 +11,9 @@ public class Elements {
 
     public Elements() {
         this.elements = new ArrayList<>();
-        for(int i = 0; i < 45; i++){
+        for(int i = 0; i <= 45; i++){
             elements.add(new ArrayList<>());
-            for(int j = 0; j < 36; j++){
+            for(int j = 0; j <= 36; j++){
                 elements.get(i).add(null);
             }
         }
