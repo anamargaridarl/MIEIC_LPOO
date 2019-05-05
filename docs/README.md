@@ -12,36 +12,35 @@ Developed by [André Rocha](https://github.com/andrefmrocha)
 and [Ana Margarida](https://github.com/anamargaridarl)
 
 
-## Implemented Features
-
-### Menu
-The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.
-
-To exit the program or to go back to the main menu from the help option the user should press the Q key.
-### Game  
+## Implemented Features  
   
-In the game there are many features implemented to interact with the game.  
-   
-**Move Character -** By pressing the arrow keys your character will move around in the game. 
-    
-**Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.    
+### Menu  
+The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.  
   
-**Spikes -** When the player passes on top of spikes the character will lose health.  
-    
-The character has a backpack to store food and water for later use. There are several option to interact with it:     
+To exit the program or to go back to the main menu from the help option the user should press the Q key.  
+### Game    
+ In the game there are many features implemented to interact with the game.    
      
- -  **Collect food and water-** By pressing the F key the character will collect those elements to its own backpack for later use    
- -   **Use current element** - By pressing the E key the current element int the backpack will be used and the respective value in will be restored to the character health    
- -  **Choose diferent elements**- The current element to use in the backpack will be display on the screen. Use the keys Q and W to switch the current element to use by searching left or right of the backpack.    
-   
-**Quit game** - By pressing Z the game will return to the main menu.   
-
-  **Map -**  The game has a bigger map than what is seen each time on the screen. This means that when the player reaches the limits of the board it will change to the next part of the map and will be allocated to the spot it was trying to access. 
-   
+**Move Character -** By pressing the arrow keys your character will move around in the game.   
+      
+**Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.      
+    
+**Spikes -** When the player passes on top of spikes the character will lose health.    
+      
+The character has a backpack to store food and water for later use. There are several option to interact with it:       
+       
+ -  **Collect food and water-** By pressing the F key the character will collect those elements to its own backpack for later use      
+ -   **Use current element** - By pressing the E key the current element int the backpack will be used and the respective value in will be restored to the character health      
+ -  **Choose diferent elements**- The current element to use in the backpack will be display on the screen. Use the keys Q and W to switch the current element to use by searching left or right of the backpack.      
+     
+**Quit game** - By pressing Z the game will return to the main menu.     
   
-Furthermore when the water or food values of the character reach 0 the health will start to the decrease continually until those levels are restored to a higher value.  
-~~Additionally the health value will decrease after a long period of time without~~   
-  
+**Map -** The game has a bigger map than what is seen each time on the screen. This means that when the player reaches the limits of the board it will change to the next part of the map and will be allocated to the spot it was trying to access.   
+     
+    
+Furthermore when the water or food values of the character reach 0 the health will start to the decrease continually until those levels are restored to a higher value.    
+Additionally the health value will cyclically decrease by a time frame.
+    
 The game is lost when the character health value reaches 0.
 
 <div style="text-align:center">
