@@ -42,6 +42,19 @@ Furthermore when the water or food values of the character reach 0 the health wi
 
 The game is lost when the character health value reaches 0.
 
+<div style="text-align:center">
+    <img src="images/GameImage.png"/>
+</div>
+
+<div style="text-align:center">
+    <img src="images/MenuImage.png"/>
+</div>
+
+<div style="text-align:center">
+    <img src="images/HelpmenuImage.png"/>
+</div>
+
+
 > This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
 
 
@@ -68,21 +81,30 @@ The monster will be divided in two class similarly to other elements in the game
 - one class holds the information of the monsters like their position and the amount of health they can take to the player - **MonsterModel** -  and implements the ElementModel interface;
 -  another class draws the monster on the screen -  **MonsterView** -  and implements the Element View interface as well as following the command pattern implemented for the draw function.
 
+
+### **Buildings**
+
+
+<div style="text-align:center">
+    <img src="images/plannedfeature.png"/>
+</div>
+
 ### **Game Over**
 
 We'll add a "Game Over" screen whenever the player looses the game. The screen will be built into a class in the graphic part of the game - **GameOver** .
 
+<div style="text-align:center">
+    <img src="images/plannedfeature4.png"/>
+</div>
 
 ### **Help Screen**
 
 We want to add a screen that shows all the game instructions and options so the player can consult it in the middle of the game. That way the game will pause and the screen will be shown. Furthermore by pressing the same key that opened this help menu the player can return to the game.
 Just like the "game over" screen we'll built into a class in the graphic part of the game - **HelpView**.
 
-### **Buildings**
-
-### **Graphic ambient**
-
-We'll intend to do the necessary modifications to include the new graphical ambient **Swing** since will have much more tools to develop a much better graphic design.
+<div style="text-align:center">
+    <img src="images/plannedfeature4.png"/>
+</div>
 
 ### **Other improvements**
 
@@ -91,6 +113,14 @@ For start the each of the Interactable Elements will be divided in smaller categ
  - the food will be divided in different elements like **meat**, **vegetables** and **fruit**;
  - the water will be divided into **water** and **milk**;
  - the spikes will be divided into **rocks** and **lava**;
+ 
+ <div style="text-align:center">
+     <img src="images/plannedfeature2.png"/>
+ </div>
+
+### **Graphic ambient**
+
+We'll intend to do the necessary modifications to include the new graphical ambient **Swing** so we can develop a better graphic design.
 
 > This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 
