@@ -26,7 +26,7 @@ In the game there are many features implemented to interact with the game.
     
 **Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.    
   
-**Spikes -** When the player passes on top of spikes the character will loose health.  
+**Spikes -** When the player passes on top of spikes the character will lose health.  
     
 The character has a backpack to store food and water for later use. There are several option to interact with it:     
      
@@ -48,32 +48,30 @@ The game is lost when the character health value reaches 0.
     <img src="images/GameImage.png"/>
 </div>
 
-<div style="text-align:center">
-    <img src="images/MenuImage.png"/>
-</div>
-
-<div style="text-align:center">
-    <img src="images/HelpmenuImage.png"/>
-</div>
+<p float="left">
+  <img src="images/MenuImage.png" width="49%" />
+  <img src="images/HelpmenuImage.png" width="49%" /> 
+</p>
 
 
 > This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
 
 
-## Architectural Patterns
+## Architectural Pattern
 
-To structure this project we decided to implement the **MCV (Model-Controller-View)** architectural pattern. 
+To structure this project we decided to implement the **MVC (Model-View-Controller)** architectural pattern. 
 As the name implies this pattern divides the structure of the program in three interconnected parts:
 
- - **Model:** It holds the internal game information, logic and rules and is independent of the user interface
+ - **Model:** It holds the internal game information, rules and is independent of the user interface
  - **View:** Represents the visualization of the data that model contains.
-- **Controller:** Exists between the view and the model. It listens to events triggered by the view and executes the appropriate reaction to these events. In most cases, the reaction is to call a method on the model.
+- **Controller:** Exists between the view and the model. It listens to events triggered by the view and executes the appropriate reaction to these events. In most cases, the reaction will change the model and its display
+  under view.
 
-The biggest advantage to the MVC design pattern is that it decouples these major components allowing for efficient code reuse and parallel development.
+The biggest advantage in the MVC architectural pattern is that it decouples these major components allowing for efficient code reuse and parallel development.
 
 ## Planned Features  
 
-To further improve this game we intend to add several improvements to the project until the next delivery.
+We intend to add several improvements to the project until the next delivery. Below, there are some example features.
 
 ### **Monsters**
 
@@ -97,7 +95,7 @@ We also plan to add building in our game. These elements will serve as a hiding 
 We'll add a "Game Over" screen whenever the player looses the game. The screen will be built into a class in the graphic part of the game - **GameOver** .
 
 <div style="text-align:center">
-    <img src="images/plannedfeature4.png"/>
+    <img src="images/plannedfeatures4.png"/>
 </div>
 
 ### **Help Screen**
@@ -106,7 +104,7 @@ We want to add a screen that shows all the game instructions and options so the 
 Just like the "game over" screen we'll built into a class in the graphic part of the game - **HelpView**.
 
 <div style="text-align:center">
-    <img src="images/plannedfeature4.png"/>
+    <img src="images/plannedfeatures3.png"/>
 </div>
 
 ### **Other improvements**
@@ -355,9 +353,9 @@ it to be decoupled into a different class.
   <img src="images/pitest-report.png" width="49%" /> 
 </p>
 
-If you'd like to read more about our tests, [click here](./test/index.md)
+If you'd like to read more about our tests, [click here](https://lpoo-32-test-report.surge.sh/)
 
-If you'd like to read more about our mutation tests, [click here](./pitest-report/index.md)
+If you'd like to read more about our mutation tests, [click here](https://lpoo-32-pitest-report.surge.sh/)
 
 > This section should contain screenshots of the main results of both the test coverage and mutation testing reports. It should also contain links to those reports in HTML format (you can copy the reports to the docs folder).
 
