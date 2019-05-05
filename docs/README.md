@@ -49,7 +49,7 @@ The game is lost when the character health value reaches 0.
 
 <p float="left">
   <img src="images/MenuImage.png" width="49%" />
-  <img src="images/HelpmenuImage.png" width="49%" /> 
+  <img src="images/helpMenuImage.png" width="49%" /> 
 </p>
 
 
