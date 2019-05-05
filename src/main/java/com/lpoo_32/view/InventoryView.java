@@ -55,7 +55,7 @@ public class InventoryView implements ElementView {
 
     String getName() {
         if(inventory.getView() == null)
-            return "";
+            return "backpack";
 
         return inventory.getView().getName();
     }

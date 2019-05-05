@@ -65,9 +65,9 @@ public class Game extends Display{
     private void setInitialProps(){
         this.generalView.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
         this.generalView.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
-        this.generalView.add(new StatusBar(player.getPlayer().getWater(), "#87CEFA", 18));
+        this.generalView.add(new StatusBar(player.getPlayer().getWater(), "#66ccff", 18));
         this.generalView.add(this.player);
-        this.generalView.add(new InventoryView(this.player.getPlayer().getInventory(), "#99FFCC"));
+        this.generalView.add(new InventoryView(this.player.getPlayer().getInventory(), "#91c474"));
     }
 
 

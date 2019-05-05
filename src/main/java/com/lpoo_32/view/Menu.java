@@ -28,7 +28,7 @@ public class Menu extends Display {
         super(terminal);
         Panel mainPanel = createMainMenu();
         this.addOptions();
-        this.gui = new MultiWindowTextGUI(this.screen, new DefaultWindowManager(), new EmptySpace(TextColor.ANSI.MAGENTA));
+        this.gui = new MultiWindowTextGUI(this.screen, new DefaultWindowManager(), new EmptySpace(TextColor.ANSI.GREEN));
         Window mainWindow = createWindow(mainPanel);
         mainWindow.addWindowListener(new MenuKeyListener());
         this.gui.addWindowAndWait(mainWindow);
@@ -53,9 +53,16 @@ public class Menu extends Display {
         TextBox textBox = new TextBox(size, "You move around with your arrow keys");
         KeyTable table = new KeyTable();
         table.addComand("Arrows", "Movement");
-        table.addComand("Q", "Move Back");
-        table.addComand("P", "Take you own Health(why would you do that?!)");
-        Panel hintPanel = new Panel();
+        table.addComand("Q", "Move Back / Exit program");
+        table.addComand("Z", "Quit game");
+        table.addComand("T", "Use food/water from the ground");
+        table.addComand("F", "Pick food/water into the inventory");
+        table.addComand("E", "Use current element in the inventory");
+        table.addComand("Q/W", "Move Left/Right in the inventory");
+
+
+
+              Panel hintPanel = new Panel();
         hintPanel.addComponent(table);
         return getPanel(hintPanel);
     }
@@ -81,7 +88,7 @@ public class Menu extends Display {
     }
 
     private void addOptions(){
-        this.listBox.addItem("Meias", () -> System.out.println("MEIAAAAS")).addTo(this.mainPanel);
+
         this.listBox.addItem("Start", ()-> {
             try {
                 PlayerModel model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
