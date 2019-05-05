@@ -9,7 +9,7 @@ defend yourself from all the enemies on the map, whose purpose
 is to defeat you.
 
 Developed by [André Rocha](https://github.com/andrefmrocha)
-and [Ana Margarida](https://github.com/anamargaridarl)
+and [Ana Loureiro](https://github.com/anamargaridarl)
 
 
 ## Implemented Features  
@@ -53,7 +53,6 @@ The game is lost when the character health value reaches 0.
 </p>
 
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
 
 
 ## Architectural Pattern
@@ -122,7 +121,6 @@ For start the each of the Interactable Elements will be divided in smaller categ
 
 We'll intend to do the necessary modifications to include the new graphical ambient **Swing** so we can develop a better graphic design.
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 
 ## Design
 
@@ -284,7 +282,6 @@ bar (client).
 Now we are able to provide different implementation of behavior to the functions decrease and increase. This way in the water/food status bar when the value reaches zero the health will be decremented to the character until it succeeds in using more food or water and in the health bar the game will be lost.
   
 Furthermore with these design pattern the behavior can be changed without breaking the classes that use it, and the classes can switch between behaviors by changing the specific implementation used without requiring any significant code changes.
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
 ## Known Code Smells and Refactoring Suggestions
 
@@ -343,7 +340,6 @@ To remove such a class, whose needs is not that big, and substitute
 it with a method inside the Menu class. Since its purpose its only
 to provide more readability into the code, there's no need for
 it to be decoupled into a different class.
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
 
 ## Testing Results
 
@@ -356,12 +352,24 @@ If you'd like to read more about our tests, [click here](https://lpoo-32-test-re
 
 If you'd like to read more about our mutation tests, [click here](https://lpoo-32-pitest-report.surge.sh/)
 
-> This section should contain screenshots of the main results of both the test coverage and mutation testing reports. It should also contain links to those reports in HTML format (you can copy the reports to the docs folder).
 
 ## Self-evaluation
+The following enumeration of the features developed by each
+of the students is not a favorable metric to measure the 
+work by each student. Yet as requested:
 
-Ana Margarida: 
+ - Ana Loureiro (50%): 
+    - Catchable Elements
+    - Inventory
+    - Game Controller
+    - Player
+    - Interactable Element
 
-André Rocha: 
+ - André Rocha (50%): 
+    - Main Menu
+    - Health and Nourishment Status Bar
+    - Map Movement
+    - Help Menu
+    - Movable Element
+    - ScreenSize
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
