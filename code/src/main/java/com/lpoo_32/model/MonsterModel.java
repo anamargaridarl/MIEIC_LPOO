@@ -6,10 +6,12 @@ import com.lpoo_32.exceptions.*;
 public class MonsterModel extends InteractableElement {
 
     private MovableElement movable;
+    int number;
 
     public MonsterModel(Position pos, int value, MovableElement movable) {
         super(pos, value);
         this.movable = movable;
+        this.number = 0;
     }
 
     @Override
@@ -31,6 +33,20 @@ public class MonsterModel extends InteractableElement {
 
     public void moveRight() throws RightScreen {
         movable.moveRight();
+    }
+
+    public void update() {
+
+        this.number++;
+
+        if (number == 60) {
+            try {
+                this.moveUp();
+                number = 0;
+            } catch (Exception e) {
+                number--;
+            }
+        }
     }
 
 

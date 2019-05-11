@@ -18,6 +18,8 @@ public class MonsterView extends InteractableElementView {
     @Override
     public void draw(TextGraphics graphics) {
 
+        this.monster.update();
+
         graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
 
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
