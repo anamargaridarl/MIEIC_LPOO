@@ -18,14 +18,16 @@ public class Game extends Display{
     private int index;
     private TextGraphics graphics;
     private PlayerView player;
+    private MonsterView monster;
     public static final int width = 60;
     public static final int height = 50;
 
-    public Game(DisplayProps props, PlayerModel player, Elements elements) {
+    public Game(DisplayProps props, PlayerModel player, Elements elements, MonsterModel monster) throws OutOfBoundaries {
         super(props.getScreen());
         this.generalView = new LinkedList<>();
         this.index = 0;
         this.player = new PlayerView(player);
+        this.monster = new MonsterView(monster);
         this.elements = elements;
         this.graphics =  this.screen.newTextGraphics();
         this.setInitialProps();

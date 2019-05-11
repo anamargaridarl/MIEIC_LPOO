@@ -9,6 +9,7 @@ import com.lpoo_32.controller.SecondaryMenuKeyListener;
 import com.lpoo_32.controller.MenuKeyListener;
 import com.lpoo_32.exceptions.OutOfBoundaries;
 import com.lpoo_32.model.Elements;
+import com.lpoo_32.model.MonsterModel;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 

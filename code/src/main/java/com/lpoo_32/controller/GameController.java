@@ -11,6 +11,7 @@ public class GameController
 {
     private final Game game;
     private PlayerModel player;
+    private MonsterModel monster;
     private Elements elements;
     private TerminalKeyboard keyboardProcessor;
     private boolean hunger;
@@ -26,7 +27,7 @@ public class GameController
         this.hunger = false;
         this.thirst = false;
         this.populateGame(Game.width/4, Game.height/4);
-        this.game = new Game(props, this.player, elements);
+        this.game = new Game(props, this.player, elements, monster);
     }
 
     void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
