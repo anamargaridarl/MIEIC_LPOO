@@ -7,13 +7,14 @@ import com.lpoo_32.view.ScreenSize;
 
 import java.util.Objects;
 
-public class Position {
-    private int x;
-    private int y;
-    private int heightIndex;
-    private int widthIndex;
-    private final int width;
-    private final int height;
+public abstract class Position {
+
+    protected int x;
+    protected int y;
+    protected int heightIndex;
+    protected int widthIndex;
+    protected final int width;
+    protected final int height;
 
     public Position(int x, int y, int width, int height, int index) throws OutOfBoundaries {
         this.x = x;
@@ -26,37 +27,13 @@ public class Position {
         this.widthIndex = index%3;
     }
 
-    public void moveUp() throws UpScreen {
+    public abstract void moveUp() throws UpScreen;
 
-        if(this.y - 1 >= this.heightIndex * height)
-            this.y --;
-        else
-            throw new UpScreen();
-    }
+    public abstract void moveLeft() throws LeftScreen;
 
-    public void moveLeft() throws LeftScreen {
+    public abstract void moveDown()  throws DownScreen ;
 
-        if(this.x - 1 >= this.widthIndex * width)
-            this.x--;
-        else
-            throw new LeftScreen();
-    }
-
-    public void moveDown() throws DownScreen {
-
-        if(this.y + 1 <= this.height * (heightIndex + 1))
-            this.y++;
-        else
-            throw new DownScreen();
-    }
-
-    public void moveRight() throws RightScreen {
-
-        if(this.x + 1 <= this.width * (widthIndex + 1))
-            this.x++;
-        else
-            throw new RightScreen();
-    }
+    public abstract void moveRight()  throws RightScreen;
 
     public int getX() {
         return x;

@@ -25,8 +25,14 @@ public class GameController
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
         this.hunger = false;
         this.thirst = false;
-        this.populateGame(Game.width/4, Game.height/4);
+        this.populateGame(Game.width/4, Game.height/4,getRandomIndex());
         this.game = new Game(props, this.player, elements);
+    }
+
+    int getRandomIndex()
+    {
+        Random random = new Random();
+        return random.nextInt(9);
     }
 
     void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
@@ -156,15 +162,16 @@ public class GameController
     }
 
 
-    private void populateGame(int width, int height) throws OutOfBoundaries {
+    private void populateGame(int width, int height, int indexGame) throws OutOfBoundaries {
         Random random = new Random();
         TerminalElementFactory factory = new TerminalElementFactory();
         ElementType[] types = ElementType.values();
         for(int i = 0; i < 50; i++){
+
             int x = random.nextInt(width * 3);
             int y = random.nextInt(height * 3);
             int index = (x/width) + (y/height) * 3;
-            Position pos = new Position(x, y, width, height, index);
+            Position pos = new InteractablePosition(x, y, width, height, index,indexGame);
             InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos, this);
             try {
                 this.elements.addElement(element);

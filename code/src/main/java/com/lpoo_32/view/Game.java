@@ -18,7 +18,6 @@ public class Game extends Display{
     private int index;
     private TextGraphics graphics;
     private PlayerView player;
-    private MonsterView monster;
     public static final int width = 60;
     public static final int height = 50;
 

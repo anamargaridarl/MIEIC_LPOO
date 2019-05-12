@@ -9,10 +9,7 @@ import com.lpoo_32.controller.SecondaryMenuKeyListener;
 import com.lpoo_32.controller.MenuKeyListener;
 import com.lpoo_32.exceptions.OccupiedElement;
 import com.lpoo_32.exceptions.OutOfBoundaries;
-import com.lpoo_32.model.Elements;
-import com.lpoo_32.model.MonsterModel;
-import com.lpoo_32.model.PlayerModel;
-import com.lpoo_32.model.Position;
+import com.lpoo_32.model.*;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -93,7 +90,7 @@ public class Menu extends Display {
 
         this.listBox.addItem("Start", ()-> {
             try {
-                PlayerModel model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
+                PlayerModel model = new PlayerModel(new PlayerPosition(2,2, Game.width/4, Game.height/4, 0));
                 GameController gameController = new GameController(new DisplayProps(screen), new Elements(), model);
                 gameController.run();
             } catch (IOException | OutOfBoundaries e) {
