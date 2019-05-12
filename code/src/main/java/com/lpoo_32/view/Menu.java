@@ -7,6 +7,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.lpoo_32.controller.GameController;
 import com.lpoo_32.controller.SecondaryMenuKeyListener;
 import com.lpoo_32.controller.MenuKeyListener;
+import com.lpoo_32.exceptions.OccupiedElement;
 import com.lpoo_32.exceptions.OutOfBoundaries;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.MonsterModel;
@@ -97,6 +98,8 @@ public class Menu extends Display {
                 gameController.run();
             } catch (IOException | OutOfBoundaries e) {
                 e.printStackTrace();
+            } catch (OccupiedElement occupiedElement) {
+                occupiedElement.printStackTrace();
             }
         }).addTo(this.mainPanel);
         this.listBox.addItem("Help", ()->{

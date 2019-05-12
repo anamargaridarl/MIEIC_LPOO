@@ -4,6 +4,7 @@ import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.MonsterModel;
 
 public class MonsterView extends InteractableElementView {
@@ -16,9 +17,11 @@ public class MonsterView extends InteractableElementView {
     }
 
     @Override
-    public void draw(TextGraphics graphics) {
+    public void draw(TextGraphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen {
 
-        this.monster.update();
+            this.monster.updateMove(this);
+
+
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
 

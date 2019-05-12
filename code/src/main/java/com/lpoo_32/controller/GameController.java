@@ -11,7 +11,6 @@ public class GameController
 {
     private final Game game;
     private PlayerModel player;
-    private MonsterModel monster;
     private Elements elements;
     private TerminalKeyboard keyboardProcessor;
     private boolean hunger;
@@ -20,14 +19,14 @@ public class GameController
     private int time;
 
 
-    public GameController(DisplayProps props, Elements elements, PlayerModel player) throws OutOfBoundaries {
+    public GameController(DisplayProps props, Elements elements, PlayerModel player) throws OutOfBoundaries, OccupiedElement {
         this.player = player;
         this.elements = elements;
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
         this.hunger = false;
         this.thirst = false;
         this.populateGame(Game.width/4, Game.height/4);
-        this.game = new Game(props, this.player, elements, monster);
+        this.game = new Game(props, this.player, elements);
     }
 
     void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
@@ -137,7 +136,6 @@ public class GameController
     }
 
     public void run() throws IOException {
-        this.game.draw();
 
         //isto parece shady; ter um ciclo infinito a para com uma exceçao
         this.time = 0;
@@ -167,8 +165,13 @@ public class GameController
             int y = random.nextInt(height * 3);
             int index = (x/width) + (y/height) * 3;
             Position pos = new Position(x, y, width, height, index);
-            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos);
-            this.elements.addElement(element);
+            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos, this);
+            try {
+                this.elements.addElement(element);
+            }catch(OccupiedElement e)
+            {
+                System.out.println("repetido");
+            }
         }
     }
 
@@ -178,13 +181,27 @@ public class GameController
         this.elements.removeElement(element);
     }
 
+    public void addElementProps(InteractableElementView element) throws OccupiedElement {
+
+            this.elements.addElement(element);
+    }
+
     //verify that model element in the position is catchable
     private boolean isCatchable(Position position) {
 
-        if (elements.getView(position) != null)
+        if (elements.getView(position) != null) {
             return elements.getModel(position) instanceof CatchableElement;
+        }
         else
             return false;
+
+    }
+
+    public void checkCollisionMonster(Position position) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored {
+
+        if(player.getPosition().equals(position)){
+            elements.getModel(player.getPosition()).interact(player);
+        }
 
     }
 
@@ -193,10 +210,11 @@ public class GameController
     //handles colisions for non catchable elements
     public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF { //TODO: Mo {
 
-        if (elements.getView(position) != null && !(isCatchable(position))) {
+        if (elements.getView(position) != null && !(isCatchable(position)) && !(elements.getView(position) instanceof MonsterView)) {
             elements.getModel(position).interact(player);
         }
     }
+
 
     void setTime(int time){
         this.time = time;

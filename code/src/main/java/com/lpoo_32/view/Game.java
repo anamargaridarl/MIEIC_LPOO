@@ -22,12 +22,11 @@ public class Game extends Display{
     public static final int width = 60;
     public static final int height = 50;
 
-    public Game(DisplayProps props, PlayerModel player, Elements elements, MonsterModel monster) throws OutOfBoundaries {
+    public Game(DisplayProps props, PlayerModel player, Elements elements) throws OutOfBoundaries {
         super(props.getScreen());
         this.generalView = new LinkedList<>();
         this.index = 0;
         this.player = new PlayerView(player);
-        this.monster = new MonsterView(monster);
         this.elements = elements;
         this.graphics =  this.screen.newTextGraphics();
         this.setInitialProps();
@@ -35,7 +34,7 @@ public class Game extends Display{
 
 
     @Override
-    public void draw() throws IOException {
+    public void draw() throws IOException, HungerOVF, HungerRestored, ThirstOVF, HealthOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen {
         this.screen.clear();
 
 

@@ -35,4 +35,6 @@ abstract public class InteractableElement implements ElementModel {
         InteractableElement p = (InteractableElement) o;
         return getPos() == p.getPos();
     }
+
+
 }

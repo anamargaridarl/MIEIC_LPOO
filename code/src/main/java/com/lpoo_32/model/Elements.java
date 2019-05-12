@@ -1,5 +1,6 @@
 package com.lpoo_32.model;
 
+import com.lpoo_32.exceptions.OccupiedElement;
 import com.lpoo_32.view.InteractableElementView;
 
 import java.util.ArrayList;
@@ -19,9 +20,12 @@ public class Elements {
         }
     }
 
-    public void addElement(InteractableElementView a) //TODO:verify if elements are added in same position
+    public void addElement(InteractableElementView a) throws OccupiedElement //TODO:verify if elements are added in same position
     {
-        elements.get(a.getElement().getPos().getX()).set(a.getElement().getPos().getY(), a);
+        if(elements.get(a.getElement().getPos().getX()).get(a.getElement().getPos().getY()) == null)
+            elements.get(a.getElement().getPos().getX()).set(a.getElement().getPos().getY(), a);
+        else
+            throw new OccupiedElement();
     }
 
     public InteractableElementView getView(Position position)
