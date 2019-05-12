@@ -35,16 +35,20 @@ public class GameController
         if(event != EventType.NULL && event != null){
             switch (event) {
                 case MOVEUP:
-                    player.moveUp();
+                    if(this.collisions(player.getPosition().checkMovementUp()))
+                        player.moveUp();
                     break;
                 case MOVEDOWN:
-                    player.moveDown();
+                    if(this.collisions(player.getPosition().checkMovementDown()))
+                        player.moveDown();
                     break;
                 case MOVELEFT:
-                    player.moveLeft();
+                    if(this.collisions(player.getPosition().checkMovementLeft()))
+                        player.moveLeft();
                     break;
                 case MOVERIGHT:
-                    player.moveRight();
+                    if(this.collisions(player.getPosition().checkMovementRight()))
+                        player.moveRight();
                     break;
                 case EXIT:
                     throw new ScreenClose();
@@ -81,7 +85,6 @@ public class GameController
                     break;
             }
 
-            this.collisions(player.getPosition());
         }
     }
 
@@ -190,11 +193,12 @@ public class GameController
 
 
     //handles colisions for non catchable elements
-    public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF { //TODO: Mo {
+    private boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF {
 
         if (elements.getView(position) != null && !(isCatchable(position))) {
-            elements.getModel(position).interact(player);
+            return elements.getModel(position).interact(player);
         }
+        return true;
     }
 
     void setTime(int time){

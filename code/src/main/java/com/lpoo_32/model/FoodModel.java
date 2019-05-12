@@ -1,6 +1,5 @@
 package com.lpoo_32.model;
 
-import com.googlecode.lanterna.Symbols;
 import com.lpoo_32.exceptions.HungerRestored;
 import com.lpoo_32.exceptions.ThirstRestored;
 
@@ -12,11 +11,12 @@ public class FoodModel extends CatchableElement {
 
 
     @Override
-    public void interact(PlayerModel player) throws HungerRestored, ThirstRestored {
+    public boolean interact(PlayerModel player) throws HungerRestored, ThirstRestored {
         //TODO: Add some percentage value to it?
         player.getHealth().increaseValue(this.getValue());
         player.getFood().increaseValue(this.getValue());
         player.getWater().increaseValue(this.getValue());
+        return true;
     }
 
     @Override

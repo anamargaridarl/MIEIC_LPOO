@@ -28,6 +28,7 @@ public class PlayerView implements ElementView {
                 new TerminalSize(1, 1),
                 Symbols.DIAMOND
         );
+
     }
 
     public PlayerModel getPlayer()
