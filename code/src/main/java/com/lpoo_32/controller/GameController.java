@@ -13,8 +13,8 @@ public class GameController
     private PlayerModel player;
     private Elements elements;
     private TerminalKeyboard keyboardProcessor;
-    private boolean hunger;
-    private boolean thirst;
+    private NourishState hunger;
+    private NourishState thirst;
     private static final int frameRate = 60;
     private int time;
 
@@ -23,8 +23,8 @@ public class GameController
         this.player = player;
         this.elements = elements;
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
-        this.hunger = false;
-        this.thirst = false;
+        this.hunger = new SatedState(player);
+        this.thirst = new NotThirstyState(player);
         this.populateGame(Game.width/4, Game.height/4);
         this.game = new Game(props, this.player, elements);
     }
@@ -92,13 +92,14 @@ public class GameController
             Thread.sleep(1000/ frameRate);
             updateNourishment();
         } catch (HungerRestored hungerRestored) {
-            this.hunger = false;
+            this.hunger = new SatedState(player);
+
         } catch (HungerOVF nourishOVF) {
-            this.hunger = true;
+            this.hunger = new FamishState(player);
         } catch (ThirstRestored thirstRestored) {
-            this.thirst = false;
+            this.thirst = new NotThirstyState(player);
         } catch (ThirstOVF thirstOVF) {
-            this.thirst = true;
+            this.thirst = new FamishState(player);
         } catch (RightScreen rightScreen) {
             if(this.game.getIndex()%3  != 2){
                 this.game.setIndex(this.game.getIndex() + 1);
@@ -124,15 +125,8 @@ public class GameController
 
     private void updateNourishment() throws HungerOVF, ThirstOVF, HealthOVF {
         time++;
-        if(time % (3600) == 0) {
-            this.player.getWater().decreaseValue(5);
-        }
-
-        if(time % (5400.0) == 0) {
-            this.player.getFood().decreaseValue(5);
-        }
-        if((this.hunger || this.thirst) && ((time % 120) == 0))
-            this.player.getHealth().decreaseValue(5);
+        this.thirst.update(time);
+        this.hunger.update(time);
     }
 
     public void run() throws IOException {
