@@ -11,8 +11,8 @@ public class SatedState extends NourishState {
 
     @Override
     public void update(int time) throws HungerOVF, HealthOVF, ThirstOVF {
-        if ((time % 120) == 0) {
-            this.player.getHealth().decreaseValue(5);
+        if(time % (5400.0) == 0) {
+            this.player.getFood().decreaseValue(5);
         }
     }
 }

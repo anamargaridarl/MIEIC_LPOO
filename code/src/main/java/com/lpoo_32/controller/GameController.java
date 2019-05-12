@@ -24,7 +24,7 @@ public class GameController
         this.elements = elements;
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
         this.hunger = new SatedState(player);
-        this.thirst = new NotThirstyState(player);
+        this.thirst = new QuenchedState(player);
         this.populateGame(Game.width/4, Game.height/4);
         this.game = new Game(props, this.player, elements);
     }
@@ -93,11 +93,10 @@ public class GameController
             updateNourishment();
         } catch (HungerRestored hungerRestored) {
             this.hunger = new SatedState(player);
-
         } catch (HungerOVF nourishOVF) {
             this.hunger = new FamishState(player);
         } catch (ThirstRestored thirstRestored) {
-            this.thirst = new NotThirstyState(player);
+            this.thirst = new QuenchedState(player);
         } catch (ThirstOVF thirstOVF) {
             this.thirst = new FamishState(player);
         } catch (RightScreen rightScreen) {

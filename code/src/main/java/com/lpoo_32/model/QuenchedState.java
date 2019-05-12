@@ -4,8 +4,8 @@ import com.lpoo_32.exceptions.HealthOVF;
 import com.lpoo_32.exceptions.HungerOVF;
 import com.lpoo_32.exceptions.ThirstOVF;
 
-public class NotThirstyState extends NourishState {
-    public NotThirstyState(PlayerModel player) {
+public class QuenchedState extends NourishState {
+    public QuenchedState(PlayerModel player) {
         super(player);
     }
 
