@@ -51,6 +51,8 @@ public class MonsterModel extends InteractableElement {
 
     public void getMovement(Movements mov, MonsterView monsterview) throws UpScreen, DownScreen, LeftScreen, RightScreen {
 
+        controller.removeElementProps(this);
+
         switch(mov)
         {
             case UP:
@@ -62,8 +64,6 @@ public class MonsterModel extends InteractableElement {
             case RIGHT:
                 this.moveRight();
         }
-
-        controller.removeElementProps(this);
 
         try {
             controller.addElementProps(monsterview);

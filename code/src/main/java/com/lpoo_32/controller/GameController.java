@@ -217,7 +217,7 @@ public class GameController
     //handles colisions for non catchable elements
     public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF { //TODO: Mo {
 
-        if (elements.getView(position) != null && !(isCatchable(position)) && !(elements.getView(position) instanceof MonsterView)) {
+        if (elements.getView(position) != null && !(isCatchable(position))) {
             elements.getModel(position).interact(player);
         }
     }
