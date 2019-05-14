@@ -1,10 +1,6 @@
 package com.lpoo_32.view;
 
-import com.googlecode.lanterna.Symbols;
-import com.lpoo_32.model.FoodModel;
-import com.lpoo_32.model.Position;
-import com.lpoo_32.model.SpikesModel;
-import com.lpoo_32.model.WaterModel;
+import com.lpoo_32.model.*;
 
 public class TerminalElementFactory implements ElementFactory {
     @Override
@@ -20,6 +16,13 @@ public class TerminalElementFactory implements ElementFactory {
             case FOOD:
                 interactableElement = new FoodView(new FoodModel(30, pos));
                 break;
+            case WALL:
+                interactableElement = new WallView(new WallModel(pos));
+                break;
+            case DOOR:
+                interactableElement = new DoorView(new DoorModel(pos));
+                break;
+            case NONE:
             default:
                 throw new IllegalStateException("Unexpected value: " + element);
         }
