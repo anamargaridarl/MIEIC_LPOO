@@ -32,7 +32,7 @@ public class GameController
         this.game = new Game(props, this.player, elements);
     }
 
-    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
+    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen, Bedtime {
 
         SpikesModel spikes = new SpikesModel(10, null);
         if(event != EventType.NULL && event != null){
@@ -125,6 +125,8 @@ public class GameController
                 this.game.setIndex(this.game.getIndex() + 3);
                 this.player.getPosition().setIndex(this.game.getIndex());
             }
+        } catch (Bedtime bedtime) {
+            System.out.println("Sleepy time!");
         }
     }
 
@@ -171,7 +173,7 @@ public class GameController
             int y = random.nextInt(height * 3);
             int index = (x/width) + (y/height) * 3;
             Position pos = new Position(x, y, width, height, index);
-            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 3)], pos);
+            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 4)], pos);
             this.elements.addElement(element);
         }
     }
@@ -184,21 +186,25 @@ public class GameController
         for(int i = 0; i < 5; i++){
             if(i == 0 || i == 4){
                 for(int j = 0; j < 5; j++){
-                    addHousePart(width, height, initialX, initialY, i, j);
+                    addHousePart(width, height, initialX, initialY, i, j, ElementType.WALL);
                 }
             }else{
-                addHousePart(width, height, initialX, initialY, i, 0);
-                addHousePart(width, height, initialX, initialY, i, 4);
+                if(i == 2){
+                    addHousePart(width, height, initialX, initialY, i, 0, ElementType.DOOR);
+                    addHousePart(width, height, initialX, initialY, i, 4, ElementType.WALL);
+                }else {
+                    addHousePart(width, height, initialX, initialY, i, 0, ElementType.WALL);
+                    addHousePart(width, height, initialX, initialY, i, 4, ElementType.WALL);
+                }
             }
         }
+        addHousePart(width, height, initialX, initialY, 1, 1, ElementType.BED);
+        addHousePart(width, height, initialX, initialY, 1, 2, ElementType.BED);
     }
 
-    private void addHousePart(int width, int height, int initialX, int initialY, int i, int j) throws OutOfBoundaries {
+    private void addHousePart(int width, int height, int initialX, int initialY, int i, int j, ElementType type) throws OutOfBoundaries {
         int index = ((initialX + i)/width) + ((initialY + j)/height) * 3;
-        if(i == 2 && j == 0)
-            this.elements.addElement(factory.getElement(ElementType.DOOR, new Position(i + initialX, j + initialY, width, height, index)));
-        else
-            this.elements.addElement(factory.getElement(ElementType.WALL, new Position(i + initialX, j + initialY, width, height, index)));
+        this.elements.addElement(factory.getElement(type, new Position(i + initialX, j + initialY, width, height, index)));
     }
 
 
@@ -220,7 +226,7 @@ public class GameController
 
 
     //handles colisions for non catchable elements
-    boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF {
+    boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF, Bedtime {
 
         if (elements.getView(position) != null && !(isCatchable(position))) {
             return elements.getModel(position).interact(player);

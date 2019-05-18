@@ -11,7 +11,7 @@ abstract public class InteractableElement implements ElementModel {
         this.pos = pos;
     }
 
-    public abstract boolean interact(PlayerModel player) throws HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF;
+    public abstract boolean interact(PlayerModel player) throws HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, Bedtime;
 
     public Position getPos() {
         return pos;

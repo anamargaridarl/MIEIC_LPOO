@@ -6,5 +6,6 @@ public enum ElementType {
     FOOD,
     WALL,
     DOOR,
+    BED,
     NONE
 }

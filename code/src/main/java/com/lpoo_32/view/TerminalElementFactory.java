@@ -22,6 +22,9 @@ public class TerminalElementFactory implements ElementFactory {
             case DOOR:
                 interactableElement = new DoorView(new DoorModel(pos));
                 break;
+            case BED:
+                interactableElement = new BedView(new BedModel(pos));
+                break;
             case NONE:
             default:
                 throw new IllegalStateException("Unexpected value: " + element);
