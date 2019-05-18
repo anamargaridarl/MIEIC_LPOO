@@ -62,6 +62,12 @@ public class GameControllerTest {
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);
         Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
         Mockito.when(player.getInventory()).thenReturn(inventory);
+        Position pos = Mockito.mock(Position.class);
+        Mockito.when(player.getPosition()).thenReturn(pos);
+        Mockito.when(pos.checkMovementLeft()).thenReturn(pos);
+        Mockito.when(pos.checkMovementDown()).thenReturn(pos);
+        Mockito.when(pos.checkMovementRight()).thenReturn(pos);
+        Mockito.when(pos.checkMovementUp()).thenReturn(pos);
         GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player);
 
         Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVEUP);

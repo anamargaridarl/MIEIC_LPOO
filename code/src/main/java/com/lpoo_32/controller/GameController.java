@@ -179,7 +179,7 @@ public class GameController
     private void buildHouse(int width, int height) throws OutOfBoundaries {
         Random random = new Random();
         int initialX = random.nextInt(width * 3 - 5);
-        int initialY = random.nextInt(height * 3 - 5);
+        int initialY = random.nextInt(height * 3 - 6) + 1;
         System.out.println("X: " + initialX + " Y: " + initialY);
         for(int i = 0; i < 5; i++){
             if(i == 0 || i == 4){
@@ -220,7 +220,7 @@ public class GameController
 
 
     //handles colisions for non catchable elements
-    private boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF {
+    boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF {
 
         if (elements.getView(position) != null && !(isCatchable(position))) {
             return elements.getModel(position).interact(player);
