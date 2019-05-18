@@ -25,7 +25,7 @@ public class GameControllerTest {
 
 
     @Test
-    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF, OutOfBoundaries {
+    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF, OutOfBoundaries, Bedtime {
         PlayerModel player = new PlayerModel(new Position(3,2, Game.width/4, Game.height/4, 0));
         SpikesModel spike = new SpikesModel(25, new Position(3,2, 0, 0, 0));
         FoodModel food = new FoodModel(10, new Position(3,3, 0, 0, 0));
@@ -54,7 +54,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries {
+    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries, Bedtime {
         TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
@@ -99,7 +99,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void screenClose() throws HungerOVF, ThirstOVF, IOException, DownScreen, LeftScreen, ScreenClose, RightScreen, UpScreen, HealthOVF, ThirstRestored, HungerRestored, OutOfBoundaries {
+    public void screenClose() throws HungerOVF, ThirstOVF, IOException, DownScreen, LeftScreen, ScreenClose, RightScreen, UpScreen, HealthOVF, ThirstRestored, HungerRestored, OutOfBoundaries, Bedtime {
         TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);
