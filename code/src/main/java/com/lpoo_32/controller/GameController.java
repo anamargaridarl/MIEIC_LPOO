@@ -178,18 +178,27 @@ public class GameController
 
     private void buildHouse(int width, int height) throws OutOfBoundaries {
         Random random = new Random();
-        int initialX = random.nextInt(width * 3);
-        int initialY = random.nextInt(height * 3);
-        System.out.println("X: " + initialX + " Y" + initialY);
+        int initialX = random.nextInt(width * 3 - 5);
+        int initialY = random.nextInt(height * 3 - 5);
+        System.out.println("X: " + initialX + " Y: " + initialY);
         for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-                int index = (initialX + i/width) + (initialY + j/height) * 3;
-                if(i == 2 && j == 2)
-                    this.elements.addElement(factory.getElement(ElementType.DOOR, new Position(i + initialX, j + initialY, width, height, index)));
-                else
-                    this.elements.addElement(factory.getElement(ElementType.WALL, new Position(i + initialX, j + initialY, width, height, index)));
+            if(i == 0 || i == 4){
+                for(int j = 0; j < 5; j++){
+                    addHousePart(width, height, initialX, initialY, i, j);
+                }
+            }else{
+                addHousePart(width, height, initialX, initialY, i, 0);
+                addHousePart(width, height, initialX, initialY, i, 4);
             }
         }
+    }
+
+    private void addHousePart(int width, int height, int initialX, int initialY, int i, int j) throws OutOfBoundaries {
+        int index = ((initialX + i)/width) + ((initialY + j)/height) * 3;
+        if(i == 2 && j == 0)
+            this.elements.addElement(factory.getElement(ElementType.DOOR, new Position(i + initialX, j + initialY, width, height, index)));
+        else
+            this.elements.addElement(factory.getElement(ElementType.WALL, new Position(i + initialX, j + initialY, width, height, index)));
     }
 
 
