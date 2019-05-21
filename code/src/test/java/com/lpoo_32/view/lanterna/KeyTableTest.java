@@ -1,9 +1,8 @@
 package com.lpoo_32.view.lanterna;
 
-import com.lpoo_32.view.lanterna.KeyTable;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class KeyTableTest {
     @Test

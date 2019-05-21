@@ -26,3 +26,20 @@ dependencies {
 pitest {
     targetClasses = ['com.lpoo_32.*']
 }
+
+tasks.register("lanterna"){
+    group = 'Game'
+    description = 'Play this awesome game!'
+    doLast{
+        run.args("lanterna")
+        run.exec()
+    }
+}
+tasks.register("swing"){
+    group = 'Game'
+    description = 'Play this awesome game!'
+    doLast{
+        run.args("swing")
+        run.exec()
+    }
+}
