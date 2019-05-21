@@ -6,7 +6,7 @@ import com.lpoo_32.model.*;
 
 public class TerminalElementFactory implements ElementFactory {
     @Override
-    public InteractableElementView getElement(ElementType element, Position pos, GameController controller) {
+    public InteractableElementView getElement(ElementType element, Position pos, GameController controller, PlayerModel player) {
         InteractableElementView interactableElement;
         switch (element){
             case SPIKES:
@@ -19,7 +19,7 @@ public class TerminalElementFactory implements ElementFactory {
                 interactableElement = new FoodView(new FoodModel(30, pos));
                 break;
             case MONSTER:
-                interactableElement = new MonsterView(new MonsterModel(pos, 30, new MovableElement(pos),controller));
+                interactableElement = new MonsterView(new MonsterModel(pos, 30, new MovableElement(pos),controller,player.getPosition()));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + element);

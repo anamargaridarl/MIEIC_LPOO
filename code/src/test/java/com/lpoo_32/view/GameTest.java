@@ -23,7 +23,7 @@ public class GameTest {
     private TextGraphics graphics;
 
     @Before
-    public void initalizeGame() {
+    public void initalizeGame() throws OutOfBoundaries {
         TerminalSize terminal = Mockito.mock(TerminalSize.class);
         Mockito.when(terminal.getColumns()).thenReturn(100);
         Mockito.when(terminal.getRows()).thenReturn(100);
@@ -35,7 +35,7 @@ public class GameTest {
     }
 
     @Test
-    public void draw() throws IOException {
+    public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen {
         game.draw();
         verify(graphics, atLeastOnce()).setBackgroundColor(any(TextColor.class));
         verify(graphics, atLeastOnce()).setForegroundColor(any(TextColor.class));

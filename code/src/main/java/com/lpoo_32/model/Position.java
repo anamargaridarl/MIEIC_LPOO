@@ -7,12 +7,12 @@ import com.lpoo_32.view.ScreenSize;
 
 import java.util.Objects;
 
-public abstract class Position {
-
+public class Position {
     protected int x;
     protected int y;
     protected int heightIndex;
     protected int widthIndex;
+    protected int index; //TODO:eliminate height/width index
     protected final int width;
     protected final int height;
 
@@ -25,15 +25,78 @@ public abstract class Position {
             throw new OutOfBoundaries();
         this.heightIndex = index/3;
         this.widthIndex = index%3;
+        this.index = index;
     }
 
-    public abstract void moveUp() throws UpScreen;
+    public int getIndex()
+    {
+        return index;
+    }
 
-    public abstract void moveLeft() throws LeftScreen;
+    private Position(int x, int y){
+        this.x = x;
+        this.y = y;
+        this.width = 0;
+        this.height = 0;
+    }
 
-    public abstract void moveDown()  throws DownScreen ;
+    public void moveUp() throws UpScreen {
 
-    public abstract void moveRight()  throws RightScreen;
+        if(this.y - 1 >= this.heightIndex * height)
+            this.y --;
+        else
+            throw new UpScreen();
+    }
+
+    public void moveLeft() throws LeftScreen {
+
+        if(this.x - 1 >= this.widthIndex * width)
+            this.x--;
+        else
+            throw new LeftScreen();
+    }
+
+    public void moveDown() throws DownScreen {
+
+        if(this.y + 1 <= this.height * (heightIndex + 1))
+            this.y++;
+        else
+            throw new DownScreen();
+    }
+
+    public void moveRight() throws RightScreen {
+
+        if(this.x + 1 <= this.width * (widthIndex + 1))
+            this.x++;
+        else
+            throw new RightScreen();
+    }
+
+    public Position checkMovementUp() throws UpScreen {
+        if(this.y - 1 >= this.heightIndex * height)
+        return new Position(this.getX(), this.getY()- 1);
+        else
+            throw new UpScreen();
+    }
+
+    public Position checkMovementDown() throws DownScreen {
+        if(this.y + 1 <= this.height * (heightIndex + 1))
+        return new Position(this.getX(), this.getY()+ 1);
+        else
+            throw new DownScreen();
+    }
+
+    public Position checkMovementRight() throws RightScreen {
+        if(this.x + 1 <= this.width * (widthIndex + 1))
+        return new Position(this.getX() + 1, this.getY());
+        else throw new RightScreen();
+    }
+
+    public Position checkMovementLeft() throws LeftScreen {
+        if(this.x - 1 >= this.widthIndex * width)
+        return new Position(this.getX() - 1, this.getY());
+        else throw new LeftScreen();
+    }
 
     public int getX() {
         return x;

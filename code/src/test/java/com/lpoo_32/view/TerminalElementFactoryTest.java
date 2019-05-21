@@ -1,5 +1,8 @@
 package com.lpoo_32.view;
 
+import com.lpoo_32.exceptions.OutOfBoundaries;
+import com.lpoo_32.model.PlayerModel;
+import com.lpoo_32.model.Position;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -11,15 +14,16 @@ public class TerminalElementFactoryTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void getElement() {
+    public void getElement() throws OutOfBoundaries {
+        PlayerModel player = new PlayerModel(new Position(2,3,4,5,1));
         TerminalElementFactory factory = new TerminalElementFactory();
-        ElementView water = factory.getElement(ElementType.WATER, null);
+        ElementView water = factory.getElement(ElementType.WATER, null,null,player);
         assertTrue(water instanceof WaterView);
-        ElementView food = factory.getElement(ElementType.FOOD, null);
+        ElementView food = factory.getElement(ElementType.FOOD, null,null,player);
         assertTrue(food instanceof FoodView);
-        ElementView spikes = factory.getElement(ElementType.SPIKES, null);
+        ElementView spikes = factory.getElement(ElementType.SPIKES, null,null,player);
         assertTrue(spikes instanceof SpikesView);
         thrown.expect(IllegalStateException.class);
-        factory.getElement(ElementType.NONE, null);
+        factory.getElement(ElementType.NONE, null,null,player);
     }
 }

@@ -19,7 +19,7 @@ public class GameController
     private int time;
 
 
-    public GameController(DisplayProps props, Elements elements, PlayerModel player) throws OutOfBoundaries, OccupiedElement {
+    public GameController(DisplayProps props, Elements elements, PlayerModel player) throws OutOfBoundaries {
         this.player = player;
         this.elements = elements;
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
@@ -172,13 +172,8 @@ public class GameController
             int y = random.nextInt(height * 3);
             int index = (x/width) + (y/height) * 3;
             Position pos = new InteractablePosition(x, y, width, height, index,indexGame);
-            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos, this);
-            try {
-                this.elements.addElement(element);
-            }catch(OccupiedElement e)
-            {
-                System.out.println("repetido");
-            }
+            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos, this, player);
+            this.elements.addElement(element);
         }
     }
 
@@ -188,9 +183,9 @@ public class GameController
         this.elements.removeElement(element);
     }
 
-    public void addElementProps(InteractableElementView element) throws OccupiedElement {
+    public boolean addElementProps(InteractableElementView element)  {
 
-            this.elements.addElement(element);
+            return this.elements.addElement(element);
     }
 
     //verify that model element in the position is catchable
@@ -212,6 +207,13 @@ public class GameController
 
     }
 
+    public boolean checkElement(Position position)
+    {
+        if(elements.getView(position) == null)
+            return false;
+        else
+            return true;
+    }
 
 
     //handles colisions for non catchable elements
