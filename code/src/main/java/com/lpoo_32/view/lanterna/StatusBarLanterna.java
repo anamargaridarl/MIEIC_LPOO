@@ -8,13 +8,13 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.Status;
 import com.lpoo_32.view.ElementView;
 
-public class StatusBar implements ElementView {
+public class StatusBarLanterna implements ElementView {
     private final Status status;
     private final TextColor color;
     private int height;
 
 
-    StatusBar(Status status, String hexColor, int height){
+    StatusBarLanterna(Status status, String hexColor, int height){
         this.status = status;
         this.color = TextColor.Factory.fromString(hexColor);
         this.height = height;

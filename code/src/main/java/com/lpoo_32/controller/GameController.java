@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class GameController
 {
-    private final Game game;
+    private final GameLanterna gameLanterna;
     private PlayerModel player;
     private Elements elements;
     private TerminalKeyboard keyboardProcessor;
@@ -27,8 +27,8 @@ public class GameController
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
         this.hunger = false;
         this.thirst = false;
-        this.populateGame(Game.width/4, Game.height/4);
-        this.game = new Game(props, this.player, elements);
+        this.populateGame(GameLanterna.width/4, GameLanterna.height/4);
+        this.gameLanterna = new GameLanterna(props, this.player, elements);
     }
 
     void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
@@ -90,7 +90,7 @@ public class GameController
     void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, RightScreen, LeftScreen, UpScreen, DownScreen {
         try {
             this.processKey(this.keyboardProcessor.processKey());
-            this.game.draw();
+            this.gameLanterna.draw();
             Thread.sleep(1000/ frameRate);
             updateNourishment();
         } catch (HungerRestored hungerRestored) {
@@ -102,24 +102,24 @@ public class GameController
         } catch (ThirstOVF thirstOVF) {
             this.thirst = true;
         } catch (RightScreen rightScreen) {
-            if(this.game.getIndex()%3  != 2){
-                this.game.setIndex(this.game.getIndex() + 1);
-                this.player.getPosition().setIndex(this.game.getIndex());
+            if(this.gameLanterna.getIndex()%3  != 2){
+                this.gameLanterna.setIndex(this.gameLanterna.getIndex() + 1);
+                this.player.getPosition().setIndex(this.gameLanterna.getIndex());
             }
         } catch (LeftScreen leftScreen) {
-            if(this.game.getIndex()%3  != 0){
-                this.game.setIndex(this.game.getIndex() - 1);
-                this.player.getPosition().setIndex(this.game.getIndex());
+            if(this.gameLanterna.getIndex()%3  != 0){
+                this.gameLanterna.setIndex(this.gameLanterna.getIndex() - 1);
+                this.player.getPosition().setIndex(this.gameLanterna.getIndex());
             }
         } catch (UpScreen upScreen) {
-            if(this.game.getIndex() - 3  >= 0){
-                this.game.setIndex(this.game.getIndex() - 3);
-                this.player.getPosition().setIndex(this.game.getIndex());
+            if(this.gameLanterna.getIndex() - 3  >= 0){
+                this.gameLanterna.setIndex(this.gameLanterna.getIndex() - 3);
+                this.player.getPosition().setIndex(this.gameLanterna.getIndex());
             }
         } catch (DownScreen downScreen) {
-            if(this.game.getIndex() + 3  < 9){
-                this.game.setIndex(this.game.getIndex() + 3);
-                this.player.getPosition().setIndex(this.game.getIndex());
+            if(this.gameLanterna.getIndex() + 3  < 9){
+                this.gameLanterna.setIndex(this.gameLanterna.getIndex() + 3);
+                this.player.getPosition().setIndex(this.gameLanterna.getIndex());
             }
         }
     }
@@ -138,7 +138,7 @@ public class GameController
     }
 
     public void run() throws IOException {
-        this.game.draw();
+        this.gameLanterna.draw();
 
         //isto parece shady; ter um ciclo infinito a para com uma exceçao
         this.time = 0;

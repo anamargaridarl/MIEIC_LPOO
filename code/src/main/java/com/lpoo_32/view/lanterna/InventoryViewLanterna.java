@@ -6,13 +6,13 @@ import com.lpoo_32.model.Inventory;
 import com.lpoo_32.view.ElementView;
 
 
-public class InventoryView implements ElementView {
+public class InventoryViewLanterna implements ElementView {
 
     private Inventory inventory;
     private final TextColor color;
     //private int height;
 
-    public InventoryView(Inventory inventory, String hexColor) {
+    public InventoryViewLanterna(Inventory inventory, String hexColor) {
         this.inventory = inventory;
         this.color = TextColor.Factory.fromString(hexColor);
     }

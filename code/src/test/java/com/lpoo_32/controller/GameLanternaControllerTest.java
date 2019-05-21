@@ -19,25 +19,25 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class GameControllerTest {
+public class GameLanternaControllerTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
 
     @Test
     public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF, OutOfBoundaries {
-        PlayerModel player = new PlayerModel(new Position(3,2, Game.width/4, Game.height/4, 0));
+        PlayerModel player = new PlayerModel(new Position(3,2, GameLanterna.width/4, GameLanterna.height/4, 0));
         SpikesModel spike = new SpikesModel(25, new Position(3,2, 0, 0, 0));
         FoodModel food = new FoodModel(10, new Position(3,3, 0, 0, 0));
 
         Elements elements = new Elements();
-        elements.addElement(new SpikesView(spike));
-        elements.addElement(new FoodView(food));
+        elements.addElement(new SpikesViewLanterna(spike));
+        elements.addElement(new FoodViewLanterna(food));
 
         List<ElementView> props = new ArrayList<>();
-        props.add(new FoodView(food));
-        props.add(new SpikesView(spike));
-        props.add(new PlayerView(player));
+        props.add(new FoodViewLanterna(food));
+        props.add(new SpikesViewLanterna(spike));
+        props.add(new PlayerViewLanterna(player));
 
 
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);

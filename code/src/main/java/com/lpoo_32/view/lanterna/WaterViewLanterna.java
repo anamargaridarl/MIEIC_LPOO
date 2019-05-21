@@ -7,10 +7,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.WaterModel;
 
-public class WaterView extends CatchableView {
+public class WaterViewLanterna extends CatchableView {
     private final WaterModel water;
 
-    WaterView(WaterModel water){
+    WaterViewLanterna(WaterModel water){
         super(water);
         this.water = water;
     }

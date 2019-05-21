@@ -6,11 +6,12 @@ import com.lpoo_32.exceptions.HungerOVF;
 import com.lpoo_32.exceptions.ThirstOVF;
 import com.lpoo_32.model.SpikesModel;
 import com.lpoo_32.view.EventType;
+import com.lpoo_32.view.KeyboardAnalyzer;
 
 import java.io.IOException;
 
 
-public class TerminalKeyboard {
+public class TerminalKeyboard implements KeyboardAnalyzer {
 
     private Screen screen;
 

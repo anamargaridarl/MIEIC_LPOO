@@ -1,21 +1,20 @@
 package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.Symbols;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.InteractableElement;
-import com.lpoo_32.model.SpikesModel;
-import com.lpoo_32.view.InteractableElementView;
+import com.lpoo_32.model.PlayerModel;
+import com.lpoo_32.view.ElementView;
 
-public class SpikesView extends InteractableElementView {
+public class PlayerViewLanterna implements ElementView {
 
-    private SpikesModel spikes;
+    private final PlayerModel player;
 
-    public SpikesView(SpikesModel spikes){
-        super(spikes);
-        this.spikes = spikes;
+    public PlayerViewLanterna(PlayerModel player){
+        this.player = player;
     }
 
     @Override
@@ -26,17 +25,14 @@ public class SpikesView extends InteractableElementView {
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
         graphics.fillRectangle(
-                this.spikes.getPos().getTerminalPosition(),
+                this.player.getPosition().getTerminalPosition(),
                 new TerminalSize(1, 1),
-                Symbols.SPADES
+                Symbols.DIAMOND
         );
     }
 
-    public SpikesModel getSpikes()
+    public PlayerModel getPlayer()
     {
-        return spikes;
+        return player;
     }
-
-
-
 }

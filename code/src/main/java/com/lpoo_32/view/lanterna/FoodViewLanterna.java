@@ -7,10 +7,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.FoodModel;
 
-public class FoodView extends CatchableView {
+public class FoodViewLanterna extends CatchableView {
     private final FoodModel food;
 
-    public FoodView(FoodModel food){
+    public FoodViewLanterna(FoodModel food){
         super(food);
         this.food = food;
     }

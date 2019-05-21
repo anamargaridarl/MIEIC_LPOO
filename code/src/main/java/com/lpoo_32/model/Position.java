@@ -2,7 +2,7 @@ package com.lpoo_32.model;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.lpoo_32.exceptions.*;
-import com.lpoo_32.view.lanterna.Game;
+import com.lpoo_32.view.lanterna.GameLanterna;
 import com.lpoo_32.view.lanterna.ScreenSize;
 
 import java.util.Objects;
@@ -20,7 +20,7 @@ public class Position {
         this.y = y;
         this.width = width;
         this.height = height;
-        if(width * 4 > Game.width || height > Game.height || width < 0 || height < 0)
+        if(width * 4 > GameLanterna.width || height > GameLanterna.height || width < 0 || height < 0)
             throw new OutOfBoundaries();
         this.heightIndex = index/3;
         this.widthIndex = index%3;

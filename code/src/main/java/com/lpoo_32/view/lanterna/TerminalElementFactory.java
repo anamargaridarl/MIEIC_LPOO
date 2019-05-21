@@ -14,13 +14,13 @@ public class TerminalElementFactory implements ElementFactory {
         InteractableElementView interactableElement;
         switch (element){
             case SPIKES:
-                interactableElement = new SpikesView(new SpikesModel(30, pos));
+                interactableElement = new SpikesViewLanterna(new SpikesModel(30, pos));
                 break;
             case WATER:
-                interactableElement = new WaterView(new WaterModel(30, pos));
+                interactableElement = new WaterViewLanterna(new WaterModel(30, pos));
                 break;
             case FOOD:
-                interactableElement = new FoodView(new FoodModel(30, pos));
+                interactableElement = new FoodViewLanterna(new FoodModel(30, pos));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + element);

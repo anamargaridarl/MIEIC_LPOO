@@ -7,10 +7,6 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.Inventory;
-import com.lpoo_32.view.lanterna.FoodView;
-import com.lpoo_32.view.lanterna.InventoryView;
-import com.lpoo_32.view.lanterna.ScreenSize;
-import com.lpoo_32.view.lanterna.WaterView;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -20,16 +16,16 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
-public class InventoryViewTest {
+public class InventoryViewLanternaTest {
     private Inventory inventory;
     private TextGraphics textGraphics;
-    private InventoryView inventoryView;
+    private InventoryViewLanterna inventoryViewLanterna;
 
     @Before
     public void initializeValues(){
         this.inventory = Mockito.mock(Inventory.class);
         this.textGraphics = Mockito.mock(TextGraphics.class);
-        this.inventoryView = new InventoryView(inventory, "#000000");
+        this.inventoryViewLanterna = new InventoryViewLanterna(inventory, "#000000");
         TerminalSize terminalSize = Mockito.mock(TerminalSize.class);
         ScreenSize.createInstance(terminalSize);
         Mockito.when(terminalSize.getRows()).thenReturn(100);
@@ -38,7 +34,7 @@ public class InventoryViewTest {
 
     @Test
     public void drawTest(){
-        this.inventoryView.draw(this.textGraphics);
+        this.inventoryViewLanterna.draw(this.textGraphics);
         verify(textGraphics, atLeastOnce()).setForegroundColor(any(TextColor.class));
         verify(textGraphics, atLeastOnce()).setBackgroundColor(any(TextColor.class));
         verify(textGraphics, atLeastOnce()).fillRectangle(any(TerminalPosition.class), any(TerminalSize.class), any(char.class));
@@ -46,14 +42,14 @@ public class InventoryViewTest {
 
     @Test
     public void getterTests(){
-        Mockito.when(inventory.getView()).thenReturn(new FoodView(null));
+        Mockito.when(inventory.getView()).thenReturn(new FoodViewLanterna(null));
         assertEquals("Food", this.inventory.getView().getName());
-        Mockito.when(inventory.getView()).thenReturn(new WaterView(null));
+        Mockito.when(inventory.getView()).thenReturn(new WaterViewLanterna(null));
         assertEquals("Water", this.inventory.getView().getName());
 
-        Mockito.when(inventory.getView()).thenReturn(new FoodView(null));
+        Mockito.when(inventory.getView()).thenReturn(new FoodViewLanterna(null));
         Mockito.when(inventory.getElement()).thenReturn(new FoodModel(0, null));
-        assertEquals(Symbols.HEART, inventoryView.getSymbol());
+        assertEquals(Symbols.HEART, inventoryViewLanterna.getSymbol());
     }
 
 
