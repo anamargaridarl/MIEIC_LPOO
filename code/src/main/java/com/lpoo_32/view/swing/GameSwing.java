@@ -8,7 +8,7 @@ public class GameSwing {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
 
         JLabel label = new JLabel("Hello meias");
-        frame.getContentPane().add(label);
+        frame.getContentPane().add(new PlayerViewSwing(null));
         frame.pack();
         frame.setVisible(true);
     }
