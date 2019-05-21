@@ -32,7 +32,10 @@ tasks.register("lanterna"){
     description = 'Play this awesome game!'
     doLast{
         run.args("lanterna")
-        run.exec()
+        compileJava.execute()
+        processResources.execute()
+        classes.execute()
+        run.execute()
     }
 }
 tasks.register("swing"){
@@ -40,6 +43,9 @@ tasks.register("swing"){
     description = 'Play this awesome game!'
     doLast{
         run.args("swing")
-        run.exec()
+        compileJava.execute()
+        processResources.execute()
+        classes.execute()
+        run.execute()
     }
 }
