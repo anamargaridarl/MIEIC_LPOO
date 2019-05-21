@@ -1,5 +1,11 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
+import com.lpoo_32.view.ElementType;
+import com.lpoo_32.view.ElementView;
+import com.lpoo_32.view.lanterna.FoodView;
+import com.lpoo_32.view.lanterna.SpikesView;
+import com.lpoo_32.view.lanterna.TerminalElementFactory;
+import com.lpoo_32.view.lanterna.WaterView;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

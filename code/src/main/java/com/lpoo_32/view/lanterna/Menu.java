@@ -1,4 +1,4 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -11,6 +11,7 @@ import com.lpoo_32.exceptions.OutOfBoundaries;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
+import com.lpoo_32.view.ElementView;
 
 import java.io.IOException;
 import java.util.Arrays;

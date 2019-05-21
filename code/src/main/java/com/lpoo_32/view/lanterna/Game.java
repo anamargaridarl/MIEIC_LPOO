@@ -1,11 +1,11 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
+import com.lpoo_32.view.ElementView;
 
 import java.io.IOException;
 import java.util.*;

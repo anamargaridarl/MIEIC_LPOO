@@ -1,6 +1,6 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.view.FoodView;
+import com.lpoo_32.view.lanterna.FoodView;
 import org.junit.Before;
 import org.junit.Test;
 

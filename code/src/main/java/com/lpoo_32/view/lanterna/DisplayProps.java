@@ -1,4 +1,4 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.screen.Screen;
 

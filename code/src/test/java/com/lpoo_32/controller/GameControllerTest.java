@@ -6,10 +6,10 @@ import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 import com.lpoo_32.view.*;
+import com.lpoo_32.view.lanterna.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.io.IOException;

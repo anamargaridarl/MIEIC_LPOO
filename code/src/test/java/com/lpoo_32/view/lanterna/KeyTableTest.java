@@ -1,5 +1,6 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
+import com.lpoo_32.view.lanterna.KeyTable;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

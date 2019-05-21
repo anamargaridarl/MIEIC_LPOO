@@ -1,10 +1,9 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.Inventory;
-import com.lpoo_32.model.WaterModel;
+import com.lpoo_32.view.ElementView;
 
 
 public class InventoryView implements ElementView {

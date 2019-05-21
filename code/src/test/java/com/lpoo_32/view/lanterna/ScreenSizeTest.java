@@ -1,6 +1,7 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.lpoo_32.view.lanterna.ScreenSize;
 import org.junit.Test;
 import org.mockito.Mockito;
 

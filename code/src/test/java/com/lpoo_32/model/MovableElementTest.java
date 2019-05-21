@@ -1,7 +1,7 @@
 package com.lpoo_32.model;
 
 import com.lpoo_32.exceptions.*;
-import com.lpoo_32.view.Game;
+import com.lpoo_32.view.lanterna.Game;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

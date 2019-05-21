@@ -1,10 +1,11 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.HungerOVF;
 import com.lpoo_32.exceptions.ThirstOVF;
 import com.lpoo_32.model.SpikesModel;
+import com.lpoo_32.view.EventType;
 
 import java.io.IOException;
 

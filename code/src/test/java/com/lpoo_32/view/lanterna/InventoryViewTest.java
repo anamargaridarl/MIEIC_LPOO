@@ -1,14 +1,16 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.Inventory;
-import com.lpoo_32.model.WaterModel;
+import com.lpoo_32.view.lanterna.FoodView;
+import com.lpoo_32.view.lanterna.InventoryView;
+import com.lpoo_32.view.lanterna.ScreenSize;
+import com.lpoo_32.view.lanterna.WaterView;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -1,14 +1,16 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
+import com.lpoo_32.view.lanterna.DisplayProps;
+import com.lpoo_32.view.lanterna.Game;
+import com.lpoo_32.view.lanterna.ScreenSize;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

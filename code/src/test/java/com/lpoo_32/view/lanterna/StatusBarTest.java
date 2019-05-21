@@ -1,6 +1,7 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.lpoo_32.model.HealthStatus;
+import com.lpoo_32.view.lanterna.StatusBar;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -1,10 +1,13 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.HungerOVF;
 import com.lpoo_32.exceptions.ThirstOVF;
+import com.lpoo_32.view.EventType;
+import com.lpoo_32.view.lanterna.TerminalKeyboard;
+import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -18,7 +21,7 @@ public class TerminalKeyboardTest {
         Screen screen = Mockito.mock(Screen.class);
         TerminalKeyboard keyboard = new TerminalKeyboard(screen);
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowRight));
-        assertEquals(EventType.MOVERIGHT, keyboard.processKey());
+        Assert.assertEquals(EventType.MOVERIGHT, keyboard.processKey());
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
         assertEquals(EventType.MOVEUP, keyboard.processKey());
         Mockito.when(screen.pollInput()).thenReturn(new KeyStroke(KeyType.ArrowDown));

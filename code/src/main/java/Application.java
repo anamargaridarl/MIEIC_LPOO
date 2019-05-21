@@ -1,6 +1,5 @@
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.lpoo_32.view.Display;
-import com.lpoo_32.view.Menu;
+import com.lpoo_32.view.lanterna.Menu;
 
 import java.io.IOException;
 

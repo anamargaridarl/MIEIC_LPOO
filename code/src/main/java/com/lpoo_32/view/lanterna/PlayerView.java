@@ -1,4 +1,4 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalPosition;
@@ -7,6 +7,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.InteractableElement;
 import com.lpoo_32.model.PlayerModel;
+import com.lpoo_32.view.ElementView;
 
 public class PlayerView implements ElementView {
 

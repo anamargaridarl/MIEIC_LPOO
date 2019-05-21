@@ -2,8 +2,8 @@ package com.lpoo_32.model;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.lpoo_32.exceptions.*;
-import com.lpoo_32.view.Game;
-import com.lpoo_32.view.ScreenSize;
+import com.lpoo_32.view.lanterna.Game;
+import com.lpoo_32.view.lanterna.ScreenSize;
 
 import java.util.Objects;
 

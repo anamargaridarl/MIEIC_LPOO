@@ -1,10 +1,12 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
-import com.googlecode.lanterna.Symbols;
 import com.lpoo_32.model.FoodModel;
 import com.lpoo_32.model.Position;
 import com.lpoo_32.model.SpikesModel;
 import com.lpoo_32.model.WaterModel;
+import com.lpoo_32.view.ElementFactory;
+import com.lpoo_32.view.ElementType;
+import com.lpoo_32.view.InteractableElementView;
 
 public class TerminalElementFactory implements ElementFactory {
     @Override

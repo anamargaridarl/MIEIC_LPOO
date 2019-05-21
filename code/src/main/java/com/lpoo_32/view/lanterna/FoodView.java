@@ -1,34 +1,29 @@
-package com.lpoo_32.view;
+package com.lpoo_32.view.lanterna;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.CatchableElement;
-import com.lpoo_32.model.WaterModel;
+import com.lpoo_32.model.FoodModel;
 
-public class WaterView extends CatchableView {
-    private final WaterModel water;
+public class FoodView extends CatchableView {
+    private final FoodModel food;
 
-    WaterView(WaterModel water){
-        super(water);
-        this.water = water;
+    public FoodView(FoodModel food){
+        super(food);
+        this.food = food;
     }
 
-    @Override
-    public CatchableElement getElement() {
-        return water;
-    }
 
     @Override
     public char getSymbol() {
-        return Symbols.BULLET;
+        return Symbols.HEART;
     }
 
     @Override
     public String getName() {
-        return "Water";
-    }
+        return "Food";}
 
     @Override
     public void draw(TextGraphics graphics) {
@@ -38,11 +33,22 @@ public class WaterView extends CatchableView {
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
         graphics.fillRectangle(
-                this.water.getPos().getTerminalPosition(),
+                this.food.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
                 this.getSymbol()
         );
     }
 
 
+
+    public FoodModel getFood()
+    {
+        return food;
+    }
+
+
+    @Override
+    public CatchableElement getElement() {
+        return food;
+    }
 }

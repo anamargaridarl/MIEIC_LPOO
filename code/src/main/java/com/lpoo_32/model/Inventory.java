@@ -1,6 +1,6 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.view.CatchableView;
+import com.lpoo_32.view.lanterna.CatchableView;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.lpoo_32.model;
 
 import com.lpoo_32.exceptions.OutOfBoundaries;
-import com.lpoo_32.view.FoodView;
-import com.lpoo_32.view.Game;
-import com.lpoo_32.view.SpikesView;
+import com.lpoo_32.view.lanterna.FoodView;
+import com.lpoo_32.view.lanterna.Game;
+import com.lpoo_32.view.lanterna.SpikesView;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
