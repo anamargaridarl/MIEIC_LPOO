@@ -5,7 +5,6 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.DoorModel;
-import com.lpoo_32.model.InteractableElement;
 
 public class DoorView extends InteractableElementView{
     public DoorView(DoorModel element) {

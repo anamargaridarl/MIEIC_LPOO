@@ -13,8 +13,9 @@ public class GameController
     private PlayerModel player;
     private Elements elements;
     private TerminalKeyboard keyboardProcessor;
-    private boolean hunger;
-    private boolean thirst;
+    private NourishState hunger;
+    private NourishState thirst;
+    private NourishState sleep;
     private static final int frameRate = 60;
     private int time;
     private ElementFactory factory;
@@ -24,8 +25,9 @@ public class GameController
         this.player = player;
         this.elements = elements;
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
-        this.hunger = false;
-        this.thirst = false;
+        this.hunger = new SatedState(player);
+        this.thirst = new QuenchedState(player);
+        this.sleep = new DayState(player);
         this.factory = new TerminalElementFactory();
         this.populateGame(Game.width/4, Game.height/4);
         this.buildHouse(Game.width/4, Game.height/4);
@@ -98,13 +100,13 @@ public class GameController
             Thread.sleep(1000/ frameRate);
             updateNourishment();
         } catch (HungerRestored hungerRestored) {
-            this.hunger = false;
+            this.hunger = new SatedState(player);
         } catch (HungerOVF nourishOVF) {
-            this.hunger = true;
+            this.hunger = new FamishState(player);
         } catch (ThirstRestored thirstRestored) {
-            this.thirst = false;
+            this.thirst = new QuenchedState(player);
         } catch (ThirstOVF thirstOVF) {
-            this.thirst = true;
+            this.thirst = new FamishState(player);
         } catch (RightScreen rightScreen) {
             if(this.game.getIndex()%3  != 2){
                 this.game.setIndex(this.game.getIndex() + 1);
@@ -126,21 +128,17 @@ public class GameController
                 this.player.getPosition().setIndex(this.game.getIndex());
             }
         } catch (Bedtime bedtime) {
-            System.out.println("Sleepy time!");
+            this.sleep = new SleepState(player);
+        } catch (Sleeptime sleeptime) {
+            this.sleep = new DayState(player);
         }
     }
 
-    private void updateNourishment() throws HungerOVF, ThirstOVF, HealthOVF {
+    private void updateNourishment() throws HungerOVF, ThirstOVF, HealthOVF, HungerRestored, ThirstRestored, Sleeptime {
         time++;
-        if(time % (3600) == 0) {
-            this.player.getWater().decreaseValue(5);
-        }
-
-        if(time % (5400.0) == 0) {
-            this.player.getFood().decreaseValue(5);
-        }
-        if((this.hunger || this.thirst) && ((time % 120) == 0))
-            this.player.getHealth().decreaseValue(5);
+        this.thirst.update(time);
+        this.hunger.update(time);
+        this.sleep.update(time);
     }
 
     public void run() throws IOException {
