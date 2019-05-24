@@ -6,22 +6,27 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.DoorModel;
 
+import java.awt.*;
+
 public class DoorView extends InteractableElementView{
     public DoorView(DoorModel element) {
         super(element);
     }
 
     @Override
-    public void draw(TextGraphics graphics) {
-
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
-
-        graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-
-        graphics.fillRectangle(
+    void drawLanterna(TextGraphics graphics) {
+        this.drawLanterna(
+                graphics,
+                "#91c474",
+                "#000000",
                 this.getElement().getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
                 Symbols.BLOCK_SPARSE
         );
+    }
+
+    @Override
+    void drawSwing(Graphics graphics) {
+        this.drawSwing(graphics, "door.png");
     }
 }
