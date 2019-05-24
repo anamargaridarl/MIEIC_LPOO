@@ -1,6 +1,6 @@
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.lpoo_32.view.GameSwing;
 import com.lpoo_32.view.Menu;
-import com.lpoo_32.view.swing.GameSwing;
 
 import java.io.IOException;
 
