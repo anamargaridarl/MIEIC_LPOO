@@ -13,7 +13,7 @@ public class FoodViewSwing extends SwingComponent {
 
     @Override
     protected void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics, "stickman.png");
+        super.paintComponent(graphics, "drumstick.png");
     }
 
 }
