@@ -1,4 +1,4 @@
-package com.lpoo_32.view.lanterna;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.lpoo_32.view.ScreenSize;

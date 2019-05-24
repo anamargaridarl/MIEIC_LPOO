@@ -1,4 +1,4 @@
-package com.lpoo_32.view.lanterna;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
