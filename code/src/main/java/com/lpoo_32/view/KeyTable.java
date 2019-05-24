@@ -1,4 +1,4 @@
-package com.lpoo_32.view.lanterna;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.gui2.table.DefaultTableCellRenderer;
 import com.googlecode.lanterna.gui2.table.Table;

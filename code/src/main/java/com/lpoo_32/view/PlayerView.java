@@ -1,4 +1,4 @@
-package com.lpoo_32.view.lanterna;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalPosition;
@@ -9,26 +9,31 @@ import com.lpoo_32.model.InteractableElement;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.view.ElementView;
 
-public class PlayerViewLanterna implements ElementView {
+import java.awt.*;
+
+public class PlayerView extends ElementView {
 
     private final PlayerModel player;
 
-    public PlayerViewLanterna(PlayerModel player){
+    public PlayerView(PlayerModel player){
         this.player = player;
     }
 
     @Override
-    public void draw(TextGraphics graphics) {
-
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
-
-        graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-
-        graphics.fillRectangle(
+    public void drawLanterna(TextGraphics graphics) {
+        this.drawLanterna(
+                graphics,
+                "#91c474",
+                "#000000",
                 this.player.getPosition().getTerminalPosition(),
                 new TerminalSize(1, 1),
                 Symbols.DIAMOND
         );
+    }
+
+    @Override
+    void drawSwing(Graphics graphics) {
+        this.drawSwing(graphics, "stickman.png");
     }
 
     public PlayerModel getPlayer()

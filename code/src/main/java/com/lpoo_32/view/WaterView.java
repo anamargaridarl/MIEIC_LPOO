@@ -1,16 +1,17 @@
-package com.lpoo_32.view.lanterna;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.WaterModel;
 
-public class WaterViewLanterna extends CatchableView {
+import java.awt.*;
+
+public class WaterView extends CatchableView {
     private final WaterModel water;
 
-    WaterViewLanterna(WaterModel water){
+    WaterView(WaterModel water){
         super(water);
         this.water = water;
     }
@@ -31,17 +32,19 @@ public class WaterViewLanterna extends CatchableView {
     }
 
     @Override
-    public void draw(TextGraphics graphics) {
-
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
-
-        graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-
-        graphics.fillRectangle(
+    public void drawLanterna(TextGraphics graphics) {
+        this.drawLanterna(graphics,
+                "#91c474",
+                "#000000",
                 this.water.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
-                this.getSymbol()
+                 this.getSymbol()
         );
+    }
+
+    @Override
+    void drawSwing(Graphics graphics) {
+        this.drawSwing(graphics, "water.png");
     }
 
 

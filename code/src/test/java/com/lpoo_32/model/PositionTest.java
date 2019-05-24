@@ -2,7 +2,7 @@ package com.lpoo_32.model;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.lpoo_32.exceptions.*;
-import com.lpoo_32.view.lanterna.ScreenSize;
+import com.lpoo_32.view.ScreenSize;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

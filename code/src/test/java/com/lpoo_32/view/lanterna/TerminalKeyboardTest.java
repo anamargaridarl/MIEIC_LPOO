@@ -6,7 +6,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.HungerOVF;
 import com.lpoo_32.exceptions.ThirstOVF;
 import com.lpoo_32.view.EventType;
-import com.lpoo_32.view.lanterna.TerminalKeyboard;
+import com.lpoo_32.view.TerminalKeyboard;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

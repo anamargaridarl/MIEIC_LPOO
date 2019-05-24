@@ -6,7 +6,6 @@ import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 import com.lpoo_32.view.*;
-import com.lpoo_32.view.lanterna.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -31,13 +30,13 @@ public class GameLanternaControllerTest {
         FoodModel food = new FoodModel(10, new Position(3,3, 0, 0, 0));
 
         Elements elements = new Elements();
-        elements.addElement(new SpikesViewLanterna(spike));
-        elements.addElement(new FoodViewLanterna(food));
+        elements.addElement(new SpikesView(spike));
+        elements.addElement(new FoodView(food));
 
         List<ElementView> props = new ArrayList<>();
-        props.add(new FoodViewLanterna(food));
-        props.add(new SpikesViewLanterna(spike));
-        props.add(new PlayerViewLanterna(player));
+        props.add(new FoodView(food));
+        props.add(new SpikesView(spike));
+        props.add(new PlayerView(player));
 
 
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);

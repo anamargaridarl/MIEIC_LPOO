@@ -2,7 +2,7 @@ package com.lpoo_32.view;
 
 import com.lpoo_32.model.InteractableElement;
 
-public abstract class InteractableElementView implements ElementView{
+public abstract class InteractableElementView extends ElementView{
     private InteractableElement element;
 
     public InteractableElementView(InteractableElement element){

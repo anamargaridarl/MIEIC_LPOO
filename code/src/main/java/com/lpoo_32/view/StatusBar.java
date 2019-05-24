@@ -1,4 +1,4 @@
-package com.lpoo_32.view.lanterna;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalPosition;
@@ -6,15 +6,16 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.Status;
-import com.lpoo_32.view.ElementView;
 
-public class StatusBarLanterna implements ElementView {
+import java.awt.*;
+
+public class StatusBar extends ElementView {
     private final Status status;
     private final TextColor color;
     private int height;
 
 
-    StatusBarLanterna(Status status, String hexColor, int height){
+    StatusBar(Status status, String hexColor, int height){
         this.status = status;
         this.color = TextColor.Factory.fromString(hexColor);
         this.height = height;
@@ -25,7 +26,7 @@ public class StatusBarLanterna implements ElementView {
     }
 
     @Override
-    public void draw(TextGraphics graphics) {
+    public void drawLanterna(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.setForegroundColor(color);
         graphics.fillRectangle(new TerminalPosition(getColumn(60),
@@ -36,6 +37,11 @@ public class StatusBarLanterna implements ElementView {
                         getRows()),
                 new TerminalSize(getColumn(40 - this.getScreenPercen()), 1),
                 Symbols.BLOCK_SPARSE);
+    }
+
+    @Override
+    void drawSwing(Graphics graphics) {
+
     }
 
     private int getRows() {

@@ -1,6 +1,6 @@
 package com.lpoo_32.model;
 
-import com.lpoo_32.view.lanterna.FoodViewLanterna;
+import com.lpoo_32.view.FoodView;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,18 +8,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class InventoryTest {
-    private FoodViewLanterna food;
+    private FoodView food;
     private FoodModel foodM;
-    private FoodViewLanterna food2;
+    private FoodView food2;
     private FoodModel foodM2;
     private Inventory inventory;
 
     @Before
     public void initializeValues(){
         this.foodM = new FoodModel(23, null);
-        this.food = new FoodViewLanterna(foodM);
+        this.food = new FoodView(foodM);
         this.foodM2 = new FoodModel(20, null);
-        this.food2 = new FoodViewLanterna(foodM2);
+        this.food2 = new FoodView(foodM2);
         this.inventory = new Inventory();
     }
 

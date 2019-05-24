@@ -1,25 +1,26 @@
-package com.lpoo_32.view.lanterna;
+package com.lpoo_32.view;
 
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.Inventory;
-import com.lpoo_32.view.ElementView;
+
+import java.awt.*;
 
 
-public class InventoryViewLanterna implements ElementView {
+public class InventoryView extends ElementView {
 
     private Inventory inventory;
     private final TextColor color;
     //private int height;
 
-    public InventoryViewLanterna(Inventory inventory, String hexColor) {
+    public InventoryView(Inventory inventory, String hexColor) {
         this.inventory = inventory;
         this.color = TextColor.Factory.fromString(hexColor);
     }
 
 
     @Override
-    public void draw(TextGraphics graphics) {
+    public void drawLanterna(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.setForegroundColor(color);
 
@@ -41,6 +42,11 @@ public class InventoryViewLanterna implements ElementView {
 
 
 
+
+    }
+
+    @Override
+    void drawSwing(Graphics graphics) {
 
     }
 

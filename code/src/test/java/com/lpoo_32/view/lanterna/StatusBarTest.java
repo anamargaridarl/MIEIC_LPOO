@@ -1,18 +1,19 @@
 package com.lpoo_32.view.lanterna;
 
 import com.lpoo_32.model.HealthStatus;
+import com.lpoo_32.view.StatusBar;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class StatusBarLanternaTest {
+public class StatusBarTest {
     @Test
     public void screenPercentage(){
-        StatusBarLanterna bar = new StatusBarLanterna(new HealthStatus(100), "#000000", 10);
+        StatusBar bar = new StatusBar(new HealthStatus(100), "#000000", 10);
         assertEquals(40, bar.getScreenPercen());
-        bar = new StatusBarLanterna(new HealthStatus(80), "#000000", 10);
+        bar = new StatusBar(new HealthStatus(80), "#000000", 10);
         assertEquals(32, bar.getScreenPercen());
-        bar = new StatusBarLanterna(new HealthStatus(0), "#000000", 10);
+        bar = new StatusBar(new HealthStatus(0), "#000000", 10);
         assertEquals(0, bar.getScreenPercen());
     }
 

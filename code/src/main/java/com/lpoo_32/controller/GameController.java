@@ -3,8 +3,7 @@ package com.lpoo_32.controller;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 import com.lpoo_32.view.*;
-import com.lpoo_32.view.lanterna.DisplayProps;
-import com.lpoo_32.view.lanterna.*;
+import com.lpoo_32.view.DisplayProps;
 
 import java.io.IOException;
 import java.util.Random;
