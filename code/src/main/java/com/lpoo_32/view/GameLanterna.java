@@ -4,26 +4,27 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
 import java.util.*;
 
 
-public class GameLanterna extends Display{
+public class GameLanterna extends Game{
 
     private Elements elements;
     private List<ElementView> generalView;
-    private int index;
     private TextGraphics graphics;
     private PlayerView player;
     public static final int width = 60;
     public static final int height = 50;
+    private Screen screen;
 
     public GameLanterna(DisplayProps props, PlayerModel player, Elements elements) {
-        super(props.getScreen());
+        super();
+        this.screen = props.getScreen();
         this.generalView = new LinkedList<>();
-        this.index = 0;
         this.player = new PlayerView(player);
         this.elements = elements;
         this.graphics =  this.screen.newTextGraphics();
@@ -44,8 +45,8 @@ public class GameLanterna extends Display{
 
         /*graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
                             ScreenSize.instance().getRows(20)), "@");*/
-        int initialX = index%3 * GameLanterna.width/4;
-        int initialY = index/3 * GameLanterna.height/4;
+        int initialX = getIndex() %3 * GameLanterna.width/4;
+        int initialY = getIndex() /3 * GameLanterna.height/4;
 
         for(int i = initialX; i < initialX + GameLanterna.width/4; i++){
             for(int j = initialY; j < initialY + GameLanterna.height/4; j++){
@@ -69,13 +70,5 @@ public class GameLanterna extends Display{
         this.generalView.add(new InventoryView(this.player.getPlayer().getInventory(), "#91c474"));
     }
 
-
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
 
 }

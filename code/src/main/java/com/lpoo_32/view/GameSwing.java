@@ -1,11 +1,27 @@
 package com.lpoo_32.view;
 
-import javax.swing.*;
+import com.lpoo_32.model.Elements;
+import com.lpoo_32.model.PlayerModel;
 
-public class GameSwing {
-    public GameSwing(){
-        JFrame frame = new JFrame();
+import javax.swing.*;
+import java.awt.*;
+
+public class GameSwing extends Game{
+    private final PlayerModel player;
+    private final Elements elements;
+    private Graphics graphics;
+
+    public GameSwing(DisplayProps props, PlayerModel player, Elements elements){
+        super();
+        this.player = player;
+        this.elements = elements;
+        JFrame frame = props.getFrame();
         frame.setVisible(true);
-        new PlayerView(null).drawSwing(frame.getGraphics());
+        this.graphics = frame.getGraphics();
+    }
+
+    @Override
+    void draw() {
+        graphics.dispose();
     }
 }

@@ -33,7 +33,7 @@ public class GameLanternaTest {
         screen = Mockito.mock(Screen.class);
         graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
-        gameLanterna = new GameLanterna(new DisplayProps(screen),new PlayerModel(Mockito.mock(Position.class)), Mockito.mock(Elements.class));
+        gameLanterna = new GameLanterna(new DisplayProps(screen, null),new PlayerModel(Mockito.mock(Position.class)), Mockito.mock(Elements.class));
     }
 
     @Test
