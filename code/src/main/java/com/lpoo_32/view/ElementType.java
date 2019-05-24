@@ -5,5 +5,6 @@ public enum ElementType {
     WATER,
     FOOD,
     MONSTER,
+    WEAPON,
     NONE
 }

@@ -5,7 +5,7 @@ import com.lpoo_32.exceptions.*;
 public class WeaponModel extends CatchableElement {
 
     MonsterModel lastMonster;
-    WeaponModel(Position pos, int value) {
+    public WeaponModel(Position pos, int value) {
         super(pos, value);
     }
 

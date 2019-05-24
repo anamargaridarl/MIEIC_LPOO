@@ -64,9 +64,11 @@ public class GameController
                     System.out.println("Open help Menu");
                     break;
                 case STORE: //add element to inventory
-                    if(isCatchable(player.getPosition())) {
-                        player.addElementInventory((CatchableView)elements.getView(player.getPosition()));
-                        removeElementProps(elements.getModel(player.getPosition()));
+                    if(!isWeapon(player.getPosition())) {
+                        if (isCatchable(player.getPosition())) {
+                            player.addElementInventory((CatchableView) elements.getView(player.getPosition()));
+                            removeElementProps(elements.getModel(player.getPosition()));
+                        }
                     }
                     break;
                 case USE:
@@ -243,7 +245,23 @@ public class GameController
         }
     }
 
-    //verify that model element in the position is catchable
+
+    private boolean isWeapon(Position position) {
+
+        if (elements.getView(position) != null) {
+            if(elements.getModel(position) instanceof WeaponModel) {
+                elements.getModel(position).setPosition(position);
+                return true;
+            }
+        }
+        else
+            return false;
+
+        return false;
+
+    }
+
+
     private boolean isCatchable(Position position) {
 
         if (elements.getView(position) != null) {
@@ -273,22 +291,36 @@ public class GameController
 
     public void checkForMonster(Position position, Attacks orientation, WeaponModel weapon) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, LeftScreen, RightScreen, DownScreen, UpScreen {
 
+        InteractableElementView element;
+
         switch (orientation) {
             case AUP:
-                if (elements.getView(position.checkMovementUp()) instanceof MonsterView)
-                    weapon.interactMonster(((MonsterView) elements.getView(position.checkMovementUp())).getMonster());
+                element = elements.getView(position.checkMovementUp());
+                if(element != null) {
+                    if (element instanceof MonsterView)
+                        weapon.interactMonster(((MonsterView) element).getMonster());
+                }
                 break;
             case ADOWN:
-                if (elements.getView(position.checkMovementDown()) instanceof MonsterView)
-                    weapon.interactMonster(((MonsterView) elements.getView(position.checkMovementDown())).getMonster());
+                element = elements.getView(position.checkMovementDown());
+                if(element != null) {
+                    if (element instanceof MonsterView)
+                        weapon.interactMonster(((MonsterView) element).getMonster());
+                }
                 break;
             case ALEFT:
-                if (elements.getView(position.checkMovementLeft()) instanceof MonsterView)
-                    weapon.interactMonster(((MonsterView) elements.getView(position.checkMovementLeft())).getMonster());
+                element = elements.getView(position.checkMovementLeft());
+                if(element != null) {
+                    if (element instanceof MonsterView)
+                        weapon.interactMonster(((MonsterView) element).getMonster());
+                }
                 break;
             case ARIGHT:
-                if (elements.getView(position.checkMovementRight()) instanceof MonsterView)
-                    weapon.interactMonster(((MonsterView) elements.getView(position.checkMovementRight())).getMonster());
+                element = elements.getView(position.checkMovementRight());
+                if(element != null) {
+                    if (element instanceof MonsterView)
+                        weapon.interactMonster(((MonsterView) element).getMonster());
+                }
                 break;
             default:
                 break;

@@ -6,7 +6,7 @@ public class PlayerModel extends MovableElement {
     private Status health;
     private Status food;
     private Status water;
-    private WeaponModel currentWeapon;
+    private WeaponModel currentWeapon = new WeaponModel(getPosition(),20);
     private Inventory inventory;
 
     public PlayerModel(Position position){
