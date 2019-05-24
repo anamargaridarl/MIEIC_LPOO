@@ -14,6 +14,7 @@ public class WeaponModel extends CatchableElement {
         this.lastMonster = monster;
     }
 
+
     @Override
     public void interact(PlayerModel player) throws HealthOVF, HungerOVF,ThirstOVF {
         player.getHealth().decreaseValue(this.lastMonster.getValue());

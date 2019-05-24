@@ -6,7 +6,7 @@ public class PlayerModel extends MovableElement {
     private Status health;
     private Status food;
     private Status water;
-    private Status weapon;
+    private WeaponModel currentWeapon;
     private Inventory inventory;
 
     public PlayerModel(Position position){
@@ -52,8 +52,11 @@ public class PlayerModel extends MovableElement {
         return inventory;
     }
 
-    public void removeMonsterLife()
-    {
+    public void setWeapon(WeaponModel weapon) {
+        this.currentWeapon = weapon;
+    }
 
+    public WeaponModel getWeapon() {
+        return this.currentWeapon;
     }
 }

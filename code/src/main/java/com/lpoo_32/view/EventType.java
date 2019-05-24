@@ -12,5 +12,9 @@ public enum EventType{
     LEFTINVENTORY,
     RIGHTINVENTORY,
     INVETORYUSE,
+    ATTACKLEFT,
+    ATTACKRIGHT,
+    ATTACKDOWN,
+    ATTACKUP,
     NULL
 }

@@ -56,7 +56,7 @@ public class MonsterModel extends InteractableElement {
         switch(mov)
         {
             case UP:
-                    if (!(controller.checkElement(monsterview.getMonster().getPos().checkMovementUp()))) {
+                    if (!(controller.checkForElement(monsterview.getMonster().getPos().checkMovementUp()))) {
                         controller.removeElementProps(monsterview.getMonster());
                         monsterview.getMonster().moveUp();
                         controller.addElementProps(monsterview);
@@ -64,21 +64,22 @@ public class MonsterModel extends InteractableElement {
 
                     break;
             case DOWN:
-                if(!(controller.checkElement(monsterview.getMonster().getPos().checkMovementDown()))) {
+                if(!(controller.checkForElement(monsterview.getMonster().getPos().checkMovementDown()))) {
                     controller.removeElementProps(monsterview.getMonster());
                     monsterview.getMonster().moveDown();
                     controller.addElementProps(monsterview);
                 }
                 break;
             case LEFT:
-                if (!(controller.checkElement(monsterview.getMonster().getPos().checkMovementLeft()))) {
+                if (!(controller.checkForElement(monsterview.getMonster().getPos().checkMovementLeft()))) {
                     controller.removeElementProps(monsterview.getMonster());
                     monsterview.getMonster().moveLeft();
                     controller.addElementProps(monsterview);
                 }
                 break;
             case RIGHT:
-                if (!(controller.checkElement(monsterview.getMonster().getPos().checkMovementRight()))) {
+                if (!(controller.checkForElement
+                        (monsterview.getMonster().getPos().checkMovementRight()))) {
                     controller.removeElementProps(monsterview.getMonster());
                     monsterview.getMonster().moveRight();
                     controller.addElementProps(monsterview);
@@ -100,18 +101,9 @@ public class MonsterModel extends InteractableElement {
     }
 
 
-    public boolean equalsPlayer(Position player) {
-
-        if (Math.abs(this.movable.getPosition().getX() - player.getX()) == 0 && Math.abs(this.movable.getPosition().getY() - player.getY()) == 1
-        || Math.abs(this.movable.getPosition().getX() - player.getX()) == 1 && Math.abs(this.movable.getPosition().getY() - player.getY()) == 0) {
-            System.out.println("bananas");
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 
+    //-----------------Choose to move in x or y------------------------------
     public int chooseX(Position playerposition) {
         if (this.movable.getPosition().getX() < playerposition.getX())
             return 3;
@@ -142,11 +134,11 @@ public class MonsterModel extends InteractableElement {
         }
 
     }
-
+    //-----------------------------------------------------------------------------
 
     public void moveMonster(MonsterView monsterview, Position playerposition) throws RightScreen, LeftScreen, UpScreen, DownScreen {
 
-        if(equalsPlayer(playerposition)) {
+        if(controller.monsterEqualsPlayer(playerposition, this.getPos())) {
             return;
         }
 
