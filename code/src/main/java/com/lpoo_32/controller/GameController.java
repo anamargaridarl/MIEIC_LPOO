@@ -14,38 +14,47 @@ public class GameController
     private PlayerModel player;
     private Elements elements;
     private TerminalKeyboard keyboardProcessor;
-    private boolean hunger;
-    private boolean thirst;
+    private NourishState hunger;
+    private NourishState thirst;
+    private NourishState sleep;
     private static final int frameRate = 60;
     private int time;
+    private ElementFactory factory;
 
 
     public GameController(DisplayProps props, Elements elements, PlayerModel player) throws OutOfBoundaries {
         this.player = player;
         this.elements = elements;
         this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
-        this.hunger = false;
-        this.thirst = false;
+        this.hunger = new SatedState(player);
+        this.thirst = new QuenchedState(player);
+        this.sleep = new DayState(player);
+        this.factory = new TerminalElementFactory();
         this.populateGame(GameLanterna.width/4, GameLanterna.height/4);
+        this.buildHouse(GameLanterna.width/4, GameLanterna.height/4);
         this.gameLanterna = new GameLanterna(props, this.player, elements);
     }
 
-    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
+    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen, Bedtime {
 
         SpikesModel spikes = new SpikesModel(10, null);
         if(event != EventType.NULL && event != null){
             switch (event) {
                 case MOVEUP:
-                    player.moveUp();
+                    if(this.collisions(player.getPosition().checkMovementUp()))
+                        player.moveUp();
                     break;
                 case MOVEDOWN:
-                    player.moveDown();
+                    if(this.collisions(player.getPosition().checkMovementDown()))
+                        player.moveDown();
                     break;
                 case MOVELEFT:
-                    player.moveLeft();
+                    if(this.collisions(player.getPosition().checkMovementLeft()))
+                        player.moveLeft();
                     break;
                 case MOVERIGHT:
-                    player.moveRight();
+                    if(this.collisions(player.getPosition().checkMovementRight()))
+                        player.moveRight();
                     break;
                 case EXIT:
                     throw new ScreenClose();
@@ -82,7 +91,6 @@ public class GameController
                     break;
             }
 
-            this.collisions(player.getPosition());
         }
     }
 
@@ -93,13 +101,13 @@ public class GameController
             Thread.sleep(1000/ frameRate);
             updateNourishment();
         } catch (HungerRestored hungerRestored) {
-            this.hunger = false;
+            this.hunger = new SatedState(player);
         } catch (HungerOVF nourishOVF) {
-            this.hunger = true;
+            this.hunger = new FamishState(player);
         } catch (ThirstRestored thirstRestored) {
-            this.thirst = false;
+            this.thirst = new QuenchedState(player);
         } catch (ThirstOVF thirstOVF) {
-            this.thirst = true;
+            this.thirst = new FamishState(player);
         } catch (RightScreen rightScreen) {
             if(this.gameLanterna.getIndex()%3  != 2){
                 this.gameLanterna.setIndex(this.gameLanterna.getIndex() + 1);
@@ -120,20 +128,18 @@ public class GameController
                 this.gameLanterna.setIndex(this.gameLanterna.getIndex() + 3);
                 this.player.getPosition().setIndex(this.gameLanterna.getIndex());
             }
+        } catch (Bedtime bedtime) {
+            this.sleep = new SleepState(player);
+        } catch (Sleeptime sleeptime) {
+            this.sleep = new DayState(player);
         }
     }
 
-    private void updateNourishment() throws HungerOVF, ThirstOVF, HealthOVF {
+    private void updateNourishment() throws HungerOVF, ThirstOVF, HealthOVF, HungerRestored, ThirstRestored, Sleeptime {
         time++;
-        if(time % (3600) == 0) {
-            this.player.getWater().decreaseValue(5);
-        }
-
-        if(time % (5400.0) == 0) {
-            this.player.getFood().decreaseValue(5);
-        }
-        if((this.hunger || this.thirst) && ((time % 120) == 0))
-            this.player.getHealth().decreaseValue(5);
+        this.thirst.update(time);
+        this.hunger.update(time);
+        this.sleep.update(time);
     }
 
     public void run() throws IOException {
@@ -160,16 +166,44 @@ public class GameController
 
     private void populateGame(int width, int height) throws OutOfBoundaries {
         Random random = new Random();
-        TerminalElementFactory factory = new TerminalElementFactory();
         ElementType[] types = ElementType.values();
         for(int i = 0; i < 50; i++){
             int x = random.nextInt(width * 3);
             int y = random.nextInt(height * 3);
             int index = (x/width) + (y/height) * 3;
             Position pos = new Position(x, y, width, height, index);
-            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos);
+            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 4)], pos);
             this.elements.addElement(element);
         }
+    }
+
+    private void buildHouse(int width, int height) throws OutOfBoundaries {
+        Random random = new Random();
+        int initialX = random.nextInt(width * 3 - 5);
+        int initialY = random.nextInt(height * 3 - 6) + 1;
+        System.out.println("X: " + initialX + " Y: " + initialY);
+        for(int i = 0; i < 5; i++){
+            if(i == 0 || i == 4){
+                for(int j = 0; j < 5; j++){
+                    addHousePart(width, height, initialX, initialY, i, j, ElementType.WALL);
+                }
+            }else{
+                if(i == 2){
+                    addHousePart(width, height, initialX, initialY, i, 0, ElementType.DOOR);
+                    addHousePart(width, height, initialX, initialY, i, 4, ElementType.WALL);
+                }else {
+                    addHousePart(width, height, initialX, initialY, i, 0, ElementType.WALL);
+                    addHousePart(width, height, initialX, initialY, i, 4, ElementType.WALL);
+                }
+            }
+        }
+        addHousePart(width, height, initialX, initialY, 1, 1, ElementType.BED);
+        addHousePart(width, height, initialX, initialY, 1, 2, ElementType.BED);
+    }
+
+    private void addHousePart(int width, int height, int initialX, int initialY, int i, int j, ElementType type) throws OutOfBoundaries {
+        int index = ((initialX + i)/width) + ((initialY + j)/height) * 3;
+        this.elements.addElement(factory.getElement(type, new Position(i + initialX, j + initialY, width, height, index)));
     }
 
 
@@ -191,11 +225,12 @@ public class GameController
 
 
     //handles colisions for non catchable elements
-    public void collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF { //TODO: Mo {
+    boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF, Bedtime {
 
         if (elements.getView(position) != null && !(isCatchable(position))) {
-            elements.getModel(position).interact(player);
+            return elements.getModel(position).interact(player);
         }
+        return true;
     }
 
     void setTime(int time){

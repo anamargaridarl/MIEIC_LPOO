@@ -24,7 +24,7 @@ public class InteractableElementTest {
 
 
     @Test
-    public void spikes() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
+    public void spikes() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, Bedtime {
         InteractableElement spike = new SpikesModel(20, null);
         spike.interact(player);
         assertEquals(100, player.getWater().getValue());
@@ -34,13 +34,13 @@ public class InteractableElementTest {
 
 
     @Test
-    public void statusOVF() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
+    public void statusOVF() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, Bedtime {
         InteractableElement spike = new SpikesModel(200, null);
         thrown.expect(HealthOVF.class);
         spike.interact(player);
     }
     @Test
-    public void food() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
+    public void food() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, Bedtime {
         InteractableElement spike = new SpikesModel(20, null);
         spike.interact(player);
         assertEquals(100, player.getWater().getValue());
@@ -54,7 +54,7 @@ public class InteractableElementTest {
     }
 
     @Test
-    public void water() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored {
+    public void water() throws HealthOVF, HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, Bedtime {
         this.player.setWater(new NourishStatus(70, NourishType.HUNGER));
         InteractableElement water = new WaterModel(15,null);
         assertEquals(70, this.player.getWater().getValue());

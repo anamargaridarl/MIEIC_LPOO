@@ -26,6 +26,13 @@ public class Position {
         this.widthIndex = index%3;
     }
 
+    private Position(int x, int y){
+        this.x = x;
+        this.y = y;
+        this.width = 0;
+        this.height = 0;
+    }
+
     public void moveUp() throws UpScreen {
 
         if(this.y - 1 >= this.heightIndex * height)
@@ -56,6 +63,22 @@ public class Position {
             this.x++;
         else
             throw new RightScreen();
+    }
+
+    public Position checkMovementUp() {
+        return new Position(this.getX(), this.getY()- 1);
+    }
+
+    public Position checkMovementDown() {
+        return new Position(this.getX(), this.getY()+ 1);
+    }
+
+    public Position checkMovementRight() {
+        return new Position(this.getX() + 1, this.getY());
+    }
+
+    public Position checkMovementLeft() {
+        return new Position(this.getX() - 1, this.getY());
     }
 
     public int getX() {

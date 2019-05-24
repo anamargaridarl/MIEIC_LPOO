@@ -53,7 +53,7 @@ public class GameLanternaControllerTest {
     }
 
     @Test
-    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries {
+    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries, Bedtime {
         TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
@@ -61,6 +61,12 @@ public class GameLanternaControllerTest {
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);
         Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
         Mockito.when(player.getInventory()).thenReturn(inventory);
+        Position pos = Mockito.mock(Position.class);
+        Mockito.when(player.getPosition()).thenReturn(pos);
+        Mockito.when(pos.checkMovementLeft()).thenReturn(pos);
+        Mockito.when(pos.checkMovementDown()).thenReturn(pos);
+        Mockito.when(pos.checkMovementRight()).thenReturn(pos);
+        Mockito.when(pos.checkMovementUp()).thenReturn(pos);
         GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player);
 
         Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVEUP);
@@ -92,7 +98,7 @@ public class GameLanternaControllerTest {
     }
 
     @Test
-    public void screenClose() throws HungerOVF, ThirstOVF, IOException, DownScreen, LeftScreen, ScreenClose, RightScreen, UpScreen, HealthOVF, ThirstRestored, HungerRestored, OutOfBoundaries {
+    public void screenClose() throws HungerOVF, ThirstOVF, IOException, DownScreen, LeftScreen, ScreenClose, RightScreen, UpScreen, HealthOVF, ThirstRestored, HungerRestored, OutOfBoundaries, Bedtime {
         TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);

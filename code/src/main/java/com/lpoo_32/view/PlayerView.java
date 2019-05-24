@@ -29,6 +29,7 @@ public class PlayerView extends ElementView {
                 new TerminalSize(1, 1),
                 Symbols.DIAMOND
         );
+
     }
 
     @Override

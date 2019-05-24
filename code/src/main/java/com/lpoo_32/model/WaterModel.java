@@ -12,8 +12,9 @@ public class WaterModel extends CatchableElement {
     }
 
     @Override
-    public void interact(PlayerModel player) throws HungerRestored, ThirstRestored {
+    public boolean interact(PlayerModel player) throws HungerRestored, ThirstRestored {
         player.getWater().increaseValue(20);
+        return true;
     }
 
 }
