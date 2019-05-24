@@ -24,7 +24,7 @@ public class GameLanternaControllerTest {
 
 
     @Test
-    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF, OutOfBoundaries {
+    public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF, OutOfBoundaries, Bedtime {
         PlayerModel player = new PlayerModel(new Position(3,2, GameLanterna.width/4, GameLanterna.height/4, 0));
         SpikesModel spike = new SpikesModel(25, new Position(3,2, 0, 0, 0));
         FoodModel food = new FoodModel(10, new Position(3,3, 0, 0, 0));

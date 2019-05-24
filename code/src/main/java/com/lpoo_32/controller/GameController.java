@@ -198,7 +198,6 @@ public class GameController
             }
         }
         addHousePart(width, height, initialX, initialY, 1, 1, ElementType.BED);
-        addHousePart(width, height, initialX, initialY, 1, 2, ElementType.BED);
     }
 
     private void addHousePart(int width, int height, int initialX, int initialY, int i, int j, ElementType type) throws OutOfBoundaries {
