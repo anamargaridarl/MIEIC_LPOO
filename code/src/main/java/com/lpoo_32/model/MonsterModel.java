@@ -91,33 +91,54 @@ public class MonsterModel extends InteractableElement {
 
     }
 
-    public int chooseX(Position monsterposition, Position playerposition) {
-        if (monsterposition.getX() < playerposition.getX())
-            return 3;
-        else if (monsterposition.getX() > playerposition.getX())
-            return 2;
+
+    public void decreaseValue(int value) {
+        if(this.getValue() - value < 0)
+            this.value = 100;
         else
-            return chooseY(monsterposition, playerposition);
+            this.value -= value;
     }
 
-    private int chooseY(Position monsterposition, Position playerposition) {
-        if (monsterposition.getY() < playerposition.getY())
+
+    public boolean equalsPlayer(Position player) {
+
+        if (Math.abs(this.movable.getPosition().getX() - player.getX()) == 0 && Math.abs(this.movable.getPosition().getY() - player.getY()) == 1
+        || Math.abs(this.movable.getPosition().getX() - player.getX()) == 1 && Math.abs(this.movable.getPosition().getY() - player.getY()) == 0) {
+            System.out.println("bananas");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public int chooseX(Position playerposition) {
+        if (this.movable.getPosition().getX() < playerposition.getX())
+            return 3;
+        else if (this.movable.getPosition().getX() > playerposition.getX())
+            return 2;
+        else
+            return chooseY(playerposition);
+    }
+
+    private int chooseY( Position playerposition) {
+        if (this.movable.getPosition().getY() < playerposition.getY())
             return 1;
-        else if (monsterposition.getY() > playerposition.getY())
+        else if (this.movable.getPosition().getY() > playerposition.getY())
             return 0;
         else
-            return chooseX(monsterposition,playerposition);
+            return chooseX(playerposition);
     }
 
     //chose between moving in y or x
-    public int randomMove(Position monsterposition, Position playerposition) throws LeftScreen, RightScreen, UpScreen, DownScreen {
+    public int randomMove(Position playerposition) throws LeftScreen, RightScreen, UpScreen, DownScreen {
         Random random = new Random();
         int mov = random.nextInt((2 - 2) + 1) + 1;
 
         if (mov == 1) {
-            return chooseX(monsterposition,playerposition);
+            return chooseX(playerposition);
         } else {
-           return chooseY(monsterposition,playerposition);
+           return chooseY(playerposition);
         }
 
     }
@@ -125,11 +146,12 @@ public class MonsterModel extends InteractableElement {
 
     public void moveMonster(MonsterView monsterview, Position playerposition) throws RightScreen, LeftScreen, UpScreen, DownScreen {
 
-        if(monsterview.getMonster().getPos().equals(playerposition)) {
+        if(equalsPlayer(playerposition)) {
             return;
         }
+
         Movements[] mov = Movements.values();
-        int n = randomMove(monsterview.getMonster().getPos(), playerposition);
+        int n = randomMove(playerposition);
 
         this.getMovement(mov[n],monsterview);
 
@@ -137,8 +159,6 @@ public class MonsterModel extends InteractableElement {
     public void updateMove(MonsterView monsterview) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen {
 
         this.number++;
-        System.out.printf("player index %d\n",playerposition.getIndex());
-        System.out.printf("monster index %d\n",monsterview.getMonster().getPos().getIndex());
 
         if (number == 60) {
             if(this.getPos().getIndex() == playerposition.getIndex()) {

@@ -6,7 +6,7 @@ import com.lpoo_32.exceptions.*;
 abstract public class InteractableElement implements ElementModel {
 
     private Position pos;
-    private int value;
+    protected int value;
 
     InteractableElement(Position pos, int value){
         this.pos = pos;

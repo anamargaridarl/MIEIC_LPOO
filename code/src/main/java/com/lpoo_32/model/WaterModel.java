@@ -2,8 +2,7 @@ package com.lpoo_32.model;
 
 
 import com.googlecode.lanterna.Symbols;
-import com.lpoo_32.exceptions.HungerRestored;
-import com.lpoo_32.exceptions.ThirstRestored;
+import com.lpoo_32.exceptions.*;
 
 public class WaterModel extends CatchableElement {
 
@@ -12,8 +11,7 @@ public class WaterModel extends CatchableElement {
     }
 
     @Override
-    public void interact(PlayerModel player) throws HungerRestored, ThirstRestored {
-        player.getWater().increaseValue(20);
+    public void interact(PlayerModel player) throws HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF {
+        player.getWater().decreaseValue(this.getValue());
     }
-
 }

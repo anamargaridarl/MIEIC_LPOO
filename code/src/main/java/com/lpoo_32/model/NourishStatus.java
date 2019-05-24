@@ -18,7 +18,6 @@ public class NourishStatus extends Status {
         this.type = type;
     }
 
-    @Override
     public void decreaseValue(int value) throws HungerOVF, ThirstOVF {
         if(this.value != 0){
             this.value -= value;

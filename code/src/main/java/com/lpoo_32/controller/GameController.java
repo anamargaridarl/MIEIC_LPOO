@@ -199,10 +199,22 @@ public class GameController
 
     }
 
+
+    public boolean equalsPlayer(Position player, Position position) {
+
+        if (Math.abs(position.getX() - player.getX()) == 0 && Math.abs(position.getY() - player.getY()) == 1
+                || Math.abs(position.getX() - player.getX()) == 1 && Math.abs(position.getY() - player.getY()) == 0) {
+            System.out.println("bananas");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void checkCollisionMonster(Position position) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored {
 
-        if(player.getPosition().equals(position)){
-            elements.getModel(player.getPosition()).interact(player);
+        if(equalsPlayer(player.getPosition(), position)){
+            elements.getModel(position).interact(player);
         }
 
     }

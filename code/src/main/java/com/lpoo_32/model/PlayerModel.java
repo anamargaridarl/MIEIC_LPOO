@@ -6,6 +6,7 @@ public class PlayerModel extends MovableElement {
     private Status health;
     private Status food;
     private Status water;
+    private Status weapon;
     private Inventory inventory;
 
     public PlayerModel(Position position){
@@ -15,6 +16,8 @@ public class PlayerModel extends MovableElement {
         this.food = new NourishStatus(100, NourishType.HUNGER);
         this.water = new NourishStatus(100, NourishType.THIRST);
     }
+
+
 
     public Status getHealth() {
         return health;
@@ -47,5 +50,10 @@ public class PlayerModel extends MovableElement {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public void removeMonsterLife()
+    {
+
     }
 }
