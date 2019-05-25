@@ -37,7 +37,7 @@ public class GameController
         return random.nextInt(9);
     }
 
-    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen, DeadMonster {
+    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
 
         InteractableElementView i;
         SpikesModel spikes = new SpikesModel(10, null);
@@ -166,8 +166,7 @@ public class GameController
                 this.game.setIndex(this.game.getIndex() + 3);
                 this.player.getPosition().setIndex(this.game.getIndex());
             }
-        } catch (DeadMonster deadMonster) {
-            //remove monster
+
         }
 
 
@@ -302,7 +301,7 @@ public class GameController
     }
 
 
-    public void checkForMonsterAndAttack(Position position, Attacks orientation, WeaponModel weapon) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, LeftScreen, RightScreen, DownScreen, UpScreen, DeadMonster {
+    public void checkForMonsterAndAttack(Position position, Attacks orientation, WeaponModel weapon) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, LeftScreen, RightScreen, DownScreen, UpScreen {
 
         if(weapon == null)
             return;

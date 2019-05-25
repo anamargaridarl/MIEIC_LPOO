@@ -5,7 +5,7 @@ import com.googlecode.lanterna.screen.Screen;
 public  class DisplayProps {
     private final Screen screen;
 
-    DisplayProps(Screen screen){
+    public DisplayProps(Screen screen){
         this.screen = screen;
     }
 

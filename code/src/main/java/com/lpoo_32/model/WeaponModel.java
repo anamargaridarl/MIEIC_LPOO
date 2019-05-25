@@ -4,24 +4,15 @@ import com.lpoo_32.exceptions.*;
 
 public class WeaponModel extends CatchableElement {
 
-    MonsterModel lastMonster;
     public WeaponModel(Position pos, int value) {
         super(pos, value);
     }
 
-    public void setLastMonster(MonsterModel monster)
-    {
-        this.lastMonster = monster;
-    }
-
-
     @Override
-    public void interact(PlayerModel player) throws HealthOVF, HungerOVF,ThirstOVF {
-        player.getHealth().decreaseValue(this.lastMonster.getValue());
+    public void interact(PlayerModel player) throws HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF {
     }
 
-
-    public void interactMonster(MonsterModel monster) throws DeadMonster {
+    public void interactMonster(MonsterModel monster) {
         monster.decreaseValue(this.getValue());
     }
 

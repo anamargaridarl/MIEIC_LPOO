@@ -10,7 +10,7 @@ import com.lpoo_32.model.WaterModel;
 public class WaterView extends CatchableView {
     private final WaterModel water;
 
-    WaterView(WaterModel water){
+    public WaterView(WaterModel water){
         super(water);
         this.water = water;
     }

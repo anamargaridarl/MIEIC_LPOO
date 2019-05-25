@@ -30,6 +30,10 @@ public class MonsterModel extends InteractableElement {
         this.playerposition = playerposition;
     }
 
+    public void setNumber(int number)
+    {
+        this.number = number;
+    }
     @Override
     public void interact(PlayerModel player) throws HungerOVF, HealthOVF, ThirstOVF {
         player.getHealth().decreaseValue(this.getValue());
@@ -97,37 +101,35 @@ return false;
     }
 
 
-    public void decreaseValue(int value) throws DeadMonster {
-        if(this.getValue() - value < 0) {
+    public void decreaseValue(int value)  {
+        if(this.getValue() - value <= 0) {
             this.controller.removeElementProps(this);
-            throw new DeadMonster();
+
         }
         else
             this.value -= value;
     }
 
 
-
-
     //-----------------Choose to move in x or y------------------------------
     public int chooseX(Position playerposition) {
-        if (this.movable.getPosition().getX() < playerposition.getX())
+        if (this.getPos().getX() < playerposition.getX())
             return 3;
-        else if (this.movable.getPosition().getX() > playerposition.getX())
+        else if (this.getPos().getX() > playerposition.getX())
             return 2;
-        else if (this.movable.getPosition().getX() == playerposition.getX()) {
+        else if (this.getPos().getX() == playerposition.getX()) {
             return chooseY(playerposition);
         }
 
         return 0;
     }
 
-    private int chooseY( Position playerposition) {
-        if (this.movable.getPosition().getY() < playerposition.getY())
+    int chooseY(Position playerposition) {
+        if (this.getPos().getY() < playerposition.getY())
             return 1;
-        else if (this.movable.getPosition().getY() > playerposition.getY())
+        else if (this.getPos().getY() > playerposition.getY())
             return 0;
-        else if (this.movable.getPosition().getY() == playerposition.getY()) {
+        else if (this.getPos().getY() == playerposition.getY()) {
             return chooseX(playerposition);
         }
 
