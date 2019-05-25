@@ -64,12 +64,10 @@ public class GameController
                     System.out.println("Open help Menu");
                     break;
                 case STORE: //add element to inventory
-                    if(!isWeapon(player.getPosition())) {
                         if (isCatchable(player.getPosition())) {
                             player.addElementInventory((CatchableView) elements.getView(player.getPosition()));
                             removeElementProps(elements.getModel(player.getPosition()));
                         }
-                    }
                     break;
                 case USE:
                     if (isCatchable(player.getPosition())) {
@@ -83,12 +81,10 @@ public class GameController
                 case RIGHTINVENTORY: //move right in inventory
                     player.getInventory().moveRight();
                     break;
+
                 case INVETORYUSE:
                     if (player.getInventory().getElement() != null) {
-                        if (player.getInventory().getElement() instanceof WeaponModel)
-                            player.setWeapon((WeaponModel) player.getInventory().getElement());
-                        else
-                        {
+                        if (!changeWeaponInventory()) {
                             player.getInventory().getElement().interact(player);
                             player.getInventory().removeElement();
                         }
@@ -96,16 +92,16 @@ public class GameController
                     }
                     break;
                 case ATTACKUP:
-                    checkForMonster(this.player.getPosition(),AUP,this.player.getWeapon());
+                    checkForMonsterAndAttack(this.player.getPosition(),AUP,this.player.getWeapon());
                     break;
                 case ATTACKDOWN:
-                    checkForMonster(this.player.getPosition(),ADOWN,this.player.getWeapon());
+                    checkForMonsterAndAttack(this.player.getPosition(),ADOWN,this.player.getWeapon());
                     break;
                 case ATTACKLEFT:
-                    checkForMonster(this.player.getPosition(),ALEFT,this.player.getWeapon());
+                    checkForMonsterAndAttack(this.player.getPosition(),ALEFT,this.player.getWeapon());
                     break;
                 case ATTACKRIGHT:
-                    checkForMonster(this.player.getPosition(),ARIGHT,this.player.getWeapon());
+                    checkForMonsterAndAttack(this.player.getPosition(),ARIGHT,this.player.getWeapon());
                     break;
             }
 
@@ -224,21 +220,6 @@ public class GameController
             return true;
     }
 
-    //---------------------------------------------------------------
-
-    /*public boolean useWeapon() throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored {
-        if(player.getInventory().getElement() instanceof WeaponModel) {
-            MonsterModel m = checkForMonster(player.getPosition());
-            if(m != null)
-            {
-                player.getInventory().getElement().interact(player);
-                ((WeaponModel) player.getInventory().getElement()).interactMonster(m);
-                return true;
-            }
-        }
-
-        return false;
-    }*/
 
     public boolean monsterEqualsPlayer(Position player, Position position) {
 
@@ -251,21 +232,23 @@ public class GameController
     }
 
 
-    private boolean isWeapon(Position position) {
-
-        if (elements.getView(position) != null) {
-            if(elements.getModel(position) instanceof WeaponModel) {
-                elements.getModel(position).setPosition(position);
-                return true;
+    public boolean changeWeaponInventory() {
+        if (player.getInventory().getElement() instanceof WeaponModel) {
+            if (player.getWeapon() != null) {
+                WeaponModel old = player.getWeapon();
+                player.setWeapon((WeaponModel) player.getInventory().getElement());
+                player.getInventory().removeElement();
+                player.getInventory().addElement(new WeaponView(old));
             }
+            else
+            player.setWeapon((WeaponModel) player.getInventory().getElement());
+
+            return true;
         }
-        else
-            return false;
 
         return false;
 
     }
-
 
     private boolean isCatchable(Position position) {
 
@@ -294,7 +277,7 @@ public class GameController
     }
 
 
-    public void checkForMonster(Position position, Attacks orientation, WeaponModel weapon) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, LeftScreen, RightScreen, DownScreen, UpScreen, DeadMonster {
+    public void checkForMonsterAndAttack(Position position, Attacks orientation, WeaponModel weapon) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, LeftScreen, RightScreen, DownScreen, UpScreen, DeadMonster {
 
         InteractableElementView element;
 

@@ -51,7 +51,7 @@ public class MonsterModel extends InteractableElement {
         movable.moveRight();
     }
 
-    public void getMovement(Movements mov, MonsterView monsterview) throws UpScreen, DownScreen, LeftScreen, RightScreen {
+    public boolean getMovement(Movements mov, MonsterView monsterview) throws UpScreen, DownScreen, LeftScreen, RightScreen {
 
         switch(mov)
         {
@@ -60,14 +60,15 @@ public class MonsterModel extends InteractableElement {
                         controller.removeElementProps(monsterview.getMonster());
                         monsterview.getMonster().moveUp();
                         controller.addElementProps(monsterview);
+                        return true;
                     }
-
                     break;
             case DOWN:
                 if(!(controller.checkForElement(monsterview.getMonster().getPos().checkMovementDown()))) {
                     controller.removeElementProps(monsterview.getMonster());
                     monsterview.getMonster().moveDown();
                     controller.addElementProps(monsterview);
+                    return true;
                 }
                 break;
             case LEFT:
@@ -75,6 +76,7 @@ public class MonsterModel extends InteractableElement {
                     controller.removeElementProps(monsterview.getMonster());
                     monsterview.getMonster().moveLeft();
                     controller.addElementProps(monsterview);
+                    return true;
                 }
                 break;
             case RIGHT:
@@ -83,13 +85,14 @@ public class MonsterModel extends InteractableElement {
                     controller.removeElementProps(monsterview.getMonster());
                     monsterview.getMonster().moveRight();
                     controller.addElementProps(monsterview);
+                    return true;
                 }
                 break;
             default:
                 break;
         }
 
-
+return false;
 
     }
 
@@ -112,8 +115,12 @@ public class MonsterModel extends InteractableElement {
             return 3;
         else if (this.movable.getPosition().getX() > playerposition.getX())
             return 2;
-        else
+        else if (this.movable.getPosition().getX() == playerposition.getX()) {
+            System.out.println("bananas");
             return chooseY(playerposition);
+        }
+
+        return 0;
     }
 
     private int chooseY( Position playerposition) {
@@ -121,15 +128,21 @@ public class MonsterModel extends InteractableElement {
             return 1;
         else if (this.movable.getPosition().getY() > playerposition.getY())
             return 0;
-        else
+        else if (this.movable.getPosition().getY() == playerposition.getY()) {
+            System.out.println("batatas");
             return chooseX(playerposition);
+        }
+
+        return 0;
     }
 
     //chose between moving in y or x
     public int randomMove(Position playerposition) throws LeftScreen, RightScreen, UpScreen, DownScreen {
         Random random = new Random();
-        int mov = random.nextInt((2 - 2) + 1) + 1;
 
+        int mov = random.nextInt(2);
+
+        System.out.println(mov);
         if (mov == 1) {
             return chooseX(playerposition);
         } else {
@@ -141,21 +154,23 @@ public class MonsterModel extends InteractableElement {
 
     public void moveMonster(MonsterView monsterview, Position playerposition) throws RightScreen, LeftScreen, UpScreen, DownScreen {
 
-        if(controller.monsterEqualsPlayer(playerposition, this.getPos())) {
-            return;
+            if (controller.monsterEqualsPlayer(playerposition, this.getPos())) {
+                return;
+            }
+
+            Movements[] mov = Movements.values();
+            int n = randomMove(playerposition);
+
+           this.getMovement(mov[n], monsterview);
         }
 
-        Movements[] mov = Movements.values();
-        int n = randomMove(playerposition);
-
-        this.getMovement(mov[n],monsterview);
-
-    }
+    
     public void updateMove(MonsterView monsterview) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen {
 
         this.number++;
 
         if (number == 60) {
+
             if(this.getPos().getIndex() == playerposition.getIndex()) {
                 controller.checkCollisionMonster(movable.getPosition());
                 this.moveMonster(monsterview,playerposition);

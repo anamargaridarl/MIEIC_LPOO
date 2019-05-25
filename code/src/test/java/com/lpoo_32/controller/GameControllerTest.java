@@ -9,7 +9,6 @@ import com.lpoo_32.view.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class GameControllerTest {
         List<ElementView> props = new ArrayList<>();
         props.add(new FoodView(food));
         props.add(new SpikesView(spike));
-        props.add(new PlayerView(player));
+        props.add(new PlayerView(player, weapons));
 
 
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);

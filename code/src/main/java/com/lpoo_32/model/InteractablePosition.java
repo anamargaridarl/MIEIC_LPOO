@@ -15,7 +15,7 @@ public class InteractablePosition extends Position{
 
     public void moveUp() {
 
-        if (this.y - 1 >= this.heightIndex * height)
+        if (this.y - 1 >= this.heightIndex() * height)
             this.y--;
         else
             this.setIndex(indexGame -3 );
@@ -25,7 +25,7 @@ public class InteractablePosition extends Position{
 
     public void moveLeft() {
 
-        if (this.x - 1 >= this.widthIndex * width)
+        if (this.x - 1 >= this.widthIndex() * width)
             this.x--;
         else
             this.setIndex(indexGame - 1 );
@@ -33,7 +33,7 @@ public class InteractablePosition extends Position{
 
     public void moveDown()  {
 
-        if (this.y + 1 <= this.height * (heightIndex + 1))
+        if (this.y + 1 <= this.height * (heightIndex() + 1))
             this.y++;
         else
             this.setIndex(indexGame + 3 );
@@ -41,7 +41,7 @@ public class InteractablePosition extends Position{
 
     public void moveRight() {
 
-        if (this.x + 1 <= this.width * (widthIndex + 1))
+        if (this.x + 1 <= this.width * (widthIndex() + 1))
             this.x++;
         else
             this.setIndex(indexGame + 1);

@@ -13,7 +13,7 @@ public class PlayerPosition extends Position{
 
     public void moveUp() throws UpScreen{
 
-        if (this.y - 1 >= this.heightIndex * height)
+        if (this.y - 1 >= this.heightIndex() * height)
             this.y--;
         else
         throw new UpScreen();
@@ -22,7 +22,7 @@ public class PlayerPosition extends Position{
 
     public void moveLeft() throws LeftScreen {
 
-        if (this.x - 1 >= this.widthIndex * width)
+        if (this.x - 1 >= this.widthIndex() * width)
             this.x--;
         else
             throw new LeftScreen();
@@ -30,7 +30,7 @@ public class PlayerPosition extends Position{
 
     public void moveDown() throws DownScreen {
 
-        if (this.y + 1 <= this.height * (heightIndex + 1))
+        if (this.y + 1 <= this.height * (heightIndex() + 1))
             this.y++;
         else
             throw new DownScreen();
@@ -38,7 +38,7 @@ public class PlayerPosition extends Position{
 
     public void moveRight() throws RightScreen {
 
-        if (this.x + 1 <= this.width * (widthIndex + 1))
+        if (this.x + 1 <= this.width * (widthIndex() + 1))
             this.x++;
         else
             throw new RightScreen();
