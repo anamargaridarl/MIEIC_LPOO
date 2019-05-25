@@ -13,10 +13,12 @@ public class TerminalKeyboard implements KeyboardAnalyzer {
 
     private Screen screen;
     private GameController controller;
+    private boolean flag;
 
     public TerminalKeyboard(Screen screen, GameController controller){
         this.screen = screen;
         this.controller = controller;
+        this.flag = true;
         new Thread(() -> {
             try {
                 this.processKey();
@@ -27,7 +29,7 @@ public class TerminalKeyboard implements KeyboardAnalyzer {
     }
 
     public void processKey() throws IOException {
-        while (true){
+        while (flag){
             EventType event = null;
             KeyStroke key = screen.readInput();
             if (key != null) {
@@ -84,6 +86,10 @@ public class TerminalKeyboard implements KeyboardAnalyzer {
             }
             this.controller.processKey(event);
         }
+    }
+
+    void stopKeyboard(){
+        this.flag = false;
     }
 
 }

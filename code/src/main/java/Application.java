@@ -27,9 +27,9 @@ public class Application {
             GameController game = new GameController(
                     elements,
                     model,
-                    new GameSwing(new JFrame(), model, elements),
-                    () -> null
-            );
+                    new GameSwing(new JFrame(), model, elements)
+                    );
+
             game.run();
         }
 

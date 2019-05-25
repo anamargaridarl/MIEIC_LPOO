@@ -22,11 +22,10 @@ public class GameController
     private boolean screenclose;
 
 
-    public GameController(Elements elements, PlayerModel player, Game game, KeyboardAnalyzer keyboard) throws OutOfBoundaries {
+    public GameController(Elements elements, PlayerModel player, Game game) throws OutOfBoundaries {
         this.player = player;
         this.elements = elements;
         this.screenclose = false;
-        this.keyboardProcessor = keyboard;
         restoreHunger(player);
         restoreThirst(player);
         this.sleep = new DayState(player);

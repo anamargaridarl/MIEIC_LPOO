@@ -96,10 +96,11 @@ public class Menu extends Display {
                 GameController gameController = new GameController(
                                                 elements,
                                                 model,
-                                                new GameLanterna(this.screen, model, elements),
-                                                new TerminalKeyboard(this.screen)
+                                                new GameLanterna(this.screen, model, elements)
                                                 );
+                TerminalKeyboard keyboard = new TerminalKeyboard(screen, gameController);
                 gameController.run();
+                keyboard.stopKeyboard();
             } catch (IOException | OutOfBoundaries e) {
                 e.printStackTrace();
             }
