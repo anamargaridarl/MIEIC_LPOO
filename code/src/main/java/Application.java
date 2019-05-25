@@ -39,6 +39,7 @@ public class Application {
                     );
             frame.addKeyListener(new SwingKeyboard(game));
             game.run();
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             System.out.println("Stopping game");
         }
