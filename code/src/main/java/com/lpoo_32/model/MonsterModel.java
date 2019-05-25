@@ -164,7 +164,7 @@ return false;
            this.getMovement(mov[n], monsterview);
         }
 
-    
+
     public void updateMove(MonsterView monsterview) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen {
 
         this.number++;

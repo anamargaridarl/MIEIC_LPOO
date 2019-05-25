@@ -242,6 +242,7 @@ public class GameController
             }
             else
             player.setWeapon((WeaponModel) player.getInventory().getElement());
+            player.getInventory().removeElement();
 
             return true;
         }
