@@ -30,8 +30,6 @@ public class Application {
             Elements elements = new Elements();
             PlayerModel model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
             JFrame frame = new JFrame();
-            frame.setFocusable(true);
-            frame.setVisible(true);
             GameController game = new GameController(
                     elements,
                     model,

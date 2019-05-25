@@ -21,25 +21,8 @@ public class GameSwing extends Game{
         this.player = new PlayerView(player);
         this.elements = elements;
         frame.setVisible(true);
-        this.graphics = frame.getGraphics();
         frame.setFocusable(true);
-        frame.getContentPane().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent keyEvent) {
-                System.out.println("Pressed key!");
-            }
-
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-                System.out.println("Pressed key!");
-            }
-
-            @Override
-            public void keyReleased(KeyEvent keyEvent) {
-                System.out.println("Pressed key!");
-
-            }
-        });
+        this.graphics = frame.getGraphics();
     }
 
     @Override

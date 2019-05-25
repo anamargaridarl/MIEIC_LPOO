@@ -100,13 +100,13 @@ public class Position {
 
     public int getSwingX(){
         int x = this.x - (this.width * this.widthIndex);
-        return (x * GameSwing.ScreenWidth)/100;
+        return (x * 4)*(GameSwing.ScreenWidth)/100;
     }
 
     public int getSwingY(){
         int y = this.y - (this.height * this.heightIndex);
 
-        return (y * GameSwing.ScreenHeight)/100;
+        return (y * 4 )*(GameSwing.ScreenHeight)/100;
     }
 
     public void setIndex(int index){
