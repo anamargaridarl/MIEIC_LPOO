@@ -5,6 +5,8 @@ import com.lpoo_32.model.PlayerModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class GameSwing extends Game{
     private final PlayerView player;
@@ -20,12 +22,29 @@ public class GameSwing extends Game{
         this.elements = elements;
         frame.setVisible(true);
         this.graphics = frame.getGraphics();
+        frame.setFocusable(true);
+        frame.getContentPane().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent keyEvent) {
+                System.out.println("Pressed key!");
+            }
 
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                System.out.println("Pressed key!");
+            }
+
+            @Override
+            public void keyReleased(KeyEvent keyEvent) {
+                System.out.println("Pressed key!");
+
+            }
+        });
     }
 
     @Override
     public void draw() {
-//        graphics.dispose();
+        graphics.clearRect(0, 0, ScreenWidth, ScreenHeight);
         graphics.drawRect(0, 0, (ScreenWidth*Game.width)/100, (ScreenHeight*Game.height)/100);
 
         int initialX = getIndex() %3 * Game.width/4;
