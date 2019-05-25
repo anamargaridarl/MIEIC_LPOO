@@ -3,7 +3,6 @@ package com.lpoo_32.controller;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 import com.lpoo_32.view.*;
-import com.lpoo_32.view.DisplayProps;
 
 import java.io.IOException;
 import java.util.Random;
@@ -20,14 +19,16 @@ public class GameController
     private static final int frameRate = 60;
     private int time;
     private ElementFactory factory;
+    private boolean screenclose;
 
 
     public GameController(Elements elements, PlayerModel player, Game game, KeyboardAnalyzer keyboard) throws OutOfBoundaries {
         this.player = player;
         this.elements = elements;
+        this.screenclose = false;
         this.keyboardProcessor = keyboard;
-        this.hunger = new SatedState(player);
-        this.thirst = new QuenchedState(player);
+        restoreHunger(player);
+        restoreThirst(player);
         this.sleep = new DayState(player);
         this.factory = new TerminalElementFactory();
         this.populateGame(Game.width/4, Game.height/4);
@@ -35,104 +36,118 @@ public class GameController
         this.game = game;
     }
 
-    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen, Bedtime {
+    public void processKey(EventType event) {
 
-        SpikesModel spikes = new SpikesModel(10, null);
-        if(event != EventType.NULL && event != null){
-            switch (event) {
-                case MOVEUP:
-                    if(this.collisions(player.getPosition().checkMovementUp()))
-                        player.moveUp();
-                    break;
-                case MOVEDOWN:
-                    if(this.collisions(player.getPosition().checkMovementDown()))
-                        player.moveDown();
-                    break;
-                case MOVELEFT:
-                    if(this.collisions(player.getPosition().checkMovementLeft()))
-                        player.moveLeft();
-                    break;
-                case MOVERIGHT:
-                    if(this.collisions(player.getPosition().checkMovementRight()))
-                        player.moveRight();
-                    break;
-                case EXIT:
-                    throw new ScreenClose();
-                case NULL:
-                    spikes.interact(player);
-                    break;
-                case HELP:
-                    //TODO: How to proceed with this?
-                    System.out.println("Open help Menu");
-                    break;
-                case STORE: //add element to inventory
-                    if(isCatchable(player.getPosition())) {
-                        player.addElementInventory((CatchableView)elements.getView(player.getPosition()));
-                        removeElementProps(elements.getModel(player.getPosition()));
-                    }
-                    break;
-                case USE: //use water/food in moment
-                    if(isCatchable(player.getPosition())) {
-                        elements.getModel(player.getPosition()).interact(player);
-                        removeElementProps(elements.getModel(player.getPosition()));
-                    }
-                    break;
-                case LEFTINVENTORY: //move left in inventory
-                    player.getInventory().moveLeft();
-                    break;
-                case RIGHTINVENTORY: //move right in inventory
-                    player.getInventory().moveRight();
-                    break;
-                case INVETORYUSE:
-                    if(player.getInventory().getElement() != null) {
-                        player.getInventory().getElement().interact(player);
-                        player.getInventory().removeElement();
-                    }
-                    break;
+        try{
+            if(event != EventType.NULL && event != null){
+                switch (event) {
+                    case MOVEUP:
+                        if(this.collisions(player.getPosition().checkMovementUp()))
+                            player.moveUp();
+                        break;
+                    case MOVEDOWN:
+                        if(this.collisions(player.getPosition().checkMovementDown()))
+                            player.moveDown();
+                        break;
+                    case MOVELEFT:
+                        if(this.collisions(player.getPosition().checkMovementLeft()))
+                            player.moveLeft();
+                        break;
+                    case MOVERIGHT:
+                        if(this.collisions(player.getPosition().checkMovementRight()))
+                            player.moveRight();
+                        break;
+                    case EXIT:
+                        throw new ScreenClose();
+                    case NULL:
+                        break;
+                    case HELP:
+                        //TODO: How to proceed with this?
+                        System.out.println("Open help Menu");
+                        break;
+                    case STORE: //add element to inventory
+                        if(isCatchable(player.getPosition())) {
+                            player.addElementInventory((CatchableView)elements.getView(player.getPosition()));
+                            removeElementProps(elements.getModel(player.getPosition()));
+                        }
+                        break;
+                    case USE: //use water/food in moment
+                        if(isCatchable(player.getPosition())) {
+                            elements.getModel(player.getPosition()).interact(player);
+                            removeElementProps(elements.getModel(player.getPosition()));
+                        }
+                        break;
+                    case LEFTINVENTORY: //move left in inventory
+                        player.getInventory().moveLeft();
+                        break;
+                    case RIGHTINVENTORY: //move right in inventory
+                        player.getInventory().moveRight();
+                        break;
+                    case INVETORYUSE:
+                        if(player.getInventory().getElement() != null) {
+                            player.getInventory().getElement().interact(player);
+                            player.getInventory().removeElement();
+                        }
+                        break;
+                }
+
             }
-
+        }catch (HungerRestored hungerRestored) {
+            restoreHunger(player);
+        } catch (HungerOVF nourishOVF) {
+            hungerOVF();
+        } catch (ThirstRestored thirstRestored) {
+            restoreThirst(player);
+        } catch (ThirstOVF thirstOVF) {
+            thirstOVF();
+        } catch (RightScreen rightScreen) {
+            horizontalScreen(2, this.game.getIndex() + 1);
+        } catch (LeftScreen leftScreen) {
+            horizontalScreen(0, this.game.getIndex() - 1);
+        } catch (UpScreen upScreen) {
+            upScreen();
+        } catch (DownScreen downScreen) {
+            downScreen();
+        } catch (Bedtime bedtime) {
+            this.sleep = new SleepState(player);
+        } catch (ScreenClose | HealthOVF screenClose) {
+            this.screenclose = true;
         }
     }
 
-    void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, RightScreen, LeftScreen, UpScreen, DownScreen {
+    void updateGame() throws IOException, HealthOVF, InterruptedException, ScreenClose {
         try {
-            this.processKey(this.keyboardProcessor.processKey());
             this.game.draw();
             Thread.sleep(1000/ frameRate);
             updateNourishment();
+            if(screenclose)
+                throw new ScreenClose();
         } catch (HungerRestored hungerRestored) {
-            this.hunger = new SatedState(player);
+            restoreHunger(player);
         } catch (HungerOVF nourishOVF) {
-            this.hunger = new FamishState(player);
+            hungerOVF();
         } catch (ThirstRestored thirstRestored) {
-            this.thirst = new QuenchedState(player);
+            restoreThirst(player);
         } catch (ThirstOVF thirstOVF) {
-            this.thirst = new FamishState(player);
-        } catch (RightScreen rightScreen) {
-            if(this.game.getIndex()%3  != 2){
-                this.game.setIndex(this.game.getIndex() + 1);
-                this.player.getPosition().setIndex(this.game.getIndex());
-            }
-        } catch (LeftScreen leftScreen) {
-            if(this.game.getIndex()%3  != 0){
-                this.game.setIndex(this.game.getIndex() - 1);
-                this.player.getPosition().setIndex(this.game.getIndex());
-            }
-        } catch (UpScreen upScreen) {
-            if(this.game.getIndex() - 3  >= 0){
-                this.game.setIndex(this.game.getIndex() - 3);
-                this.player.getPosition().setIndex(this.game.getIndex());
-            }
-        } catch (DownScreen downScreen) {
-            if(this.game.getIndex() + 3  < 9){
-                this.game.setIndex(this.game.getIndex() + 3);
-                this.player.getPosition().setIndex(this.game.getIndex());
-            }
-        } catch (Bedtime bedtime) {
-            this.sleep = new SleepState(player);
+            thirstOVF();
         } catch (Sleeptime sleeptime) {
             this.sleep = new DayState(player);
         }
+    }
+
+    private void downScreen() {
+        if (this.game.getIndex() + 3 < 9) {
+            this.game.setIndex(this.game.getIndex() + 3);
+            this.player.getPosition().setIndex(this.game.getIndex());
+        }
+    }
+
+    private void thirstOVF() {
+        this.thirst = new FamishState(player);
+    }
+
+    private void hungerOVF() {
+        this.hunger = new FamishState(player);
     }
 
     private void updateNourishment() throws HungerOVF, ThirstOVF, HealthOVF, HungerRestored, ThirstRestored, Sleeptime {
@@ -155,12 +170,34 @@ public class GameController
         catch(ScreenClose e)
         {
             System.out.println("Player pressed Z, back to Main Menu....");
-        } catch (InterruptedException | RightScreen | LeftScreen | UpScreen | DownScreen statusOverflow) {
+        } catch (InterruptedException statusOverflow) {
             statusOverflow.printStackTrace();
         }
         catch (HealthOVF healthOVF){
             System.out.println("You lose! Back to Main Menu....");
         }
+    }
+
+    private void upScreen() {
+        if (this.game.getIndex() - 3 >= 0) {
+            this.game.setIndex(this.game.getIndex() - 3);
+            this.player.getPosition().setIndex(this.game.getIndex());
+        }
+    }
+
+    private void horizontalScreen(int i, int i2) {
+        if (this.game.getIndex() % 3 != i) {
+            this.game.setIndex(i2);
+            this.player.getPosition().setIndex(this.game.getIndex());
+        }
+    }
+
+    private void restoreThirst(PlayerModel player) {
+        this.thirst = new QuenchedState(player);
+    }
+
+    private void restoreHunger(PlayerModel player) {
+        this.hunger = new SatedState(player);
     }
 
 
