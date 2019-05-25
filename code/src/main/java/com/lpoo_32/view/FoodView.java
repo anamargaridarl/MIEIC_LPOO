@@ -13,7 +13,7 @@ public class FoodView extends CatchableView {
     private final FoodModel food;
 
     public FoodView(FoodModel food){
-        super(food);
+        super(food, "drumstick.png");
         this.food = food;
     }
 
@@ -41,7 +41,7 @@ public class FoodView extends CatchableView {
 
     @Override
     void drawSwing(Graphics graphics) {
-        super.drawSwing(graphics, "drumstick.png",
+        super.drawSwing(graphics,
                 this.getElement().getPos().getSwingX(),
                 this.getElement().getPos().getSwingY()
         );

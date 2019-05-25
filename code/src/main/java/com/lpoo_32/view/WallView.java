@@ -11,7 +11,7 @@ import java.awt.*;
 public class WallView extends InteractableElementView{
 
     public WallView(WallModel element) {
-        super(element);
+        super(element, "wall.png");
     }
 
     @Override
@@ -28,7 +28,7 @@ public class WallView extends InteractableElementView{
 
     @Override
     void drawSwing(Graphics graphics) {
-        this.drawSwing(graphics, "wall.png",
+        this.drawSwing(graphics,
                 this.getElement().getPos().getSwingX(),
                 this.getElement().getPos().getSwingY()
         );

@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class DoorView extends InteractableElementView{
     public DoorView(DoorModel element) {
-        super(element);
+        super(element, "door.png");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class DoorView extends InteractableElementView{
 
     @Override
     void drawSwing(Graphics graphics) {
-        this.drawSwing(graphics, "door.png",
+        this.drawSwing(graphics,
                 this.getElement().getPos().getSwingX(),
                 this.getElement().getPos().getSwingY()
         );

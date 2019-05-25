@@ -14,6 +14,7 @@ public class InventoryView extends ElementView {
     //private int height;
 
     public InventoryView(Inventory inventory, String hexColor) {
+        super("bed.png");
         this.inventory = inventory;
         this.color = TextColor.Factory.fromString(hexColor);
     }

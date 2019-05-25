@@ -12,7 +12,7 @@ public class WaterView extends CatchableView {
     private final WaterModel water;
 
     WaterView(WaterModel water){
-        super(water);
+        super(water, "water.png");
         this.water = water;
     }
 
@@ -44,7 +44,7 @@ public class WaterView extends CatchableView {
 
     @Override
     void drawSwing(Graphics graphics) {
-        this.drawSwing(graphics, "water.png",
+        this.drawSwing(graphics,
                 this.getElement().getPos().getSwingX(),
                 this.getElement().getPos().getSwingY()
         );

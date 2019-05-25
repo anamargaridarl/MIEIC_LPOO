@@ -13,6 +13,15 @@ import java.io.IOException;
 import java.net.URL;
 
 public abstract class ElementView  {
+    BufferedImage image;
+    ElementView(String name){
+        URL resource = getClass().getResource("/" + name);
+        try{
+            image = ImageIO.read(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     void drawLanterna(TextGraphics graphics, String backgroundColor, String foregroundColor, TerminalPosition pos, TerminalSize size, char symbol){
         graphics.setBackgroundColor(TextColor.Factory.fromString(backgroundColor));
 
@@ -27,14 +36,7 @@ public abstract class ElementView  {
     abstract void drawLanterna(TextGraphics graphics);
     abstract void drawSwing(Graphics graphics);
 
-    void drawSwing(Graphics graphics, String name, int x, int y){
-        URL resource = getClass().getResource("/" + name);
-        BufferedImage image;
-        try{
-            image = ImageIO.read(resource);
-            graphics.drawImage(image, x, y, 30, 30, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void drawSwing(Graphics graphics, int x, int y){
+        graphics.drawImage(image, x, y, 30, 30, null);
     }
 }

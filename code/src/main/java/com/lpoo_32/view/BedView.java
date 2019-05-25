@@ -6,10 +6,11 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.BedModel;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class BedView extends InteractableElementView {
     public BedView(BedModel element) {
-        super(element);
+        super(element, "bed.png");
     }
 
     @Override
@@ -27,7 +28,6 @@ public class BedView extends InteractableElementView {
     @Override
     void drawSwing(Graphics graphics) {
         this.drawSwing(graphics,
-                        "bed.png",
                         this.getElement().getPos().getSwingX(),
                         this.getElement().getPos().getSwingY()
                     );
