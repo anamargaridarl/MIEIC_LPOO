@@ -12,7 +12,7 @@ public class WaterModel extends CatchableElement {
 
     @Override
     public void interact(PlayerModel player) throws HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF {
-        player.getWater().decreaseValue(this.getValue());
+        player.getWater().increaseValue(this.getValue());
     }
 
 

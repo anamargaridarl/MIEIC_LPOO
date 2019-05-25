@@ -116,7 +116,6 @@ return false;
         else if (this.movable.getPosition().getX() > playerposition.getX())
             return 2;
         else if (this.movable.getPosition().getX() == playerposition.getX()) {
-            System.out.println("bananas");
             return chooseY(playerposition);
         }
 
@@ -129,7 +128,6 @@ return false;
         else if (this.movable.getPosition().getY() > playerposition.getY())
             return 0;
         else if (this.movable.getPosition().getY() == playerposition.getY()) {
-            System.out.println("batatas");
             return chooseX(playerposition);
         }
 

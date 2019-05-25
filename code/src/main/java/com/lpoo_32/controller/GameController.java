@@ -39,19 +39,42 @@ public class GameController
 
     void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen, DeadMonster {
 
+        InteractableElementView i;
         SpikesModel spikes = new SpikesModel(10, null);
         if(event != EventType.NULL && event != null){
             switch (event) {
                 case MOVEUP:
+                    i = elements.getView(player.getPosition().checkMovementUp());
+                    if(i !=  null) {
+                        if (i instanceof MonsterView)
+                            break;
+                    }
                     player.moveUp();
                     break;
                 case MOVEDOWN:
+                    i = elements.getView(player.getPosition().checkMovementDown());
+                    if(i !=  null)
+                    {
+                        if(i instanceof  MonsterView)
+                            break;
+                    }
                     player.moveDown();
                     break;
                 case MOVELEFT:
-                    player.moveLeft();
+                    i = elements.getView(player.getPosition().checkMovementLeft());
+                    if(i !=  null) {
+                        if (i instanceof MonsterView)
+                            break;
+                    }
+                            player.moveLeft();
+
                     break;
                 case MOVERIGHT:
+                    i = elements.getView(player.getPosition().checkMovementRight());
+                    if(i !=  null) {
+                        if (i instanceof MonsterView)
+                            break;
+                    }
                     player.moveRight();
                     break;
                 case EXIT:
@@ -267,6 +290,7 @@ public class GameController
         if (elements.getView(position) != null && !(isCatchable(position))) {
             elements.getModel(position).interact(player);
         }
+
     }
 
     public void checkCollisionMonster(Position position) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored {
@@ -280,6 +304,8 @@ public class GameController
 
     public void checkForMonsterAndAttack(Position position, Attacks orientation, WeaponModel weapon) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, LeftScreen, RightScreen, DownScreen, UpScreen, DeadMonster {
 
+        if(weapon == null)
+            return;
         InteractableElementView element;
 
         switch (orientation) {
@@ -306,7 +332,7 @@ public class GameController
                 break;
             case ARIGHT:
                 element = elements.getView(position.checkMovementRight());
-                if(element != null) {
+                if(element != null ) {
                     if (element instanceof MonsterView)
                         weapon.interactMonster(((MonsterView) element).getMonster());
                 }
