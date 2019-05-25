@@ -177,6 +177,40 @@ public class GameControllerTest {
         assertEquals(null, player.getInventory().getElement());
 
         assertFalse(k.changeWeaponInventory());
+
+    }
+
+    @Test
+    public void checkForMonsterAndAttack() throws OutOfBoundaries, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen {
+
+        Position p1 = new Position(5, 5, Game.width / 4, Game.height / 4, 0);
+        Position p2 = new Position(4, 5, Game.width / 4, Game.height / 4, 0);
+        Position p3 = new Position(6, 5, Game.width / 4, Game.height / 4, 0);
+        WeaponModel w1 = new WeaponModel(p1,20);
+
+
+        Elements elements = new Elements();
+        PlayerModel player = new PlayerModel(p1);
+
+        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
+        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
+        GameController k = new GameController(displayProps, elements, player);
+
+        WaterModel water = new WaterModel(20,p3);
+        MonsterModel monster = new MonsterModel(p2, 40, new MovableElement(p2), k, p1);
+        elements.addElement(new MonsterView(monster));
+
+        k.checkForMonsterAndAttack(p1,Attacks.ALEFT,w1);
+        assertEquals(20, monster.getValue());
+
+        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,w1);
+        assertEquals(20, monster.getValue());
+
+        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,null);
+        assertEquals(20, monster.getValue());
+
+        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,w1);
+        assertEquals(20, monster.getValue());
         
     }
 
