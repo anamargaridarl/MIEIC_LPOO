@@ -28,6 +28,9 @@ public class WallView extends InteractableElementView{
 
     @Override
     void drawSwing(Graphics graphics) {
-        this.drawSwing(graphics, "wall.png");
+        this.drawSwing(graphics, "wall.png",
+                this.getElement().getPos().getSwingX(),
+                this.getElement().getPos().getSwingY()
+        );
     }
 }

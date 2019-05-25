@@ -26,6 +26,10 @@ public class BedView extends InteractableElementView {
 
     @Override
     void drawSwing(Graphics graphics) {
-        this.drawSwing(graphics, "bed.png");
+        this.drawSwing(graphics,
+                        "bed.png",
+                        this.getElement().getPos().getSwingX(),
+                        this.getElement().getPos().getSwingY()
+                    );
     }
 }

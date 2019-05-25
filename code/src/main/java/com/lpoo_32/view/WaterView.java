@@ -44,7 +44,10 @@ public class WaterView extends CatchableView {
 
     @Override
     void drawSwing(Graphics graphics) {
-        this.drawSwing(graphics, "water.png");
+        this.drawSwing(graphics, "water.png",
+                this.getElement().getPos().getSwingX(),
+                this.getElement().getPos().getSwingY()
+        );
     }
 
 

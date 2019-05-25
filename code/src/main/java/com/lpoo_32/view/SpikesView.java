@@ -34,7 +34,10 @@ public class SpikesView extends InteractableElementView {
 
     @Override
     void drawSwing(Graphics graphics) {
-        this.drawSwing(graphics, "spikes.png");
+        this.drawSwing(graphics, "spikes.png",
+                this.getElement().getPos().getSwingX(),
+                this.getElement().getPos().getSwingY()
+        );
     }
 
     public SpikesModel getSpikes()

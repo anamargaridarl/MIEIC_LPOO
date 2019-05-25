@@ -27,12 +27,12 @@ public abstract class ElementView  {
     abstract void drawLanterna(TextGraphics graphics);
     abstract void drawSwing(Graphics graphics);
 
-    void drawSwing(Graphics graphics, String name){
+    void drawSwing(Graphics graphics, String name, int x, int y){
         URL resource = getClass().getResource("/" + name);
         BufferedImage image;
         try{
             image = ImageIO.read(resource);
-            graphics.drawImage(image, 0, 40,40, 40, null);
+            graphics.drawImage(image, x, y, 30, 30, null);
         } catch (IOException e) {
             e.printStackTrace();
         }

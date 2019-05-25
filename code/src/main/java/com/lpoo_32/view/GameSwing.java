@@ -7,21 +7,39 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameSwing extends Game{
-    private final PlayerModel player;
+    private final PlayerView player;
     private final Elements elements;
     private Graphics graphics;
+    public static int ScreenWidth = 1366;
+    public static int ScreenHeight = 768;
 
-    public GameSwing(DisplayProps props, PlayerModel player, Elements elements){
+
+    public GameSwing(JFrame frame, PlayerModel player, Elements elements){
         super();
-        this.player = player;
+        this.player = new PlayerView(player);
         this.elements = elements;
-        JFrame frame = props.getFrame();
         frame.setVisible(true);
         this.graphics = frame.getGraphics();
+
     }
 
     @Override
-    void draw() {
-        graphics.dispose();
+    public void draw() {
+//        graphics.dispose();
+        graphics.drawRect(0, 0, (ScreenWidth*Game.width)/100, (ScreenHeight*Game.height)/100);
+
+        int initialX = getIndex() %3 * Game.width/4;
+        int initialY = getIndex() /3 * Game.height/4;
+
+        this.player.drawSwing(graphics);
+
+        for(int i = initialX; i < initialX + Game.width/4; i++){
+            for(int j = initialY; j < initialY + Game.height/4; j++){
+                if(this.elements.getViewByCoord(i, j) != null){
+                    this.elements.getViewByCoord(i, j).drawSwing(graphics);
+                }
+            }
+        }
+
     }
 }

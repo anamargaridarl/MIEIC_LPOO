@@ -10,10 +10,10 @@ import java.util.Random;
 
 public class GameController
 {
-    private final GameLanterna gameLanterna;
+    private final Game game;
     private PlayerModel player;
     private Elements elements;
-    private TerminalKeyboard keyboardProcessor;
+    private KeyboardAnalyzer keyboardProcessor;
     private NourishState hunger;
     private NourishState thirst;
     private NourishState sleep;
@@ -22,17 +22,17 @@ public class GameController
     private ElementFactory factory;
 
 
-    public GameController(DisplayProps props, Elements elements, PlayerModel player) throws OutOfBoundaries {
+    public GameController(Elements elements, PlayerModel player, Game game, KeyboardAnalyzer keyboard) throws OutOfBoundaries {
         this.player = player;
         this.elements = elements;
-        this.keyboardProcessor = new TerminalKeyboard(props.getScreen());
+        this.keyboardProcessor = keyboard;
         this.hunger = new SatedState(player);
         this.thirst = new QuenchedState(player);
         this.sleep = new DayState(player);
         this.factory = new TerminalElementFactory();
-        this.populateGame(GameLanterna.width/4, GameLanterna.height/4);
-        this.buildHouse(GameLanterna.width/4, GameLanterna.height/4);
-        this.gameLanterna = new GameLanterna(props, this.player, elements);
+        this.populateGame(Game.width/4, Game.height/4);
+        this.buildHouse(Game.width/4, Game.height/4);
+        this.game = game;
     }
 
     void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen, Bedtime {
@@ -97,7 +97,7 @@ public class GameController
     void updateGame() throws IOException, ScreenClose, HealthOVF, InterruptedException, RightScreen, LeftScreen, UpScreen, DownScreen {
         try {
             this.processKey(this.keyboardProcessor.processKey());
-            this.gameLanterna.draw();
+            this.game.draw();
             Thread.sleep(1000/ frameRate);
             updateNourishment();
         } catch (HungerRestored hungerRestored) {
@@ -109,24 +109,24 @@ public class GameController
         } catch (ThirstOVF thirstOVF) {
             this.thirst = new FamishState(player);
         } catch (RightScreen rightScreen) {
-            if(this.gameLanterna.getIndex()%3  != 2){
-                this.gameLanterna.setIndex(this.gameLanterna.getIndex() + 1);
-                this.player.getPosition().setIndex(this.gameLanterna.getIndex());
+            if(this.game.getIndex()%3  != 2){
+                this.game.setIndex(this.game.getIndex() + 1);
+                this.player.getPosition().setIndex(this.game.getIndex());
             }
         } catch (LeftScreen leftScreen) {
-            if(this.gameLanterna.getIndex()%3  != 0){
-                this.gameLanterna.setIndex(this.gameLanterna.getIndex() - 1);
-                this.player.getPosition().setIndex(this.gameLanterna.getIndex());
+            if(this.game.getIndex()%3  != 0){
+                this.game.setIndex(this.game.getIndex() - 1);
+                this.player.getPosition().setIndex(this.game.getIndex());
             }
         } catch (UpScreen upScreen) {
-            if(this.gameLanterna.getIndex() - 3  >= 0){
-                this.gameLanterna.setIndex(this.gameLanterna.getIndex() - 3);
-                this.player.getPosition().setIndex(this.gameLanterna.getIndex());
+            if(this.game.getIndex() - 3  >= 0){
+                this.game.setIndex(this.game.getIndex() - 3);
+                this.player.getPosition().setIndex(this.game.getIndex());
             }
         } catch (DownScreen downScreen) {
-            if(this.gameLanterna.getIndex() + 3  < 9){
-                this.gameLanterna.setIndex(this.gameLanterna.getIndex() + 3);
-                this.player.getPosition().setIndex(this.gameLanterna.getIndex());
+            if(this.game.getIndex() + 3  < 9){
+                this.game.setIndex(this.game.getIndex() + 3);
+                this.player.getPosition().setIndex(this.game.getIndex());
             }
         } catch (Bedtime bedtime) {
             this.sleep = new SleepState(player);
@@ -143,7 +143,7 @@ public class GameController
     }
 
     public void run() throws IOException {
-        this.gameLanterna.draw();
+        this.game.draw();
 
         //isto parece shady; ter um ciclo infinito a para com uma exceçao
         this.time = 0;

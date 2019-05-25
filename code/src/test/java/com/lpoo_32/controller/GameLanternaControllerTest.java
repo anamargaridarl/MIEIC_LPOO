@@ -25,7 +25,7 @@ public class GameLanternaControllerTest {
 
     @Test
     public void testCollision() throws HungerRestored, HungerOVF, ThirstOVF, ThirstRestored, DownScreen, HealthOVF, OutOfBoundaries, Bedtime {
-        PlayerModel player = new PlayerModel(new Position(3,2, GameLanterna.width/4, GameLanterna.height/4, 0));
+        PlayerModel player = new PlayerModel(new Position(3,2, Game.width/4, Game.height/4, 0));
         SpikesModel spike = new SpikesModel(25, new Position(3,2, 0, 0, 0));
         FoodModel food = new FoodModel(10, new Position(3,3, 0, 0, 0));
 
@@ -41,7 +41,7 @@ public class GameLanternaControllerTest {
 
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);
         Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
-        GameController k = new GameController(displayProps, elements, player);
+        GameController k = new GameController(displayProps, elements, player, this.game = new GameLanterna(displayProps, this.player, elements), this.game = new GameLanterna(displayProps, this.player, elements));
 
         k.collisions(player.getPosition());
 
@@ -67,7 +67,7 @@ public class GameLanternaControllerTest {
         Mockito.when(pos.checkMovementDown()).thenReturn(pos);
         Mockito.when(pos.checkMovementRight()).thenReturn(pos);
         Mockito.when(pos.checkMovementUp()).thenReturn(pos);
-        GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player);
+        GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player, this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)), this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)));
 
         Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVEUP);
         gameController.processKey(keyboard.processKey());
@@ -103,7 +103,7 @@ public class GameLanternaControllerTest {
         PlayerModel player = Mockito.mock(PlayerModel.class);
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);
         Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
-        GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player);
+        GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player, this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)), this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)));
         Mockito.when(keyboard.processKey()).thenReturn(EventType.EXIT);
         thrown.expect(ScreenClose.class);
         gameController.processKey(keyboard.processKey());
@@ -127,7 +127,7 @@ public class GameLanternaControllerTest {
         Mockito.when(terminal.getColumns()).thenReturn(100);
         Mockito.when(terminal.getRows()).thenReturn(100);
         ScreenSize.createInstance(terminal);
-        GameController controller = new GameController(displayProps, Mockito.mock(Elements.class), player);
+        GameController controller = new GameController(displayProps, Mockito.mock(Elements.class), player, this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)), this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)));
         controller.setTime(3599);
         controller.updateGame();
         controller.setTime(5399);

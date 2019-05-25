@@ -91,8 +91,14 @@ public class Menu extends Display {
 
         this.listBox.addItem("Start", ()-> {
             try {
-                PlayerModel model = new PlayerModel(new Position(2,2, GameLanterna.width/4, GameLanterna.height/4, 0));
-                GameController gameController = new GameController(new DisplayProps(screen, null), new Elements(), model);
+                PlayerModel model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
+                Elements elements = new Elements();
+                GameController gameController = new GameController(
+                                                elements,
+                                                model,
+                                                new GameLanterna(this.screen, model, elements),
+                                                new TerminalKeyboard(this.screen)
+                                                );
                 gameController.run();
             } catch (IOException | OutOfBoundaries e) {
                 e.printStackTrace();

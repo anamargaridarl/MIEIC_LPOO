@@ -34,7 +34,10 @@ public class PlayerView extends ElementView {
 
     @Override
     void drawSwing(Graphics graphics) {
-        this.drawSwing(graphics, "stickman.png");
+        this.drawSwing(graphics, "stickman.png",
+                this.getPlayer().getPosition().getSwingX(),
+                this.getPlayer().getPosition().getSwingY()
+        );
     }
 
     public PlayerModel getPlayer()

@@ -17,13 +17,11 @@ public class GameLanterna extends Game{
     private List<ElementView> generalView;
     private TextGraphics graphics;
     private PlayerView player;
-    public static final int width = 60;
-    public static final int height = 50;
     private Screen screen;
 
-    public GameLanterna(DisplayProps props, PlayerModel player, Elements elements) {
+    public GameLanterna(Screen screen, PlayerModel player, Elements elements) {
         super();
-        this.screen = props.getScreen();
+        this.screen = screen;
         this.generalView = new LinkedList<>();
         this.player = new PlayerView(player);
         this.elements = elements;
@@ -45,11 +43,11 @@ public class GameLanterna extends Game{
 
         /*graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
                             ScreenSize.instance().getRows(20)), "@");*/
-        int initialX = getIndex() %3 * GameLanterna.width/4;
-        int initialY = getIndex() /3 * GameLanterna.height/4;
+        int initialX = getIndex() %3 * Game.width/4;
+        int initialY = getIndex() /3 * Game.height/4;
 
-        for(int i = initialX; i < initialX + GameLanterna.width/4; i++){
-            for(int j = initialY; j < initialY + GameLanterna.height/4; j++){
+        for(int i = initialX; i < initialX + Game.width/4; i++){
+            for(int j = initialY; j < initialY + Game.height/4; j++){
                 if(this.elements.getViewByCoord(i, j) != null){
                     this.elements.getViewByCoord(i, j).drawLanterna(graphics);
                 }

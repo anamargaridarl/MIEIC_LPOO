@@ -41,7 +41,10 @@ public class FoodView extends CatchableView {
 
     @Override
     void drawSwing(Graphics graphics) {
-        super.drawSwing(graphics, "drumstick.png");
+        super.drawSwing(graphics, "drumstick.png",
+                this.getElement().getPos().getSwingX(),
+                this.getElement().getPos().getSwingY()
+        );
     }
 
 
