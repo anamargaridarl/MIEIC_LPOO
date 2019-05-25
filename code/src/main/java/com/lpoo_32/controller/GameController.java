@@ -104,7 +104,6 @@ public class GameController
                 case RIGHTINVENTORY: //move right in inventory
                     player.getInventory().moveRight();
                     break;
-
                 case INVETORYUSE:
                     if (player.getInventory().getElement() != null) {
                         if (!changeWeaponInventory()) {
@@ -256,16 +255,17 @@ public class GameController
 
     public boolean changeWeaponInventory() {
         if (player.getInventory().getElement() instanceof WeaponModel) {
+
             if (player.getWeapon() != null) {
                 WeaponModel old = player.getWeapon();
                 player.setWeapon((WeaponModel) player.getInventory().getElement());
                 player.getInventory().removeElement();
                 player.getInventory().addElement(new WeaponView(old));
             }
-            else
-            player.setWeapon((WeaponModel) player.getInventory().getElement());
-            player.getInventory().removeElement();
-
+            else {
+                player.setWeapon((WeaponModel) player.getInventory().getElement());
+                player.getInventory().removeElement();
+            }
             return true;
         }
 
