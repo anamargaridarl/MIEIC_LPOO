@@ -13,6 +13,8 @@ public abstract class Game {
 
     abstract public void draw() throws IOException;
 
+//    abstract public void destroy();
+
     public int getIndex() {
         return index;
     }

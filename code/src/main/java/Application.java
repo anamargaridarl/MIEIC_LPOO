@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class Application {
@@ -31,32 +32,15 @@ public class Application {
             JFrame frame = new JFrame();
             frame.setFocusable(true);
             frame.setVisible(true);
-            frame.getContentPane().addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent keyEvent) {
-                    System.out.println("Pressed key!");
-                }
-
-                @Override
-                public void keyPressed(KeyEvent keyEvent) {
-                    System.out.println("Pressed key!");
-                }
-
-                @Override
-                public void keyReleased(KeyEvent keyEvent) {
-                    System.out.println("Pressed key!");
-
-                }
-            });
-            System.out.println("Added Key listener");
             GameController game = new GameController(
                     elements,
                     model,
                     new GameSwing(frame, model, elements)
                     );
-
+            frame.addKeyListener(new SwingKeyboard(game));
             game.run();
-
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            System.out.println("Stopping game");
         }
 
     }
