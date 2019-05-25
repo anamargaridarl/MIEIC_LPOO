@@ -21,7 +21,7 @@ public class WeaponModel extends CatchableElement {
     }
 
 
-    public void interactMonster(MonsterModel monster) {
+    public void interactMonster(MonsterModel monster) throws DeadMonster {
         monster.decreaseValue(this.getValue());
     }
 

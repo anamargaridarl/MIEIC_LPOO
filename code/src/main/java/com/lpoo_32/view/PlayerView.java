@@ -28,6 +28,17 @@ public class PlayerView implements ElementView {
                 new TerminalSize(1, 1),
                 Symbols.DIAMOND
         );
+
+
+    }
+
+
+    private int getRows() {
+        return ScreenSize.instance().getRows(26);
+    }
+
+    private int getColumn(int columns) {
+        return ScreenSize.instance().getColumn(columns);
     }
 
     public PlayerModel getPlayer()

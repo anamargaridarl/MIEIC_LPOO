@@ -90,12 +90,15 @@ public class MonsterModel extends InteractableElement {
         }
 
 
+
     }
 
 
-    public void decreaseValue(int value) {
-        if(this.getValue() - value < 0)
-            this.value = 100;
+    public void decreaseValue(int value) throws DeadMonster {
+        if(this.getValue() - value < 0) {
+            this.controller.removeElementProps(this);
+            throw new DeadMonster();
+        }
         else
             this.value -= value;
     }
