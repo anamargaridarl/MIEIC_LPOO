@@ -28,8 +28,10 @@ public class GameSwing extends Game{
 
     @Override
     public void draw() throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, Bedtime {
+
         graphics.clearRect(0, 0, ScreenWidth, ScreenHeight);
         graphics.drawRect(0, 0, getWidth(), getHeight());
+
         int initialX = getIndex() %3 * Game.width/4;
         int initialY = getIndex() /3 * Game.height/4;
 
