@@ -14,7 +14,7 @@ public class MonsterView extends InteractableElementView {
     private final MonsterModel monster;
 
     public MonsterView(MonsterModel monster){
-        super(monster, "bed.png");
+        super(monster, "monster.png");
         this.monster = monster;
     }
 
@@ -36,7 +36,7 @@ public class MonsterView extends InteractableElementView {
     }
 
     @Override
-    void drawSwing(Graphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen {
+    void drawSwing(Graphics graphics) {
         this.drawSwing(
                 graphics,
                 this.monster.getPos().getSwingX(),

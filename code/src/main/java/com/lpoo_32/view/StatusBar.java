@@ -11,14 +11,14 @@ import java.awt.*;
 
 public class StatusBar extends ElementView {
     private final Status status;
-    private final TextColor color;
+    private final String color;
     private int height;
 
 
     StatusBar(Status status, String hexColor, int height){
         super("bed.png");
         this.status = status;
-        this.color = TextColor.Factory.fromString(hexColor);
+        this.color = hexColor;
         this.height = height;
     }
 
@@ -29,7 +29,7 @@ public class StatusBar extends ElementView {
     @Override
     public void drawLanterna(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
-        graphics.setForegroundColor(color);
+        graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
         graphics.fillRectangle(new TerminalPosition(getColumn(60),
                         getRows()),
                 new TerminalSize(getColumn(this.getScreenPercen() + 1), 1),
@@ -42,7 +42,10 @@ public class StatusBar extends ElementView {
 
     @Override
     void drawSwing(Graphics graphics) {
-
+        graphics.setColor(Color.decode(this.color));
+        System.out.println((int) (0.4*GameSwing.ScreenWidth * getScreenPercen()/40));
+        graphics.fillRect(GameSwing.getWidth() + 20, height, (int) (0.4*GameSwing.ScreenWidth * getScreenPercen()/40), 20);
+        graphics.setColor(Color.BLACK);
     }
 
     private int getRows() {

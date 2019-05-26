@@ -15,16 +15,12 @@ import java.util.*;
 public class GameLanterna extends Game{
 
     private Elements elements;
-    private List<ElementView> generalView;
     private TextGraphics graphics;
-    private PlayerView player;
     private Screen screen;
 
     public GameLanterna(Screen screen, PlayerModel player, Elements elements) {
-        super();
+        super(player);
         this.screen = screen;
-        this.generalView = new LinkedList<>();
-        this.player = new PlayerView(player);
         this.elements = elements;
         this.graphics =  this.screen.newTextGraphics();
         this.setInitialProps();
@@ -61,13 +57,12 @@ public class GameLanterna extends Game{
         this.screen.refresh();
     }
 
-    private void setInitialProps(){
+
+    void setInitialProps(){
         this.generalView.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 10));
         this.generalView.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 14));
         this.generalView.add(new StatusBar(player.getPlayer().getWater(), "#66ccff", 18));
         this.generalView.add(this.player);
         this.generalView.add(new InventoryView(this.player.getPlayer().getInventory(), "#91c474"));
     }
-
-
 }

@@ -15,7 +15,7 @@ public class WeaponView extends CatchableView {
     private final WeaponModel weapon;
 
     public WeaponView(WeaponModel weaponModel) {
-        super(weaponModel, "bed.png");
+        super(weaponModel, "sword.png");
         weapon = weaponModel;
     }
 
@@ -35,7 +35,7 @@ public class WeaponView extends CatchableView {
     }
 
     @Override
-    public void drawLanterna(TextGraphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen {
+    public void drawLanterna(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
 
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
@@ -48,7 +48,7 @@ public class WeaponView extends CatchableView {
     }
 
     @Override
-    void drawSwing(Graphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen {
+    void drawSwing(Graphics graphics) {
         this.drawSwing(
                 graphics,
                 this.weapon.getPos().getSwingX(),
