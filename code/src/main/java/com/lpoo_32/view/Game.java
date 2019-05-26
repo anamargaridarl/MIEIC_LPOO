@@ -13,7 +13,7 @@ public abstract class Game {
         this.index = 0;
     }
 
-    abstract public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen;
+    abstract public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, Bedtime;
 
 //    abstract public void destroy();
 

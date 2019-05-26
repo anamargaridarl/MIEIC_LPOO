@@ -42,7 +42,7 @@ public class GameController
         return random.nextInt(9);
     }
 
-    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
+    public void processKey(EventType event) {
 
         InteractableElementView i;
         try{
@@ -183,6 +183,8 @@ public class GameController
             upScreen();
         } catch (DownScreen downScreen) {
             downScreen();
+        } catch (Bedtime bedtime) {
+            this.sleep = new SleepState(player);
         }
     }
 
