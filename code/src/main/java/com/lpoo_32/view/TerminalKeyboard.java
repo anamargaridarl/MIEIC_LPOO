@@ -65,10 +65,10 @@ public class TerminalKeyboard implements KeyboardAnalyzer {
                             case 't': //use water/food in moment
                                 event = EventType.USE;
                                 break;
-                            case '2': //move left in inventory
+                            case '1': //move left in inventory
                                 event = EventType.LEFTINVENTORY;
                                 break;
-                            case '1': //move right in inventory
+                            case '2': //move right in inventory
                                 event = EventType.RIGHTINVENTORY;
                                 break;
                             case 'e':

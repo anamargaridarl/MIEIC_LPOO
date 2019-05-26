@@ -10,20 +10,20 @@ import java.awt.*;
 public class InventoryView extends ElementView {
 
     private Inventory inventory;
-    private final TextColor color;
+    private final String color;
     //private int height;
 
     public InventoryView(Inventory inventory, String hexColor) {
         super("bed.png");
         this.inventory = inventory;
-        this.color = TextColor.Factory.fromString(hexColor);
+        this.color = hexColor;
     }
 
 
     @Override
     public void drawLanterna(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
-        graphics.setForegroundColor(color);
+        graphics.setForegroundColor(TextColor.Factory.fromString(color));
 
 
         graphics.fillRectangle(new TerminalPosition(getColumn(70),
@@ -39,15 +39,17 @@ public class InventoryView extends ElementView {
 
         graphics.putString(getColumn(75), getRows() +2, getName());
         graphics.putString(getColumn(80), getRows() +3, getValue());
-
-
-
-
-
     }
 
     @Override
     void drawSwing(Graphics graphics) {
+        graphics.setColor(Color.decode(this.color));
+        graphics.fillRect(GameSwing.getWidth() + 20, 100, 90, 100);
+        graphics.setColor(Color.BLACK);
+        graphics.drawString(getName(), GameSwing.getWidth() + 40, 110);
+        graphics.drawString(getValue(), GameSwing.getWidth() + 40, 130);
+//        graphics.drawImage(this.inventory.getElement())
+        //TODO: Image of item
 
     }
 
@@ -59,7 +61,7 @@ public class InventoryView extends ElementView {
         return String.valueOf(inventory.getElement().getValue());
     }
 
-    String getName() {
+    private String getName() {
         if(inventory.getView() == null)
             return "backpack";
 

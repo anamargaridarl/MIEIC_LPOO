@@ -24,11 +24,10 @@ public class MonsterView extends InteractableElementView {
         this.monster.updateMove(this);
 
 
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
-
-        graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-
-        graphics.fillRectangle(
+        this.drawLanterna(
+                graphics,
+                "#91c474",
+                "#000000",
                 this.monster.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
                 Symbols.FACE_BLACK
@@ -36,7 +35,9 @@ public class MonsterView extends InteractableElementView {
     }
 
     @Override
-    void drawSwing(Graphics graphics) {
+    void drawSwing(Graphics graphics) throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, Bedtime, UpScreen {
+        this.monster.updateMove(this);
+
         this.drawSwing(
                 graphics,
                 this.monster.getPos().getSwingX(),

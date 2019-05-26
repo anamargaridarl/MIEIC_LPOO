@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public abstract class ElementView  {
-    BufferedImage image;
+    private BufferedImage image;
     ElementView(String name){
         URL resource = getClass().getResource("/" + name);
         try{
@@ -35,9 +35,14 @@ public abstract class ElementView  {
         );
     }
     abstract void drawLanterna(TextGraphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen, Bedtime;;
-    abstract void drawSwing(Graphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen;;
+    abstract void drawSwing(Graphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen, Bedtime;;
 
     void drawSwing(Graphics graphics, int x, int y){
+
         graphics.drawImage(image, x, y + 20, 30, 30, null);
+    }
+
+    public BufferedImage getImage() {
+        return image;
     }
 }

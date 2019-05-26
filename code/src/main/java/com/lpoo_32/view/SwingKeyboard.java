@@ -46,14 +46,26 @@ public class SwingKeyboard implements KeyListener {
             case KeyEvent.VK_T:
                 event = EventType.USE;
                 break;
-            case KeyEvent.VK_Q:
-                event = EventType.LEFTINVENTORY;
+            case KeyEvent.VK_2:
+                event = EventType.RIGHTINVENTORY;
                 break;
-            case KeyEvent.VK_W:
+            case KeyEvent.VK_1:
                 event = EventType.LEFTINVENTORY;
                 break;
             case KeyEvent.VK_E:
-                event = EventType.LEFTINVENTORY;
+                event = EventType.INVETORYUSE;
+                break;
+            case KeyEvent.VK_W:
+                event = EventType.ATTACKUP;
+                break;
+            case KeyEvent.VK_D:
+                event = EventType.ATTACKLEFT;
+                break;
+            case KeyEvent.VK_A:
+                event = EventType.ATTACKRIGHT;
+                break;
+            case KeyEvent.VK_S:
+                event = EventType.ATTACKDOWN;
                 break;
             default:
                 System.out.println(keyEvent.getKeyChar());

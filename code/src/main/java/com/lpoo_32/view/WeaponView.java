@@ -36,15 +36,14 @@ public class WeaponView extends CatchableView {
 
     @Override
     public void drawLanterna(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#91c474"));
-
-        graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-
-        graphics.fillRectangle(
+        this.drawLanterna(
+                graphics,
+                "#91c474",
+                "#000000",
                 this.weapon.getPos().getTerminalPosition(),
                 new TerminalSize(1, 1),
                 this.getSymbol()
-        );
+                );
     }
 
     @Override
