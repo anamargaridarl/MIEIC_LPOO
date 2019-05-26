@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
@@ -25,7 +26,7 @@ public class GameLanternaTest {
     private TextGraphics graphics;
 
     @Before
-    public void initalizeGame() {
+    public void initalizeGame() throws OutOfBoundaries {
         TerminalSize terminal = Mockito.mock(TerminalSize.class);
         Mockito.when(terminal.getColumns()).thenReturn(100);
         Mockito.when(terminal.getRows()).thenReturn(100);
@@ -33,11 +34,11 @@ public class GameLanternaTest {
         screen = Mockito.mock(Screen.class);
         graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
-        gameLanterna = new GameLanterna(new DisplayProps(screen, null),new PlayerModel(Mockito.mock(Position.class)), Mockito.mock(Elements.class));
+        gameLanterna = new GameLanterna(screen, new PlayerModel(Mockito.mock(Position.class)), Mockito.mock(Elements.class));
     }
 
     @Test
-    public void draw() throws IOException {
+    public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen {
         gameLanterna.draw();
         verify(graphics, atLeastOnce()).setBackgroundColor(any(TextColor.class));
         verify(graphics, atLeastOnce()).setForegroundColor(any(TextColor.class));

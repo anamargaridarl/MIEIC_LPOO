@@ -11,7 +11,7 @@ import java.awt.*;
 public class WaterView extends CatchableView {
     private final WaterModel water;
 
-    WaterView(WaterModel water){
+    public WaterView(WaterModel water){
         super(water, "water.png");
         this.water = water;
     }

@@ -1,12 +1,11 @@
 package com.lpoo_32.view;
 
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class GameSwing extends Game{
     private final PlayerView player;
@@ -26,7 +25,7 @@ public class GameSwing extends Game{
     }
 
     @Override
-    public void draw() {
+    public void draw() throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen {
         graphics.clearRect(0, 0, ScreenWidth, ScreenHeight);
         graphics.drawRect(0, 0, (ScreenWidth*Game.width)/100 + 30, (ScreenHeight*Game.height)/100 + 35);
 

@@ -5,9 +5,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.model.InteractableElement;
 import com.lpoo_32.model.PlayerModel;
-import com.lpoo_32.view.ElementView;
 
 import java.awt.*;
 
@@ -31,6 +29,18 @@ public class PlayerView extends ElementView {
                 Symbols.DIAMOND
         );
 
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#91c474"));
+
+        graphics.fillRectangle(new TerminalPosition(getColumn(70),
+                        getRows()), new TerminalSize(getColumn(getColumn(20)), 4),
+                Symbols.BLOCK_SOLID);
+
+
+        graphics.putString(getColumn(75), getRows() +2, getName());
+        graphics.putString(getColumn(80), getRows() +3, getValue());
+
+
     }
 
     @Override
@@ -45,4 +55,35 @@ public class PlayerView extends ElementView {
     {
         return player;
     }
-}
+
+    private int getRows() {
+        return ScreenSize.instance().getRows(80);
+    }
+
+    private int getColumn(int columns) {
+        return ScreenSize.instance().getColumn(columns);
+    }
+
+
+    private String getValue() {
+
+        if(this.player.getWeapon() == null)
+            return "";
+
+        return String.valueOf(this.player.getWeapon().getValue());
+    }
+
+
+    private String getName() {
+
+        if(this.player.getWeapon() == null)
+            return " ";
+        else
+            return "Weapon";
+
+    }
+
+
+
+
+    }

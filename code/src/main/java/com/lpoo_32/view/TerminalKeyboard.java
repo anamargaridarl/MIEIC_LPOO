@@ -65,14 +65,26 @@ public class TerminalKeyboard implements KeyboardAnalyzer {
                             case 't': //use water/food in moment
                                 event = EventType.USE;
                                 break;
-                            case 'q': //move left in inventory
+                            case '2': //move left in inventory
                                 event = EventType.LEFTINVENTORY;
                                 break;
-                            case 'w': //move right in inventory
+                            case '1': //move right in inventory
                                 event = EventType.RIGHTINVENTORY;
                                 break;
                             case 'e':
                                 event = EventType.INVETORYUSE;
+                                break;
+                            case 'w':
+                                event = EventType.ATTACKUP;
+                                break;
+                            case 'd':
+                                event = EventType.ATTACKRIGHT;
+                                break;
+                            case 'a':
+                                event = EventType.ATTACKLEFT;
+                                break;
+                            case 's':
+                                event = EventType.ATTACKDOWN;
                                 break;
                             default:
                                 event = EventType.NULL;

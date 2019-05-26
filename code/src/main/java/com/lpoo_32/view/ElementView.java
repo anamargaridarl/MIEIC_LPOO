@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.InteractableElement;
 
 import javax.imageio.ImageIO;
@@ -33,8 +34,8 @@ public abstract class ElementView  {
                 symbol
         );
     }
-    abstract void drawLanterna(TextGraphics graphics);
-    abstract void drawSwing(Graphics graphics);
+    abstract void drawLanterna(TextGraphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen, Bedtime;;
+    abstract void drawSwing(Graphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen;;
 
     void drawSwing(Graphics graphics, int x, int y){
         graphics.drawImage(image, x, y + 20, 30, 30, null);

@@ -7,5 +7,7 @@ public enum ElementType {
     WALL,
     DOOR,
     BED,
+    MONSTER,
+    WEAPON,
     NONE
 }

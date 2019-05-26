@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class GameLanterna extends Game{
 
 
     @Override
-    public void draw() throws IOException {
+    public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen {
         this.screen.clear();
 
 

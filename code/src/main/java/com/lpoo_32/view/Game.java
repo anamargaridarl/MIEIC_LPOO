@@ -1,5 +1,7 @@
 package com.lpoo_32.view;
 
+import com.lpoo_32.exceptions.*;
+
 import java.io.IOException;
 
 public abstract class Game {
@@ -11,7 +13,7 @@ public abstract class Game {
         this.index = 0;
     }
 
-    abstract public void draw() throws IOException;
+    abstract public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen;
 
 //    abstract public void destroy();
 

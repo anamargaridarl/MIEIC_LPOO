@@ -4,7 +4,7 @@ public abstract class ValuableElement extends InteractableElement{
     private int value;
 
     ValuableElement(Position pos, int value) {
-        super(pos);
+        super(pos, value);
         this.value = value;
     }
 

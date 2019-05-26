@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -69,6 +71,7 @@ public class GameLanternaControllerTest {
         Mockito.when(pos.checkMovementUp()).thenReturn(pos);
         GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player, this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)), this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)));
 
+        /*
         Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVEUP);
         gameController.processKey(keyboard.processKey());
         verify(player).moveUp();
@@ -81,6 +84,7 @@ public class GameLanternaControllerTest {
         Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVERIGHT);
         gameController.processKey(keyboard.processKey());
         verify(player).moveRight();
+        */
         Mockito.when(keyboard.processKey()).thenReturn(EventType.STORE);
         gameController.processKey(keyboard.processKey());
         Mockito.when(keyboard.processKey()).thenReturn(EventType.USE);
@@ -134,4 +138,89 @@ public class GameLanternaControllerTest {
         controller.updateGame();
         verify(status, atLeast(2)).decreaseValue(5);
     }
+
+    @Test
+    public void monsterEqualsPlayer() throws OutOfBoundaries {
+        Position p2 = new Position(4, 5, Game.width / 4, Game.height / 4, 0);
+        Position p1 = new Position(5, 5, Game.width / 4, Game.height / 4, 0);
+
+        Elements elements = new Elements();
+        PlayerModel player = new PlayerModel(p2);
+
+        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
+        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
+        GameController k = new GameController(displayProps, elements, player);
+
+        assertTrue(k.monsterEqualsPlayer(p2,p1));
+
+    }
+
+
+    @Test
+    public void changeWeaponInventory() throws OutOfBoundaries {
+
+        Position p1 = new Position(5, 5, Game.width / 4, Game.height / 4, 0);
+        WeaponModel w1 = new WeaponModel(p1,20);
+        WeaponModel w2 = new WeaponModel(p1,40);
+
+        Elements elements = new Elements();
+        PlayerModel player = new PlayerModel(p1);
+
+        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
+        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
+        GameController k = new GameController(displayProps, elements, player);
+
+        player.setWeapon(w1);
+        player.addElementInventory(new WeaponView(w2));
+        k.changeWeaponInventory();
+
+        assertEquals(40, player.getWeapon().getValue());
+        assertEquals( 20 , player.getInventory().getElement().getValue());
+
+        player.setWeapon(null);
+        k.changeWeaponInventory();
+        assertEquals(20, player.getWeapon().getValue());
+        assertEquals(null, player.getInventory().getElement());
+
+        assertFalse(k.changeWeaponInventory());
+
+    }
+
+    @Test
+    public void checkForMonsterAndAttack() throws OutOfBoundaries, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen {
+
+        Position p1 = new Position(5, 5, Game.width / 4, Game.height / 4, 0);
+        Position p2 = new Position(4, 5, Game.width / 4, Game.height / 4, 0);
+        Position p3 = new Position(6, 5, Game.width / 4, Game.height / 4, 0);
+        WeaponModel w1 = new WeaponModel(p1,20);
+
+
+        Elements elements = new Elements();
+        PlayerModel player = new PlayerModel(p1);
+
+        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
+        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
+        GameController k = new GameController(displayProps, elements, player);
+
+        WaterModel water = new WaterModel(20,p3);
+        MonsterModel monster = new MonsterModel(p2, 40, new MovableElement(p2), k, p1);
+        elements.addElement(new MonsterView(monster));
+
+        k.checkForMonsterAndAttack(p1,Attacks.ALEFT,w1);
+        assertEquals(20, monster.getValue());
+
+        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,w1);
+        assertEquals(20, monster.getValue());
+
+        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,null);
+        assertEquals(20, monster.getValue());
+
+        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,w1);
+        assertEquals(20, monster.getValue());
+        
+    }
+
+
+
+
 }

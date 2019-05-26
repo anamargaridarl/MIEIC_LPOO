@@ -3,6 +3,7 @@ package com.lpoo_32.view;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.lpoo_32.exceptions.*;
 
 import java.io.IOException;
 
@@ -26,5 +27,5 @@ public abstract class Display {
         this.screen = screen;
     }
 
-    abstract public void draw() throws IOException;
+    abstract public void draw() throws IOException, HungerOVF, HungerRestored, ThirstOVF, HealthOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen;
 }

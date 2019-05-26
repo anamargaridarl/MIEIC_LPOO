@@ -8,9 +8,7 @@ import com.lpoo_32.controller.GameController;
 import com.lpoo_32.controller.SecondaryMenuKeyListener;
 import com.lpoo_32.controller.MenuKeyListener;
 import com.lpoo_32.exceptions.OutOfBoundaries;
-import com.lpoo_32.model.Elements;
-import com.lpoo_32.model.PlayerModel;
-import com.lpoo_32.model.Position;
+import com.lpoo_32.model.*;
 
 import java.io.IOException;
 import java.util.Arrays;

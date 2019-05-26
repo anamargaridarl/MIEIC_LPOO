@@ -76,7 +76,7 @@ public class InventoryView extends ElementView {
 
 
     private int getRows() {
-        return ScreenSize.instance().getRows(26);
+        return ScreenSize.instance().getRows(60);
     }
 
     private int getColumn(int columns) {
