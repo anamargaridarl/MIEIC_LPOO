@@ -42,7 +42,7 @@ public class GameController
         return random.nextInt(9);
     }
 
-    public void processKey(EventType event) {
+    void processKey(EventType event) throws ScreenClose, HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, UpScreen, LeftScreen, RightScreen, DownScreen {
 
         InteractableElementView i;
         try{
@@ -251,18 +251,39 @@ public class GameController
     }
 
 
+    private Position randomPosition(int width, int height, int indexGame) throws OutOfBoundaries {
+        Random random = new Random();
+        int x = random.nextInt(width * 3);
+        int y = random.nextInt(height * 3);
+        int index = (x/width) + (y/height) * 3;
+        Position pos = new InteractablePosition(x, y, width, height, index,indexGame);
+        return pos;
+    }
+
     private void populateGame(int width, int height, int indexGame) throws OutOfBoundaries {
         Random random = new Random();
+        TerminalElementFactory factory = new TerminalElementFactory();
         ElementType[] types = ElementType.values();
-        for(int i = 0; i < 50; i++){
-
-            int x = random.nextInt(width * 3);
-            int y = random.nextInt(height * 3);
-            int index = (x/width) + (y/height) * 3;
-            Position pos = new InteractablePosition(x, y, width, height, index,indexGame);
-            InteractableElementView element = factory.getElement(types[random.nextInt(types.length - 1)], pos, this, player);
+        InteractableElementView element;
+        for(int i = 0; i < 60; i++){
+            Position pos = randomPosition(width,height,indexGame);
+            element = factory.getElement(types[random.nextInt(types.length - 4)], pos);
             this.elements.addElement(element);
         }
+
+        for(int i = 0; i < 30; i++){
+            Position pos = randomPosition(width,height,indexGame);
+            element = new MonsterView(new MonsterModel(pos, 15, new MovableElement(pos),this,player.getPosition()));
+            this.elements.addElement(element);
+        }
+
+        for(int i = 0; i <3; i++)
+        {
+            Position pos = randomPosition(width,height,indexGame);
+            element = new WeaponView(new WeaponModel(pos, (random.nextInt(15-5)+5)));
+            this.elements.addElement(element);
+        }
+
     }
 
     private void buildHouse(int width, int height) throws OutOfBoundaries {

@@ -13,6 +13,7 @@ public class WaterModel extends CatchableElement {
     @Override
     public boolean interact(PlayerModel player) throws HungerRestored, ThirstRestored {
         player.getWater().increaseValue(this.getValue());
+        player.getHealth().increaseValue((int) (this.getValue()*0.2));
         return true;
     }
 

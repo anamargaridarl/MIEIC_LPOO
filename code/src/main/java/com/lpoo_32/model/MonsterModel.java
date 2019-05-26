@@ -17,6 +17,7 @@ enum Movements{
 
 public class MonsterModel extends InteractableElement {
 
+    private int health;
     private MovableElement movable;
     private Position playerposition;
     int number;
@@ -28,6 +29,7 @@ public class MonsterModel extends InteractableElement {
         this.number = 0;
         this.controller= controller;
         this.playerposition = playerposition;
+        this.health = 50;
     }
 
     public void setNumber(int number)
@@ -103,12 +105,12 @@ return false;
 
 
     public void decreaseValue(int value)  {
-        if(this.getValue() - value <= 0) {
+        if(this.health - value <= 0) {
             this.controller.removeElementProps(this);
 
         }
         else
-            this.value -= value;
+            this.health -= value;
     }
 
 
