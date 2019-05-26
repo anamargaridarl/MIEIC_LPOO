@@ -145,7 +145,6 @@ return false;
 
         int mov = random.nextInt(2);
 
-        System.out.println(mov);
         if (mov == 1) {
             return chooseX(playerposition);
         } else {
