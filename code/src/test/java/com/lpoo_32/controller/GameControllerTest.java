@@ -211,7 +211,7 @@ public class GameControllerTest {
 
         k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,w1);
         assertEquals(20, monster.getValue());
-        
+
     }
 
 

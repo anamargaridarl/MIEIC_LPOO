@@ -10,6 +10,7 @@ public class WeaponModel extends CatchableElement {
 
     @Override
     public void interact(PlayerModel player) throws HealthOVF, HungerRestored, HungerOVF, ThirstRestored, ThirstOVF {
+            player.getHealth().decreaseValue(10);
     }
 
     public void interactMonster(MonsterModel monster) {

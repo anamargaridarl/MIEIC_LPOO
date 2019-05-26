@@ -4,7 +4,5 @@ public enum ElementType {
     SPIKES,
     WATER,
     FOOD,
-    MONSTER,
-    WEAPON,
     NONE
 }

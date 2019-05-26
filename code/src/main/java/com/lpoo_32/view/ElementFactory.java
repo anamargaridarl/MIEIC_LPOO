@@ -5,5 +5,5 @@ import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 
 public interface ElementFactory {
-    InteractableElementView getElement(ElementType element, Position pos, GameController controller, PlayerModel player);
+    InteractableElementView getElement(ElementType element, Position pos);
 }
