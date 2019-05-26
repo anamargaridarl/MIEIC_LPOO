@@ -28,7 +28,7 @@ public class GameSwing extends Game{
     @Override
     public void draw() {
         graphics.clearRect(0, 0, ScreenWidth, ScreenHeight);
-        graphics.drawRect(0, 0, (ScreenWidth*Game.width)/100, (ScreenHeight*Game.height)/100);
+        graphics.drawRect(0, 0, (ScreenWidth*Game.width)/100 + 30, (ScreenHeight*Game.height)/100 + 35);
 
         int initialX = getIndex() %3 * Game.width/4;
         int initialY = getIndex() /3 * Game.height/4;

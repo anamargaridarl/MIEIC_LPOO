@@ -37,6 +37,6 @@ public abstract class ElementView  {
     abstract void drawSwing(Graphics graphics);
 
     void drawSwing(Graphics graphics, int x, int y){
-        graphics.drawImage(image, x, y, 30, 30, null);
+        graphics.drawImage(image, x, y + 20, 30, 30, null);
     }
 }
