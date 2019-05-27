@@ -368,6 +368,7 @@ public class GameController
 
     }
 
+    
     private boolean isCatchable(Position position) {
 
         if (elements.getView(position) != null) {

@@ -58,10 +58,10 @@ public class SwingKeyboard implements KeyListener {
             case KeyEvent.VK_W:
                 event = EventType.ATTACKUP;
                 break;
-            case KeyEvent.VK_D:
+            case KeyEvent.VK_A:
                 event = EventType.ATTACKLEFT;
                 break;
-            case KeyEvent.VK_A:
+            case KeyEvent.VK_D:
                 event = EventType.ATTACKRIGHT;
                 break;
             case KeyEvent.VK_S:
