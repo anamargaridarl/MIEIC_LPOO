@@ -99,9 +99,11 @@ public class GameController
                         }
                         break;
                     case USE: //use water/food in moment
-                        if(isCatchable(player.getPosition())) {
-                            elements.getModel(player.getPosition()).interact(player);
-                            removeElementProps(elements.getModel(player.getPosition()));
+                        if(!isWeaponUseDirect(player.getPosition())) {
+                            if (isCatchable(player.getPosition())) {
+                                elements.getModel(player.getPosition()).interact(player);
+                                removeElementProps(elements.getModel(player.getPosition()));
+                            }
                         }
                         break;
                     case LEFTINVENTORY: //move left in inventory
@@ -348,9 +350,20 @@ public class GameController
     }
 
 
+    public void changeActualWeapon(Position position)
+    {
+        if (player.getWeapon() != null) {
+            WeaponModel old = player.getWeapon();
+            player.setWeapon((WeaponModel) elements.getView(position).getElement());
+            player.getInventory().addElement(new WeaponView(old));
+        }
+        else {
+            player.setWeapon((WeaponModel) elements.getView(position).getElement());
+        }
+    }
+
     public boolean changeWeaponInventory() {
         if (player.getInventory().getElement() instanceof WeaponModel) {
-
             if (player.getWeapon() != null) {
                 WeaponModel old = player.getWeapon();
                 player.setWeapon((WeaponModel) player.getInventory().getElement());
@@ -382,8 +395,12 @@ public class GameController
     public boolean isWeaponUseDirect(Position position)
     {
         if (elements.getView(position) != null) {
-
+            if(elements.getView(position) instanceof WeaponView)
+            changeActualWeapon(position);
+            removeElementProps(elements.getModel(player.getPosition()));
+            return true;
         }
+        return false;
     }
     //handles colisions for non catchable elements
     boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF, Bedtime {
