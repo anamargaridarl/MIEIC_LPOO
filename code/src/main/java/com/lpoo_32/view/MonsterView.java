@@ -21,7 +21,7 @@ public class MonsterView extends InteractableElementView {
     @Override
     public void drawLanterna(TextGraphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen, Bedtime {
 
-        this.monster.updateMove(this);
+        this.monster.updateMove(this, 60);
 
 
         this.drawLanterna(
@@ -36,7 +36,7 @@ public class MonsterView extends InteractableElementView {
 
     @Override
     void drawSwing(Graphics graphics) throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, Bedtime, UpScreen {
-        this.monster.updateMove(this);
+        this.monster.updateMove(this, 15);
 
         this.drawSwing(
                 graphics,

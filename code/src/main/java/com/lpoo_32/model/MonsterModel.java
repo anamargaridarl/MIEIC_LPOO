@@ -167,11 +167,11 @@ return false;
         }
 
 
-    public void updateMove(MonsterView monsterview) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen, Bedtime {
+    public void updateMove(MonsterView monsterview, int time) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen, Bedtime {
 
         this.number++;
 
-        if (number == 15) {
+        if (number == time) {
 
 
             if(this.getPos().getIndex() == playerposition.getIndex()) {
