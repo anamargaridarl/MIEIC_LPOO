@@ -25,6 +25,7 @@ public class HelpMenuGUI extends JFrame {
     };
 
     public HelpMenuGUI() {
+        this.root = new JPanel();
         table = new JTable(data, columnNames);
         button1 = new JButton("GoBack");
         add(root);

@@ -117,6 +117,7 @@ public class MenuSwingGUI extends JFrame {
 
     public MenuSwingGUI()
     {
+        this.root = new JPanel();
         add(root);
         setTitle("Menu");
         setSize(400,330);
