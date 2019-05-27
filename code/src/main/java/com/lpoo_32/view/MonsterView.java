@@ -36,7 +36,7 @@ public class MonsterView extends InteractableElementView {
 
     @Override
     void drawSwing(Graphics graphics) throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, Bedtime, UpScreen {
-//        this.monster.updateMove(this);
+        this.monster.updateMove(this);
 
         this.drawSwing(
                 graphics,

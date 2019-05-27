@@ -43,7 +43,7 @@ public class StatusBar extends ElementView {
     @Override
     void drawSwing(Graphics graphics) {
         graphics.setColor(Color.decode(this.color));
-        graphics.fillRect(GameSwing.getWidth() + 20, height, (int) (0.4*GameSwing.ScreenWidth * getScreenPercen()/40), 20);
+        graphics.fillRect(GameSwing.getWidth() + 20, height, (int) (0.36*GameSwing.ScreenWidth * getScreenPercen()/40), 20);
         graphics.setColor(Color.BLACK);
     }
 

@@ -53,9 +53,6 @@ public class InventoryView extends ElementView {
                             GameSwing.getWidth() + 55,
                             150, 30, 30, null);
         }
-//        graphics.drawImage(this.inventory.getElement())
-        //TODO: Image of item
-
     }
 
     private String getValue() {
