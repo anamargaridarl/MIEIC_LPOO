@@ -100,6 +100,7 @@ public class GameController
                         break;
                     case USE: //use water/food in moment
                         if(!isWeaponUseDirect(player.getPosition())) {
+                            System.out.println("bananas");
                             if (isCatchable(player.getPosition())) {
                                 elements.getModel(player.getPosition()).interact(player);
                                 removeElementProps(elements.getModel(player.getPosition()));
@@ -395,10 +396,12 @@ public class GameController
     public boolean isWeaponUseDirect(Position position)
     {
         if (elements.getView(position) != null) {
-            if(elements.getView(position) instanceof WeaponView)
-            changeActualWeapon(position);
-            removeElementProps(elements.getModel(player.getPosition()));
-            return true;
+            if(elements.getView(position) instanceof WeaponView) {
+                changeActualWeapon(position);
+                removeElementProps(elements.getModel(player.getPosition()));
+                return true;
+            }
+            return false;
         }
         return false;
     }

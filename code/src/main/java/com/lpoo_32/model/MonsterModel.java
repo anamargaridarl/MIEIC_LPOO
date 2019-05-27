@@ -170,10 +170,8 @@ return false;
     public void updateMove(MonsterView monsterview) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen, Bedtime {
 
         this.number++;
-        System.out.println(number);
 
         if (number == 15) {
-            System.out.println("bananas");
 
 
             if(this.getPos().getIndex() == playerposition.getIndex()) {

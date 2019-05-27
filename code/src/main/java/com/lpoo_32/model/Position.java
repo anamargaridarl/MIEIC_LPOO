@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Position {
     protected int x;
     protected int y;
-    protected int index; //TODO:eliminate height/width index
+    protected int index;
     protected final int width;
     protected final int height;
 
