@@ -70,8 +70,8 @@ public class MenuSwingGUI extends JFrame {
                             e.printStackTrace();
                         }
                         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            System.out.println("Stopping game");
+                        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                        System.out.println("Stopping game");
                     }
                 }
                 System.out.println();
