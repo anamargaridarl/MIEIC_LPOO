@@ -11,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -75,7 +76,13 @@ public class MenuSwingGUI extends JFrame {
                         System.out.println("Stopping game");
 
                     }
-                    break;
+                    else if(selections[i] == 1)
+                    {
+                        dispose();
+                        HelpMenuSwing help = new HelpMenuSwing();
+                        help.run();
+                    }
+
                 }
                 System.out.println();
             }
@@ -96,17 +103,15 @@ public class MenuSwingGUI extends JFrame {
         }
     };
 
-
-
     public void manageList()
     {
         list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         list.setSelectedIndex(3);
+        list.setFixedCellHeight(100);
+        list.setFixedCellWidth(50);
         this.getContentPane().add(list);
         list.addListSelectionListener(sharedListSelectionHandler);
         list.addMouseListener(mouseListener);
-
-
     }
 
 
@@ -114,7 +119,7 @@ public class MenuSwingGUI extends JFrame {
     {
         add(root);
         setTitle("Menu");
-        setSize(400,500);
+        setSize(400,330);
         sharedListSelectionHandler = new SharedListSelectionHandler();
         manageList();
     }
