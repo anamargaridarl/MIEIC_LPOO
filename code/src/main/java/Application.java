@@ -4,10 +4,8 @@ import com.lpoo_32.exceptions.OutOfBoundaries;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
-import com.lpoo_32.view.Game;
-import com.lpoo_32.view.GameSwing;
+import com.lpoo_32.view.*;
 import com.lpoo_32.view.Menu;
-import com.lpoo_32.view.SwingKeyboard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +32,7 @@ public class Application {
                     elements,
                     model,
                     new GameSwing(frame, model, elements)
-                    );
+            );
             frame.addKeyListener(new SwingKeyboard(game));
             game.run();
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

@@ -56,7 +56,7 @@ public class Menu extends Display {
         table.addComand("T", "Use food/water from the ground");
         table.addComand("F", "Pick food/water into the inventory");
         table.addComand("E", "Use current element in the inventory");
-        table.addComand("Q/W", "Move Left/Right in the inventory");
+        table.addComand("1/2", "Move Left/Right in the inventory");
 
 
 
