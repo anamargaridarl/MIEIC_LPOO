@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class DoorView extends InteractableElementView{
     public DoorView(DoorModel element) {
-        super(element, "door.png");
+        super(element);
     }
 
     @Override

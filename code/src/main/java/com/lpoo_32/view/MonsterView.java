@@ -14,7 +14,7 @@ public class MonsterView extends InteractableElementView {
     private final MonsterModel monster;
 
     public MonsterView(MonsterModel monster){
-        super(monster, "monster.png");
+        super(monster);
         this.monster = monster;
     }
 

@@ -16,7 +16,7 @@ public abstract class Game {
 
 
     public Game(PlayerModel player) {
-        this.player = new PlayerView(player);
+        this.player = new PlayerView(player, "#91c474");
         this.index = 0;
         this.generalView = new LinkedList<>();
     }

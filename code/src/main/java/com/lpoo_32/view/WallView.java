@@ -11,7 +11,7 @@ import java.awt.*;
 public class WallView extends InteractableElementView{
 
     public WallView(WallModel element) {
-        super(element, "wall.png");
+        super(element);
     }
 
     @Override

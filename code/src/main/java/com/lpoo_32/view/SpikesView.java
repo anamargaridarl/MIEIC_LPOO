@@ -16,7 +16,7 @@ public class SpikesView extends InteractableElementView {
     private SpikesModel spikes;
 
     public SpikesView(SpikesModel spikes){
-        super(spikes, "spikes.png");
+        super(spikes);
         this.spikes = spikes;
     }
 

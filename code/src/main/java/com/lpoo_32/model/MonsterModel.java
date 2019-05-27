@@ -24,7 +24,7 @@ public class MonsterModel extends InteractableElement {
     GameController controller;
 
     public MonsterModel(Position pos, int value, MovableElement movable, GameController controller, Position playerposition) {
-        super(pos, value);
+        super(pos, value, "monster.png");
         this.movable = movable;
         this.number = 0;
         this.controller= controller;

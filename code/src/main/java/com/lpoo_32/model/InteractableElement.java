@@ -3,12 +3,13 @@ package com.lpoo_32.model;
 
 import com.lpoo_32.exceptions.*;
 
-abstract public class InteractableElement implements ElementModel {
+abstract public class InteractableElement extends ElementModel {
 
     private Position pos;
     protected int value;
 
-    InteractableElement(Position pos, int value){
+    InteractableElement(Position pos, int value, String name){
+        super(name);
         this.pos = pos;
         this.value = value;
     }

@@ -12,7 +12,7 @@ public class WaterView extends CatchableView {
     private final WaterModel water;
 
     public WaterView(WaterModel water){
-        super(water, "water.png");
+        super(water);
         this.water = water;
     }
 

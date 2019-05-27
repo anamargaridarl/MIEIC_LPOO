@@ -5,8 +5,8 @@ import com.lpoo_32.model.InteractableElement;
 public abstract class InteractableElementView extends ElementView{
     private InteractableElement element;
 
-    public InteractableElementView(InteractableElement element, String name){
-        super(name);
+    public InteractableElementView(InteractableElement element){
+        super(element);
         this.element = element;
     }
 

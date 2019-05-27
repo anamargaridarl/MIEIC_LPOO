@@ -7,8 +7,8 @@ import com.lpoo_32.view.InteractableElementView;
 
 abstract public class CatchableView extends InteractableElementView {
 
-    public CatchableView(InteractableElement element, String name) {
-        super(element, name);
+    public CatchableView(InteractableElement element) {
+        super(element);
     }
 
     abstract public char getSymbol();

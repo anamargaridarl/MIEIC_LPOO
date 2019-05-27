@@ -2,7 +2,7 @@ package com.lpoo_32.model;
 
 public class WallModel extends InteractableElement {
     public WallModel(Position pos) {
-        super(pos, 0);
+        super(pos, 0, "wall.png");
     }
 
     @Override

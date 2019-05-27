@@ -2,7 +2,6 @@ package com.lpoo_32.view;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.FoodModel;
@@ -13,7 +12,7 @@ public class FoodView extends CatchableView {
     private final FoodModel food;
 
     public FoodView(FoodModel food){
-        super(food, "drumstick.png");
+        super(food);
         this.food = food;
     }
 

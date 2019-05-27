@@ -16,7 +16,7 @@ public class StatusBar extends ElementView {
 
 
     StatusBar(Status status, String hexColor, int height){
-        super("bed.png");
+        super();
         this.status = status;
         this.color = hexColor;
         this.height = height;
@@ -43,8 +43,7 @@ public class StatusBar extends ElementView {
     @Override
     void drawSwing(Graphics graphics) {
         graphics.setColor(Color.decode(this.color));
-        System.out.println((int) (0.4*GameSwing.ScreenWidth * getScreenPercen()/40));
-        graphics.fillRect(GameSwing.getWidth() + 20, height, (int) (0.4*GameSwing.ScreenWidth * getScreenPercen()/40), 20);
+        graphics.fillRect(GameSwing.getWidth() + 20, height, (int) (0.36*GameSwing.ScreenWidth * getScreenPercen()/40), 20);
         graphics.setColor(Color.BLACK);
     }
 

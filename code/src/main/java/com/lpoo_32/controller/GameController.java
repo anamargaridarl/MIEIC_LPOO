@@ -275,7 +275,7 @@ public class GameController
 
         for(int i = 0; i < 30; i++){
             Position pos = randomPosition(width,height,indexGame);
-            element = new MonsterView(new MonsterModel(pos, 15, new MovableElement(pos),this,player.getPosition()));
+            element = new MonsterView(new MonsterModel(pos, 15, new MovableElement(pos, "monster.png"),this,player.getPosition()));
             this.elements.addElement(element);
         }
 

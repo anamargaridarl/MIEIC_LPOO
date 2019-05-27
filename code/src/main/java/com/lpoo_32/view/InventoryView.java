@@ -14,7 +14,7 @@ public class InventoryView extends ElementView {
     //private int height;
 
     public InventoryView(Inventory inventory, String hexColor) {
-        super("bed.png");
+        super();
         this.inventory = inventory;
         this.color = hexColor;
     }
@@ -47,10 +47,12 @@ public class InventoryView extends ElementView {
         graphics.fillRect(GameSwing.getWidth() + 20, 100, 90, 100);
         graphics.setColor(Color.BLACK);
         graphics.drawString(getName(), GameSwing.getWidth() + 40, 110);
-        graphics.drawString(getValue(), GameSwing.getWidth() + 40, 130);
-//        graphics.drawImage(this.inventory.getElement())
-        //TODO: Image of item
-
+        graphics.drawString(getValue(), GameSwing.getWidth() + 55, 130);
+        if (!getValue().equals("") && this.inventory.getElement().getImage() != null) {
+            graphics.drawImage(this.inventory.getElement().getImage(),
+                            GameSwing.getWidth() + 55,
+                            150, 30, 30, null);
+        }
     }
 
     private String getValue() {

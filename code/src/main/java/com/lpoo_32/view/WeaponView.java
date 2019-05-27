@@ -2,9 +2,7 @@ package com.lpoo_32.view;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.CatchableElement;
 import com.lpoo_32.model.WeaponModel;
 
@@ -15,7 +13,7 @@ public class WeaponView extends CatchableView {
     private final WeaponModel weapon;
 
     public WeaponView(WeaponModel weaponModel) {
-        super(weaponModel, "sword.png");
+        super(weaponModel);
         weapon = weaponModel;
     }
 

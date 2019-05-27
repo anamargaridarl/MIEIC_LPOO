@@ -10,7 +10,7 @@ public class PlayerModel extends MovableElement {
     private Inventory inventory;
 
     public PlayerModel(Position position){
-        super(position);
+        super(position, "stickman.png");
         this.inventory =  new Inventory();
         this.health = new HealthStatus(100);
         this.food = new NourishStatus(100, NourishType.HUNGER);
