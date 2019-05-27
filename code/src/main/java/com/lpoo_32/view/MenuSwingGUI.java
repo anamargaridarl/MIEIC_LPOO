@@ -65,6 +65,7 @@ public class MenuSwingGUI extends JFrame {
                         }
                         frame.addKeyListener(new SwingKeyboard(game));
                         try {
+                            dispose();
                             game.run();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -72,7 +73,9 @@ public class MenuSwingGUI extends JFrame {
                         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                         System.out.println("Stopping game");
+
                     }
+                    break;
                 }
                 System.out.println();
             }
