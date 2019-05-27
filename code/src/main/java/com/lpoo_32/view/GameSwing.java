@@ -14,6 +14,8 @@ public class GameSwing extends Game{
     public static int ScreenWidth = 1366;
     public static int ScreenHeight = 768;
     private JFrame frame;
+    private Graphics buffer;
+    private Image bufferImage;
 
     public GameSwing(JFrame frame, PlayerModel player, Elements elements){
         super(player);
@@ -24,12 +26,14 @@ public class GameSwing extends Game{
         frame.removeAll();
         this.graphics = frame.getGraphics();
         this.setInitialProps();
+        bufferImage = frame.createImage(ScreenWidth, ScreenHeight);
+        buffer = bufferImage.getGraphics();
     }
 
     @Override
     public void draw() throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, Bedtime {
-        graphics.clearRect(0, 0, ScreenWidth, ScreenHeight);
-        graphics.drawRect(0, 0, getWidth(), getHeight());
+        buffer.clearRect(0, 0, ScreenWidth, ScreenHeight);
+        buffer.drawRect(0, 0, getWidth(), getHeight());
         int initialX = getIndex() %3 * Game.width/4;
         int initialY = getIndex() /3 * Game.height/4;
 
@@ -37,17 +41,17 @@ public class GameSwing extends Game{
         for(int i = initialX; i < initialX + Game.width/4; i++){
             for(int j = initialY; j < initialY + Game.height/4; j++){
                 if(this.elements.getViewByCoord(i, j) != null){
-                    this.elements.getViewByCoord(i, j).drawSwing(graphics);
+                    this.elements.getViewByCoord(i, j).drawSwing(buffer);
                 }
             }
         }
 
         for(ElementView drawable: this.generalView)
-            drawable.drawSwing(graphics);
+            drawable.drawSwing(buffer);
 
-        graphics.clearRect(this.player.getPlayer().getPosition().getSwingX(), this.player.getPlayer().getPosition().getSwingY() + 20, 30, 30);
-        this.player.drawSwing(graphics);
-        frame.setVisible(true);
+        buffer.clearRect(this.player.getPlayer().getPosition().getSwingX(), this.player.getPlayer().getPosition().getSwingY() + 20, 30, 30);
+        this.player.drawSwing(buffer);
+        graphics.drawImage(bufferImage, 0, 0, null);
     }
 
     static public int getHeight() {
