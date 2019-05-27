@@ -19,7 +19,7 @@ public class Elements {
         }
     }
 
-    public boolean addElement(InteractableElementView a) //TODO:verify if elements are added in same position
+    public boolean addElement(InteractableElementView a)
     {
         if(elements.get(a.getElement().getPos().getX()).get(a.getElement().getPos().getY()) == null)
         {
@@ -28,6 +28,10 @@ public class Elements {
         }
         else
             return false;
+    }
+
+    public void forceAddElement(InteractableElementView a){
+        elements.get(a.getElement().getPos().getX()).set(a.getElement().getPos().getY(), a);
     }
 
     public InteractableElementView getView(Position position)
