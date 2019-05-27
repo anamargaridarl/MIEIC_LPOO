@@ -23,9 +23,9 @@ public class MenuSwingGUI extends JFrame {
 
 
     private JPanel root;
-    String[] choices = { "Game", "Instructions", "Exit" };
+    private String[] choices = { "Game", "Instructions", "Exit" };
     JList<String> list = new JList(choices);
-    SharedListSelectionHandler sharedListSelectionHandler;
+    private SharedListSelectionHandler sharedListSelectionHandler;
 
 
     class SharedListSelectionHandler implements ListSelectionListener {
