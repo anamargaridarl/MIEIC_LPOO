@@ -13,14 +13,12 @@ public class GameSwing extends Game{
     private Graphics graphics;
     public static int ScreenWidth = 1366;
     public static int ScreenHeight = 768;
-    private JFrame frame;
     private Graphics buffer;
     private Image bufferImage;
 
     public GameSwing(JFrame frame, PlayerModel player, Elements elements){
         super(player);
         this.elements = elements;
-        this.frame = frame;
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.removeAll();
