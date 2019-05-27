@@ -7,15 +7,28 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.PlayerModel;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
 public class PlayerView extends ElementView {
 
     private final PlayerModel player;
+    private final String color;
+    private BufferedImage weapon;
 
-    public PlayerView(PlayerModel player){
-        super("stickman.png");
+    public PlayerView(PlayerModel player, String color){
+        super(player);
         this.player = player;
+        this.color = color;
+        URL resource = getClass().getResource("/sword.png");
+        try {
+            weapon = ImageIO.read(resource);
+        }catch (IOException e){
+            System.out.println("Failed to load weapon!");
+        }
     }
 
     @Override
@@ -30,7 +43,7 @@ public class PlayerView extends ElementView {
         );
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#91c474"));
+        graphics.setForegroundColor(TextColor.Factory.fromString(color));
 
         graphics.fillRectangle(new TerminalPosition(getColumn(70),
                         getRows()), new TerminalSize(getColumn(getColumn(20)), 4),
@@ -49,6 +62,14 @@ public class PlayerView extends ElementView {
                 this.getPlayer().getPosition().getSwingX(),
                 this.getPlayer().getPosition().getSwingY()
         );
+        graphics.setColor(Color.decode(color));
+        graphics.fillRect(GameSwing.getWidth() + 150, 100, 90, 100);
+        graphics.setColor(Color.BLACK);
+        graphics.drawString(getName(), GameSwing.getWidth() + 170, 110);
+        graphics.drawString(getValue(), GameSwing.getWidth() + 188, 130);
+        if(weapon != null && !getValue().equals("")){
+            graphics.drawImage(weapon, GameSwing.getWidth() + 180, 150,30, 30, null);
+        }
     }
 
     public PlayerModel getPlayer()

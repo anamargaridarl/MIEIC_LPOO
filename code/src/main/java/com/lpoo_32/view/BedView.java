@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class BedView extends InteractableElementView {
     public BedView(BedModel element) {
-        super(element, "bed.png");
+        super(element);
     }
 
     @Override

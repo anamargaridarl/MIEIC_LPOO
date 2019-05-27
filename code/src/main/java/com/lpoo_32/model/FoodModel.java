@@ -6,7 +6,7 @@ import com.lpoo_32.exceptions.ThirstRestored;
 public class FoodModel extends CatchableElement {
 
     public FoodModel(int value, Position pos){
-        super(pos, value);
+        super(pos, value, "drumstick.png");
     }
 
 

@@ -5,11 +5,12 @@ import com.lpoo_32.exceptions.LeftScreen;
 import com.lpoo_32.exceptions.RightScreen;
 import com.lpoo_32.exceptions.UpScreen;
 
-public class MovableElement implements ElementModel {
+public class MovableElement extends ElementModel {
 
     private Position position;
 
-    public MovableElement(Position position){
+    public MovableElement(Position position, String name){
+        super(name);
         this.position = position;
     }
 

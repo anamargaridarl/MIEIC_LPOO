@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.exceptions.*;
+import com.lpoo_32.model.ElementModel;
 import com.lpoo_32.model.InteractableElement;
 
 import javax.imageio.ImageIO;
@@ -14,14 +15,12 @@ import java.io.IOException;
 import java.net.URL;
 
 public abstract class ElementView  {
-    private BufferedImage image;
-    ElementView(String name){
-        URL resource = getClass().getResource("/" + name);
-        try{
-            image = ImageIO.read(resource);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private ElementModel element;
+    ElementView(ElementModel element){
+        this.element = element;
+    }
+
+    ElementView(){
     }
     void drawLanterna(TextGraphics graphics, String backgroundColor, String foregroundColor, TerminalPosition pos, TerminalSize size, char symbol){
         graphics.setBackgroundColor(TextColor.Factory.fromString(backgroundColor));
@@ -39,10 +38,7 @@ public abstract class ElementView  {
 
     void drawSwing(Graphics graphics, int x, int y){
 
-        graphics.drawImage(image, x, y + 20, 30, 30, null);
+        graphics.drawImage(element.getImage(), x, y + 20, 30, 30, null);
     }
 
-    public BufferedImage getImage() {
-        return image;
-    }
 }

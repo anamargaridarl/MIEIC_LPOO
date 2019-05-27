@@ -5,7 +5,7 @@ import com.lpoo_32.exceptions.*;
 public class WeaponModel extends CatchableElement {
 
     public WeaponModel(Position pos, int value) {
-        super(pos, value);
+        super(pos, value, "sword.png");
     }
 
     @Override

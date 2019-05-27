@@ -7,7 +7,7 @@ import com.lpoo_32.exceptions.ThirstOVF;
 public class SpikesModel extends ValuableElement {
 
     public SpikesModel(int value, Position position){
-        super(position, value);
+        super(position, value, "spikes.png");
     }
 
     @Override

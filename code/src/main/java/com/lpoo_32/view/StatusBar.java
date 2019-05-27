@@ -16,7 +16,7 @@ public class StatusBar extends ElementView {
 
 
     StatusBar(Status status, String hexColor, int height){
-        super("bed.png");
+        super();
         this.status = status;
         this.color = hexColor;
         this.height = height;

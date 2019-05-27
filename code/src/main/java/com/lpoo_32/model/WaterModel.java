@@ -7,7 +7,7 @@ import com.lpoo_32.exceptions.*;
 public class WaterModel extends CatchableElement {
 
     public WaterModel(int value, Position pos) {
-        super(pos, value);
+        super(pos, value, "water.png");
     }
 
     @Override

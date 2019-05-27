@@ -45,6 +45,8 @@ public class GameSwing extends Game{
         for(ElementView drawable: this.generalView)
             drawable.drawSwing(graphics);
 
+        graphics.clearRect(this.player.getPlayer().getPosition().getSwingX(), this.player.getPlayer().getPosition().getSwingY() + 20, 30, 30);
+        this.player.drawSwing(graphics);
         frame.setVisible(true);
     }
 
@@ -60,7 +62,7 @@ public class GameSwing extends Game{
         this.generalView.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 30));
         this.generalView.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 55));
         this.generalView.add(new StatusBar(player.getPlayer().getWater(), "#66ccff", 80));
-        this.generalView.add(this.player);
+//        this.generalView.add(this.player);
         this.generalView.add(new InventoryView(this.player.getPlayer().getInventory(), "#91c474"));
     }
 }
