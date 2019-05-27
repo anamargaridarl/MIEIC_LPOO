@@ -379,8 +379,12 @@ public class GameController
 
     }
 
+    public boolean isWeaponUseDirect(Position position)
+    {
+        if (elements.getView(position) != null) {
 
-
+        }
+    }
     //handles colisions for non catchable elements
     boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF, Bedtime {
 
