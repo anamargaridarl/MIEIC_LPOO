@@ -313,7 +313,7 @@ public class GameController
 
     private void addHousePart(int width, int height, int initialX, int initialY, int i, int j, ElementType type) throws OutOfBoundaries {
         int index = ((initialX + i)/width) + ((initialY + j)/height) * 3;
-        this.elements.addElement(factory.getElement(type, new Position(i + initialX, j + initialY, width, height, index)));
+        this.elements.forceAddElement(factory.getElement(type, new Position(i + initialX, j + initialY, width, height, index)));
     }
 
 

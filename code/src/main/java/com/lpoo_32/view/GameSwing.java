@@ -64,7 +64,6 @@ public class GameSwing extends Game{
         this.generalView.add(new StatusBar(player.getPlayer().getHealth(), "#990000", 30));
         this.generalView.add(new StatusBar(player.getPlayer().getFood(), "#3CB371", 55));
         this.generalView.add(new StatusBar(player.getPlayer().getWater(), "#66ccff", 80));
-//        this.generalView.add(this.player);
         this.generalView.add(new InventoryView(this.player.getPlayer().getInventory(), "#91c474"));
     }
 }
