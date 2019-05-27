@@ -1,13 +1,16 @@
 package com.lpoo_32.view;
 
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HelpMenuGUI extends JFrame {
 
     private JTable table;
     private JPanel root;
-    JButton button1;
 
     String[] columnNames = {"Actions",
             "Explanation",};
@@ -24,14 +27,20 @@ public class HelpMenuGUI extends JFrame {
             }
     };
 
-    public HelpMenuGUI() {
+    public HelpMenuGUI(JFrame mainScreen) {
+        this.root = new JPanel();
         table = new JTable(data, columnNames);
-        button1 = new JButton("GoBack");
+        this.setLayout(new MigLayout("wrap 300"));
         add(root);
         setTitle("Menu");
         setSize(400,330);
-        this.getContentPane().add(table);
-        //this.getContentPane().add(button1);
+        this.getContentPane().add(table, "span 300");
+        JButton button = new JButton();
+        button.addActionListener(actionEvent -> {
+            mainScreen.setVisible(true);
+            this.setVisible(false);
+        });
+        this.getContentPane().add(button, "wrap 300");
     }
 
 

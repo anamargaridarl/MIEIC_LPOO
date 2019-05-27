@@ -5,12 +5,12 @@ public class HelpMenuSwing {
 
     HelpMenuGUI gui;
 
-        public HelpMenuSwing()
+        HelpMenuSwing()
         {
-            gui = new HelpMenuGUI();
+            gui = new HelpMenuGUI(null);
         }
 
-        public void run()
+        void run()
         {
             gui.setVisible(true);
         }
