@@ -4,7 +4,8 @@ import com.lpoo_32.exceptions.HealthOVF;
 import com.lpoo_32.exceptions.HungerOVF;
 import com.lpoo_32.exceptions.ThirstOVF;
 
-public class SpikesModel extends ValuableElement {
+public class SpikesModel extends InteractableElement {
+
 
     public SpikesModel(int value, Position position){
         super(position, value, "spikes.png");
@@ -15,5 +16,6 @@ public class SpikesModel extends ValuableElement {
         player.getHealth().decreaseValue(this.getValue());
         return true;
     }
+
 
 }
