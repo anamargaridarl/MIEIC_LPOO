@@ -330,49 +330,6 @@ public class GameController
     }
 
 
-    public void checkForMonsterAndAttack(Position position, Attacks orientation, WeaponModel weapon) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, LeftScreen, RightScreen, DownScreen, UpScreen {
-
-        if(weapon == null)
-            return;
-        InteractableElementView element;
-
-        switch (orientation) {
-            case AUP:
-                element = elements.getView(position.checkMovementUp());
-                if(element != null) {
-                    if (element instanceof MonsterView)
-                        weapon.interactMonster(((MonsterView) element).getMonster());
-                }
-                break;
-            case ADOWN:
-                element = elements.getView(position.checkMovementDown());
-                if(element != null) {
-                    if (element instanceof MonsterView)
-                        weapon.interactMonster(((MonsterView) element).getMonster());
-                }
-                break;
-            case ALEFT:
-                element = elements.getView(position.checkMovementLeft());
-                if(element != null) {
-                    if (element instanceof MonsterView)
-                        weapon.interactMonster(((MonsterView) element).getMonster());
-                }
-                break;
-            case ARIGHT:
-                element = elements.getView(position.checkMovementRight());
-                if(element != null ) {
-                    if (element instanceof MonsterView)
-                        weapon.interactMonster(((MonsterView) element).getMonster());
-                }
-                break;
-            default:
-                break;
-
-
-        }
-    }
-
-
 
     void setTime(int time){
         this.time = time;

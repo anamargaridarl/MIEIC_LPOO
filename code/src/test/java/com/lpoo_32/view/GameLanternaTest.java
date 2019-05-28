@@ -9,12 +9,8 @@ import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
-import com.lpoo_32.view.DisplayProps;
-import com.lpoo_32.view.GameLanterna;
-import com.lpoo_32.view.ScreenSize;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.io.IOException;

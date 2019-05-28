@@ -21,7 +21,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class GameLanternaControllerTest {
+public class GameControllerTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -41,9 +41,6 @@ public class GameLanternaControllerTest {
         props.add(new SpikesView(spike));
         props.add(new PlayerView(player, ""));
 
-
-        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
-        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
         Game game = Mockito.mock(Game.class);
         GameController k = new GameController(elements, player, game);
 
@@ -62,9 +59,7 @@ public class GameLanternaControllerTest {
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
         Inventory inventory = Mockito.mock(Inventory.class);
-        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
         Elements elements = Mockito.mock(Elements.class);
-        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
         Mockito.when(player.getInventory()).thenReturn(inventory);
         Position pos = Mockito.mock(Position.class);
         Mockito.when(player.getPosition()).thenReturn(pos);
@@ -100,7 +95,6 @@ public class GameLanternaControllerTest {
 
     @Test
     public void updateGame() throws ScreenClose, InterruptedException, LeftScreen, DownScreen, IOException, RightScreen, HealthOVF, UpScreen, ThirstOVF, HungerOVF, OutOfBoundaries {
-        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         Status status = Mockito.mock(Status.class);
         Screen screen = Mockito.mock(Screen.class);
@@ -109,7 +103,6 @@ public class GameLanternaControllerTest {
         Mockito.when(player.getWater()).thenReturn(status);
         Mockito.when(player.getPosition()).thenReturn(Mockito.mock(Position.class));
         Mockito.when(player.getInventory()).thenReturn(Mockito.mock(Inventory.class));
-        Mockito.when(displayProps.getScreen()).thenReturn(screen);
         Mockito.when(screen.newTextGraphics()).thenReturn(Mockito.mock(TextGraphics.class));
         TerminalSize terminal = Mockito.mock(TerminalSize.class);
         Mockito.when(terminal.getColumns()).thenReturn(100);
@@ -132,8 +125,6 @@ public class GameLanternaControllerTest {
         Elements elements = new Elements();
         PlayerModel player = new PlayerModel(p2);
 
-        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
-        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
         Game game = Mockito.mock(Game.class);
         GameController k = new GameController(elements, player, game);
         assertTrue(k.monsterEqualsPlayer(p2,p1));
@@ -151,8 +142,6 @@ public class GameLanternaControllerTest {
         Elements elements = new Elements();
         PlayerModel player = new PlayerModel(p1);
 
-        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
-        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
         Game game = Mockito.mock(Game.class);
         GameController k = new GameController(elements, player, game);
 
@@ -171,43 +160,4 @@ public class GameLanternaControllerTest {
         assertFalse(k.changeWeaponInventory());
 
     }
-
-    @Test
-    public void checkForMonsterAndAttack() throws OutOfBoundaries, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen {
-
-        Position p1 = new Position(5, 5, Game.width / 4, Game.height / 4, 0);
-        Position p2 = new Position(4, 5, Game.width / 4, Game.height / 4, 0);
-        Position p3 = new Position(6, 5, Game.width / 4, Game.height / 4, 0);
-        WeaponModel w1 = new WeaponModel(p1,20);
-
-
-        Elements elements = new Elements();
-        PlayerModel player = new PlayerModel(p1);
-
-        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
-        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
-        Game game = Mockito.mock(Game.class);
-        GameController k = new GameController(elements, player, game);
-
-        WaterModel water = new WaterModel(20,p3);
-        MonsterModel monster = new MonsterModel(p2, 40, new MovableElement(p2, ""), k, p1);
-        elements.addElement(new MonsterView(monster));
-
-        k.checkForMonsterAndAttack(p1,Attacks.ALEFT,w1);
-        assertEquals(30, monster.getHealth());
-
-        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,w1);
-        assertEquals(30, monster.getHealth());
-
-        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,null);
-        assertEquals(30, monster.getHealth());
-
-        k.checkForMonsterAndAttack(p1,Attacks.ARIGHT,w1);
-        assertEquals(30, monster.getHealth());
-
-    }
-
-
-
-
 }

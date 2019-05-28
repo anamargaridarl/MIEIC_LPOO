@@ -65,4 +65,38 @@ public class PositionTest {
         this.position.moveUp();
     }
 
+    @Test
+    public void checkRightScreenException() throws RightScreen {
+        thrown.expect(RightScreen.class);
+        this.position.moveRight();
+        this.position.checkMovementRight();
+    }
+
+    @Test
+    public void checkLeftScreenException() throws LeftScreen {
+        thrown.expect(LeftScreen.class);
+        this.position.moveLeft();
+        this.position.checkMovementLeft();
+    }
+
+    @Test
+    public void checkDownScreenException() throws DownScreen {
+        thrown.expect(DownScreen.class);
+        this.position.moveDown();
+        this.position.checkMovementDown();
+    }
+
+    @Test
+    public void checkUpScreenException() throws UpScreen {
+        thrown.expect(UpScreen.class);
+        this.position.moveUp();
+        this.position.checkMovementUp();
+    }
+
+    @Test
+    public void getSwing(){
+        assertEquals(54, position.getSwingX());
+        assertEquals(30, position.getSwingY());
+    }
+
 }
