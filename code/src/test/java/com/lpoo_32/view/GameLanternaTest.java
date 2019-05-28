@@ -38,7 +38,7 @@ public class GameLanternaTest {
     }
 
     @Test
-    public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen {
+    public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, Bedtime {
         gameLanterna.draw();
         verify(graphics, atLeastOnce()).setBackgroundColor(any(TextColor.class));
         verify(graphics, atLeastOnce()).setForegroundColor(any(TextColor.class));

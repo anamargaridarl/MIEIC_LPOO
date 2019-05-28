@@ -27,7 +27,7 @@ public class MonsterTest {
         elements = new Elements();
         player = new PlayerModel(new Position(4, 5, Game.width / 4, Game.height / 4, 0));
         gameController = new GameController(elements, player, Mockito.mock(Game.class));
-        monster = new MonsterModel(positionmonster, 40, new MovableElement(positionmonster), gameController, player.getPosition());
+        monster = new MonsterModel(positionmonster, 40, new MovableElement(positionmonster, ""), gameController, player.getPosition());
         monsterview = new MonsterView(monster);
         elements.addElement(monsterview);
     }
@@ -70,8 +70,9 @@ public class MonsterTest {
         WeaponModel weapon = new WeaponModel(player.getPosition(),20);
 
         monster.decreaseValue(weapon.getValue());
-        assertEquals(20, monster.getValue());
+        assertEquals(30, monster.getHealth());
 
+        monster.decreaseValue(weapon.getValue());
         monster.decreaseValue(weapon.getValue());
         assertNull(elements.getView(monster.getPos()));
 

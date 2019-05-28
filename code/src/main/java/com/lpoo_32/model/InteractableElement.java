@@ -39,7 +39,7 @@ abstract public class InteractableElement extends ElementModel {
     }
 
 
-    protected int getValue() {
+    public int getValue() {
         return this.value;
     }
 }

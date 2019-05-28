@@ -19,11 +19,11 @@ public class WeaponTest {
         PlayerModel player = new PlayerModel(new Position(4,5, Game.width/4, Game.height/4, 0));
         Screen screen = Mockito.mock(Screen.class);
         GameController gameController = new GameController(new Elements(),player, Mockito.mock(Game.class));
-        MonsterModel monster = new MonsterModel(new Position(5,5,Game.width/4, Game.height/4, 0),40,new MovableElement(player.getPosition()), gameController,player.getPosition());
+        MonsterModel monster = new MonsterModel(new Position(5,5,Game.width/4, Game.height/4, 0),40,new MovableElement(player.getPosition(), ""), gameController,player.getPosition());
         WeaponModel weapon = new WeaponModel(player.getPosition(),2);
 
         weapon.interactMonster(monster);
-        assertEquals(38, monster.getValue());
+        assertEquals(48, monster.getHealth());
 
     }
 

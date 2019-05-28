@@ -17,6 +17,7 @@ enum Movements{
 
 public class MonsterModel extends InteractableElement {
 
+
     private int health;
     private MovableElement movable;
     private Position playerposition;
@@ -182,7 +183,9 @@ return false;
         }
     }
 
-
+    public int getHealth() {
+        return health;
+    }
 
 
 }
