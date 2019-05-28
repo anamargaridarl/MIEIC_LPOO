@@ -7,7 +7,7 @@ import com.lpoo_32.model.Inventory;
 import java.awt.*;
 
 
-public class InventoryView extends ElementView {
+public class InventoryView extends BoxView {
 
     private Inventory inventory;
     private final String color;
@@ -27,35 +27,30 @@ public class InventoryView extends ElementView {
 
 
         graphics.fillRectangle(new TerminalPosition(getColumn(70),
-                getRows()), new TerminalSize(getColumn(getColumn(20)), 4),
+                getRows(60)), new TerminalSize(getColumn(getColumn(20)), 4),
                 Symbols.BLOCK_SOLID);
 
         char a;
         if((a = getSymbol())!= ' ') {
             graphics.fillRectangle(new TerminalPosition(getColumn(80),
-                            getRows() + 1), new TerminalSize(getColumn(getColumn(3)), 1),
+                            getRows(60) + 1), new TerminalSize(getColumn(getColumn(3)), 1),
                     a);
         }
 
-        graphics.putString(getColumn(75), getRows() +2, getName());
-        graphics.putString(getColumn(80), getRows() +3, getValue());
+        graphics.putString(getColumn(75), getRows(60) +2, getName());
+        graphics.putString(getColumn(80), getRows(60) +3, getValue());
     }
 
     @Override
     void drawSwing(Graphics graphics) {
-        graphics.setColor(Color.decode(this.color));
-        graphics.fillRect(GameSwing.getWidth() + 20, 100, 90, 100);
-        graphics.setColor(Color.BLACK);
-        graphics.drawString(getName(), GameSwing.getWidth() + 40, 110);
-        graphics.drawString(getValue(), GameSwing.getWidth() + 55, 130);
+        draw(graphics,20,40,55,color);
         if (!getValue().equals("") && this.inventory.getElement().getImage() != null) {
-            graphics.drawImage(this.inventory.getElement().getImage(),
-                            GameSwing.getWidth() + 55,
-                            150, 30, 30, null);
+            drawImageInBox(this.inventory.getElement().getImage(), 55, graphics);
         }
     }
 
-    private String getValue() {
+    @Override
+    public String getValue() {
 
         if(inventory.getElement() == null)
             return "";
@@ -63,7 +58,8 @@ public class InventoryView extends ElementView {
         return String.valueOf(inventory.getElement().getValue());
     }
 
-    private String getName() {
+    @Override
+    public String getName() {
         if(inventory.getView() == null)
             return "backpack";
 
@@ -79,13 +75,7 @@ public class InventoryView extends ElementView {
     }
 
 
-    private int getRows() {
-        return ScreenSize.instance().getRows(60);
-    }
 
-    private int getColumn(int columns) {
-        return ScreenSize.instance().getColumn(columns);
-    }
 
 
 }

@@ -13,20 +13,20 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
-public class PlayerView extends ElementView {
+public class PlayerView extends BoxView {
 
     private final PlayerModel player;
     private final String color;
     private BufferedImage weapon;
 
-    public PlayerView(PlayerModel player, String color){
+    public PlayerView(PlayerModel player, String color) {
         super(player);
         this.player = player;
         this.color = color;
         URL resource = getClass().getResource("/sword.png");
         try {
             weapon = ImageIO.read(resource);
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Failed to load weapon!");
         }
     }
@@ -46,12 +46,12 @@ public class PlayerView extends ElementView {
         graphics.setForegroundColor(TextColor.Factory.fromString(color));
 
         graphics.fillRectangle(new TerminalPosition(getColumn(70),
-                        getRows()), new TerminalSize(getColumn(getColumn(20)), 4),
+                        getRows(80)), new TerminalSize(getColumn(getColumn(20)), 4),
                 Symbols.BLOCK_SOLID);
 
 
-        graphics.putString(getColumn(75), getRows() +2, getName());
-        graphics.putString(getColumn(80), getRows() +3, getValue());
+        graphics.putString(getColumn(75), getRows(80) + 2, getName());
+        graphics.putString(getColumn(80), getRows(80) + 3, getValue());
 
 
     }
@@ -62,42 +62,31 @@ public class PlayerView extends ElementView {
                 this.getPlayer().getPosition().getSwingX(),
                 this.getPlayer().getPosition().getSwingY()
         );
-        graphics.setColor(Color.decode(color));
-        graphics.fillRect(GameSwing.getWidth() + 150, 100, 90, 100);
-        graphics.setColor(Color.BLACK);
-        graphics.drawString(getName(), GameSwing.getWidth() + 170, 110);
-        graphics.drawString(getValue(), GameSwing.getWidth() + 188, 130);
-        if(weapon != null && !getValue().equals("")){
-            graphics.drawImage(weapon, GameSwing.getWidth() + 180, 150,30, 30, null);
+        draw(graphics,150,170,188,color);
+        if (weapon != null && !getValue().equals("")) {
+            drawImageInBox(weapon,180,graphics);
         }
     }
 
-    public PlayerModel getPlayer()
-    {
+    public PlayerModel getPlayer() {
         return player;
     }
 
-    private int getRows() {
-        return ScreenSize.instance().getRows(80);
-    }
 
-    private int getColumn(int columns) {
-        return ScreenSize.instance().getColumn(columns);
-    }
+    @Override
+    public String getValue() {
 
-
-    private String getValue() {
-
-        if(this.player.getWeapon() == null)
+        if (this.player.getWeapon() == null)
             return "";
 
         return String.valueOf(this.player.getWeapon().getValue());
     }
 
 
-    private String getName() {
+    @Override
+    public String getName() {
 
-        if(this.player.getWeapon() == null)
+        if (this.player.getWeapon() == null)
             return " ";
         else
             return "Weapon";
@@ -105,6 +94,4 @@ public class PlayerView extends ElementView {
     }
 
 
-
-
-    }
+}
