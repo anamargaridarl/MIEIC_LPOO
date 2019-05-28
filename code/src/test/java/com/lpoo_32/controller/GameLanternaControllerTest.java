@@ -3,6 +3,7 @@ package com.lpoo_32.controller;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import com.lpoo_32.controller.action.*;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 import com.lpoo_32.view.*;
@@ -56,12 +57,13 @@ public class GameLanternaControllerTest {
     }
 
     @Test
-    public void processKey() throws IOException, HungerOVF, ScreenClose, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries, Bedtime {
+    public void processKey() throws IOException, DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries {
         TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
         Inventory inventory = Mockito.mock(Inventory.class);
         DisplayProps displayProps = Mockito.mock(DisplayProps.class);
+        Elements elements = Mockito.mock(Elements.class);
         Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
         Mockito.when(player.getInventory()).thenReturn(inventory);
         Position pos = Mockito.mock(Position.class);
@@ -70,51 +72,31 @@ public class GameLanternaControllerTest {
         Mockito.when(pos.checkMovementDown()).thenReturn(pos);
         Mockito.when(pos.checkMovementRight()).thenReturn(pos);
         Mockito.when(pos.checkMovementUp()).thenReturn(pos);
-//        GameController gameController = new GameController(displayProps, Mockito.mock(Elements.class), player, this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)), this.game = new GameLanterna(displayProps, this.player, Mockito.mock(Elements.class)));
+        Mockito.when(elements.getModel(any(Position.class))).thenReturn(Mockito.mock(InteractableElement.class));
+        GameController gameController = new GameController(elements, player, Mockito.mock(Game.class));
 
-        /*
-        Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVEUP);
-        gameController.processKey(keyboard.processKey());
+        gameController.processKey(new MoveUp(gameController));
         verify(player).moveUp();
-        Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVEDOWN);
-        gameController.processKey(keyboard.processKey());
+        gameController.processKey(new MoveDown(gameController));
         verify(player).moveDown();
-        Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVELEFT);
-        gameController.processKey(keyboard.processKey());
+        gameController.processKey(new MoveLeft(gameController));
         verify(player).moveLeft();
-        Mockito.when(keyboard.processKey()).thenReturn(EventType.MOVERIGHT);
-        gameController.processKey(keyboard.processKey());
+        gameController.processKey(new MoveRight(gameController));
         verify(player).moveRight();
-        */
-//        Mockito.when(keyboard.processKey()).thenReturn(EventType.STORE);
-//        gameController.processKey(keyboard.processKey());
-//        Mockito.when(keyboard.processKey()).thenReturn(EventType.USE);
-//        gameController.processKey(keyboard.processKey());
-//        verify(player, atLeast(6)).getPosition();
-//        Mockito.when(keyboard.processKey()).thenReturn(EventType.LEFTINVENTORY);
-//        gameController.processKey(keyboard.processKey());
-//        verify(inventory).moveLeft();
-//        Mockito.when(keyboard.processKey()).thenReturn(EventType.RIGHTINVENTORY);
-//        gameController.processKey(keyboard.processKey());
-//        verify(inventory).moveRight();
-//        Mockito.when(keyboard.processKey()).thenReturn(EventType.INVETORYUSE);
-//        gameController.processKey(keyboard.processKey());
-//        verify(inventory).getElement();
+        Mockito.when(elements.getView(any(Position.class))).thenReturn(Mockito.mock(CatchableView.class));
+        Mockito.when(elements.getModel(any(Position.class))).thenReturn(Mockito.mock(CatchableElement.class));
+        gameController.processKey(new Store(gameController));
+        verify(player).addElementInventory(any(CatchableView.class));
+        Mockito.when(elements.getView(any(Position.class))).thenReturn(Mockito.mock(WeaponView.class));
+        gameController.processKey(new Use(gameController));
+        verify(elements, atLeast(3)).getModel(any(Position.class));
+        gameController.processKey(new LeftInventory(player));
+        verify(inventory).moveLeft();
+        gameController.processKey(new RightInventory(player));
+        verify(inventory).moveRight();
+        gameController.processKey(new InventoryUse(gameController));
+        verify(inventory).getElement();
     }
-
-    @Test
-    public void screenClose() throws HungerOVF, ThirstOVF, IOException, DownScreen, LeftScreen, ScreenClose, RightScreen, UpScreen, HealthOVF, ThirstRestored, HungerRestored, OutOfBoundaries, Bedtime {
-        TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
-        PlayerModel player = Mockito.mock(PlayerModel.class);
-        DisplayProps displayProps = Mockito.mock(DisplayProps.class);
-        Mockito.when(displayProps.getScreen()).thenReturn(Mockito.mock(Screen.class));
-        Game game = Mockito.mock(Game.class);
-        GameController k = new GameController(Mockito.mock(Elements.class), player, game);
-//        Mockito.when(keyboard.processKey()).thenReturn(EventType.EXIT);
-//        thrown.expect(ScreenClose.class);
-//        gameController.processKey(keyboard.processKey());
-    }
-
 
     @Test
     public void updateGame() throws ScreenClose, InterruptedException, LeftScreen, DownScreen, IOException, RightScreen, HealthOVF, UpScreen, ThirstOVF, HungerOVF, OutOfBoundaries {
