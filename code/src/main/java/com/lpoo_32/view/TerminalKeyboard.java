@@ -4,7 +4,6 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.controller.GameController;
 import com.lpoo_32.controller.action.*;
-import com.lpoo_32.exceptions.*;
 
 import java.io.IOException;
 

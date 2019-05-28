@@ -14,6 +14,7 @@ import com.lpoo_32.view.GameLanterna;
 import com.lpoo_32.view.ScreenSize;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class GameLanternaTest {
     private GameLanterna gameLanterna;
     private Screen screen;
     private TextGraphics graphics;
+    private Elements elements;
 
     @Before
     public void initalizeGame() throws OutOfBoundaries {
@@ -34,7 +36,8 @@ public class GameLanternaTest {
         screen = Mockito.mock(Screen.class);
         graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
-        gameLanterna = new GameLanterna(screen, new PlayerModel(Mockito.mock(Position.class)), Mockito.mock(Elements.class));
+        elements = Mockito.mock(Elements.class);
+        gameLanterna = new GameLanterna(screen, new PlayerModel(Mockito.mock(Position.class)), elements);
     }
 
     @Test
@@ -45,5 +48,6 @@ public class GameLanternaTest {
         verify(graphics, atLeastOnce()).fillRectangle(any(TerminalPosition.class), any(TerminalSize.class), any(char.class));
         verify(screen, atLeastOnce()).refresh();
         verify(screen, atLeastOnce()).clear();
+        verify(elements, atLeastOnce()).getViewByCoord(any(int.class), any(int.class));
     }
 }
