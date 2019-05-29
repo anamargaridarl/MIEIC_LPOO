@@ -15,19 +15,15 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class Application {
-    public static void main(String[] args) throws OutOfBoundaries, IOException {
-        Runnable menu = null;
+    public static void main(String[] args) throws IOException {
+        MenuAbstractFactory factory = null;
         if(args[0].contentEquals("lanterna")){
-            try{
-                menu = new Menu(new DefaultTerminalFactory().createTerminal());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            factory = new TerminalMenuFactory();
         }
         else {
-                menu = new MenuSwing();
+            factory = new SwingMenuFactory();
         }
-        menu.run();
+        factory.getMenu().run();
 
     }
 }
