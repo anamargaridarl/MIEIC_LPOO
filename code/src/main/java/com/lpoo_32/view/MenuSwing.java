@@ -1,6 +1,6 @@
 package com.lpoo_32.view;
 
-public class MenuSwing {
+public class MenuSwing implements Runnable{
 
     MenuSwingGUI gui;
 

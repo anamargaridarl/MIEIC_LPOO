@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class Menu extends Display {
+public class Menu extends Display implements Runnable {
     //    protected WindowBasedTextGUI gui;
     protected List<ElementView> props;
     Elements elements;
@@ -81,8 +81,12 @@ public class Menu extends Display {
         this.gui.updateScreen();
     }
 
-    public void run() throws IOException {
-        this.draw();
+    public void run() {
+        try {
+            this.draw();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addOptions(){

@@ -16,18 +16,18 @@ import java.io.IOException;
 
 public class Application {
     public static void main(String[] args) throws OutOfBoundaries, IOException {
+        Runnable menu = null;
         if(args[0].contentEquals("lanterna")){
             try{
-                Menu menu = new Menu(new DefaultTerminalFactory().createTerminal());
-                menu.run();
+                menu = new Menu(new DefaultTerminalFactory().createTerminal());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         else {
-                MenuSwing menu = new MenuSwing();
-                menu.run();
+                menu = new MenuSwing();
         }
+        menu.run();
 
     }
 }
