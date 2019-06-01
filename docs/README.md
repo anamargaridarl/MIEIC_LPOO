@@ -167,35 +167,21 @@ the game was initialized. Therefore there was
 a need to create a way to generate elements for the 
 map with an element of randomness. 
 
-Furthermore, there was need to be able to create
-element with the prospect of being drawn with 
-different graphical interfaces, having the necessity
-of abstracting this information from the creation
-of the objects.
-
 #### The Pattern
-To solve this issue, we used the **Abstract-Factory**
+To solve this issue, we used the **Factory**
 pattern. This pattern is able to give us a 
 way of producing objects for related classes, 
 without specifying the concrete class.
 
 In our case, it would be able to produce
 different kinds of elements to spread
-over the map, without the need for it to know
-which graphical interface is used.
+over the map easily without having to specifically
+instatiate said classes.
 
 #### Implementation
-Now, there is a factory interface, called ElementFactory which is able to produce an element,
+Now, there is a factory, called ElementFactory which is able to produce an element,
 given information on which kind of element it wants
 (and their position).
-
-Afterwards, there is an actual implementation of said
-factory, called TerminalElementFactory, where an
-element is produced to be drawn by a terminal.
-
-Whenever there is a need to use a different graphical
-interface, it is only needed to implement
-this same factory once again for a different interface. 
 
 <div style="text-align:center">
     <img src="images/ElementFactory.png"/>
@@ -205,46 +191,6 @@ this same factory once again for a different interface.
 Now, each time there is a new element to be added to
 the map, there is no need for the use of its
 internal constructor since the factory is able to build them.
-
-Moreover, whenever a graphical interface is needed,
-it is only needed to create a new implementation
-of ElementFactory.
-
-  
-### View Element  
-#### Problem in Context  
-All the elements in the game had a graphic class to draw the information of the object into the screen. Since all shared this feature even though the implementations were different there was a need to unify them all.   
-  
-#### The Pattern 
-
-To solve said issue, we used the **Command** pattern.     
-    
-This pattern has the ability to:    
- - Define separate (command) objects that encapsulate a request.    
- - A class delegates a request to a command object  instead of     
-implementing a particular request directly.    
-    
-This enables one to configure a class with a command object that is used to perform a request (drawing into the screen).    
-The class is no longer coupled to a particular request and has no knowledge (is independent) of how the request is carried out.  
-   
-   
-### Implementation  
-With this, we ended up creating and ElementView abstract class that forced all its children classes to implement  a method to draw their element into the screen .
-  
-  
-<div style="text-align:center">  
-    <img src="images/ElementView.png"/>  
-</div>  
-  
-### Consequences  
-
-Now all elements further created that are going to draw themselves into the screen will be an extension of this abstract class, making it so that  
-they can be grouped together, something that we take   
-use of in our program.
-
-Additionally we can point several advantages to the use of the command pattern:
--   we are able to decouple the object that invoke the draw function (abstract class) from the one that knows how to perform it (subclasses).
--   It's easy to make changes or add new commands.
 
 ### Status 
 #### Problem in Context 
@@ -282,6 +228,112 @@ bar (client).
 Now we are able to provide different implementation of behavior to the functions decrease and increase. This way in the water/food status bar when the value reaches zero the health will be decremented to the character until it succeeds in using more food or water and in the health bar the game will be lost.
   
 Furthermore with these design pattern the behavior can be changed without breaking the classes that use it, and the classes can switch between behaviors by changing the specific implementation used without requiring any significant code changes.
+
+### GameSwing
+#### Problem in Context
+Drawing in the Swing framework is a very different
+process than it is using the Lantern framework.
+This proved to be a problem, when the purpose was
+to unify them all under a single controller.
+
+We needed a way to adapt Swing's interface into lanterna's, as a means to unify both of them.
+
+#### The Pattern
+To solve this issues we used a **Adapter** pattern. This
+pattern was exactly created with the purpose we needed:
+- To convert the interface of a class into another 
+interface that the client expects (in this case, the controller).
+
+With this, we were able to unify both Swing and Lanterna
+under the same interface **Game**.
+
+#### Implementation
+To solve this issue, we implement the class GameSwing, 
+whose objective was to adapt how Swing works, so that 
+it would do something similar to lanterna, or that, at
+least, it would update the screen when the method 
+draw was called.
+
+ <div style="text-align:center">    
+     <img src="images/GameSwing.png"/>    
+ </div>
+
+ #### Consequences
+ From this pattern, we were to obtain an interface that
+ worked similar to Lanterna's, with the ability to update
+ itself graphically, as needed by the current implementation
+ of the Controller.
+
+ With this, we were able to parameterize both Lanterna 
+ and Swing to draw exactly the same way.
+
+
+### TerminalKeyboard
+#### Problem in Context
+Both Lanterna and Swing worked very much differently
+from one another in terms of how they used the keyboard.
+Lanterna forces to you read they keyboard yourself
+and to interpret it in runtime, whereas Swing used an 
+**Observer** Pattern (called Listener in its implementation)
+in order to read the Keyboard. Therefore, both interfaces
+were once again incompatible.
+
+#### Solution
+To solve this incompatibility, it was used an implemented an **Observer** Pattern. The observer, allowed us to convert the interface used by
+Lanterna, into something similar to Swing's interface.
+Therefore, it started working as Swing's Keyboard Listener.
+
+#### Implementation
+Therefore, our GameController became an observer
+for updates coming from the keyboard, even in lanterna's eyes.
+Due to how Lanterna's read input works, it was also needed
+to use a **multi-threading** approach to the issue.
+ <div style="text-align:center">    
+     <img src="images/TerminalObserver.png"/>    
+ </div>
+
+#### Consequences
+Consequently, Lanterna's and Swing Keyboard now both 
+worked through Observers, which meant it was easy to 
+unify them in the same GameController.
+From now on, though, all other views to be implemented
+would need to have the keyboard read through some 
+sort of observer as well. This, even though it is clearly
+a limitation, is not very much problematic, since most
+frameworks do work with Observers for the keyboard.
+
+### Action
+#### Problem in Context
+Before, the implementation of several different 
+actions on the GameController were defined
+by a switch case, which had clear switch statement
+code smell.
+
+In order to make all actions work together, there was a
+need to parameterize their requests into a single action.
+
+#### Solution
+To solve this need for parametization, we used an **Command** pattern. Its main focus is indeed to 
+be to parameterize clients with different requests, which
+are indeed our actions.
+
+This way, we are able to process different sorts of requests
+related to the keyboard without the need for a long method
+with a huge switch statement.
+
+#### Implementation
+Now, all keyboard keys of interest have an action associated
+(a command), with the ability to execute an action
+related to the state of the game.
+ <div style="text-align:center">    
+     <img src="images/ActionCommand.png"/>    
+ </div>
+
+#### Consequences
+ It was now possible to separate several lines of code into a much testable framework, where every action 
+ was its own class, and, at the same time, reduce the
+ size of a once very long method.
+
 
 ## Known Code Smells and Refactoring Suggestions
 
