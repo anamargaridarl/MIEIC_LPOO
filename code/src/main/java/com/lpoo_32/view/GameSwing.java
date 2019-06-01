@@ -7,28 +7,30 @@ import com.lpoo_32.model.PlayerModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 public class GameSwing extends Game{
     private final Elements elements;
     private Graphics graphics;
     public static int ScreenWidth = 1366;
     public static int ScreenHeight = 768;
-    private JFrame frame;
+    private JPanel frame;
 
-    public GameSwing(JFrame frame, PlayerModel player, Elements elements){
+    public GameSwing(JPanel frame, PlayerModel player, Elements elements){
         super(player);
         this.elements = elements;
         this.frame = frame;
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.removeAll();
+        Component component = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+        System.out.println(component);
         this.graphics = frame.getGraphics();
         this.setInitialProps();
     }
 
     @Override
     public void draw() throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, Bedtime {
-
         graphics.clearRect(0, 0, ScreenWidth, ScreenHeight);
         graphics.drawRect(0, 0, getWidth(), getHeight());
 

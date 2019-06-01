@@ -12,11 +12,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class MenuSwingGUI extends JFrame {
@@ -24,7 +22,8 @@ public class MenuSwingGUI extends JFrame {
 
     private JPanel root;
     private String[] choices = { "Game", "Instructions", "Exit" };
-    JList<String> list = new JList(choices);
+    JList list;
+
 
 
     MouseListener mouseListener = new MouseAdapter() {
@@ -48,20 +47,15 @@ public class MenuSwingGUI extends JFrame {
         list.setFixedCellWidth(50);
         this.getContentPane().add(list);
         list.addListSelectionListener((listSelectionEvent) -> {
-                System.out.print("First index: " + listSelectionEvent.getFirstIndex());
-                System.out.print(", Last index: " + listSelectionEvent.getLastIndex());
                 boolean adjust = listSelectionEvent.getValueIsAdjusting();
-                System.out.println(", Adjusting? " + adjust);
                 if (!adjust) {
                     JList list = (JList) listSelectionEvent.getSource();
 
                     int[] selections = list.getSelectedIndices();
-                    Object[] selectionValues = list.getSelectedValues();
                     for (int i = 0, n = selections.length; i < n; i++) {
                         if (i == 0) {
                             System.out.print("  Selections: ");
                         }
-                        System.out.print(selections[i] + "/" + selectionValues[i] + " ");
                         if(selections[i] == 0)
                         {
                             Elements elements = new Elements();
@@ -71,29 +65,37 @@ public class MenuSwingGUI extends JFrame {
                             } catch (OutOfBoundaries outOfBoundaries) {
                                 outOfBoundaries.printStackTrace();
                             }
-                            JFrame frame = new JFrame();
+                            JPanel panel = new JPanel();
                             GameController game = null;
+                            this.list.add(panel);
                             try {
                                 game = new GameController(
                                         elements,
                                         model,
-                                        new GameSwing(frame, model, elements)
+                                        new GameSwing(panel, model, elements)
                                 );
                             } catch (OutOfBoundaries outOfBoundaries) {
                                 outOfBoundaries.printStackTrace();
                             }
-                            this.list.removeMouseListener(mouseListener);
-                            frame.addKeyListener(new SwingKeyboard(game));
+                            this.list.setFocusable(false);
                             this.addKeyListener(new SwingKeyboard(game));
-                            root.addKeyListener(new SwingKeyboard(game));
-                            this.setVisible(false);
+                            this.list.addKeyListener(new SwingKeyboard(game));
+                            SwingKeyboardTest swingKeyboard = new SwingKeyboardTest(this,game);
+                            panel.addKeyListener(new SwingKeyboard(game));
+                            ListSelectionListener[] listeners = this.list.getListSelectionListeners();
+                            for(int j= 0; j < listeners.length; j++){
+                                this.list.removeListSelectionListener(listeners[j]);
+                            }
+                            Component component = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+                            System.out.println(component + " " + component.equals(this.list));
+                            this.setFocusable(true);
                             try {
                                 game.run();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-                            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+//                            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+//                            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                             this.setVisible(true);
                             this.pack();
                             this.manageList();
@@ -115,7 +117,7 @@ public class MenuSwingGUI extends JFrame {
                     System.out.println();
                 }
         });
-        list.addMouseListener(mouseListener);
+        this.addMouseListener(mouseListener);
     }
 
 
@@ -124,7 +126,8 @@ public class MenuSwingGUI extends JFrame {
         this.root = new JPanel();
         add(root);
         setTitle("Menu");
-        setSize(400,330);
+        setSize(400,    330);
+        list = new JList(choices);
         manageList();
     }
 
