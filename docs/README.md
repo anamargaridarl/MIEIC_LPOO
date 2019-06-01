@@ -12,36 +12,53 @@ Developed by [André Rocha](https://github.com/andrefmrocha)
 and [Ana Loureiro](https://github.com/anamargaridarl)
 
 
-## Implemented Features  
-  
-### Menu  
-The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.  
-  
-To exit the program or to go back to the main menu from the help option the user should press the Q key.  
-### Game    
- In the game there are many features implemented to interact with the game.    
-     
-**Move Character -** By pressing the arrow keys your character will move around in the game.   
-      
-**Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.      
+## Implemented Features    
+ ### Menu 
+ The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.    
     
-**Spikes -** When the player passes on top of spikes the character will lose health.    
-      
-The character has a backpack to store food and water for later use. There are several option to interact with it:       
+To exit the program or to go back to the main menu from the help option the user should press the Q key.    
+### Game      
+ In the game there are many features implemented to interact with the game.      
        
- -  **Collect food and water-** By pressing the F key the character will collect those elements to its own backpack for later use      
- -   **Use current element** - By pressing the E key the current element int the backpack will be used and the respective value in will be restored to the character health      
- -  **Choose diferent elements**- The current element to use in the backpack will be display on the screen. Use the keys Q and W to switch the current element to use by searching left or right of the backpack.      
-     
-**Quit game** - By pressing Z the game will return to the main menu.     
-  
-**Map -** The game has a bigger map than what is seen each time on the screen. This means that when the player reaches the limits of the board it will change to the next part of the map and will be allocated to the spot it was trying to access.   
-     
+**Move Character -** By pressing the arrow keys your character will move around in the game.     
+        
+**Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.        
+
+**Grab weapon** - By pressing the T key you can also grab an weapon from the ground and put it directly in use by the player. 
+      
+**Spikes -** When the player passes on top of spikes the character will lose health.      
+        
+The character has a backpack to store food , water and weapons for later use. There are several option to interact with it:         
+         
+ -  **Collect food , water or weapons -** By pressing the F key the character will collect those elements to its own backpack for later use        
+ -   **Use current element** - By pressing the E key the current element int the backpack will be used. 
+	 -	Regarding the provisions stored their use will restore to the character health and hunger or thirst. 
+	 -	In case of the weapons it will set it as the weapon on use by the player. That means that in case the player already had a weapon on use it will be stored in the backpack and switched by the chosen.
+	    
+ -  **Choose different elements**- The current element to use in the backpack will be display on the screen. Use the keys 1 and 2 to switch the current element to use by searching left or right of the backpack.        
+ 
+   **Fight monsters**- The player can attack the monsters according to their orientation.This way by using the keys A(left), W(up), S(down), D(right) he can attack the monsters that are directly on his sides.
+ 
+ 
+   **Shelter in house**- The game map will create a house on a random position for the player to shelter. By entering by the door he will be protected from the monsters. 
+ - **Sleep -** Additionally, this house has a bed that allows the player to recover from it's adventure. To do so the player needs to walk to the side of the bed so its health levels increase. On the down side, it will wake up felling more thirsty and hungry since those values will be decreased.
+	 
+**Quit game** - By pressing Z the game will return to the main menu.       
+
+**Graphical Interface -**  The game can be run with Lanterna or Swing
+
+ Its also fundamental to explain the logic behind some features and elements in the game:    
     
-Furthermore when the water or food values of the character reach 0 the health will start to the decrease continually until those levels are restored to a higher value.    
-Additionally the health value will cyclically decrease by a time frame.
-    
-The game is lost when the character health value reaches 0.
+**Map -** The game has a bigger map than what is seen each time on the screen. This means that when the player reaches the limits of the board it will change to the next part of the map and will be allocated to the spot it was trying to access.     
+       
+**Monsters -** These creatures will follow the player in their respective part of the map. When they reach the player they will attack and decrease his life.
+
+**Life values -** When the water or food values of the character reach 0 the health will start to the decrease continually until those levels are restored to a higher value.      
+Additionally the health value will cyclically decrease by a time frame.  
+      
+**Game Over-** The game is lost when the character health value reaches 0.
+
+The features created in the second part of this project were: **monsters**, **weapons**, **buildings** and the **Swing** Graphic interface.
 
 <div style="text-align:center">
     <img src="images/GameImage.png"/>
@@ -66,60 +83,6 @@ As the name implies this pattern divides the structure of the program in three i
   under view.
 
 The biggest advantage in the MVC architectural pattern is that it decouples these major components allowing for efficient code reuse and parallel development.
-
-## Planned Features  
-
-We intend to add several improvements to the project until the next delivery. Below, there are some example features.
-
-### **Monsters**
-
-We intend to add monsters that move around and take the player's life every time they come into contact with it. 
-For that we intend to implement threads on our game. Each monster will be associated to a thread that updates the monster's movement based on a time gap.
-The monster will be divided in two class similarly to other elements in the game: 
-- one class holds the information of the monsters like their position and the amount of health they can take to the player - **MonsterModel** -  and implements the ElementModel interface;
--  another class draws the monster on the screen -  **MonsterView** -  and implements the Element View interface as well as following the command pattern implemented for the draw function.
-
-
-### **Buildings**
-
-We also plan to add building in our game. These elements will serve as a hiding spot. This way the player will be able to enter the building and protect himself from the monsters in the scene.
-
-<div style="text-align:center">
-    <img src="images/plannedfeature.png"/>
-</div>
-
-### **Game Over**
-
-We'll add a "Game Over" screen whenever the player looses the game. The screen will be built into a class in the graphic part of the game - **GameOver** .
-
-<div style="text-align:center">
-    <img src="images/plannedfeatures4.png"/>
-</div>
-
-### **Help Screen**
-
-We want to add a screen that shows all the game instructions and options so the player can consult it in the middle of the game. That way the game will pause and the screen will be shown. Furthermore by pressing the same key that opened this help menu the player can return to the game.
-Just like the "game over" screen we'll built into a class in the graphic part of the game - **HelpView**.
-
-<div style="text-align:center">
-    <img src="images/plannedfeatures3.png"/>
-</div>
-
-### **Other improvements**
-
-We also aim to add some changes to the already existing elements of the game. 
-For start the each of the Interactable Elements will be divided in smaller categories and each will have different values associated with.
- - the food will be divided in different elements like **meat**, **vegetables** and **fruit**;
- - the water will be divided into **water** and **milk**;
- - the spikes will be divided into **rocks** and **lava**;
- 
- <div style="text-align:center">
-     <img src="images/plannedfeature2.png"/>
- </div>
-
-### **Graphic ambient**
-
-We'll intend to do the necessary modifications to include the new graphical ambient **Swing** so we can develop a better graphic design.
 
 
 ## Design
