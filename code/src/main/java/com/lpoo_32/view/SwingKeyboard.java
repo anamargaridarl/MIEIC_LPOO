@@ -20,6 +20,7 @@ public class SwingKeyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+
         EventType event = null;
         switch (keyEvent.getKeyCode()){
             case KeyEvent.VK_UP:
