@@ -38,8 +38,6 @@ public class GameLanterna extends Game{
                                 ScreenSize.instance().getRows(50)), ' ');
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
-        /*graphics.putString(new TerminalPosition(ScreenSize.instance().getColumn(20),
-                            ScreenSize.instance().getRows(20)), "@");*/
         int initialX = getIndex() %3 * Game.width/4;
         int initialY = getIndex() /3 * Game.height/4;
 

@@ -354,17 +354,6 @@ some of its length, more specifically, extracting the zone where a character
 is parsed, which is a nested switch inside another switch.
 
 
-### Data Class
-
-#### Problem
-Our current Elements class is a class which only purpose is to provide a better interface
-in order to access its data. It applies absolutely no internal logic as of right now.
-
-#### Solution
-Due to its nature of storing elements in their positions, in due time, this class
-shall implement some logic, more specifically with elements in duplicate positions,
-which will be one of our short-term concerns.
-
 ### Shotgun Surgery
 #### Problem
 The current Game has a method of displaying that is dependent on
@@ -392,6 +381,47 @@ To remove such a class, whose needs is not that big, and substitute
 it with a method inside the Menu class. Since its purpose its only
 to provide more readability into the code, there's no need for
 it to be decoupled into a different class.
+
+### Duplicate Code
+#### Problem
+Some of the Action Events are very similar to each other, being that 
+they only change some very little details (due to being related) to
+movements in different directions. It is a clear example of code that 
+very much similar.
+
+#### Solution
+It would be wise to group these classes into an upper abstract class,
+where some of the logic would be implemented, in order to prevent any
+issues, specially when change is needed, since it would be necessary 
+to implement said changes in every single class.
+
+### Switch Statements
+#### Problem
+In the class MonsterModel, when the information is changed regarding their movement,
+there's a big switch with a lot of logic implemented, which also has a lot of **duplicate code**.
+
+This is of course a problem, since a slight change, implied changing all different cases,
+as well as the addition of a new case, would also mean having to interfere with already written 
+and tested code.
+
+#### Solution
+It would be better to parametrize every request under a **command** pattern, where 
+all information would derive from the same abstract class, since most code is pratically,
+the same, besides a few of the method calls.
+
+### Middle Man
+#### Problem 
+The class MovableElement only purpose is to couple a model with its name,
+which is undoubtedly unnecessary, since its only purpose is to call methods
+of other classes.
+
+### Solution
+Since its necessity is so low, the class itself should cease existing, as there is no
+need to couple things even further, which can only produce further bugs down
+the line, with the increase of features.
+
+
+
 
 ## Testing Results
 
