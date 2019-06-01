@@ -296,7 +296,49 @@ related to the state of the game.
  It was now possible to separate several lines of code into a much testable framework, where every action 
  was its own class, and, at the same time, reduce the
  size of a once very long method.
+ 
+  ## Move Monsters
+ #### Problem in Context  
+ The monsters required to move based on a time frame different from the one used to update the game. 
+ In order to implement this feature the monster's graphical component needed to interact with it logical component so that when the draw of the graphical component occurs , it notifies the model component that moves the element when a certain condition occurs.
+   
+ #### The Pattern  
+ To solve said issue, we used the **Observer** pattern due to:  
+ -   The abstraction has two aspects that dependent one on the other since the graphical component needs to logical component modifications to draw the changes of the movement and on the opposite side the logical component depends on the last to know when to update its movement.
+ 
+   
+ ### Implementation  
+ With this, we ended up creating a function in the Monster Model that is updated every time the monster is drawn and a variable is incremented. This way when the variable reaches a certain number this function implements the movement in the monster with the necessary constraints to it.
+ 
+ <div style="text-align:center">    
+     <img src="images/MonsterObserver.png"/>    
+ </div>
+ 
+ #### Consequences
+ With the application of this pattern we are able to update the monster movement to the rate we intend to. 
+Furthermore, in a more theoretical approach we are able to create abstract coupling between subject and observer.
 
+
+ ## Nourish State
+#### Problem in Context  
+We need have different behaviors to update the different life parameters (health, hunger and thirst) based on different states of the player. This means that we need different implementations based on different states
+  
+#### The Pattern  
+To solve said issue, we used the **State** pattern due to:  
+-   an object behavior depends on its state, and it must change that state in run-time.
+-  state-specific behavior is defined independently thus adding new states doesn't affect the behavior of existing states.
+  
+### Implementation  
+We ended up creating and NourishState abstract class where it children  handle different behaviors and though representing different states.
+
+ <div style="text-align:center">    
+     <img src="images/NourishState.png"/>    
+ </div>
+
+#### Consequences
+ It is now possible to modify the behaviour of the game when its internal state changes as well as
+ separate the several behaviours into independent states that don't affect any other existing states or any new to implement later on. 
+ 
 
 ## Known Code Smells and Refactoring Suggestions
 
