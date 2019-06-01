@@ -1,19 +1,5 @@
 package com.lpoo_32.view;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
-import com.lpoo_32.exceptions.HungerOVF;
-import com.lpoo_32.exceptions.ThirstOVF;
-import com.lpoo_32.view.EventType;
-import com.lpoo_32.view.TerminalKeyboard;
-import org.junit.Assert;
-import org.junit.Test;
-import org.mockito.Mockito;
-
-import java.io.IOException;
-
-import static org.junit.Assert.*;
 //TODO: FIX IT
 /*public class TerminalKeyboardTest {
     @Test

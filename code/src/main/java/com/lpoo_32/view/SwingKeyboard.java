@@ -1,12 +1,10 @@
 package com.lpoo_32.view;
 
 import com.lpoo_32.controller.GameController;
+import com.lpoo_32.controller.action.*;
 
-import java.awt.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 
 public class SwingKeyboard implements KeyListener {
     private final GameController controller;
@@ -20,52 +18,52 @@ public class SwingKeyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        EventType event = null;
+        ActionEvent event = null;
         switch (keyEvent.getKeyCode()){
             case KeyEvent.VK_UP:
-                event = EventType.MOVEUP;
+                event = new MoveUp(controller);
                 break;
             case KeyEvent.VK_DOWN:
-                event = EventType.MOVEDOWN;
+                event = new MoveDown(controller);
                 break;
             case KeyEvent.VK_LEFT:
-                event = EventType.MOVELEFT;
+                event = new MoveLeft(controller);
                 break;
             case KeyEvent.VK_RIGHT:
-                event = EventType.MOVERIGHT;
+                event = new MoveRight(controller);
                 break;
             case KeyEvent.VK_Z:
-                event = EventType.EXIT;
+                event = new Exit();
                 break;
             case KeyEvent.VK_P:
-                event = EventType.NULL;
+                event = new Null();
                 break;
             case KeyEvent.VK_F:
-                event = EventType.STORE;
+                event = new Store(controller);
                 break;
             case KeyEvent.VK_T:
-                event = EventType.USE;
+                event = new Use(controller);
                 break;
             case KeyEvent.VK_2:
-                event = EventType.RIGHTINVENTORY;
+                event = new RightInventory(controller.getPlayer());
                 break;
             case KeyEvent.VK_1:
-                event = EventType.LEFTINVENTORY;
+                event = new LeftInventory(controller.getPlayer());
                 break;
             case KeyEvent.VK_E:
-                event = EventType.INVETORYUSE;
+                event = new InventoryUse(controller);
                 break;
             case KeyEvent.VK_W:
-                event = EventType.ATTACKUP;
+                event = new AttackUp(controller);
                 break;
             case KeyEvent.VK_A:
-                event = EventType.ATTACKLEFT;
+                event = new AttackLeft(controller);
                 break;
             case KeyEvent.VK_D:
-                event = EventType.ATTACKRIGHT;
+                event = new AttackRight(controller);
                 break;
             case KeyEvent.VK_S:
-                event = EventType.ATTACKDOWN;
+                event = new AttackDown(controller);
                 break;
             default:
                 System.out.println(keyEvent.getKeyChar());
