@@ -29,7 +29,7 @@ public class GameController
         restoreHunger(player);
         restoreThirst(player);
         this.sleep = new DayState(player);
-        this.factory = new TerminalElementFactory();
+        this.factory = new ElementFactory();
         this.populateGame(Game.width/4, Game.height/4,getRandomIndex());
         this.buildHouse(Game.width/4, Game.height/4);
         this.game = game;
@@ -173,7 +173,6 @@ public class GameController
 
     private void populateGame(int width, int height, int indexGame) throws OutOfBoundaries {
         Random random = new Random();
-        TerminalElementFactory factory = new TerminalElementFactory();
         ElementType[] types = ElementType.values();
         InteractableElementView element;
         for(int i = 0; i < 60; i++){
