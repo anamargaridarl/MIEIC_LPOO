@@ -1,6 +1,5 @@
 package com.lpoo_32.view;
 
-import com.lpoo_32.view.*;
 import com.lpoo_32.exceptions.OutOfBoundaries;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;

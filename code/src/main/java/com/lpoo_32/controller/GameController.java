@@ -1,12 +1,12 @@
 package com.lpoo_32.controller;
 
+import com.lpoo_32.controller.action.ActionEvent;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 import com.lpoo_32.view.*;
 
 import java.io.IOException;
 import java.util.Random;
-import static com.lpoo_32.model.Attacks.*;
 
 public class GameController
 {
@@ -22,7 +22,6 @@ public class GameController
     private ElementFactory factory;
     private boolean screenclose;
 
-
     public GameController(Elements elements, PlayerModel player, Game game) throws OutOfBoundaries {
         this.player = player;
         this.elements = elements;
@@ -30,7 +29,7 @@ public class GameController
         restoreHunger(player);
         restoreThirst(player);
         this.sleep = new DayState(player);
-        this.factory = new TerminalElementFactory();
+        this.factory = new ElementFactory();
         this.populateGame(Game.width/4, Game.height/4,getRandomIndex());
         this.buildHouse(Game.width/4, Game.height/4);
         this.game = game;
@@ -42,101 +41,9 @@ public class GameController
         return random.nextInt(9);
     }
 
-    public void processKey(EventType event) {
-
-        InteractableElementView i;
+    public void processKey(ActionEvent event) {
         try{
-            if(event != EventType.NULL && event != null){
-                switch (event) {
-                    case MOVEUP:
-                        i = elements.getView(player.getPosition().checkMovementUp());
-                        if(i !=  null) {
-                            if (i instanceof MonsterView)
-                                break;
-                        }
-                        if(this.collisions(player.getPosition().checkMovementUp()))
-                            player.moveUp();
-                        break;
-                    case MOVEDOWN:
-                        i = elements.getView(player.getPosition().checkMovementDown());
-                        if(i !=  null) {
-                            if(i instanceof  MonsterView)
-                                break;
-                        }
-                        if(this.collisions(player.getPosition().checkMovementDown()))
-                            player.moveDown();
-                        break;
-                    case MOVELEFT:
-                        i = elements.getView(player.getPosition().checkMovementLeft());
-                        if(i !=  null) {
-                            if (i instanceof MonsterView)
-                                break;
-                        }
-                        if(this.collisions(player.getPosition().checkMovementLeft()))
-                            player.moveLeft();
-                        break;
-                    case MOVERIGHT:
-                        i = elements.getView(player.getPosition().checkMovementRight());
-                        if(i !=  null) {
-                            if (i instanceof MonsterView)
-                                break;
-                        }
-                        if(this.collisions(player.getPosition().checkMovementRight()))
-                            player.moveRight();
-                        break;
-                    case EXIT:
-                        throw new ScreenClose();
-                    case NULL:
-                        break;
-                    case HELP:
-                        //TODO: How to proceed with this?
-                        System.out.println("Open help Menu");
-                        break;
-                    case STORE: //add element to inventory
-                        if (isCatchable(player.getPosition())) {
-                            player.addElementInventory((CatchableView) elements.getView(player.getPosition()));
-                            removeElementProps(elements.getModel(player.getPosition()));
-                        }
-                        break;
-                    case USE: //use water/food in moment
-                        if(!isWeaponUseDirect(player.getPosition())) {
-                            if (isCatchable(player.getPosition())) {
-                                elements.getModel(player.getPosition()).interact(player);
-                                removeElementProps(elements.getModel(player.getPosition()));
-                            }
-                        }
-                        break;
-                    case LEFTINVENTORY: //move left in inventory
-                        player.getInventory().moveLeft();
-                        break;
-                    case RIGHTINVENTORY: //move right in inventory
-                        player.getInventory().moveRight();
-                        break;
-                    case INVETORYUSE:
-                        if (player.getInventory().getElement() != null) {
-                            if (!changeWeaponInventory()) {
-                                player.getInventory().getElement().interact(player);
-                                player.getInventory().removeElement();
-                            }
-
-                        }
-                        break;
-                    case ATTACKUP:
-                        checkForMonsterAndAttack(this.player.getPosition(),AUP,this.player.getWeapon());
-                        break;
-                    case ATTACKDOWN:
-                        checkForMonsterAndAttack(this.player.getPosition(),ADOWN,this.player.getWeapon());
-                        break;
-                    case ATTACKLEFT:
-                        checkForMonsterAndAttack(this.player.getPosition(),ALEFT,this.player.getWeapon());
-                        break;
-                    case ATTACKRIGHT:
-                        checkForMonsterAndAttack(this.player.getPosition(),ARIGHT,this.player.getWeapon());
-                        break;
-
-                }
-
-            }
+            event.execute();
         }catch (HungerRestored hungerRestored) {
             restoreHunger(player);
         } catch (HungerOVF nourishOVF) {
@@ -266,7 +173,6 @@ public class GameController
 
     private void populateGame(int width, int height, int indexGame) throws OutOfBoundaries {
         Random random = new Random();
-        TerminalElementFactory factory = new TerminalElementFactory();
         ElementType[] types = ElementType.values();
         InteractableElementView element;
         for(int i = 0; i < 60; i++){
@@ -321,10 +227,10 @@ public class GameController
 
     //---------------------------------------------------------------
     //remove element from view array
+
     public void removeElementProps(InteractableElement element) {
         this.elements.removeElement(element);
     }
-
     public boolean addElementProps(InteractableElementView element)  {
 
             return this.elements.addElement(element);
@@ -381,8 +287,8 @@ public class GameController
 
     }
 
-    
-    private boolean isCatchable(Position position) {
+
+    public boolean isCatchable(Position position) {
 
         if (elements.getView(position) != null) {
             return elements.getModel(position) instanceof CatchableElement;
@@ -404,15 +310,15 @@ public class GameController
         }
         return false;
     }
+
     //handles colisions for non catchable elements
-    boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF, Bedtime {
+    public boolean collisions(Position position) throws HungerRestored, HungerOVF, ThirstRestored, ThirstOVF, HealthOVF, Bedtime {
 
         if (elements.getView(position) != null && !(isCatchable(position))) {
             return elements.getModel(position).interact(player);
         }
         return true;
     }
-
     public void checkCollisionMonster(Position position) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, Bedtime {
 
         if(monsterEqualsPlayer(player.getPosition(), position)){
@@ -422,51 +328,15 @@ public class GameController
     }
 
 
-    public void checkForMonsterAndAttack(Position position, Attacks orientation, WeaponModel weapon) throws HungerRestored, ThirstOVF, HealthOVF, HungerOVF, ThirstRestored, LeftScreen, RightScreen, DownScreen, UpScreen {
-
-        if(weapon == null)
-            return;
-        InteractableElementView element;
-
-        switch (orientation) {
-            case AUP:
-                element = elements.getView(position.checkMovementUp());
-                if(element != null) {
-                    if (element instanceof MonsterView)
-                        weapon.interactMonster(((MonsterView) element).getMonster());
-                }
-                break;
-            case ADOWN:
-                element = elements.getView(position.checkMovementDown());
-                if(element != null) {
-                    if (element instanceof MonsterView)
-                        weapon.interactMonster(((MonsterView) element).getMonster());
-                }
-                break;
-            case ALEFT:
-                element = elements.getView(position.checkMovementLeft());
-                if(element != null) {
-                    if (element instanceof MonsterView)
-                        weapon.interactMonster(((MonsterView) element).getMonster());
-                }
-                break;
-            case ARIGHT:
-                element = elements.getView(position.checkMovementRight());
-                if(element != null ) {
-                    if (element instanceof MonsterView)
-                        weapon.interactMonster(((MonsterView) element).getMonster());
-                }
-                break;
-            default:
-                break;
-
-
-        }
-    }
-
-
 
     void setTime(int time){
         this.time = time;
+    }
+
+    public PlayerModel getPlayer() {
+        return player;
+    }
+    public Elements getElements() {
+        return elements;
     }
 }
