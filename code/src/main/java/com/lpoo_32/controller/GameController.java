@@ -7,7 +7,6 @@ import com.lpoo_32.view.*;
 
 import java.io.IOException;
 import java.util.Random;
-import static com.lpoo_32.model.Attacks.*;
 
 public class GameController
 {

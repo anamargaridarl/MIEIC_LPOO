@@ -9,11 +9,9 @@ import java.io.IOException;
 
 public abstract class Display {
     Screen screen;
-    private Terminal terminal;
 
     Display(Terminal terminal) throws IOException {
 
-        this.terminal = terminal;
         this.screen = new TerminalScreen(terminal);
 
         this.screen.startScreen();
