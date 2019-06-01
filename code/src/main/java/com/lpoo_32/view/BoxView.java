@@ -6,6 +6,8 @@ import com.lpoo_32.model.PlayerModel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import com.googlecode.lanterna.graphics.*;
+
 public abstract class BoxView extends ElementView {
 
 
@@ -31,7 +33,12 @@ public abstract class BoxView extends ElementView {
         return ScreenSize.instance().getRows(rows);
     }
 
-    public void draw(Graphics graphics, int width1, int width2, int width3, String color)
+    public void drawElementInformationLanterna(int rows, Graphics graphics)
+    {
+        graphics.putString(getColumn(75), getRows(rows) + 2, getName());
+        graphics.putString(getColumn(80), getRows(rows) + 3, getValue());
+    }
+    public void drawSwing(Graphics graphics, int width1, int width2, int width3, String color)
     {
         graphics.setColor(Color.decode(color));
         graphics.fillRect(GameSwing.getWidth() + width1, 100, 90, 100);
@@ -41,7 +48,7 @@ public abstract class BoxView extends ElementView {
     }
 
 
-    public void drawImageInBox(BufferedImage image,int width1, Graphics graphics)
+    public void drawImageInBoxSwing(BufferedImage image,int width1, Graphics graphics)
     {
         graphics.drawImage(image,
                 GameSwing.getWidth() + width1,

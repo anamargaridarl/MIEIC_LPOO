@@ -62,9 +62,9 @@ public class PlayerView extends BoxView {
                 this.getPlayer().getPosition().getSwingX(),
                 this.getPlayer().getPosition().getSwingY()
         );
-        draw(graphics,150,170,188,color);
+        drawSwing(graphics,150,170,188,color);
         if (weapon != null && !getValue().equals("")) {
-            drawImageInBox(weapon,180,graphics);
+            drawImageInBoxSwing(weapon,180,graphics);
         }
     }
 

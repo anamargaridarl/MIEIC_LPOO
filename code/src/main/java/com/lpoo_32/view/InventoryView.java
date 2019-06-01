@@ -43,9 +43,9 @@ public class InventoryView extends BoxView {
 
     @Override
     void drawSwing(Graphics graphics) {
-        draw(graphics,20,40,55,color);
+        drawSwing(graphics,20,40,55,color);
         if (!getValue().equals("") && this.inventory.getElement().getImage() != null) {
-            drawImageInBox(this.inventory.getElement().getImage(), 55, graphics);
+            drawImageInBoxSwing(this.inventory.getElement().getImage(), 55, graphics);
         }
     }
 
