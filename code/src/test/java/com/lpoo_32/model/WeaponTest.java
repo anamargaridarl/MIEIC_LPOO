@@ -9,6 +9,8 @@ import com.lpoo_32.view.Game;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -18,7 +20,7 @@ public class WeaponTest {
     @Test
     public void interactMonster() throws OutOfBoundaries {
         PlayerModel player = new PlayerModel(new Position(4,5, Game.width/4, Game.height/4, 0));
-        MonsterModel monster = new MonsterModel(new Position(5,5,Game.width/4, Game.height/4, 0),40,new MovableElement(player.getPosition(), ""), Mockito.mock(GameController.class),player.getPosition());
+        MonsterModel monster = new MonsterModel(new Position(5,5,Game.width/4, Game.height/4, 0),40,new MovableElement(player.getPosition(), ""), Mockito.mock(GameController.class),player.getPosition(), new Random());
         WeaponModel weapon = new WeaponModel(player.getPosition(),2);
         weapon.interactMonster(monster);
         assertEquals(48, monster.getHealth());

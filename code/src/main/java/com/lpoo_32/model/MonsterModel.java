@@ -22,15 +22,17 @@ public class MonsterModel extends InteractableElement {
     private MovableElement movable;
     private Position playerposition;
     int number;
+    Random random;
     GameController controller;
 
-    public MonsterModel(Position pos, int value, MovableElement movable, GameController controller, Position playerposition) {
+    public MonsterModel(Position pos, int value, MovableElement movable, GameController controller, Position playerposition, Random random) {
         super(pos, value, "monster.png");
         this.movable = movable;
         this.number = 0;
         this.controller= controller;
         this.playerposition = playerposition;
         this.health = 50;
+        this.random = random;
     }
 
     public void setNumber(int number)
@@ -89,7 +91,8 @@ public class MonsterModel extends InteractableElement {
                 break;
             case RIGHT:
                 if (!(controller.checkForElement
-                        (monsterview.getMonster().getPos().checkMovementRight()))) {
+                        (monsterview.getMonster().getPos().checkMovementRight())))
+                {
                     controller.removeElementProps(monsterview.getMonster());
                     monsterview.getMonster().moveRight();
                     controller.addElementProps(monsterview);
@@ -99,6 +102,7 @@ public class MonsterModel extends InteractableElement {
             default:
                 break;
         }
+
 
 return false;
 
@@ -120,7 +124,9 @@ return false;
         if (this.getPos().getX() < playerposition.getX())
             return 3;
         else if (this.getPos().getX() > playerposition.getX())
+        {
             return 2;
+        }
         else if (this.getPos().getX() == playerposition.getX()) {
             return chooseY(playerposition);
         }
@@ -142,8 +148,6 @@ return false;
 
     //chose between moving in y or x
     public int randomMove(Position playerposition) throws LeftScreen, RightScreen, UpScreen, DownScreen {
-        Random random = new Random();
-
         int mov = random.nextInt(2);
 
         if (mov == 1) {

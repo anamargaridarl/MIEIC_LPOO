@@ -167,7 +167,7 @@ public class GameController
         int x = random.nextInt(width * 3);
         int y = random.nextInt(height * 3);
         int index = (x/width) + (y/height) * 3;
-        Position pos = new InteractablePosition(x, y, width, height, index,indexGame);
+        Position pos = new Position(x, y, width, height, index);
         return pos;
     }
 
@@ -183,7 +183,7 @@ public class GameController
 
         for(int i = 0; i < 30; i++){
             Position pos = randomPosition(width,height,indexGame);
-            element = new MonsterView(new MonsterModel(pos, 15, new MovableElement(pos, "monster.png"),this,player.getPosition()));
+            element = new MonsterView(new MonsterModel(pos, 15, new MovableElement(pos, "monster.png"),this,player.getPosition(), new Random()));
             this.elements.addElement(element);
         }
 
