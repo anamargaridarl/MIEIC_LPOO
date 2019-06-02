@@ -492,6 +492,8 @@ work by each student. Yet as requested:
     - Game Controller
     - Player
     - Interactable Element
+    - Monsters
+    - Weapons
 
  - André Rocha (50%): 
     - Main Menu
@@ -500,4 +502,8 @@ work by each student. Yet as requested:
     - Help Menu
     - Movable Element
     - ScreenSize
+    - House
+    - Bed
+    - Swing
+    - NourishState
 
