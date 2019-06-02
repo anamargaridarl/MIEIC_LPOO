@@ -11,12 +11,24 @@ is to defeat you.
 Developed by [André Rocha](https://github.com/andrefmrocha)
 and [Ana Margarida](https://github.com/anamargaridarl)
 
->>>>>>> 86893dba4e64c8eaa3d2c7fabe8e3adc966f1507
-
 ## Screenshots
 
-> Some screenshots that illustrate the game.
+<div style="text-align:center">
+    <img src="docs/images/GameImage.png"/>
+</div>
 
-## Install Instructions
+<p float="left">
+  <img src="docs/images/MenuImage.png" width="49%" />
+  <img src="docs/images/helpMenuImage.png" width="49%" /> 
+</p>
 
-> How can someone install the game in their computer.
+<div style="text-align:center">
+    <img src="docs/images/swing.png"/>
+</div>
+
+<p float="left">
+  <img src="docs/images/menu.png" width="49%" />
+  <img src="docs/images/helpmenuswing.png" width="49%" /> 
+</p>
+
+
