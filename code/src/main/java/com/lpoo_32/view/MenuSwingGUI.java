@@ -48,8 +48,8 @@ public class MenuSwingGUI extends JFrame {
         setTitle("Menu");
         add(root);
         setSize(GameSwing.ScreenWidth,    GameSwing.ScreenHeight);
-        image = createImage(GameSwing.ScreenWidth, GameSwing.ScreenHeight);
-        buffer = image.getGraphics();
+        this.image = createImage(GameSwing.ScreenWidth, GameSwing.ScreenHeight);
+        this.buffer = image.getGraphics();
         this.addKeyListener(new MenuSwingKeyboard(this.selector));
         URL resource = getClass().getResource("/" + "background.png");
         try{

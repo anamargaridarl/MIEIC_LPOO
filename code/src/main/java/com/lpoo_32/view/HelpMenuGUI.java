@@ -3,14 +3,20 @@ package com.lpoo_32.view;
 import com.lpoo_32.controller.ExceptionableRunnable;
 import net.miginfocom.swing.MigLayout;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 public class HelpMenuGUI implements ExceptionableRunnable {
 
+    private Graphics buffer;
+    private Image image;
+    private BufferedImage background;
     private JFrame mainScreen;
     private JTable table;
     private boolean running = true;
@@ -34,6 +40,14 @@ public class HelpMenuGUI implements ExceptionableRunnable {
     public HelpMenuGUI(JFrame mainScreen) {
         this.mainScreen = mainScreen;
         table = new JTable(data, columnNames);
+        URL resource = getClass().getResource("/" + "background.png");
+        try{
+            this.background = ImageIO.read(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.image = this.mainScreen.createImage(GameSwing.ScreenWidth, GameSwing.ScreenHeight);
+        this.buffer = image.getGraphics();
     }
 
 
@@ -50,8 +64,10 @@ public class HelpMenuGUI implements ExceptionableRunnable {
     }
 
     private void draw() {
-        this.mainScreen.getGraphics().clearRect(0, 0, GameSwing.ScreenWidth, GameSwing.ScreenHeight);
-        this.table.paint(this.mainScreen.getGraphics());
+        this.buffer.clearRect(0, 0, GameSwing.ScreenWidth, GameSwing.ScreenHeight);
+        this.buffer.drawImage(background, 0, 0, null);
+        this.table.paint(this.buffer);
+        this.mainScreen.getGraphics().drawImage(this.image, 0, 0, null);
     }
 
     public void stopDrawing() {
