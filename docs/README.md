@@ -11,54 +11,53 @@ is to defeat you.
 Developed by [André Rocha](https://github.com/andrefmrocha)
 and [Ana Loureiro](https://github.com/anamargaridarl)
 
-
-## Implemented Features    
- ### Menu 
- The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.    
-    
-To exit the program or to go back to the main menu from the help option the user should press the Q key.    
-### Game      
- In the game there are many features implemented to interact with the game.      
-       
-**Move Character -** By pressing the arrow keys your character will move around in the game.     
-        
-**Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.        
-
-**Grab weapon** - By pressing the T key you can also grab an weapon from the ground and put it directly in use by the player. 
+  
+## Implemented Features      
+ ### Menu   
+ The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.      
       
-**Spikes -** When the player passes on top of spikes the character will lose health.      
-        
-The character has a backpack to store food , water and weapons for later use. There are several option to interact with it:         
+To exit the program or to go back to the main menu from the help option the user should press the Q key.      
+### Game        
          
- -  **Collect food , water or weapons -** By pressing the F key the character will collect those elements to its own backpack for later use        
- -   **Use current element** - By pressing the E key the current element int the backpack will be used. 
-	 -	Regarding the provisions stored their use will restore to the character health and hunger or thirst. 
-	 -	In case of the weapons it will set it as the weapon on use by the player. That means that in case the player already had a weapon on use it will be stored in the backpack and switched by the chosen.
-	    
- -  **Choose different elements**- The current element to use in the backpack will be display on the screen. Use the keys 1 and 2 to switch the current element to use by searching left or right of the backpack.        
- 
-   **Fight monsters**- The player can attack the monsters according to their orientation.This way by using the keys A(left), W(up), S(down), D(right) he can attack the monsters that are directly on his sides.
- 
- 
-   **Shelter in house**- The game map will create a house on a random position for the player to shelter. By entering by the door he will be protected from the monsters. 
- - **Sleep -** Additionally, this house has a bed that allows the player to recover from it's adventure. To do so the player needs to walk to the side of the bed so its health levels increase. On the down side, it will wake up feelling more thirsty and hungry since those values will be decreased.
-	 
-**Quit game** - By pressing Z the game will return to the main menu.       
-
-**Graphical Interface -**  The game can be run with Lanterna or Swing
-
- Its also fundamental to explain the logic behind some features and elements in the game:    
-    
-**Map -** The game has a bigger map than what is seen each time on the screen. This means that when the player reaches the limits of the board it will change to the next part of the map and will be allocated to the spot it was trying to access.     
-       
-**Monsters -** These creatures will follow the player in their respective part of the map. When they reach the player they will attack and decrease his life.
-
-**Life values -** When the water or food values of the character reach 0 the health will start to the decrease continually until those levels are restored to a higher value.      
-Additionally the health value will cyclically decrease by a time frame.  
+**Move Character -** By pressing the arrow keys your character will move around in the game.       
+          
+**Consume food or water -** By pressing the T key you can consume food or water from the ground and restore some health value to your main character.          
+  
+**Grab weapon** - By pressing the T key you can also grab an weapon from the ground and put it directly in use by the player.   
+        
+**Spikes -** When the player passes on top of spikes the character will lose health.        
+          
+The character has a backpack to store food , water and weapons for later use. There are several option to interact with it:           
+           
+ -  **Collect food , water or weapons -** By pressing the F key the character will collect those elements to its own backpack for later use          
+ -   **Use current element** - By pressing the E key the current element int the backpack will be used.   
+    - Regarding the provisions stored their use will restore health and hunger or thirst to the character.   
+    - In case of the weapons it will set it as the one on use by the player. That means that in case the player already had a weapon on use it will be stored in the backpack and switched by the chosen.  
+         
+ -  **Choose different elements**- The current element to use in the backpack will be display on the screen. Use the keys 1 and 2 to switch the current element to use by searching left or right of the backpack.          
+   
+   **Fight monsters**- The player can attack the monsters according to their orientation around him. This way by using the keys A(left), W(up), S(down), D(right) the player can attack the monsters that are directly on his sides.  
+   
+   
+   **Shelter in house**- The game map will create a house on a random position that will work as a shelter to the player where he will be protected from the monsters.   
+ - **Sleep -** Additionally, this house has a bed that allows the player to recover from it's adventure. To do so the player needs to walk to the side of the bed so its health levels increase. On the down side, it will wake up feelling more thirsty and hungry since those values will be decreased.  
       
-**Game Over-** The game is lost when the character health value reaches 0.
-
-The features created in the second part of this project were: **Monsters**, **Meapons**, **Buildings** and the **Swing** Graphical interface.
+**Quit game** - By pressing Z the game will return to the main menu.         
+  
+**Graphical Interface -** The game can be run with Lanterna or Swing. 
+  
+ Its also fundamental to explain the logic behind some features and elements in the game:      
+      
+**Map -** The game has a bigger map than what is seen each time on the screen. This means that when the player reaches the limits of the board it will change to the next part of the map and will be allocated to the spot it was trying to access.       
+         
+**Monsters -** These creatures will follow the player in their respective part of the map. When they reach the player they will attack and decrease his life.  
+  
+**Life values -** When the water or food values of the character reach 0 the health will start to the decrease continually until those levels are restored to a higher value.        
+Additionally the health value will cyclically decrease by a time frame.    
+        
+**Game Over-** The game is lost when the character health value reaches 0.  
+  
+The features created in the second part of this project were: **Monsters**, **Weapons**, **Buildings** and the **Swing** Graphic interface.
 
 <div style="text-align:center">
     <img src="images/GameImage.png"/>
@@ -321,7 +320,7 @@ Furthermore, in a more theoretical approach we are able to create abstract coupl
 
  ### Nourish State
 #### Problem in Context  
-We need have different behaviors to update the different life parameters (health, hunger and thirst) based on different states of the player. This means that we need different implementations based on different states
+We needed to have different behaviors to update the different life parameters (health, hunger and thirst) based on different states of the player. This means that we need different implementations based on different states
   
 #### The Pattern  
 To solve said issue, we used the **State** pattern due to:  
