@@ -13,6 +13,7 @@ public class MenuSwing implements Runnable{
 
     MenuSwingGUI gui;
     boolean gameRunning;
+    GameController game;
 
     public MenuSwing() {
         gameRunning = false;
@@ -33,7 +34,7 @@ public class MenuSwing implements Runnable{
     public void initiateGame() throws OutOfBoundaries, IOException {
         Elements elements = new Elements();
         PlayerModel model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
-        GameController game = new GameController(
+        game = new GameController(
                 elements,
                 model,
                 new GameSwing(gui, model, elements)

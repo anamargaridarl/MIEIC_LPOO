@@ -21,21 +21,11 @@ import java.util.ArrayList;
 public class MenuSwingGUI extends JFrame {
 
 
-    private Image image;
     private JPanel root;
-    private String[] choices = { "Game", "Instructions", "Exit" };
-    JList list;
     private Selector selector;
     private Options options = new Options();
+    private Image image;
     private Graphics buffer;
-
-    public void manageList()
-    {
-        list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        list.setSelectedIndex(3);
-        list.setFixedCellHeight(100);
-        list.setFixedCellWidth(50);
-    }
 
     public void draw(){
         getGraphics().clearRect(0, 0, GameSwing.ScreenWidth, GameSwing.ScreenHeight);
@@ -51,8 +41,6 @@ public class MenuSwingGUI extends JFrame {
         setTitle("Menu");
         add(root);
         setSize(1000,    1000);
-        list = new JList(choices);
-        manageList();
         this.addKeyListener(new MenuSwingKeyboard(this.selector));
     }
 

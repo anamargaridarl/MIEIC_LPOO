@@ -31,7 +31,6 @@ public class GameSwing extends Game{
 
     @Override
     public void draw() throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, Bedtime {
-        System.out.println(FocusManager.getCurrentManager().getFocusOwner());
         graphics.clearRect(0, 0, ScreenWidth, ScreenHeight);
         graphics.drawRect(0, 0, getWidth(), getHeight());
 
