@@ -1,7 +1,6 @@
 package com.lpoo_32.view;
 
 import com.lpoo_32.controller.ExceptionableRunnable;
-import net.miginfocom.swing.MigLayout;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
