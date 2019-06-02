@@ -17,32 +17,21 @@ public class HelpMenuGUI implements ExceptionableRunnable {
     private Graphics buffer;
     private Image image;
     private BufferedImage background;
+    private BufferedImage table;
     private JFrame mainScreen;
-    private JTable table;
     private boolean running = true;
-
-    String[] columnNames = {"Actions",
-            "Explanation",};
-    Object[] [] data = {
-            {"Arrows", "Move Around"
-                    },
-            {"Collect Items", "F"},
-            {"Use Item from Inventory", "E"
-                    },
-            {"Use Item from Ground", "T"},
-            {"Move elements in inventory", "1/2",
-                    },
-            {"Attack Monsters", "A/S/D/w",
-            }
-    };
-
 
     public HelpMenuGUI(JFrame mainScreen) {
         this.mainScreen = mainScreen;
-        table = new JTable(data, columnNames);
-        URL resource = getClass().getResource("/" + "background.png");
+        URL background = getClass().getResource("/" + "background.png");
         try{
-            this.background = ImageIO.read(resource);
+            this.background = ImageIO.read(background);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        URL resource = getClass().getResource("/" + "table.png");
+        try{
+            this.table = ImageIO.read(resource);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,7 +55,7 @@ public class HelpMenuGUI implements ExceptionableRunnable {
     private void draw() {
         this.buffer.clearRect(0, 0, GameSwing.ScreenWidth, GameSwing.ScreenHeight);
         this.buffer.drawImage(background, 0, 0, null);
-        this.table.paint(this.buffer);
+        this.buffer.drawImage(table, 300, 300, null);
         this.mainScreen.getGraphics().drawImage(this.image, 0, 0, null);
     }
 
