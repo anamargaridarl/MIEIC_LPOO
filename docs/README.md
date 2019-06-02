@@ -370,8 +370,7 @@ perfectly abstract any necessity in terms of
 Graphical Interface dependencies from itself,
 therefore being able to provide a safer and more 
 testable way of getting this information,
-then having to change already written and tested
-code.
+then having to change already written and tested.
  
 
 ## Known Code Smells and Refactoring Suggestions
