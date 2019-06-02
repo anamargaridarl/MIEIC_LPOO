@@ -14,9 +14,9 @@ and [Ana Loureiro](https://github.com/anamargaridarl)
   
 ## Implemented Features      
  ### Menu   
- The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.      
+The program opens in a menu that allows the user to choose between two options using the arrow up and down keys. Its possible to opt by **starting the game** or go to a **help menu** where all the instructions of the game are on display to see.      
       
-To exit the program or to go back to the main menu from the help option the user should press the Q key.      
+To quit the current game and go back to the main menu press Z. To exit the program use Q in lanterna and the option exit in the Swing version.      
 ### Game        
          
 **Move Character -** By pressing the arrow keys your character will move around in the game.       
@@ -68,6 +68,14 @@ The features created in the second part of this project were: **Monsters**, **We
   <img src="images/helpMenuImage.png" width="49%" /> 
 </p>
 
+<div style="text-align:center">
+    <img src="images/swing.png"/>
+</div>
+
+<p float="left">
+  <img src="images/menu.png" width="49%" />
+  <img src="images/helpmenuswing.png" width="49%" /> 
+</p>
 
 
 
