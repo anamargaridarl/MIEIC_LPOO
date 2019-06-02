@@ -4,35 +4,34 @@ import com.lpoo_32.model.PlayerModel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import com.googlecode.lanterna.graphics.TextGraphics;
 
 
-public abstract class BoxView extends ElementView {
+abstract class BoxView extends ElementView {
 
 
-    public BoxView(PlayerModel model) {
+    BoxView(PlayerModel model) {
         super(model);
     }
 
-    public BoxView() {
+    BoxView() {
         super();
     }
 
 
-    public abstract String getName();
+    protected abstract String getName();
 
-    public abstract String getValue();
+    protected abstract String getValue();
 
 
-    public int getColumn(int columns) {
+    int getColumn(int columns) {
         return ScreenSize.instance().getColumn(columns);
     }
 
-    public int getRows(int rows) {
+    int getRows(int rows) {
         return ScreenSize.instance().getRows(rows);
     }
 
-    public void drawSwing(Graphics graphics, int width1, int width2, int width3, String color)
+    void drawSwing(Graphics graphics, int width1, int width2, int width3, String color)
     {
         graphics.setColor(Color.decode(color));
         graphics.fillRect(GameSwing.getWidth() + width1, 100, 90, 100);
@@ -42,7 +41,7 @@ public abstract class BoxView extends ElementView {
     }
 
 
-    public void drawImageInBoxSwing(BufferedImage image,int width1, Graphics graphics)
+    void drawImageInBoxSwing(BufferedImage image, int width1, Graphics graphics)
     {
         graphics.drawImage(image,
                 GameSwing.getWidth() + width1,

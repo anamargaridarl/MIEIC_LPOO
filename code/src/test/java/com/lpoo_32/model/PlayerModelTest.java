@@ -2,12 +2,11 @@ package com.lpoo_32.model;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
 
 public class PlayerModelTest {
-    PlayerModel player;
+    private PlayerModel player;
     @Before
     public void initializeValues(){
         this.player = new PlayerModel(null);

@@ -3,7 +3,7 @@ package com.lpoo_32.view;
 import com.googlecode.lanterna.TerminalSize;
 
 public class ScreenSize {
-    private TerminalSize size;
+    private final TerminalSize size;
 
     private static ScreenSize instance;
 

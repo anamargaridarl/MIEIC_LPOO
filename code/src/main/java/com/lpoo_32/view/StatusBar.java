@@ -9,10 +9,10 @@ import com.lpoo_32.model.Status;
 
 import java.awt.*;
 
-public class StatusBar extends ElementView {
+class StatusBar extends ElementView {
     private final Status status;
     private final String color;
-    private int height;
+    private final int height;
 
 
     StatusBar(Status status, String hexColor, int height){

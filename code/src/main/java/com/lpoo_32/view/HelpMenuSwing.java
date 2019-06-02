@@ -3,7 +3,7 @@ package com.lpoo_32.view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class HelpMenuSwing implements KeyListener {
+class HelpMenuSwing implements KeyListener {
 
     private final HelpMenuGUI help;
 
@@ -18,11 +18,8 @@ public class HelpMenuSwing implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        switch (keyEvent.getKeyCode()){
-            case KeyEvent.VK_Q:
-                help.stopDrawing();
-                break;
-
+        if (keyEvent.getKeyCode() == KeyEvent.VK_Q) {
+            help.stopDrawing();
         }
     }
 

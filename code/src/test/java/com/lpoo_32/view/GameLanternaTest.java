@@ -24,7 +24,7 @@ public class GameLanternaTest {
     private Elements elements;
 
     @Before
-    public void initalizeGame() throws OutOfBoundaries {
+    public void initalizeGame() {
         TerminalSize terminal = Mockito.mock(TerminalSize.class);
         Mockito.when(terminal.getColumns()).thenReturn(100);
         Mockito.when(terminal.getRows()).thenReturn(100);

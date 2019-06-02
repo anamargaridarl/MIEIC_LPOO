@@ -10,9 +10,9 @@ import java.util.List;
 public abstract class Game {
     public static final int width = 60;
     public static final int height = 50;
-    protected int index;
-    protected List<ElementView> generalView;
-    protected PlayerView player;
+    private int index;
+    final List<ElementView> generalView;
+    final PlayerView player;
 
 
     public Game(PlayerModel player) {

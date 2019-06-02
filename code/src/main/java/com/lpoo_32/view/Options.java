@@ -2,7 +2,7 @@ package com.lpoo_32.view;
 
 import java.awt.*;
 
-public class Options {
+class Options {
     public void drawSwing(Graphics graphics){
         graphics.setColor(Color.decode("#e4394a"));
         graphics.drawString("Game", 250, 200);

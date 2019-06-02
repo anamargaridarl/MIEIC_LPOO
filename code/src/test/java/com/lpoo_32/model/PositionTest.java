@@ -15,7 +15,7 @@ public class PositionTest {
     private  Position position;
 
     @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    public final ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void initializePosition() throws OutOfBoundaries {

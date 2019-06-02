@@ -6,13 +6,8 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.ElementModel;
-import com.lpoo_32.model.InteractableElement;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
 
 public abstract class ElementView  {
     private ElementModel element;
@@ -33,8 +28,9 @@ public abstract class ElementView  {
                 symbol
         );
     }
-    abstract void drawLanterna(TextGraphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen, Bedtime;;
-    abstract void drawSwing(Graphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen, Bedtime;;
+    abstract void drawLanterna(TextGraphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen, Bedtime;
+
+    abstract void drawSwing(Graphics graphics) throws HungerOVF, UpScreen, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, LeftScreen, RightScreen, DownScreen, Bedtime;
 
     void drawSwing(Graphics graphics, int x, int y){
 

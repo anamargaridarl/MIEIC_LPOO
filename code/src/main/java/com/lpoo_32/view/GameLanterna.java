@@ -9,14 +9,13 @@ import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 
 import java.io.IOException;
-import java.util.*;
 
 
 public class GameLanterna extends Game{
 
-    private Elements elements;
-    private TextGraphics graphics;
-    private Screen screen;
+    private final Elements elements;
+    private final TextGraphics graphics;
+    private final Screen screen;
 
     public GameLanterna(Screen screen, PlayerModel player, Elements elements) {
         super(player);

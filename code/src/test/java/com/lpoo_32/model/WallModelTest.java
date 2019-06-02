@@ -1,7 +1,6 @@
 package com.lpoo_32.model;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
 

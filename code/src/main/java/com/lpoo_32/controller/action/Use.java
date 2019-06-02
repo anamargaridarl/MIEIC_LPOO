@@ -13,7 +13,7 @@ public class Use implements ActionEvent {
     }
 
     @Override
-    public void execute() throws UpScreen, HungerOVF, Bedtime, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, RightScreen, ScreenClose {
+    public void execute() throws HungerOVF, Bedtime, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored {
         PlayerModel player = controller.getPlayer();
         Elements elements = controller.getElements();
         if(!controller.isWeaponUseDirect(player.getPosition())) {

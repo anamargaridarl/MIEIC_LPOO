@@ -1,8 +1,6 @@
 package com.lpoo_32.view;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.exceptions.*;
-import com.lpoo_32.model.Position;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,10 +8,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
-public class Selector extends ElementView {
+class Selector extends ElementView {
     private final MenuSwing menuSwing;
-    private int x = 320;
-    private int y = 180;
     private int index = 0;
     private BufferedImage image;
 
@@ -35,6 +31,8 @@ public class Selector extends ElementView {
 
     @Override
     void drawSwing(Graphics graphics) {
+        int y = 180;
+        int x = 320;
         graphics.drawImage(image, x, y + index * 100, 30, 30, null);
     }
 

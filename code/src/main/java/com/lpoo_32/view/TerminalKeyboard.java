@@ -11,8 +11,8 @@ import java.io.IOException;
 public class TerminalKeyboard implements KeyboardAnalyzer {
 
 
-    private Screen screen;
-    private GameController controller;
+    private final Screen screen;
+    private final GameController controller;
     private boolean flag;
 
     public TerminalKeyboard(Screen screen, GameController controller){

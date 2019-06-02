@@ -1,14 +1,5 @@
 package com.lpoo_32.view;
 
-import com.lpoo_32.exceptions.OutOfBoundaries;
-import com.lpoo_32.model.PlayerModel;
-import com.lpoo_32.model.Position;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import static org.junit.Assert.assertTrue;
-
 /*
 public class TerminalElementFactoryTest {
     @Rule

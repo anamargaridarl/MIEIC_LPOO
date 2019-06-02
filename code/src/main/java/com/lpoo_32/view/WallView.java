@@ -1,14 +1,12 @@
 package com.lpoo_32.view;
 
-import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.WallModel;
 
 import java.awt.*;
 
-public class WallView extends InteractableElementView{
+class WallView extends InteractableElementView{
 
     public WallView(WallModel element) {
         super(element);

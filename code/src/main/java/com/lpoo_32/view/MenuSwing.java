@@ -11,9 +11,9 @@ import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-public class MenuSwing implements Runnable{
+class MenuSwing implements Runnable{
 
-    private MenuSwingGUI gui;
+    private final MenuSwingGUI gui;
     private boolean gameRunning;
     private ExceptionableRunnable runnable;
     private boolean running = true;

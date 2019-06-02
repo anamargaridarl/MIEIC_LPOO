@@ -1,6 +1,5 @@
 package com.lpoo_32.controller.action;
 
-import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.PlayerModel;
 
 public class RightInventory implements ActionEvent {

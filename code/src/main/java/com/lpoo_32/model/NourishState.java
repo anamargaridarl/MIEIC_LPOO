@@ -3,7 +3,7 @@ package com.lpoo_32.model;
 import com.lpoo_32.exceptions.*;
 
 public abstract class NourishState {
-    PlayerModel player;
+    final PlayerModel player;
     NourishState(PlayerModel player){
         this.player = player;
     }

@@ -10,6 +10,6 @@ public class DayState extends NourishState {
     }
 
     @Override
-    public void update(int time) throws HungerOVF, HealthOVF, ThirstOVF {
+    public void update(int time) {
     }
 }
