@@ -13,10 +13,10 @@ import java.io.IOException;
 
 public class MenuSwing implements Runnable{
 
-    MenuSwingGUI gui;
-    boolean gameRunning;
-    ExceptionableRunnable runnable;
-    boolean running = true;
+    private MenuSwingGUI gui;
+    private boolean gameRunning;
+    private ExceptionableRunnable runnable;
+    private boolean running = true;
 
     public MenuSwing() {
         gameRunning = false;

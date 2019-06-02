@@ -12,14 +12,14 @@ import java.net.URL;
 
 public class Selector extends ElementView {
     private final MenuSwing menuSwing;
-    private int x = 300;
-    private int y = 30;
+    private int x = 320;
+    private int y = 180;
     private int index = 0;
     private BufferedImage image;
 
     Selector(MenuSwing menuSwing) {
         super();
-        URL resource = getClass().getResource("/" + "monster.png");
+        URL resource = getClass().getResource("/" + "cursor.png");
         try{
             this.image = ImageIO.read(resource);
         } catch (IOException e) {

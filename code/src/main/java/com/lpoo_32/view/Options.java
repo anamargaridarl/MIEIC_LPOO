@@ -4,8 +4,9 @@ import java.awt.*;
 
 public class Options {
     public void drawSwing(Graphics graphics){
-        graphics.drawString("Game", 50, 70);
-        graphics.drawString("Help", 50, 170);
-        graphics.drawString("Exit", 50, 270);
+        graphics.setColor(Color.decode("#e4394a"));
+        graphics.drawString("Game", 250, 200);
+        graphics.drawString("Help", 250, 300);
+        graphics.drawString("Exit", 250, 400);
     }
 }
