@@ -14,6 +14,7 @@ import javax.lang.model.element.Element;
 import java.util.Random;
 
 import static junit.framework.TestCase.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -119,7 +120,7 @@ public class MonsterTest {
     public void moveMonster() throws OutOfBoundaries, DownScreen, LeftScreen, UpScreen, RightScreen {
 
 
-        Mockito.when(random.nextInt(2)).thenReturn(1);
+        Mockito.when(random.nextInt( any(int.class))).thenReturn(1);
 
         monsterRandom.moveMonster(monsterViewRandom,player.getPosition());
         assertEquals(5, monsterViewRandom.getMonster().getPos().getX());
@@ -133,7 +134,7 @@ public class MonsterTest {
         monsterRandom.moveMonster(monsterViewRandom,player.getPosition());
         assertEquals( 3, monsterViewRandom.getMonster().getPos().getX());
 
-        Mockito.when(random.nextInt(2)).thenReturn(2);
+        Mockito.when(random.nextInt( any(int.class))).thenReturn(2);
 
         monsterRandom.moveDown();
         monsterRandom.moveDown();
