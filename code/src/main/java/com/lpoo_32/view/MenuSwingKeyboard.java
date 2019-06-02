@@ -16,7 +16,6 @@ class MenuSwingKeyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        System.out.println(keyEvent.getKeyChar());
         switch (keyEvent.getKeyCode()){
             case KeyEvent.VK_UP:
                 selector.moveUp();

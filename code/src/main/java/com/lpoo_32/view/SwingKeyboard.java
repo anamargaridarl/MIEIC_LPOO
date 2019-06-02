@@ -67,7 +67,6 @@ class SwingKeyboard implements KeyListener {
                 break;
             default:
                 event = new Null();
-                System.out.println(keyEvent.getKeyChar());
         }
         this.controller.processKey(event);
     }
