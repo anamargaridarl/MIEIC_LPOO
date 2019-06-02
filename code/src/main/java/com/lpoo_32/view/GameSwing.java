@@ -7,6 +7,7 @@ import com.lpoo_32.model.PlayerModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 public class GameSwing extends Game{
     private final Elements elements;
@@ -22,6 +23,8 @@ public class GameSwing extends Game{
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.removeAll();
+        Component component = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+        System.out.println(component);
         this.graphics = frame.getGraphics();
         this.setInitialProps();
         bufferImage = frame.createImage(ScreenWidth, ScreenHeight);
