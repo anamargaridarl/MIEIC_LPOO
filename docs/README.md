@@ -338,6 +338,40 @@ We ended up creating and NourishState abstract class where it children  handle d
 #### Consequences
  It is now possible to modify the behaviour of the game when its internal state changes as well as
  separate the several behaviours into independent states that don't affect any other existing states or any new to implement later on. 
+
+### MenuAbstractFactory
+#### Problem in Context
+Since both games run on different menus with 
+very much different graphical interfaces and different
+necessities, there was a necessity to be able
+abstract this information from the Application
+level of it. Furthermore, if any framework needed
+some more information, this would create further
+incompatibilities which would need to solved
+by changing the Application itself.
+
+#### The Pattern
+In order to solve this issue, we use an **Abstract-Factory**
+design pattern which is able to provide us a solution to our problem. 
+An Abstract-Factory is able to provide an interface
+for families of related objects, which is exactly
+what I was trying to provide here.
+
+#### Implementation
+Therefore, it was defined an interface to provide
+menus (and anything else it was futurely needed).
+ <div style="text-align:center">    
+     <img src="images/AbstractFactory.png"/>    
+ </div>
+
+#### Consequences
+Thus, with this Abstract-Factory, it is now able to 
+perfectly abstract any necessity in terms of
+Graphical Interface dependencies from itself,
+therefore being able to provide a safer and more 
+testable way of getting this information,
+then having to change already written and tested
+code.
  
 
 ## Known Code Smells and Refactoring Suggestions
