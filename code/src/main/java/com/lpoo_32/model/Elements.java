@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Elements {
 
-    private List<List<InteractableElementView>> elements;
+    private final List<List<InteractableElementView>> elements;
 
     public Elements() {
         this.elements = new ArrayList<>();
@@ -48,7 +48,7 @@ public class Elements {
         return elements.get(x).get(y);
     }
 
-    public InteractableElement getModelByCoord(int x, int y){
+    private InteractableElement getModelByCoord(int x, int y){
         return elements.get(x).get(y).getElement();
     }
 

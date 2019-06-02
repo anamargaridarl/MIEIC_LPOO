@@ -19,6 +19,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
 public class GameControllerTest {
@@ -54,7 +55,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void processKey() throws IOException, DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries {
+    public void processKey() throws DownScreen, LeftScreen, UpScreen, RightScreen, OutOfBoundaries {
         TerminalKeyboard keyboard = Mockito.mock(TerminalKeyboard.class);
         PlayerModel player = Mockito.mock(PlayerModel.class);
         CatchableElement e = Mockito.mock(CatchableElement.class);
@@ -94,7 +95,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void updateGame() throws ScreenClose, InterruptedException, LeftScreen, DownScreen, IOException, RightScreen, HealthOVF, UpScreen, ThirstOVF, HungerOVF, OutOfBoundaries {
+    public void updateGame() throws ScreenClose, InterruptedException, IOException, HealthOVF, ThirstOVF, HungerOVF, OutOfBoundaries {
         PlayerModel player = Mockito.mock(PlayerModel.class);
         Status status = Mockito.mock(Status.class);
         Screen screen = Mockito.mock(Screen.class);
@@ -155,7 +156,7 @@ public class GameControllerTest {
         player.setWeapon(null);
         k.changeWeaponInventory();
         assertEquals(20, player.getWeapon().getValue());
-        assertEquals(null, player.getInventory().getElement());
+        assertNull(player.getInventory().getElement());
 
         assertFalse(k.changeWeaponInventory());
 

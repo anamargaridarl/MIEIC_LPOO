@@ -7,7 +7,7 @@ public class PlayerModel extends MovableElement {
     private Status food;
     private Status water;
     private WeaponModel currentWeapon;
-    private Inventory inventory;
+    private final Inventory inventory;
 
     public PlayerModel(Position position){
         super(position, "stickman.png");

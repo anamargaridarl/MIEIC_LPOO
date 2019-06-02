@@ -3,7 +3,6 @@ package com.lpoo_32.model;
 
 import com.lpoo_32.controller.GameController;
 import com.lpoo_32.exceptions.*;
-import com.lpoo_32.view.ElementType;
 import com.lpoo_32.view.MonsterView;
 
 import java.util.Random;
@@ -19,11 +18,11 @@ public class MonsterModel extends InteractableElement {
 
 
     private int health;
-    private MovableElement movable;
-    private Position playerposition;
-    int number;
-    Random random;
-    GameController controller;
+    private final MovableElement movable;
+    private final Position playerposition;
+    private int number;
+    private final Random random;
+    private final GameController controller;
 
     public MonsterModel(Position pos, int value, MovableElement movable, GameController controller, Position playerposition, Random random) {
         super(pos, value, "monster.png");
@@ -57,7 +56,7 @@ public class MonsterModel extends InteractableElement {
         movable.moveLeft();
     }
 
-    public void moveRight() throws RightScreen {
+    private void moveRight() throws RightScreen {
         movable.moveRight();
     }
 
@@ -147,7 +146,7 @@ return false;
     }
 
     //chose between moving in y or x
-    public int randomMove(Position playerposition) throws LeftScreen, RightScreen, UpScreen, DownScreen {
+    private int randomMove(Position playerposition) {
         int mov = random.nextInt(2);
 
         if (mov == 1) {

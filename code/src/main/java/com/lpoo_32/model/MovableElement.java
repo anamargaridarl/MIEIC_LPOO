@@ -7,7 +7,7 @@ import com.lpoo_32.exceptions.UpScreen;
 
 public class MovableElement extends ElementModel {
 
-    private Position position;
+    private final Position position;
 
     public MovableElement(Position position, String name){
         super(name);

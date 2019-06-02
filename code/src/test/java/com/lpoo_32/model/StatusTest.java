@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class StatusTest {
     @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    public final ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void healthTest() throws HealthOVF, HungerOVF, HungerRestored, ThirstOVF, ThirstRestored {

@@ -1,8 +1,5 @@
 package com.lpoo_32.model;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.controller.GameController;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.view.*;
@@ -10,27 +7,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import javax.lang.model.element.Element;
 import java.util.Random;
 
 import static junit.framework.TestCase.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class MonsterTest {
 
     private PlayerModel player;
-    private GameController gameController;
     private MonsterModel monster;
     private MonsterView monsterview;
     private Elements elements;
 
-    Position monsterposition;
-    private GameController gameController2;
+    private Position monsterposition;
     private MonsterModel monsterRandom;
     private MonsterView monsterViewRandom;
-    private Elements elements2;
     private Random random;
 
 
@@ -40,7 +32,7 @@ public class MonsterTest {
         Position positionmonster = new Position(5, 5, Game.width / 4, Game.height / 4, 0);
         elements = new Elements();
         player = new PlayerModel(new Position(4, 5, Game.width / 4, Game.height / 4, 0));
-        gameController = new GameController(elements, player, mock(Game.class));
+        GameController gameController = new GameController(elements, player, mock(Game.class));
         monster = new MonsterModel(positionmonster, 40, new MovableElement(positionmonster, ""), gameController, player.getPosition(), new Random());
         monsterview = new MonsterView(monster);
         elements.addElement(monsterview);
@@ -48,22 +40,22 @@ public class MonsterTest {
 
        monsterposition = new Position(6, 5, Game.width / 4, Game.height / 4, 0);
          random = mock(Random.class);
-         elements2 = new Elements();
-         gameController2 = new GameController(elements2, player, mock(Game.class));
+        Elements elements2 = new Elements();
+        GameController gameController2 = new GameController(elements2, player, mock(Game.class));
          monsterRandom = new MonsterModel(monsterposition, 40, new MovableElement(monsterposition, ""), gameController2, player.getPosition(), random);
          monsterViewRandom = new MonsterView(monsterRandom);
         elements2.addElement(monsterViewRandom);
     }
 
     @Test
-    public void interact() throws OutOfBoundaries, HungerOVF, HealthOVF, ThirstOVF {
+    public void interact() throws HungerOVF, HealthOVF, ThirstOVF {
         monster.interact(player);
         assertEquals(60, player.getHealth().getValue());
     }
 
 
     @Test
-    public void getMovement() throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, OutOfBoundaries {
+    public void getMovement() throws RightScreen, DownScreen, LeftScreen, UpScreen, OutOfBoundaries {
 
         Position newp = new Position(5, 4, Game.width / 4, Game.height / 4, 0);
         Position oldp = new Position(5, 5, Game.width / 4, Game.height / 4, 0);
@@ -117,7 +109,7 @@ public class MonsterTest {
     }
 
     @Test
-    public void moveMonster() throws OutOfBoundaries, DownScreen, LeftScreen, UpScreen, RightScreen {
+    public void moveMonster() throws DownScreen, LeftScreen, UpScreen, RightScreen {
 
 
         Mockito.when(random.nextInt( any(int.class))).thenReturn(1);

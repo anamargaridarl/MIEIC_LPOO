@@ -1,8 +1,6 @@
 package com.lpoo_32.view;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
@@ -13,7 +11,6 @@ import org.mockito.Mockito;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 

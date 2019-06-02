@@ -9,11 +9,11 @@ import com.lpoo_32.view.ScreenSize;
 import java.util.Objects;
 
 public class Position {
-    protected int x;
-    protected int y;
-    protected int index;
-    protected final int width;
-    protected final int height;
+    private int x;
+    private int y;
+    private int index;
+    private final int width;
+    private final int height;
 
     public Position(int x, int y, int width, int height, int index) throws OutOfBoundaries {
         this.x = x;
@@ -123,12 +123,12 @@ public class Position {
         return (y * 4 )*(GameSwing.ScreenHeight)/100;
     }
 
-    public int heightIndex()
+    private int heightIndex()
     {
         return index/3;
     }
 
-    public int widthIndex()
+    private int widthIndex()
     {
         return  index%3;
     }

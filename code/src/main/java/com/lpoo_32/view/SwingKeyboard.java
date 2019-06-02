@@ -6,7 +6,7 @@ import com.lpoo_32.controller.action.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class SwingKeyboard implements KeyListener {
+class SwingKeyboard implements KeyListener {
     private final GameController controller;
 
     public SwingKeyboard(GameController controller){

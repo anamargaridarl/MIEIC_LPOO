@@ -5,19 +5,17 @@ import com.lpoo_32.controller.ExceptionableRunnable;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
 public class HelpMenuGUI implements ExceptionableRunnable {
 
-    private Graphics buffer;
-    private Image image;
+    private final Graphics buffer;
+    private final Image image;
     private BufferedImage background;
     private BufferedImage table;
-    private JFrame mainScreen;
+    private final JFrame mainScreen;
     private boolean running = true;
 
     public HelpMenuGUI(JFrame mainScreen) {

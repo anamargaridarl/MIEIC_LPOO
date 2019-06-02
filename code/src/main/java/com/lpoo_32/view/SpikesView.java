@@ -2,10 +2,7 @@ package com.lpoo_32.view;
 
 import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.lpoo_32.model.FoodModel;
-import com.lpoo_32.model.InteractableElement;
 import com.lpoo_32.model.SpikesModel;
 import com.lpoo_32.view.InteractableElementView;
 
@@ -13,7 +10,7 @@ import java.awt.*;
 
 public class SpikesView extends InteractableElementView {
 
-    private SpikesModel spikes;
+    private final SpikesModel spikes;
 
     public SpikesView(SpikesModel spikes){
         super(spikes);

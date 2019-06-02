@@ -1,7 +1,6 @@
 package com.lpoo_32.model;
 
 
-import com.googlecode.lanterna.Symbols;
 import com.lpoo_32.exceptions.*;
 
 public class WaterModel extends CatchableElement {

@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class InventoryView extends BoxView {
 
-    private Inventory inventory;
+    private final Inventory inventory;
     private final String color;
     //private int height;
 

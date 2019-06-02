@@ -1,7 +1,6 @@
 package com.lpoo_32.controller.action;
 
 import com.lpoo_32.controller.GameController;
-import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.view.CatchableView;
 

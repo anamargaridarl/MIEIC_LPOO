@@ -5,21 +5,20 @@ import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.*;
 import com.lpoo_32.view.*;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.Random;
 
 public class GameController implements ExceptionableRunnable{
     private final Game game;
-    private PlayerModel player;
-    private Elements elements;
+    private final PlayerModel player;
+    private final Elements elements;
     private TerminalKeyboard keyboardProcessor;
     private NourishState hunger;
     private NourishState thirst;
     private NourishState sleep;
     private static final int frameRate = 60;
     private int time;
-    private ElementFactory factory;
+    private final ElementFactory factory;
     private boolean screenclose;
 
     public GameController(Elements elements, PlayerModel player, Game game) throws OutOfBoundaries  {
@@ -167,8 +166,7 @@ public class GameController implements ExceptionableRunnable{
         int x = random.nextInt(width * 3);
         int y = random.nextInt(height * 3);
         int index = (x/width) + (y/height) * 3;
-        Position pos = new Position(x, y, width, height, index);
-        return pos;
+        return new Position(x, y, width, height, index);
     }
 
     private void populateGame(int width, int height, int indexGame) throws OutOfBoundaries {
@@ -231,32 +229,25 @@ public class GameController implements ExceptionableRunnable{
     public void removeElementProps(InteractableElement element) {
         this.elements.removeElement(element);
     }
-    public boolean addElementProps(InteractableElementView element)  {
+    public void addElementProps(InteractableElementView element)  {
 
-            return this.elements.addElement(element);
+        this.elements.addElement(element);
     }
 
     public boolean checkForElement(Position position)
     {
-        if(elements.getView(position) == null)
-            return false;
-        else
-            return true;
+        return elements.getView(position) != null;
     }
 
 
     public boolean monsterEqualsPlayer(Position player, Position position) {
 
-        if (Math.abs(position.getX() - player.getX()) == 0 && Math.abs(position.getY() - player.getY()) == 1
-                || Math.abs(position.getX() - player.getX()) == 1 && Math.abs(position.getY() - player.getY()) == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return Math.abs(position.getX() - player.getX()) == 0 && Math.abs(position.getY() - player.getY()) == 1
+                || Math.abs(position.getX() - player.getX()) == 1 && Math.abs(position.getY() - player.getY()) == 0;
     }
 
 
-    public void changeActualWeapon(Position position)
+    private void changeActualWeapon(Position position)
     {
         if (player.getWeapon() != null) {
             WeaponModel old = player.getWeapon();

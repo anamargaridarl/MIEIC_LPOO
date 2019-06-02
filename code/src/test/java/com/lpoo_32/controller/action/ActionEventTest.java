@@ -6,13 +6,11 @@ import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 import com.lpoo_32.model.WeaponModel;
-import com.lpoo_32.view.InteractableElementView;
 import com.lpoo_32.view.MonsterView;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 

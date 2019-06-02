@@ -2,20 +2,18 @@ package com.lpoo_32.view;
 
 import com.lpoo_32.exceptions.*;
 import com.lpoo_32.model.Elements;
-import com.lpoo_32.model.HealthStatus;
 import com.lpoo_32.model.PlayerModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
 
 public class GameSwing extends Game{
     private final Elements elements;
-    private Graphics graphics;
-    public static int ScreenWidth = 1366;
-    public static int ScreenHeight = 768;
-    private Graphics buffer;
-    private Image bufferImage;
+    private final Graphics graphics;
+    public static final int ScreenWidth = 1366;
+    public static final int ScreenHeight = 768;
+    private final Graphics buffer;
+    private final Image bufferImage;
 
     public GameSwing(JFrame frame, PlayerModel player, Elements elements){
         super(player);
@@ -52,7 +50,7 @@ public class GameSwing extends Game{
         graphics.drawImage(bufferImage, 0, 0, null);
     }
 
-    static public int getHeight() {
+    private static int getHeight() {
         return (ScreenHeight* Game.height)/100 + 35;
     }
 

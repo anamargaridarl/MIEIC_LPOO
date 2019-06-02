@@ -6,9 +6,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.lpoo_32.model.BedModel;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
-public class BedView extends InteractableElementView {
+class BedView extends InteractableElementView {
     public BedView(BedModel element) {
         super(element);
     }

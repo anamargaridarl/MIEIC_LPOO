@@ -1,9 +1,9 @@
 import com.lpoo_32.view.*;
 import java.io.IOException;
 
-public class Application {
+class Application {
     public static void main(String[] args) throws IOException {
-        MenuAbstractFactory factory = null;
+        MenuAbstractFactory factory;
         if(args[0].contentEquals("lanterna")){
             factory = new TerminalMenuFactory();
         }

@@ -12,7 +12,7 @@ public class InventoryUse implements ActionEvent {
     }
 
     @Override
-    public void execute() throws UpScreen, HungerOVF, Bedtime, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored, DownScreen, LeftScreen, RightScreen, ScreenClose {
+    public void execute() throws HungerOVF, Bedtime, ThirstOVF, HealthOVF, ThirstRestored, HungerRestored {
         PlayerModel player = controller.getPlayer();
         if (player.getInventory().getElement() != null) {
             if (!controller.changeWeaponInventory()) {

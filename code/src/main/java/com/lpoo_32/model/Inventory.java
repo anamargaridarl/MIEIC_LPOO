@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Inventory {
 
-    private List<CatchableView> inventory;
+    private final List<CatchableView> inventory;
     private int index;
 
     public Inventory(){
@@ -36,7 +36,7 @@ public class Inventory {
 
     }
 
-    public void updateRemoveIndex()
+    private void updateRemoveIndex()
     {
         if(index > 0)
             index--;

@@ -1,7 +1,5 @@
 package com.lpoo_32.controller.action;
 
-import com.lpoo_32.exceptions.*;
-
 public class Null implements ActionEvent {
     @Override
     public void execute() {

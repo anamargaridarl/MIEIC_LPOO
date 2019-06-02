@@ -7,7 +7,7 @@ import com.lpoo_32.exceptions.*;
 
 import java.io.IOException;
 
-public abstract class Display {
+abstract class Display {
     Screen screen;
 
     Display(Terminal terminal) throws IOException {
@@ -25,5 +25,5 @@ public abstract class Display {
         this.screen = screen;
     }
 
-    abstract public void draw() throws IOException, HungerOVF, HungerRestored, ThirstOVF, HealthOVF, ThirstRestored, UpScreen, LeftScreen, RightScreen, DownScreen;
+    abstract public void draw() throws IOException;
 }
