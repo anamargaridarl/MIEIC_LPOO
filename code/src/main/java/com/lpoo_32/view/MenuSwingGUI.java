@@ -3,6 +3,7 @@ package com.lpoo_32.view;
 import com.lpoo_32.controller.GameController;
 import com.lpoo_32.exceptions.OutOfBoundaries;
 import com.lpoo_32.model.Elements;
+import com.lpoo_32.model.MonsterModel;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 
@@ -20,24 +21,13 @@ import java.util.ArrayList;
 public class MenuSwingGUI extends JFrame {
 
 
+    private Image image;
     private JPanel root;
     private String[] choices = { "Game", "Instructions", "Exit" };
     JList list;
-
-
-
-    MouseListener mouseListener = new MouseAdapter() {
-        public void mouseClicked(MouseEvent mouseEvent) {
-            JList theList = (JList) mouseEvent.getSource();
-            if (mouseEvent.getClickCount() == 2) {
-                int index = theList.locationToIndex(mouseEvent.getPoint());
-                if (index >= 0) {
-                    Object o = theList.getModel().getElementAt(index);
-                    System.out.println("Double-clicked on: " + o.toString());
-                }
-            }
-        }
-    };
+    private Selector selector;
+    private Options options = new Options();
+    private Graphics buffer;
 
     public void manageList()
     {
@@ -45,90 +35,25 @@ public class MenuSwingGUI extends JFrame {
         list.setSelectedIndex(3);
         list.setFixedCellHeight(100);
         list.setFixedCellWidth(50);
-        this.getContentPane().add(list);
-        list.addListSelectionListener((listSelectionEvent) -> {
-                boolean adjust = listSelectionEvent.getValueIsAdjusting();
-                if (!adjust) {
-                    JList list = (JList) listSelectionEvent.getSource();
+    }
 
-                    int[] selections = list.getSelectedIndices();
-                    for (int i = 0, n = selections.length; i < n; i++) {
-                        if (i == 0) {
-                            System.out.print("  Selections: ");
-                        }
-                        if(selections[i] == 0)
-                        {
-                            Elements elements = new Elements();
-                            PlayerModel model = null;
-                            try {
-                                model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
-                            } catch (OutOfBoundaries outOfBoundaries) {
-                                outOfBoundaries.printStackTrace();
-                            }
-                            JPanel panel = new JPanel();
-                            GameController game = null;
-                            this.list.add(panel);
-                            try {
-                                game = new GameController(
-                                        elements,
-                                        model,
-                                        new GameSwing(panel, model, elements)
-                                );
-                            } catch (OutOfBoundaries outOfBoundaries) {
-                                outOfBoundaries.printStackTrace();
-                            }
-                            this.list.setFocusable(false);
-                            this.addKeyListener(new SwingKeyboard(game));
-                            this.list.addKeyListener(new SwingKeyboard(game));
-                            SwingKeyboardTest swingKeyboard = new SwingKeyboardTest(this,game);
-                            panel.addKeyListener(new SwingKeyboard(game));
-                            ListSelectionListener[] listeners = this.list.getListSelectionListeners();
-                            for(int j= 0; j < listeners.length; j++){
-                                this.list.removeListSelectionListener(listeners[j]);
-                            }
-                            Component component = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
-                            System.out.println(component + " " + component.equals(this.list));
-                            this.setFocusable(true);
-                            try {
-                                game.run();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-//                            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-//                            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-                            this.setVisible(true);
-                            this.pack();
-                            this.manageList();
-                        System.out.println("Stopping game");
-                        }
-                        else if(selections[i] == 1)
-                        {
-                            this.setVisible(false);
-                            HelpMenuGUI help = new HelpMenuGUI(this);
-                            help.setVisible(true);
-                        }
-                        else if (selections[i] == 2){
-                            this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-
-                        }
-
-                    }
-                    System.out.println();
-                }
-        });
-        this.addMouseListener(mouseListener);
+    public void draw(){
+        getGraphics().clearRect(0, 0, GameSwing.ScreenWidth, GameSwing.ScreenHeight);
+        selector.drawSwing(getGraphics());
+        options.drawSwing(getGraphics());
     }
 
 
-    public MenuSwingGUI()
+    public MenuSwingGUI(Selector selector)
     {
+        this.selector = selector;
         this.root = new JPanel();
-        add(root);
         setTitle("Menu");
-        setSize(400,    330);
+        add(root);
+        setSize(1000,    1000);
         list = new JList(choices);
         manageList();
+        this.addKeyListener(new MenuSwingKeyboard(this.selector));
     }
 
 

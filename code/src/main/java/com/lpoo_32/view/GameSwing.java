@@ -14,9 +14,9 @@ public class GameSwing extends Game{
     private Graphics graphics;
     public static int ScreenWidth = 1366;
     public static int ScreenHeight = 768;
-    private JPanel frame;
+    private JFrame frame;
 
-    public GameSwing(JPanel frame, PlayerModel player, Elements elements){
+    public GameSwing(JFrame frame, PlayerModel player, Elements elements){
         super(player);
         this.elements = elements;
         this.frame = frame;
@@ -31,6 +31,7 @@ public class GameSwing extends Game{
 
     @Override
     public void draw() throws HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, Bedtime {
+        System.out.println(FocusManager.getCurrentManager().getFocusOwner());
         graphics.clearRect(0, 0, ScreenWidth, ScreenHeight);
         graphics.drawRect(0, 0, getWidth(), getHeight());
 
