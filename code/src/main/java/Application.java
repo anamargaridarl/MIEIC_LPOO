@@ -15,30 +15,15 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class Application {
-    public static void main(String[] args) throws OutOfBoundaries, IOException {
+    public static void main(String[] args) throws IOException {
+        MenuAbstractFactory factory = null;
         if(args[0].contentEquals("lanterna")){
-            try{
-                Menu menu = new Menu(new DefaultTerminalFactory().createTerminal());
-                menu.run();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            factory = new TerminalMenuFactory();
         }
         else {
-            Elements elements = new Elements();
-            PlayerModel model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
-            JFrame frame = new JFrame();
-            GameController game = new GameController(
-                    elements,
-                    model,
-                    new GameSwing(frame, model, elements)
-            );
-            frame.addKeyListener(new SwingKeyboard(game));
-            game.run();
-            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            System.out.println("Stopping game");
+            factory = new SwingMenuFactory();
         }
+        factory.getMenu().run();
 
     }
 }

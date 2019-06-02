@@ -23,8 +23,6 @@ public abstract class Game {
 
     abstract public void draw() throws IOException, HungerOVF, ThirstOVF, ThirstRestored, RightScreen, DownScreen, LeftScreen, HealthOVF, HungerRestored, UpScreen, Bedtime;
 
-//    abstract public void destroy();
-
     public int getIndex() {
         return index;
     }

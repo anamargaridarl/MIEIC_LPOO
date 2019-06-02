@@ -18,7 +18,7 @@ public class SwingKeyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        ActionEvent event = null;
+        ActionEvent event;
         switch (keyEvent.getKeyCode()){
             case KeyEvent.VK_UP:
                 event = new MoveUp(controller);
@@ -66,6 +66,7 @@ public class SwingKeyboard implements KeyListener {
                 event = new AttackDown(controller);
                 break;
             default:
+                event = new Null();
                 System.out.println(keyEvent.getKeyChar());
         }
         this.controller.processKey(event);

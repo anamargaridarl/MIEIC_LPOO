@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class Menu extends Display {
+public class Menu extends Display implements Runnable {
     //    protected WindowBasedTextGUI gui;
     protected List<ElementView> props;
     Elements elements;
@@ -52,7 +52,7 @@ public class Menu extends Display {
         KeyTable table = new KeyTable();
         table.addComand("Arrows", "Movement");
         table.addComand("Q", "Move Back / Exit program");
-        table.addComand("Z", "Quit game");
+        table.addComand("Z", "Quit runnable");
         table.addComand("T", "Use food/water from the ground");
         table.addComand("F", "Pick food/water into the inventory");
         table.addComand("E", "Use current element in the inventory");
@@ -81,8 +81,12 @@ public class Menu extends Display {
         this.gui.updateScreen();
     }
 
-    public void run() throws IOException {
-        this.draw();
+    public void run() {
+        try {
+            this.draw();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addOptions(){
