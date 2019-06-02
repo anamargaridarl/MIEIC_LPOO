@@ -9,8 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Random;
 
-public class GameController
-{
+public class GameController implements ExceptionableRunnable{
     private final Game game;
     private PlayerModel player;
     private Elements elements;
@@ -23,7 +22,7 @@ public class GameController
     private ElementFactory factory;
     private boolean screenclose;
 
-    public GameController(Elements elements, PlayerModel player, Game game) throws OutOfBoundaries {
+    public GameController(Elements elements, PlayerModel player, Game game) throws OutOfBoundaries  {
         this.player = player;
         this.elements = elements;
         this.screenclose = false;

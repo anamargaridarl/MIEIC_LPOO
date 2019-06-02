@@ -50,10 +50,17 @@ public class Selector extends ElementView {
         }
     }
 
-    public void enter() throws IOException, OutOfBoundaries {
+    public void enter() {
         switch (this.index){
             case 0:
                 menuSwing.initiateGame();
+                break;
+            case 1:
+                menuSwing.initiateHelp();
+                break;
+            case 2:
+                menuSwing.stopGame();
+                break;
         }
     }
 }

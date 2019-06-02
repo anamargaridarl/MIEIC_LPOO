@@ -52,7 +52,7 @@ public class Menu extends Display implements Runnable {
         KeyTable table = new KeyTable();
         table.addComand("Arrows", "Movement");
         table.addComand("Q", "Move Back / Exit program");
-        table.addComand("Z", "Quit game");
+        table.addComand("Z", "Quit runnable");
         table.addComand("T", "Use food/water from the ground");
         table.addComand("F", "Pick food/water into the inventory");
         table.addComand("E", "Use current element in the inventory");

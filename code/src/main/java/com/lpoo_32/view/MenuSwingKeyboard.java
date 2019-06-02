@@ -19,20 +19,16 @@ public class MenuSwingKeyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+        System.out.println(keyEvent.getKeyChar());
         switch (keyEvent.getKeyCode()){
             case KeyEvent.VK_UP:
                 selector.moveUp();
                 break;
             case KeyEvent.VK_DOWN:
                 selector.moveDown();
+                break;
             case KeyEvent.VK_ENTER:
-                try {
-                    selector.enter();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (OutOfBoundaries outOfBoundaries) {
-                    outOfBoundaries.printStackTrace();
-                }
+                selector.enter();
                 break;
         }
     }

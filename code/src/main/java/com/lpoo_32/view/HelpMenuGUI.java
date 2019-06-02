@@ -1,16 +1,19 @@
 package com.lpoo_32.view;
 
+import com.lpoo_32.controller.ExceptionableRunnable;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-public class HelpMenuGUI extends JFrame {
+public class HelpMenuGUI implements ExceptionableRunnable {
 
+    private JFrame mainScreen;
     private JTable table;
-    private JPanel root;
+    private boolean running = true;
 
     String[] columnNames = {"Actions",
             "Explanation",};
@@ -27,25 +30,31 @@ public class HelpMenuGUI extends JFrame {
             }
     };
 
+
     public HelpMenuGUI(JFrame mainScreen) {
-        this.root = new JPanel();
+        this.mainScreen = mainScreen;
         table = new JTable(data, columnNames);
-        this.setLayout(new MigLayout("wrap 300"));
-        add(root);
-        setTitle("Menu");
-        setSize(400,330);
-        this.getContentPane().add(table, "span 300");
-        JButton button = new JButton();
-        button.addActionListener(actionEvent -> {
-            mainScreen.setVisible(true);
-            this.setVisible(false);
-        });
-        this.getContentPane().add(button, "wrap 300");
     }
 
 
+    @Override
+    public void run() {
+        while (running){
+            try {
+                this.draw();
+                Thread.sleep(1000/30);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    private void draw() {
+        this.mainScreen.getGraphics().clearRect(0, 0, GameSwing.ScreenWidth, GameSwing.ScreenHeight);
+        this.table.paint(this.mainScreen.getGraphics());
+    }
 
-
-
+    public void stopDrawing() {
+        running = false;
+    }
 }
