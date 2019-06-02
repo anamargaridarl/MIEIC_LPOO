@@ -20,9 +20,6 @@ public class GameSwing extends Game{
     public GameSwing(JFrame frame, PlayerModel player, Elements elements){
         super(player);
         this.elements = elements;
-        frame.setVisible(true);
-        frame.setFocusable(true);
-        frame.removeAll();
         Component component = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
         System.out.println(component);
         this.graphics = frame.getGraphics();

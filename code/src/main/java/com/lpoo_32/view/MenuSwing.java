@@ -6,6 +6,8 @@ import com.lpoo_32.model.Elements;
 import com.lpoo_32.model.PlayerModel;
 import com.lpoo_32.model.Position;
 
+import javax.swing.*;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 public class MenuSwing implements Runnable{
@@ -21,31 +23,41 @@ public class MenuSwing implements Runnable{
 
     public void run() {
         gui.setVisible(true);
-        while (!gameRunning){
-            gui.draw();
+        while (true){
+            while (!gameRunning){
+                gui.draw();
+                try {
+                    Thread.sleep(1000/30);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             try {
-                Thread.sleep(1000/30);
-            } catch (InterruptedException e) {
+                game.run();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+            gameRunning = false;
         }
     }
-    public void initiateGame() throws OutOfBoundaries, IOException {
-        Elements elements = new Elements();
-        PlayerModel model = new PlayerModel(new Position(2,2, Game.width/4, Game.height/4, 0));
-        game = new GameController(
-                elements,
-                model,
-                new GameSwing(gui, model, elements)
-        );
-//        KeyListener[] keys = gui.getKeyListeners();
-//        for (KeyListener key : keys) {
-//            gui.removeKeyListener(key);
-//        }
-        gui.addKeyListener(new SwingKeyboard(game));
+    public void initiateGame() {
+        newGame();
         gameRunning = true;
-        game.run();
-        gameRunning = false;
+
     }
 
+    private void newGame() {
+        Elements elements = new Elements();
+        try {
+            PlayerModel model = new PlayerModel(new Position(2, 2, Game.width / 4, Game.height / 4, 0));
+            game = new GameController(
+                    elements,
+                    model,
+                    new GameSwing(gui, model, elements)
+            );
+        } catch (OutOfBoundaries outOfBoundaries) {
+            outOfBoundaries.printStackTrace();
+        }
+        gui.addKeyListener(new SwingKeyboard(game));
+    }
 }

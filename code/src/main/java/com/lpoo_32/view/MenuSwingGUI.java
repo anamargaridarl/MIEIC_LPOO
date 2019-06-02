@@ -28,9 +28,10 @@ public class MenuSwingGUI extends JFrame {
     private Graphics buffer;
 
     public void draw(){
-        getGraphics().clearRect(0, 0, GameSwing.ScreenWidth, GameSwing.ScreenHeight);
-        selector.drawSwing(getGraphics());
-        options.drawSwing(getGraphics());
+        buffer.clearRect(0, 0, GameSwing.ScreenWidth, GameSwing.ScreenHeight);
+        selector.drawSwing(buffer);
+        options.drawSwing(buffer);
+        getGraphics().drawImage(image, 0, 0, null);
     }
 
 
@@ -38,9 +39,12 @@ public class MenuSwingGUI extends JFrame {
     {
         this.selector = selector;
         this.root = new JPanel();
+        this.setVisible(true);
         setTitle("Menu");
         add(root);
-        setSize(1000,    1000);
+        setSize(GameSwing.ScreenWidth,    GameSwing.ScreenHeight);
+        image = createImage(GameSwing.ScreenWidth, GameSwing.ScreenHeight);
+        buffer = image.getGraphics();
         this.addKeyListener(new MenuSwingKeyboard(this.selector));
     }
 
