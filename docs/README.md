@@ -41,7 +41,7 @@ The character has a backpack to store food , water and weapons for later use. Th
  
  
    **Shelter in house**- The game map will create a house on a random position for the player to shelter. By entering by the door he will be protected from the monsters. 
- - **Sleep -** Additionally, this house has a bed that allows the player to recover from it's adventure. To do so the player needs to walk to the side of the bed so its health levels increase. On the down side, it will wake up felling more thirsty and hungry since those values will be decreased.
+ - **Sleep -** Additionally, this house has a bed that allows the player to recover from it's adventure. To do so the player needs to walk to the side of the bed so its health levels increase. On the down side, it will wake up feelling more thirsty and hungry since those values will be decreased.
 	 
 **Quit game** - By pressing Z the game will return to the main menu.       
 
@@ -58,7 +58,7 @@ Additionally the health value will cyclically decrease by a time frame.
       
 **Game Over-** The game is lost when the character health value reaches 0.
 
-The features created in the second part of this project were: **monsters**, **weapons**, **buildings** and the **Swing** Graphic interface.
+The features created in the second part of this project were: **Monsters**, **Meapons**, **Buildings** and the **Swing** Graphical interface.
 
 <div style="text-align:center">
     <img src="images/GameImage.png"/>
