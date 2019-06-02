@@ -18,7 +18,7 @@ public class HelpMenuGUI implements ExceptionableRunnable {
     private final JFrame mainScreen;
     private boolean running = true;
 
-    public HelpMenuGUI(JFrame mainScreen) {
+    HelpMenuGUI(JFrame mainScreen) {
         this.mainScreen = mainScreen;
         URL background = getClass().getResource("/" + "background.png");
         try{
@@ -56,7 +56,7 @@ public class HelpMenuGUI implements ExceptionableRunnable {
         this.mainScreen.getGraphics().drawImage(this.image, 0, 0, null);
     }
 
-    public void stopDrawing() {
+    void stopDrawing() {
         running = false;
     }
 }
